@@ -1,3 +1,1 @@
-# FRC2021\
-
-Lance sucks
+# FRC2021
