@@ -25,7 +25,18 @@ jobs:
         architecture: 'x64' # optional x64 or x86. Defaults to x64 if not specified
     - run: pip install cpplint
     - run: cpplint --filter=-legal/copyright --recursive .
-     
+    
+  create_release:
+    name: Build
+    runs-on: windows-2019
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install Toolchain
+        shell: cmd
+        run: ./gradlew installRoboRioToolchain
+      - name: Build 
+        shell: cmd
+        run: ./gradlew build
   # This workflow contains a single job called "build"
   # https://docs.wpilib.org/en/stable/docs/software/basic-programming/robot-code-ci.html
   # build:
