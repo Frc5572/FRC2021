@@ -29,7 +29,7 @@ DriveTrain::DriveTrain(
     FRC5572Controller &Driver,
     VisionManager &VisionManager,
     AHRS &ahrs
-    ){
+    ) {
         this->LeftMotors = new frc::SpeedControllerGroup( TopLeftMotor, MiddleLeft, BottomLeftMotor);
         this->RightMotors = new frc::SpeedControllerGroup( TopRightMotor, MiddleRight, BottomRightMotor);
         this->TempRightMotors = new frc::SpeedControllerGroup( MiddleRight, BottomRightMotor);
@@ -62,8 +62,7 @@ DriveTrain::DriveTrain(
         DriveTrain::LowerAmps();
 }
 
-DriveTrain::~DriveTrain()
-{
+DriveTrain::~DriveTrain(){
     delete LeftMotors;
     delete RightMotors;
     delete Driver;
@@ -90,20 +89,17 @@ DriveTrain::~DriveTrain()
 //     }
 // }
 
-void DriveTrain::Drive()
-{
+void DriveTrain::Drive(){
     DriveTrain::Aim();
-    if(this->Driver->L().second > .2 || this->Driver->L().second < -.2){
+    if (this->Driver->L().second > .2 || this->Driver->L().second < -.2){
         LeftMotors->Set(-1 * Driver->L().second * .7  );
-    }
-    else{
+    } else {
         LeftMotors->Set(0 + L);
     }
 
-    if(this->Driver->R().second > .2 ||  this->Driver->R().second < -.2){
+    if (this->Driver->R().second > .2 ||  this->Driver->R().second < -.2){
         RightMotors->Set(Driver->R().second  * .7);
-    }
-    else{
+    } else {
         RightMotors->Set(0 + R);
     }
 }
@@ -125,8 +121,7 @@ void DriveTrain::Aim(){
         disX = LimeLight->disX;
         nt::NetworkTableInstance::GetDefault().GetTable("limelight")->PutNumber("camMode", 0);
         nt::NetworkTableInstance::GetDefault().GetTable("limelight")->PutNumber("ledMode", 3);
-    }
-    else if (Driver->Y() == false){
+    } else if (Driver->Y() == false) {
         nt::NetworkTableInstance::GetDefault().GetTable("limelight")->PutNumber("camMode", 1);
         nt::NetworkTableInstance::GetDefault().GetTable("limelight")->PutNumber("ledMode", 1);
         disX = 0;
@@ -134,29 +129,28 @@ void DriveTrain::Aim(){
     }
 
     if (fabs(disX) > 1 && Driver->X() == true)
+    {
+        if (disX > 10)
         {
-            if (disX > 10)
-            {
-                R = -.15;
-                L = -.15;
-            }
-            if (disX < 10)
-            {
-                R = -disX/43;
-                L = -disX/43;
-            }
-            if (disX < -10)
-            {
-                R = .15;
-                L = .15;
-            }
-            if (disX > -10)
-            {
-                R = disX/43;
-                L = disX/43;
-            }
+            R = -.15;
+            L = -.15;
         }
-    else{
+        if (disX < 10)
+        {
+            R = -disX/43;
+            L = -disX/43;
+        }
+        if (disX < -10)
+        {
+            R = .15;
+            L = .15;
+        }
+        if (disX > -10)
+        {
+            R = disX/43;
+            L = disX/43;
+        }
+    } else {
         L = 0;
         R = 0;
         }
