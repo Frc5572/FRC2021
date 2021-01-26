@@ -1,0 +1,11 @@
+extraction:
+  cpp:
+    #  prepare:
+    #     packages:
+    #       - libboost-all-dev
+     configure:
+        command:
+        - ./gradlew installRoboRioToolchain
+     index:
+        build_command:
+        - ./gradlew build
