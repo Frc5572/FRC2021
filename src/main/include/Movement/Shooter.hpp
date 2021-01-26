@@ -41,16 +41,16 @@ class Shooter{
     double kP = 6e-5, kI = 1e-6, kD = 0, kIz = 0, kFF = 0.000015, kMaxOutput = 1.0, kMinOutput = -1.0 ,SetP = 700;
 
     /* Notes of power percentage and RPMs to make shot at certain distances*/
-    // Bumber shot = %- RPM - 
-    // Initiation line = %- RPM - 
-    // Trench = %- RPM - 
-    // Color Wheel = %- RMP - 
+    // Bumber shot = %- RPM -
+    // Initiation line = %- RPM -
+    // Trench = %- RPM -
+    // Color Wheel = %- RMP -
 
     rev::CANPIDController *m_pidController ;
     rev::CANPIDController *m_pidController2 ;
 
     frc::SpeedControllerGroup* shooterMotors;
-    
+
     FRC5572Controller* Operator;
 
     rev::CANSparkMax* leftMotor;

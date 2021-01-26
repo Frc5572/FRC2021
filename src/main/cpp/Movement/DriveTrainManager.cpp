@@ -3,7 +3,7 @@
 /* CAN ID layout for drive train from a top view
 
           Front of Robot
-         
+
          |--------------|
          |              |
       1  | M1        M2 | 2
@@ -23,7 +23,7 @@ DriveTrain::DriveTrain(
     rev::CANSparkMax &MiddleLeft,
     rev::CANSparkMax &MiddleRight,
 
-    rev::CANSparkMax &BottomLeftMotor, 
+    rev::CANSparkMax &BottomLeftMotor,
     rev::CANSparkMax &BottomRightMotor,
 
     FRC5572Controller &Driver,
@@ -35,7 +35,7 @@ DriveTrain::DriveTrain(
         this->TempRightMotors = new frc::SpeedControllerGroup( MiddleRight, BottomRightMotor);
         this->TempLeftMotors = new frc::SpeedControllerGroup( MiddleLeft, BottomLeftMotor);
 
-        
+
         this->Driver = &Driver;
         this->ahrs = &ahrs;
 
@@ -53,7 +53,7 @@ DriveTrain::DriveTrain(
 
         this->MiddleLeftMotorEncoder = new rev::CANEncoder{MiddleLeft};
         this->MiddleRightMotorEncoder = new rev::CANEncoder{MiddleRight};
-        
+
         this->BottomLeftMotorEncoder = new rev::CANEncoder{BottomLeftMotor};
         this->BottomRightMotorEncoder = new rev::CANEncoder{BottomRightMotor};
 
@@ -75,7 +75,7 @@ DriveTrain::~DriveTrain()
 // void DriveTrain::Drive()
 // {
 //     if(this->Driver->L().second > .2 || this->Driver->L().second < -.2){
-        
+
 //         LeftMotors->Set(-1 * QUAD(Driver->L().second) * .8  );
 //     }
 //     else{
@@ -122,7 +122,7 @@ void DriveTrain::LowerAmps(){
 void DriveTrain::Aim(){
     if (Driver->X() ==  true)
     {
-        disX = LimeLight->disX; 
+        disX = LimeLight->disX;
         nt::NetworkTableInstance::GetDefault().GetTable("limelight")->PutNumber("camMode", 0);
         nt::NetworkTableInstance::GetDefault().GetTable("limelight")->PutNumber("ledMode", 3);
     }
@@ -132,19 +132,19 @@ void DriveTrain::Aim(){
         disX = 0;
         L = 0; R = 0;
     }
-        
+
     if (fabs(disX) > 1 && Driver->X() == true)
         {
             if (disX > 10)
             {
-                R = -.15;  
+                R = -.15;
                 L = -.15;
             }
             if (disX < 10)
             {
-                R = -disX/43; 
+                R = -disX/43;
                 L = -disX/43;
-            } 
+            }
             if (disX < -10)
             {
                 R = .15;
@@ -152,7 +152,7 @@ void DriveTrain::Aim(){
             }
             if (disX > -10)
             {
-                R = disX/43; 
+                R = disX/43;
                 L = disX/43;
             }
         }
@@ -160,6 +160,6 @@ void DriveTrain::Aim(){
         L = 0;
         R = 0;
         }
-    
+
 
 }

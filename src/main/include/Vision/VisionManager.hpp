@@ -7,7 +7,7 @@
 class VisionManager
 {
     public:
-    double 
+    double
       disX = 0
     , disY = 0
     , tx = 0
