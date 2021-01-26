@@ -13,7 +13,7 @@
 /* CAN ID layout for drive train from a top view
 
           Front of Robot
-         
+
          |--------------|
          |              |
       1  | M1        M2 | 2
@@ -35,11 +35,11 @@ DriveTrain(
   rev::CANSparkMax &TopRightMotor    ,
   rev::CANSparkMax &MiddleLeft       ,
   rev::CANSparkMax &MiddleRight      ,
-  rev::CANSparkMax &BottomLeftMotor  , 
+  rev::CANSparkMax &BottomLeftMotor  ,
   rev::CANSparkMax &BottomRightMotor ,
   FRC5572Controller &Driver          ,
   VisionManager &VisionManager      ,
-  AHRS &ahrs                         
+  AHRS &ahrs
   );
 
 ~DriveTrain();
@@ -55,16 +55,16 @@ void Aim();
   frc::SpeedControllerGroup* RightMotors;
   frc::SpeedControllerGroup* TempRightMotors;
   frc::SpeedControllerGroup* TempLeftMotors;
-  
+
   FRC5572Controller* Driver;
 
   rev::CANSparkMax* TopLeftMotor;
   rev::CANSparkMax* TopRightMotor;
 
   rev::CANSparkMax* MiddleLeft;
-  rev::CANSparkMax* MiddleRight;  
-  
-  rev::CANSparkMax* BottomLeftMotor; 
+  rev::CANSparkMax* MiddleRight;
+
+  rev::CANSparkMax* BottomLeftMotor;
   rev::CANSparkMax* BottomRightMotor;
 
   rev::CANEncoder* TopLeftMotorEncoder    ;
@@ -75,5 +75,5 @@ void Aim();
   rev::CANEncoder* BottomRightMotorEncoder;
 
   AHRS* ahrs;
-  };  
+  };
 #endif

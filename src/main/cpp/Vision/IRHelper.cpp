@@ -6,7 +6,7 @@ Infrared::Infrared(int irChannel, InfraredSensorType irType)
 {
     this->irSensor = new frc::AnalogInput(irChannel);
     this->sensorFamily = irType;
-	
+
     switch(sensorFamily)
 	{
 		case InfraredSensorType::GP2Y0A710K0F:			//3-18 feet

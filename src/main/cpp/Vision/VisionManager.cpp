@@ -24,5 +24,5 @@ void VisionManager::Update(){
 }
 
 void TurnOffLights(){
-  
+
 }

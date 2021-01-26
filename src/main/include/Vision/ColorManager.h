@@ -14,7 +14,7 @@ public:
     m_ColorMatcher.AddColorMatch(m_cGreenTarget);
     m_ColorMatcher.AddColorMatch(m_cRedTarget);
     m_ColorMatcher.AddColorMatch(m_cSecoundRedTarget);
-    m_ColorMatcher.AddColorMatch(m_cYellowTarget); 
+    m_ColorMatcher.AddColorMatch(m_cYellowTarget);
   }
 
   double m_dConfidence = 0.0f;
@@ -28,7 +28,7 @@ public:
   /* Sensor Objects */
   rev::ColorSensorV3 m_ColorSensor{i2cPort};
   rev::ColorMatch    m_ColorMatcher;
-  frc::Color         m_cDetectedColor;  
+  frc::Color         m_cDetectedColor;
   frc::Color         m_cMatchedColor;
 
   /* Pre- Color defines need to be calorbated */

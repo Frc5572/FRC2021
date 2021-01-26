@@ -24,7 +24,7 @@ void ClimbManager::ClimbPeriodic(){
 
 void ClimbManager::UpAndDown(){
     if(driver->LT() > 0){
-        this->climbPistons->Set(frc::DoubleSolenoid::Value::kReverse); 
+        this->climbPistons->Set(frc::DoubleSolenoid::Value::kReverse);
     }
     else if(driver->RT() > 0){
        this->climbPistons->Set(frc::DoubleSolenoid::Value::kForward);
@@ -32,7 +32,7 @@ void ClimbManager::UpAndDown(){
     else{
         this->climbPistons->Set(frc::DoubleSolenoid::Value::kOff);
     }
-    
+
 }
 
 

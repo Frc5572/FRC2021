@@ -34,55 +34,55 @@ class Robot : public frc::TimedRobot
 //  AutoMovement *automovement;
 
  // Controllers
-  FRC5572Controller Driver{0}; 
+  FRC5572Controller Driver{0};
   FRC5572Controller Operator{1};
 
   //Nav-XMP board
   AHRS ahrs{frc::SPI::Port::kMXP};
 
   /* DriveTrain Spark Max and Motors*/
-  rev::CANSparkMax m_leftTopMotor{TopLeft, 
-        rev::CANSparkMax::MotorType::kBrushless};  
+  rev::CANSparkMax m_leftTopMotor{TopLeft,
+        rev::CANSparkMax::MotorType::kBrushless};
 
-  rev::CANSparkMax m_rightTopMotor{TopRight, 
+  rev::CANSparkMax m_rightTopMotor{TopRight,
     rev::CANSparkMax::MotorType::kBrushless};
 
-  rev::CANSparkMax m_leftMiddleMotor{MiddleLeft, 
+  rev::CANSparkMax m_leftMiddleMotor{MiddleLeft,
     rev::CANSparkMax::MotorType::kBrushless};
 
-  rev::CANSparkMax m_rightMiddleMotor{MiddleRight, 
+  rev::CANSparkMax m_rightMiddleMotor{MiddleRight,
     rev::CANSparkMax::MotorType::kBrushless};
 
-  rev::CANSparkMax m_leftBottomMotor{LeftBot, 
+  rev::CANSparkMax m_leftBottomMotor{LeftBot,
     rev::CANSparkMax::MotorType::kBrushless};
 
-  rev::CANSparkMax m_rightBottomMotor{RightBot, 
+  rev::CANSparkMax m_rightBottomMotor{RightBot,
     rev::CANSparkMax::MotorType::kBrushless};
 
         rev::CANEncoder* BottomLeftMotorEncoder = new rev::CANEncoder{m_leftBottomMotor};
         rev::CANEncoder* BottomRightMotorEncoder = new rev::CANEncoder{m_rightMiddleMotor};
  /* Shooters Spark Max and Motors*/
-  rev::CANSparkMax m_leftShooter{LeftShoot, 
+  rev::CANSparkMax m_leftShooter{LeftShoot,
     rev::CANSparkMax::MotorType::kBrushless};
 
-  rev::CANSparkMax m_rightShooter{RightShoot, 
+  rev::CANSparkMax m_rightShooter{RightShoot,
     rev::CANSparkMax::MotorType::kBrushless};
- 
+
 
 /* Hopper */
-  rev::CANSparkMax m_hopper{HopperID, 
+  rev::CANSparkMax m_hopper{HopperID,
     rev::CANSparkMax::MotorType::kBrushless};
-  
+
   frc::VictorSP test1 {0}; // left climb motor
 
   frc::VictorSP test2 {1}; // right climb motor
 
-  /*instantiation of the compressor with its CAN ID and pneumatics*/ 
+  /*instantiation of the compressor with its CAN ID and pneumatics*/
   frc::Compressor compressor{PCM1};
 
   frc::DoubleSolenoid climb{PCM1, 1, 6}; // 3 4
 
-  frc::DoubleSolenoid shooterHood{PCM1, 2, 5}; 
+  frc::DoubleSolenoid shooterHood{PCM1, 2, 5};
 
   // Sensor
   frc::DigitalInput limitSwitch2{2}; // in the mag
@@ -95,24 +95,24 @@ class Robot : public frc::TimedRobot
   DriveTrain driveTrain{ m_leftTopMotor, m_rightTopMotor, m_leftMiddleMotor, m_rightMiddleMotor, m_leftBottomMotor, m_rightBottomMotor, Driver, LimeLight, ahrs};
 
   Shooter shooter{m_leftShooter, m_rightShooter, shooterHood, Operator};
-  
+
   ClimbManager climber{test1, test2, Driver, climb};
 
   Hopper hopper{m_hopper, Operator, limitSwitch2, limitSwitch3};
- 
-  VisionManager LimeLight;   
+
+  VisionManager LimeLight;
 
   frc::Timer m_timer;
 
   // AutoDrip autoDrip{hopper, driveTrain, shooter, LimeLight};
-  
+
   //Photoelctric photoSensor{photoIN, photoOUT};
 
   /* IDS */
   static const int
   TopLeft = 1, // GOOD
   TopRight = 2, // GOOD
-  
+
   MiddleLeft = 3, // GOOD
   MiddleRight = 4, // GOOD
 
@@ -123,13 +123,13 @@ class Robot : public frc::TimedRobot
   RightShoot = 8, // GOOD
 
   Intake = 9, // GOOD
-  
+
   PCM1 = 10, // GOOD
 
   HopperID = 11, //GOOD
-  
+
   LeftClimb = 13, //GOOD
-  RightClimb = 14; //GOOD    
+  RightClimb = 14; //GOOD
 
   double actualRPM;
 
@@ -146,7 +146,7 @@ class Robot : public frc::TimedRobot
 };
 
 // ¶¶¶¶¶¶¶¶¶¶´¶¶¶¶¶¶¶
-// ¶¶¶¶¶¶¶¶__________¶¶ 
+// ¶¶¶¶¶¶¶¶__________¶¶
 // ¶¶¶¶¶_______________¶¶¶
 // ¶¶¶____________________¶
 // ¶¶______¶¶______________¶

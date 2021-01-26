@@ -1,7 +1,7 @@
 #include "Movement/Hopper.hpp"
 
 // AKA magazine and the intake
-//d pad toggle preset shots 
+//d pad toggle preset shots
 
 Hopper::Hopper(
    rev::CANSparkMax &Belt,
@@ -23,8 +23,8 @@ void Hopper::HopperPeriodic(){
 //limit switch is naturally true until ball hits the swtich then it is false.
 void Hopper::Advance(){
    if( !(this->Operator->R().second > 0.2 || this->Operator->R().second < -0.2) ){
-      
-      if( !( limitSwitch3->Get() ) ){ 
+
+      if( !( limitSwitch3->Get() ) ){
          if(Operator->X() ){
             belt->Set(.20);
             }
@@ -33,12 +33,12 @@ void Hopper::Advance(){
          this->belt->Set(0.0);
       }
  }
-         
+
 }
 /*
 If you can get the rpms like you did with the TestRPM object in the shooter class
 then use the rpm to make an if statment, having it so that if rpm > 4000 per say
-then you can run the belt. (Make sure you add 
+then you can run the belt. (Make sure you add
 
 rev::CANSparkMax &LeftMotor,
 rev::CANSparkMax &RightMotor,

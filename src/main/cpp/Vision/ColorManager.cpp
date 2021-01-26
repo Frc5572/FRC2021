@@ -4,7 +4,7 @@ void ColorManager::GetClosestColor()
 {
     // Get color
     double dConfidence = 0.0;
-    m_cDetectedColor = m_ColorSensor.GetColor();    
+    m_cDetectedColor = m_ColorSensor.GetColor();
     m_cMatchedColor  = m_ColorMatcher.MatchClosestColor(m_cDetectedColor, dConfidence);
 
     std::string sColor;
@@ -24,8 +24,8 @@ void ColorManager::GetClosestColor()
 
 void ColorManager::OutputColor()
 {
-    frc::SmartDashboard::PutString("Color",      m_sColor);      
-    frc::SmartDashboard::PutNumber("Confidence", m_dConfidence);      
+    frc::SmartDashboard::PutString("Color",      m_sColor);
+    frc::SmartDashboard::PutNumber("Confidence", m_dConfidence);
     frc::SmartDashboard::PutNumber("Red",   m_cDetectedColor.red);
     frc::SmartDashboard::PutNumber("Green", m_cDetectedColor.green);
     frc::SmartDashboard::PutNumber("Blue",  m_cDetectedColor.blue);

@@ -32,7 +32,7 @@ private:
 	static constexpr double WHITE_VALUE = 0.0;
 	static constexpr double BLACK_VALUE = 1.0;
 	static constexpr double GRAY_VALUE = 2.0;
-    
+
 	double voltageScaling = 1.0;
 	double voltageIntercept = 1.0;
 
