@@ -25,7 +25,7 @@ void ClimbManager::UpAndDown() {
     if (driver->LT() > 0) {
         this->climbPistons->Set(frc::DoubleSolenoid::Value::kReverse);
     } else if (driver->RT() > 0) {
-       this->climbPistons->Set(frc::DoubleSolenoid::Value::kForward);
+        this->climbPistons->Set(frc::DoubleSolenoid::Value::kForward);
     } else {
         this->climbPistons->Set(frc::DoubleSolenoid::Value::kOff);
     }
