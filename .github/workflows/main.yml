@@ -47,4 +47,6 @@ jobs:
       run: |
         CPLUS_INCLUDE_PATH=/usr/local/arm-frc2021-linux-gnueabi/usr/include
         export CPLUS_INCLUDE_PATH
+        C_INCLUDE_PATH=/usr/local/arm-frc2021-linux-gnueabi/usr/include
+        export C_INCLUDE_PATH
         ./gradlew build
