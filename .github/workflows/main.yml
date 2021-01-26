@@ -49,4 +49,4 @@ jobs:
         # export CPLUS_INCLUDE_PATH
         # ENABLE_PRECOMPILED_HEADERS=OFF
         # export ENABLE_PRECOMPILED_HEADERS 
-        ./gradlew build
+        ./gradlew build generateVsCodeConfig
