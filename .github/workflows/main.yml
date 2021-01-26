@@ -45,8 +45,8 @@ jobs:
     # Runs a single command using the runners shell
     - name: Compile and run tests on robot code
       run: |
-        CPLUS_INCLUDE_PATH=/usr/local/arm-frc2021-linux-gnueabi/usr/include
-        export CPLUS_INCLUDE_PATH
-        ENABLE_PRECOMPILED_HEADERS=OFF
-        export ENABLE_PRECOMPILED_HEADERS 
+        # CPLUS_INCLUDE_PATH=/usr/local/arm-frc2021-linux-gnueabi/usr/include
+        # export CPLUS_INCLUDE_PATH
+        # ENABLE_PRECOMPILED_HEADERS=OFF
+        # export ENABLE_PRECOMPILED_HEADERS 
         ./gradlew build
