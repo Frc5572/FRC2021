@@ -27,17 +27,15 @@
 #include <rev/ColorMatch.h>
 #include <frc/VictorSP.h>
 
-class Robot : public frc::TimedRobot
-{
+class Robot : public frc::TimedRobot {
  private:
-
 //  AutoMovement *automovement;
 
  // Controllers
-  FRC5572Controller Driver{0};
-  FRC5572Controller Operator{1};
+    FRC5572Controller Driver{0};
+    FRC5572Controller Operator{1};
 
-  //Nav-XMP board
+  // Nav-XMP board
   AHRS ahrs{frc::SPI::Port::kMXP};
 
   /* DriveTrain Spark Max and Motors*/
@@ -73,20 +71,20 @@ class Robot : public frc::TimedRobot
   rev::CANSparkMax m_hopper{HopperID,
     rev::CANSparkMax::MotorType::kBrushless};
 
-  frc::VictorSP test1 {0}; // left climb motor
+  frc::VictorSP test1 {0};  // left climb motor
 
-  frc::VictorSP test2 {1}; // right climb motor
+  frc::VictorSP test2 {1};  // right climb motor
 
   /*instantiation of the compressor with its CAN ID and pneumatics*/
   frc::Compressor compressor{PCM1};
 
-  frc::DoubleSolenoid climb{PCM1, 1, 6}; // 3 4
+  frc::DoubleSolenoid climb{PCM1, 1, 6};  // 3 4
 
   frc::DoubleSolenoid shooterHood{PCM1, 2, 5};
 
   // Sensor
-  frc::DigitalInput limitSwitch2{2}; // in the mag
-  frc::DigitalInput limitSwitch3{0}; // on the top of the mag
+  frc::DigitalInput limitSwitch2{2};  // in the mag
+  frc::DigitalInput limitSwitch3{0};  // on the top of the mag
 
   //frc::DigitalInput photoIN{0};
   //frc::DigitalOutput photoOUT{1};
@@ -110,26 +108,26 @@ class Robot : public frc::TimedRobot
 
   /* IDS */
   static const int
-  TopLeft = 1, // GOOD
-  TopRight = 2, // GOOD
+  TopLeft = 1,  // GOOD
+  TopRight = 2,  // GOOD
 
-  MiddleLeft = 3, // GOOD
-  MiddleRight = 4, // GOOD
+  MiddleLeft = 3,  // GOOD
+  MiddleRight = 4,  // GOOD
 
-  LeftBot = 5, // GOOD
-  RightBot = 6, // GOOD
+  LeftBot = 5,  // GOOD
+  RightBot = 6,  // GOOD
 
-  LeftShoot = 7, // GOOD
-  RightShoot = 8, // GOOD
+  LeftShoot = 7,  // GOOD
+  RightShoot = 8,  // GOOD
 
-  Intake = 9, // GOOD
+  Intake = 9,  // GOOD
 
-  PCM1 = 10, // GOOD
+  PCM1 = 10,  // GOOD
 
-  HopperID = 11, //GOOD
+  HopperID = 11,  //GOOD
 
-  LeftClimb = 13, //GOOD
-  RightClimb = 14; //GOOD
+  LeftClimb = 13,  //GOOD
+  RightClimb = 14;  //GOOD
 
   double actualRPM;
 
