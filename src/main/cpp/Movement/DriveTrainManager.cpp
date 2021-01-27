@@ -70,7 +70,7 @@ DriveTrain::~DriveTrain(){
 }
 
 //#define QUAD(x) (log2(x + 1) - 1)
-
+ 
 // void DriveTrain::Drive()
 // {
 //     if(this->Driver->L().second > .2 || this->Driver->L().second < -.2){
