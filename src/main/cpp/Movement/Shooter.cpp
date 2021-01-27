@@ -141,7 +141,7 @@ void Shooter::RunPID() {
     if (this->Operator->POV() == 0) {  //  bumber
         SetPoint = 2600;
         Hood->Set(frc::DoubleSolenoid::Value::kReverse);
-    } else if ( this->Operator->POV() == 90) {  //  init
+    } else if (this->Operator->POV() == 90) {  //  init
         SetPoint = 3375;
         Hood->Set(frc::DoubleSolenoid::Value::kForward);
     } else if (this->Operator->POV() == 270) {  //  trench
@@ -178,7 +178,7 @@ Shooter::Shooter(
     rev::CANSparkMax &RightMotor,
     frc::DoubleSolenoid &Hood,
     FRC5572Controller &Operator
-    ){
+    ) {
     m_pidController = new rev::CANPIDController{LeftMotor};
     m_pidController2 = new rev::CANPIDController{RightMotor};
 
@@ -219,13 +219,13 @@ void Shooter::Test() {
 }
 
 void Shooter::TestRPM() {
-    if (this->Operator->POV() == 0 ) {
+    if (this->Operator->POV() == 0) {
         shooterMotors->Set(.65);
         Hood->Set(frc::DoubleSolenoid::Value::kReverse);
-    } else if (this->Operator->POV() == 90){
+    } else if (this->Operator->POV() == 90) {
         shooterMotors->Set(.78);
         Hood->Set(frc::DoubleSolenoid::Value::kForward);
-    } else if (this->Operator->POV() == 270){
+    } else if (this->Operator->POV() == 270) {
         //  small adjustment from .92 to .94
         shooterMotors->Set(.90);
         Hood->Set(frc::DoubleSolenoid::Value::kForward);
