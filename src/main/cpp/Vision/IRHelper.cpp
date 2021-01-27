@@ -2,20 +2,18 @@
 #include <frc/AnalogInput.h>
 #include "Vision/IRHelper.hpp"
 
-Infrared::Infrared(int irChannel, InfraredSensorType irType)
-{
+Infrared::Infrared(int irChannel, InfraredSensorType irType) {
     this->irSensor = new frc::AnalogInput(irChannel);
     this->sensorFamily = irType;
 
-    switch(sensorFamily)
-	{
-		case InfraredSensorType::GP2Y0A710K0F:			//3-18 feet
-			this->voltageScaling = 137.5;
+    switch(sensorFamily) {
+	    case InfraredSensorType::GP2Y0A710K0F:			//3-18 feet
+		    this->voltageScaling = 137.5;
 			this->voltageIntercept = 1.125;
 			break;
 
 		case InfraredSensorType::GP2Y0A02YK0F:			//7-59 inches
-			this->voltageScaling = 46.5909091;
+		    this->voltageScaling = 46.5909091;
 			this->voltageIntercept = 0.33522727272;
 			break;
 
@@ -31,31 +29,28 @@ Infrared::Infrared(int irChannel, InfraredSensorType irType)
 	}
 }
 
-Color Infrared::checkColor()
-{
-	double irValue = voltage();
+Color Infrared::checkColor() {
+    double irValue = voltage();
 	Color rtnColor;
 
-	if(irValue <= (WHITE_VALUE + COLOR_ERROR) || irValue >= (WHITE_VALUE - COLOR_ERROR))
-	{
+	if (irValue <= (WHITE_VALUE + COLOR_ERROR) ||
+    irValue >= (WHITE_VALUE - COLOR_ERROR)) {
 		rtnColor = WHITE;
-	}
-	else if(irValue <= (BLACK_VALUE + COLOR_ERROR) || irValue >= (BLACK_VALUE - COLOR_ERROR))
-	{
+	} else if (irValue <= (BLACK_VALUE + COLOR_ERROR) ||
+    irValue >= (BLACK_VALUE - COLOR_ERROR)) {
 		rtnColor = BLACK;
-	}
-	else if(irValue <= (GRAY_VALUE + COLOR_ERROR) || irValue >= (GRAY_VALUE - COLOR_ERROR))
-	{
+	} else if (irValue <= (GRAY_VALUE + COLOR_ERROR) ||
+    irValue >= (GRAY_VALUE - COLOR_ERROR)) {
 		rtnColor = GRAY;
 	}
 
 	return rtnColor;
 }
 
-double Infrared::irRange()
-{
+double Infrared::irRange() {
 	double rangeInches = 0.0;
-	rangeInches = 1 / ((this->irSensor->GetVoltage() - voltageIntercept) / (voltageScaling * 0.393701));
+	rangeInches = 1 / ((this->irSensor->GetVoltage() -
+    voltageIntercept) / (voltageScaling * 0.393701));
 	return rangeInches;
 }
 
