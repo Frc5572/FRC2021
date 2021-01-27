@@ -1,9 +1,11 @@
 #ifndef VisionManager_HPP
 #define VisionManager_HPP
 
+#include <memory>
+
 #include "Networktables/NetworkTable.h"
 #include "Networktables/NetworkTableInstance.h"
-#include <memory>
+
 
 class VisionManager {
      public:
