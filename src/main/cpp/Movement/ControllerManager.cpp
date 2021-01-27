@@ -6,18 +6,19 @@ FRC5572Controller::FRC5572Controller(int I) {
     pad = new frc::XboxController (I);
 }
 
-FRC5572Controller::~FRC5572Controller(){
+FRC5572Controller::~FRC5572Controller() {
     delete pad;
 }
 
 void FRC5572Controller::UpdateToggleA() {
-    if (pad->GetRawButton(X_BUTTON)){
+    if (pad->GetRawButton(X_BUTTON)) {
         if (!togglePressedA) {
             toggleA = !toggleA;
             togglePressedA = true;
         }
-    }else
+    } else {
     togglePressedA = false;
+    }
 }
 
 double FRC5572Controller::LT() {
@@ -81,6 +82,6 @@ bool FRC5572Controller::Rbutton() {
 }
 
 void FRC5572Controller::rumble(double x, double y) {
- pad->SetRumble(frc::GenericHID::kLeftRumble, x);
- pad->SetRumble(frc::GenericHID::kRightRumble, y);
+    pad->SetRumble(frc::GenericHID::kLeftRumble, x);
+    pad->SetRumble(frc::GenericHID::kRightRumble, y);
 }
