@@ -14,8 +14,8 @@ void FRC5572Controller::UpdateToggleA()
   {
    if (!togglePressedA)
 	{
-     toggleA = !toggleA;
-     togglePressedA = true;
+        toggleA = !toggleA;
+        togglePressedA = true;
     }
   }
   else
@@ -55,31 +55,31 @@ bool FRC5572Controller::B() {
 }
 
 std::pair<double, double> FRC5572Controller::L() {
- return std::make_pair(pad->GetRawAxis(LEFT_x), pad->GetRawAxis(LEFT_y));
+    return std::make_pair(pad->GetRawAxis(LEFT_x), pad->GetRawAxis(LEFT_y));
 }
 
 std::pair<double, double> FRC5572Controller::R() {
- return std::make_pair(pad->GetRawAxis(RIGHT_x), pad->GetRawAxis(RIGHT_y));
+    return std::make_pair(pad->GetRawAxis(RIGHT_x), pad->GetRawAxis(RIGHT_y));
 }
 
 int FRC5572Controller::POV() {
- return pad->GetPOV(0);
+    return pad->GetPOV(0);
 }
 
 bool FRC5572Controller::start() {
- return pad->GetRawButton(START_BUTTON);
+    return pad->GetRawButton(START_BUTTON);
 }
 
 bool FRC5572Controller::back() {
- return pad->GetRawButton(BACK_BUTTON);
+    return pad->GetRawButton(BACK_BUTTON);
 }
 
 bool FRC5572Controller::Lbutton() {
- return pad->GetRawButton(LEFT_STICK_BUTTON);
+    return pad->GetRawButton(LEFT_STICK_BUTTON);
 }
 
 bool FRC5572Controller::Rbutton() {
- return pad->GetRawButton(RIGHT_STICK_BUTTON);
+    return pad->GetRawButton(RIGHT_STICK_BUTTON);
 }
 
 void FRC5572Controller::rumble(double x, double y) {
