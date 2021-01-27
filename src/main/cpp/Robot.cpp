@@ -46,6 +46,7 @@ void Robot::AutonomousPeriodic() {
         shooterHood.Set(frc::DoubleSolenoid::Value::kForward);
         //  m_hopper.Set(.3);
         continue;
+        //change
     }
 
     while (m_timer.Get() > 3 && m_timer.Get() < 10) {
