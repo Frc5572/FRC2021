@@ -3,22 +3,19 @@
 
 #include <frc/AnalogInput.h>
 
-enum InfraredSensorType
-{
+enum InfraredSensorTypev {
 	GP2Y0A710K0F, // 3 - 18 feet
 	GP2Y0A02YK0F, // 7 - 59 inches
 	OPB732WZ      // up to 3 inches
 };
 
-enum Color
-{
+enum Color {
 	BLACK,
 	WHITE,
 	GRAY
 };
 
-class Infrared
-{
+class Infrared {
 public:
 	Infrared(int irChannel, InfraredSensorType irType);
 
@@ -40,4 +37,4 @@ private:
 	frc::AnalogInput* irSensor;
 };
 
-#endif
+#endif  //IR_HELPER_HPP
