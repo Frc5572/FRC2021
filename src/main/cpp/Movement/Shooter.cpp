@@ -166,7 +166,7 @@ void Shooter::RunPID() {
     rightRPM = rightMotorEncoder->GetVelocity();
     rpm = ((leftRPM + rightRPM) / 2);
 
-    frc::SmartDashboard::PutNumber("RPM", rpm\);
+    frc::SmartDashboard::PutNumber("RPM", rpm);
     frc::SmartDashboard::PutNumber("Left RPM", leftRPM);
     frc::SmartDashboard::PutNumber("Right RPM", rightRPM);
     }
