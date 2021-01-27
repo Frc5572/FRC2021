@@ -1,15 +1,15 @@
 #include <iostream>
 #include <string>
 
+#include <frc/smartdashboard/SmartDashboard.h>
+#include <frc/Timer.h>
+
 #include "Robot.h"
 #include "Movement/DriveTrainManager.hpp"
 
 #include "rev/ColorSensorV3.h"
-#include <frc/smartdashboard/SmartDashboard.h>
 
 #include "cameraserver/CameraServer.h"
-
-#include <frc/Timer.h>
 
 void Robot::RobotInit() {
     m_timer.Start();
