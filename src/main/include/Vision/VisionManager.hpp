@@ -5,7 +5,7 @@
 #include "Networktables/NetworkTableInstance.h"
 
 class VisionManager {
-    public:
+        public:
     double
       disX = 0
     , disY = 0
@@ -21,4 +21,4 @@ class VisionManager {
     std::shared_ptr<NetworkTable> table =
     nt::NetworkTableInstance::GetDefault().GetTable("limelight");
 };
-#endif //
+#endif  //
