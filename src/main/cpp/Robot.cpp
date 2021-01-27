@@ -1,11 +1,11 @@
+#include <iostream>
+#include <string>
+
 #include <frc/Timer.h>
 #include <frc/smartdashboard/SmartDashboard.h>
 
 #include "rev/ColorSensorV3.h"
 #include "cameraserver/CameraServer.h"
-
-#include <iostream>
-#include <string>
 
 #include "Robot.h"
 #include "Movement/DriveTrainManager.hpp"
