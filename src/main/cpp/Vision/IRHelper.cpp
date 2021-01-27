@@ -7,17 +7,17 @@ Infrared::Infrared(int irChannel, InfraredSensorType irType) {
     this->sensorFamily = irType;
 
     switch (sensorFamily) {
-        case InfraredSensorType::GP2Y0A710K0F:			//  3-18 feet
+        case InfraredSensorType::GP2Y0A710K0F:      //  3-18 feet
             this->voltageScaling = 137.5;
             this->voltageIntercept = 1.125;
             break;
 
-        case InfraredSensorType::GP2Y0A02YK0F:			//  7-59 inches
+        case InfraredSensorType::GP2Y0A02YK0F:      //  7-59 inches
             this->voltageScaling = 46.5909091;
             this->voltageIntercept = 0.33522727272;
             break;
 
-        case InfraredSensorType::OPB732WZ:				//  up to 3 inches
+        case InfraredSensorType::OPB732WZ:          //  up to 3 inches
             this->voltageScaling = 1.0;
             this->voltageIntercept = 1.0;
             break;
