@@ -24,8 +24,8 @@ void Hopper::HopperPeriodic() {
 void Hopper::Advance() {
     if (!(this->Operator->R().second > 0.2 ||
     this->Operator->R().second < -0.2)) {
-        if (!( limitSwitch3->Get())) {
-            if (Operator->X()){
+        if (!(limitSwitch3->Get())) {
+            if (Operator->X()) {
                 belt->Set(.20);
             }
         }
@@ -71,5 +71,4 @@ void Hopper::ManualControlBelt() {
     this->Operator->R().second > -0.2) {
         this->belt->Set(0.0);
     }
-
 }
