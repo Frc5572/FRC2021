@@ -37,9 +37,9 @@ DriveTrain::DriveTrain(
                                                             MiddleRight,
                                                             BottomRightMotor);
         this->TempRightMotors = new frc::SpeedControllerGroup( MiddleRight,
-                                                                BottomRightMotor);
+                                                            BottomRightMotor);
         this->TempLeftMotors = new frc::SpeedControllerGroup( MiddleLeft,
-                                                                BottomLeftMotor);
+                                                            BottomLeftMotor);
 
 
         this->Driver = &Driver;
@@ -68,7 +68,7 @@ DriveTrain::DriveTrain(
         DriveTrain::LowerAmps();
 }
 
-DriveTrain::~DriveTrain(){
+DriveTrain::~DriveTrain() {
     delete LeftMotors;
     delete RightMotors;
     delete Driver;
@@ -124,11 +124,15 @@ void DriveTrain::LowerAmps() {
 void DriveTrain::Aim() {
     if (Driver->X() ==  true) {
         disX = LimeLight->disX;
-        nt::NetworkTableInstance::GetDefault().GetTable("limelight")->PutNumber("camMode", 0);
-        nt::NetworkTableInstance::GetDefault().GetTable("limelight")->PutNumber("ledMode", 3);
+        nt::NetworkTableInstance::GetDefault().GetTable("limelight")
+                    ->PutNumber("camMode", 0);
+        nt::NetworkTableInstance::GetDefault().GetTable("limelight")
+                    ->PutNumber("ledMode", 3);
     } else if (Driver->Y() == false) {
-        nt::NetworkTableInstance::GetDefault().GetTable("limelight")->PutNumber("camMode", 1);
-        nt::NetworkTableInstance::GetDefault().GetTable("limelight")->PutNumber("ledMode", 1);
+        nt::NetworkTableInstance::GetDefault().GetTable("limelight")
+                    ->PutNumber("camMode", 1);
+        nt::NetworkTableInstance::GetDefault().GetTable("limelight")
+                    ->PutNumber("ledMode", 1);
         disX = 0;
         L = 0; R = 0;
     }
@@ -154,6 +158,4 @@ void DriveTrain::Aim() {
         L = 0;
         R = 0;
         }
-
-
 }
