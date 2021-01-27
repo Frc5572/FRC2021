@@ -77,7 +77,8 @@ void Shooter::AutoPID() {
         }
 
     if (Auto == 0) {
-        SetPoint = 2700; //  3375
+        //  3375
+        SetPoint = 2700;
         SP = SetPoint;
         Hood->Set(frc::DoubleSolenoid::Value::kForward);
         m_pidController->SetReference(SetPoint,
@@ -137,16 +138,16 @@ void Shooter::RunPID() {
             kMinOutput = min;
             kMaxOutput = max;
         }
-    if (this->Operator->POV() == 0 ) { //  bumber
+    if (this->Operator->POV() == 0) {  //  bumber
         SetPoint = 2600;
         Hood->Set(frc::DoubleSolenoid::Value::kReverse);
-    } else if ( this->Operator->POV() == 90) { //  init
+    } else if ( this->Operator->POV() == 90) {  //  init
         SetPoint = 3375;
         Hood->Set(frc::DoubleSolenoid::Value::kForward);
-    } else if (this->Operator->POV() == 270) { //  trench
+    } else if (this->Operator->POV() == 270) {  //  trench
         SetPoint = 3800;
         Hood->Set(frc::DoubleSolenoid::Value::kForward);
-    } else if (Operator->POV() == 180) { //  colorwheel
+    } else if (Operator->POV() == 180) {  //  colorwheel
         SetPoint = 4500;
         Hood->Set(frc::DoubleSolenoid::Value::kForward);
     } else {
@@ -172,7 +173,7 @@ void Shooter::RunPID() {
     }
 
 
-Shooter::Shooter (
+Shooter::Shooter(
     rev::CANSparkMax &LeftMotor,
     rev::CANSparkMax &RightMotor,
     frc::DoubleSolenoid &Hood,
@@ -225,7 +226,7 @@ void Shooter::TestRPM() {
         shooterMotors->Set(.78);
         Hood->Set(frc::DoubleSolenoid::Value::kForward);
     } else if (this->Operator->POV() == 270){
-        //small adjustment from .92 to .94
+        //  small adjustment from .92 to .94
         shooterMotors->Set(.90);
         Hood->Set(frc::DoubleSolenoid::Value::kForward);
     } else {
@@ -235,7 +236,7 @@ void Shooter::TestRPM() {
 }
 
 void Shooter::Shots() {
-    if (this->Operator->POV() == 0 ) {
+    if (this->Operator->POV() == 0) {
         shooterMotors->Set(.47);
         Hood->Set(frc::DoubleSolenoid::Value::kReverse);
     } else if (this->Operator->POV() == 90) {
