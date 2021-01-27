@@ -1,64 +1,67 @@
 #include <iostream>
 #include <string>
 
+#include <frc/Timer.h>
+#include <frc/smartdashboard/SmartDashboard.h>
+
+#include "rev/ColorSensorV3.h"
+#include "cameraserver/CameraServer.h"
+
 #include "Robot.h"
 #include "Movement/DriveTrainManager.hpp"
 
-#include "rev/ColorSensorV3.h"
-#include <frc/smartdashboard/SmartDashboard.h>
 
-#include "cameraserver/CameraServer.h"
 
-#include <frc/Timer.h>
 
-void Robot::RobotInit(){
 
+
+void Robot::RobotInit() {
     m_timer.Start();
 }
 
-void Robot::RobotPeriodic(){
-
+void Robot::RobotPeriodic() {
 }
-
 void Robot::AutonomousInit()     {
     shooter.InitPID();
     m_timer.Reset();
     m_timer.Start();
 
-    //automovement = new AutoMovement{*driveTrain.LeftMotors, *driveTrain.RightMotors, ahrs, *BottomLeftMotorEncoder, *BottomRightMotorEncoder};
+    //  automovement = new AutoMovement{*driveTrain.LeftMotors,
+    //  *driveTrain.RightMotors,
+    //  ahrs, *BottomLeftMotorEncoder,
+    //  *BottomRightMotorEncoder};
 }
 void Robot::AutonomousPeriodic() {
-    // while (m_timer.Get() < 15)
-    // {
-    // automovement->TestDrive();
-    // continue;
-    // }
+    //  while (m_timer.Get() < 15)
+    //  {
+    //  automovement->TestDrive();
+    //  continue;
+    //  }
 
 
-    while(m_timer.Get() < 3 ){
-        //shooter.AutoPID();
+    while (m_timer.Get() < 3) {
+        //  shooter.AutoPID();
         m_leftShooter.Set(.6);
         m_rightShooter.Set(.6);
         shooterHood.Set(frc::DoubleSolenoid::Value::kForward);
-        //m_hopper.Set(.3);
+        //  m_hopper.Set(.3);
         continue;
     }
 
-    while(m_timer.Get() > 3 && m_timer.Get() < 10 ){
+    while (m_timer.Get() > 3 && m_timer.Get() < 10) {
         m_hopper.Set(.3);
         m_leftShooter.Set(.6);
         m_rightShooter.Set(.6);
         shooterHood.Set(frc::DoubleSolenoid::Value::kForward);
     }
-    while(m_timer.Get() > 10 && m_timer.Get() < 11){
+    while (m_timer.Get() > 10 && m_timer.Get() < 11) {
         shooterHood.Set(frc::DoubleSolenoid::Value::kReverse);
         m_leftShooter.Set(0);
         m_rightShooter.Set(0);
         m_hopper.Set(0.0);
         continue;
     }
-    while(m_timer.Get() > 11 && m_timer.Get() < 12)
-    {
+    while (m_timer.Get() > 11 && m_timer.Get() < 12) {
         m_rightBottomMotor.Set(.3);
         m_rightMiddleMotor.Set(.3);
 
@@ -110,14 +113,13 @@ void Robot::AutonomousPeriodic() {
 
 //         m_leftBottomMotor.Set(0);
 //         m_leftMiddleMotor.Set(0);
-
 }
 
-void Robot::TeleopInit(){
+void Robot::TeleopInit() {
     shooter.InitPID();
 }
 
-void Robot::TeleopPeriodic(){
+void Robot::TeleopPeriodic() {
      LimeLight.Update();
 
     shooter.RunPID();
@@ -131,15 +133,12 @@ void Robot::TeleopPeriodic(){
     hopper.HopperPeriodic();
 }
 
-
-void Robot::TestInit(){
-
+void Robot::TestInit() {
 }
 
-void Robot::TestPeriodic(){
-
+void Robot::TestPeriodic() {
 }
 
 #ifndef RUNNING_FRC_TESTS
-int main() { return frc::StartRobot<Robot>(); }
+int main() {return frc::StartRobot<Robot>();}
 #endif
