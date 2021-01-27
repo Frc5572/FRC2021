@@ -2,7 +2,7 @@
 
 name: CI
 
-# Controls when the action will run. 
+# Controls when the action will run.
 on:
   # Triggers the workflow on push or pull request events but only for the main branch
   push:
@@ -24,8 +24,8 @@ jobs:
         python-version: '3.x' # Version range or exact version of a Python version to use, using SemVer's version range syntax
         architecture: 'x64' # optional x64 or x86. Defaults to x64 if not specified
     - run: pip install cpplint
-    - run: cpplint --filter=-legal/copyright --recursive .
-    
+    - run: cpplint --filter=-legal/copyright,-build/header_guard --recursive .
+
   create_release:
     name: Build
     runs-on: windows-2019
@@ -34,7 +34,7 @@ jobs:
       - name: Install Toolchain
         shell: cmd
         run: ./gradlew installRoboRioToolchain
-      - name: Build 
+      - name: Build
         shell: cmd
         run: ./gradlew build
   # This workflow contains a single job called "build"
