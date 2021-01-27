@@ -8,14 +8,14 @@
 
 
 class VisionManager {
-     public:
-    double
-      disX = 0
-    , disY = 0
-    , tx = 0
-    , ty = 0
-    , ta = 0
-    , tv = 0;
+    public:
+        double
+        disX = 0
+        , disY = 0
+        , tx = 0
+        , ty = 0
+        , ta = 0
+        , tv = 0;
 
     bool targetFound = false;
     void Update();
