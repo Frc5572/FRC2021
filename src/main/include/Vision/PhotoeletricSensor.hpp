@@ -8,16 +8,14 @@
 #include <chrono>         // std::chrono::seconds
 
 class Photoelctric{
-    public:
+ public:
     Photoelctric(
         frc::DigitalInput& Input,
-        frc::DigitalOutput& Output
-    );
+        frc::DigitalOutput& Output);
     void teachSensor();
 
-    private:
+ private:
     frc::DigitalInput* input;
     frc::DigitalOutput* output;
-
 };
 #endif

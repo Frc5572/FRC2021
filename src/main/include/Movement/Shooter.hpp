@@ -9,8 +9,7 @@
 #include <frc/SmartDashboard/SmartDashboard.h>
 
 class Shooter{
-    public:
-
+ public:
     Shooter(
         rev::CANSparkMax &LeftMotor,
         rev::CANSparkMax &RightMotor,
@@ -46,8 +45,8 @@ class Shooter{
     // Trench = %- RPM -
     // Color Wheel = %- RMP -
 
-    rev::CANPIDController *m_pidController ;
-    rev::CANPIDController *m_pidController2 ;
+    rev::CANPIDController *m_pidController;
+    rev::CANPIDController *m_pidController2;
 
     frc::SpeedControllerGroup* shooterMotors;
 
@@ -58,8 +57,7 @@ class Shooter{
 
     frc::DoubleSolenoid* Hood;
 
-    rev::CANEncoder* leftMotorEncoder    ;
-    rev::CANEncoder* rightMotorEncoder   ;
+    rev::CANEncoder* leftMotorEncoder;
+    rev::CANEncoder* rightMotorEncoder;
 };
-
 #endif

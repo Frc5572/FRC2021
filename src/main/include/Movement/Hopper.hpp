@@ -6,17 +6,15 @@
 #include <frc/DoubleSolenoid.h>
 #include <frc/DigitalInput.h>
 
-// AKA magazine and the intake 
+// AKA magazine and the intake
 
 class Hopper{
-    public:
-
+ public:
     Hopper(
         rev::CANSparkMax &Belt,
         FRC5572Controller &Operator,
         frc::DigitalInput &Input2,
-        frc::DigitalInput &Input3
-    );
+        frc::DigitalInput &Input3);
 
     void HopperPeriodic();
     void Advance();
@@ -24,12 +22,10 @@ class Hopper{
     void RunIntakePistions();
     void ManualIntakeMotors();
 
-    bool readyToLoad = false ;
+    bool readyToLoad = false;
     FRC5572Controller* Operator;
     rev::CANSparkMax* belt;
     frc::DigitalInput* limitSwitch2;
     frc::DigitalInput* limitSwitch3;
-
 };
-
 #endif
