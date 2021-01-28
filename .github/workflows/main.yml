@@ -24,7 +24,10 @@ jobs:
         python-version: '3.x' # Version range or exact version of a Python version to use, using SemVer's version range syntax
         architecture: 'x64' # optional x64 or x86. Defaults to x64 if not specified
     - run: pip install cpplint
-    - run: cpplint --filter=-legal/copyright,-build/header_guard,-build/include_order,-runtime/explicit,-build/include_what_you_use,-runtime/references --recursive .
+    - run: >
+        cpplint --filter=-legal/copyright,-build/header_guard,-build/include_order,
+        -runtime/explicit,-build/include_what_you_use,-runtime/references,-whitespace/line_length,
+        -build/c++11 --recursive .
 
   create_release:
     name: Build
