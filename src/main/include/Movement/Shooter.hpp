@@ -9,8 +9,7 @@
 #include <frc/SmartDashboard/SmartDashboard.h>
 
 class Shooter{
-    public:
-
+ public:
     Shooter(
         rev::CANSparkMax &LeftMotor,
         rev::CANSparkMax &RightMotor,
@@ -61,5 +60,4 @@ class Shooter{
     rev::CANEncoder* leftMotorEncoder;
     rev::CANEncoder* rightMotorEncoder;
 };
-
 #endif

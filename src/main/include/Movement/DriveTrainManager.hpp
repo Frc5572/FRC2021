@@ -37,8 +37,7 @@ DriveTrain(
   rev::CANSparkMax &BottomRightMotor ,
   FRC5572Controller &Driver          ,
   VisionManager &VisionManager      ,
-  AHRS &ahrs
-  );
+  AHRS &ahrs);
 
 ~DriveTrain();
 void Drive();

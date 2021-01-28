@@ -13,13 +13,12 @@ class ClimbManager {
     frc::VictorSP& LeftClimb,
     frc::VictorSP& RightClimb,
     FRC5572Controller& Driver,
-    frc::DoubleSolenoid& climbPistons
-  );
+    frc::DoubleSolenoid& climbPistons);
 
   void ClimbPeriodic();
   void UpAndDown();
   void Spin();
-  private:
+ private:
   frc::SpeedControllerGroup* climbMotors;
 
   FRC5572Controller* driver;
@@ -28,6 +27,5 @@ class ClimbManager {
   frc::VictorSP* rightClimb;
 
   frc::DoubleSolenoid* climbPistons;
-
 };
 #endif

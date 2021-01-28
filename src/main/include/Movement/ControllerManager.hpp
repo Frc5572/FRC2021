@@ -53,6 +53,7 @@ class FRC5572Controller {
   bool Rbutton();
   void rumble(double, double);
  private:
+
   frc::XboxController *pad;
 };
 
