@@ -16,7 +16,7 @@ enum Color {
 };
 
 class Infrared {
-    public:
+ public:
     Infrared(int irChannel, InfraredSensorType irType);
 
     Color checkColor();
@@ -24,7 +24,7 @@ class Infrared {
     double voltage();
     int averageRaw();
 
-    private:
+ private:
     static constexpr double COLOR_ERROR = 0.1;
     static constexpr double WHITE_VALUE = 0.0;
     static constexpr double BLACK_VALUE = 1.0;

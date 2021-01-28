@@ -26,10 +26,8 @@
           Back Of Robot
 */
 
-class DriveTrain
-{
-public:
-
+class DriveTrain {
+ public:
 DriveTrain(
   rev::CANSparkMax &TopLeftMotor     ,
   rev::CANSparkMax &TopRightMotor    ,
@@ -67,13 +65,13 @@ void Aim();
   rev::CANSparkMax* BottomLeftMotor;
   rev::CANSparkMax* BottomRightMotor;
 
-  rev::CANEncoder* TopLeftMotorEncoder    ;
-  rev::CANEncoder* TopRightMotorEncoder   ;
-  rev::CANEncoder* MiddleLeftMotorEncoder ;
+  rev::CANEncoder* TopLeftMotorEncoder;
+  rev::CANEncoder* TopRightMotorEncoder;
+  rev::CANEncoder* MiddleLeftMotorEncoder;
   rev::CANEncoder* MiddleRightMotorEncoder;
-  rev::CANEncoder* BottomLeftMotorEncoder ;
+  rev::CANEncoder* BottomLeftMotorEncoder;
   rev::CANEncoder* BottomRightMotorEncoder;
 
   AHRS* ahrs;
-  };
+};
 #endif

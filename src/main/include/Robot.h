@@ -28,14 +28,14 @@
 #include <frc/VictorSP.h>
 
 class Robot : public frc::TimedRobot {
-    private:
+ private:
     //  AutoMovement *automovement;
 
     // Controllers
     FRC5572Controller Driver{0};
     FRC5572Controller Operator{1};
 
-    //Nav-XMP board
+    //  Nav-XMP board
     AHRS ahrs{frc::SPI::Port::kMXP};
 
     /* DriveTrain Spark Max and Motors*/
@@ -89,8 +89,8 @@ class Robot : public frc::TimedRobot {
     frc::DigitalInput limitSwitch2{2};  // in the mag
     frc::DigitalInput limitSwitch3{0};  // on the top of the mag
 
-    //frc::DigitalInput photoIN{0};
-    //frc::DigitalOutput photoOUT{1};
+    //  frc::DigitalInput photoIN{0};
+    //  frc::DigitalOutput photoOUT{1};
 
     /*SubSystem Objects  */
     DriveTrain driveTrain{ m_leftTopMotor, m_rightTopMotor,
@@ -137,7 +137,7 @@ class Robot : public frc::TimedRobot {
     double actualRPM;
 
 
-    public:
+ public:
         void RobotInit() override;
         void RobotPeriodic() override;
         void AutonomousInit() override;

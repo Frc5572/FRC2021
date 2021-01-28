@@ -5,14 +5,14 @@
 #include <frc/smartdashboard/SmartDashboard.h>
 
 class ColorManager {
-    public:
+ public:
   ColorManager() {
     m_ColorMatcher.AddColorMatch(m_cBlueTarget);
     m_ColorMatcher.AddColorMatch(m_cGreenTarget);
     m_ColorMatcher.AddColorMatch(m_cRedTarget);
     m_ColorMatcher.AddColorMatch(m_cSecoundRedTarget);
     m_ColorMatcher.AddColorMatch(m_cYellowTarget);
- }
+}
 
   double m_dConfidence = 0.0f;
   std::string m_sColor;
