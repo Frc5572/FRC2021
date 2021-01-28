@@ -9,7 +9,7 @@
 // AKA magazine and the intake
 
 class Hopper{
- public:
+    public:
     Hopper(
         rev::CANSparkMax &Belt,
         FRC5572Controller &Operator,

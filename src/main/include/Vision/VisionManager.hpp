@@ -6,7 +6,6 @@
 #include "Networktables/NetworkTable.h"
 #include "Networktables/NetworkTableInstance.h"
 
-
 class VisionManager {
     public:
     double
