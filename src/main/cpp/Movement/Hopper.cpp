@@ -67,8 +67,7 @@ void Hopper::ManualControlBelt() {
     if (this->Operator->R().second < -0.2) {
         this->belt->Set(0.25);
     }
-    if (this->Operator->R().second < 0.2 &&
-    this->Operator->R().second > -0.2) {
+    if (this->Operator->R().second < 0.2 && this->Operator->R().second > -0.2) {
         this->belt->Set(0.0);
     }
 }

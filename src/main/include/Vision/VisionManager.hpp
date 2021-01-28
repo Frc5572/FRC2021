@@ -1,11 +1,13 @@
 #ifndef VisionManager_HPP
 #define VisionManager_HPP
 
+#include <memory>
+
 #include "Networktables/NetworkTable.h"
 #include "Networktables/NetworkTableInstance.h"
 
-class VisionManager
-{
+
+class VisionManager {
     public:
     double
       disX = 0
@@ -19,6 +21,7 @@ class VisionManager
     void Update();
     VisionManager();
     void TurnOffLights();
-    std::shared_ptr<NetworkTable> table = nt::NetworkTableInstance::GetDefault().GetTable("limelight");
+    std::shared_ptr<NetworkTable> table =
+    nt::NetworkTableInstance::GetDefault().GetTable("limelight");
 };
-#endif
+#endif  //

@@ -25,15 +25,21 @@ DriveTrain::DriveTrain(
 
     rev::CANSparkMax &BottomLeftMotor,
     rev::CANSparkMax &BottomRightMotor,
-
+    //what?
     FRC5572Controller &Driver,
     VisionManager &VisionManager,
     AHRS &ahrs
-    ){
-        this->LeftMotors = new frc::SpeedControllerGroup( TopLeftMotor, MiddleLeft, BottomLeftMotor);
-        this->RightMotors = new frc::SpeedControllerGroup( TopRightMotor, MiddleRight, BottomRightMotor);
-        this->TempRightMotors = new frc::SpeedControllerGroup( MiddleRight, BottomRightMotor);
-        this->TempLeftMotors = new frc::SpeedControllerGroup( MiddleLeft, BottomLeftMotor);
+    ) {
+        this->LeftMotors = new frc::SpeedControllerGroup( TopLeftMotor,
+                                                            MiddleLeft,
+                                                            BottomLeftMotor);
+        this->RightMotors = new frc::SpeedControllerGroup( TopRightMotor,
+                                                            MiddleRight,
+                                                            BottomRightMotor);
+        this->TempRightMotors = new frc::SpeedControllerGroup( MiddleRight,
+                                                            BottomRightMotor);
+        this->TempLeftMotors = new frc::SpeedControllerGroup( MiddleLeft,
+                                                            BottomLeftMotor);
 
 
         this->Driver = &Driver;
@@ -62,15 +68,14 @@ DriveTrain::DriveTrain(
         DriveTrain::LowerAmps();
 }
 
-DriveTrain::~DriveTrain()
-{
+DriveTrain::~DriveTrain() {
     delete LeftMotors;
     delete RightMotors;
     delete Driver;
     delete ahrs;
 }
 
-//#define QUAD(x) (log2(x + 1) - 1)
+// #define QUAD(x) (log2(x + 1) - 1)
 
 // void DriveTrain::Drive()
 // {
@@ -90,25 +95,22 @@ DriveTrain::~DriveTrain()
 //     }
 // }
 
-void DriveTrain::Drive()
-{
+void DriveTrain::Drive() {
     DriveTrain::Aim();
-    if(this->Driver->L().second > .2 || this->Driver->L().second < -.2){
-        LeftMotors->Set(-1 * Driver->L().second * .7  );
-    }
-    else{
+    if (this->Driver->L().second > .2 || this->Driver->L().second < -.2) {
+        LeftMotors->Set(-1 * Driver->L().second * .7);
+    } else {
         LeftMotors->Set(0 + L);
     }
 
-    if(this->Driver->R().second > .2 ||  this->Driver->R().second < -.2){
+    if (this->Driver->R().second > .2 ||  this->Driver->R().second < -.2) {
         RightMotors->Set(Driver->R().second  * .7);
-    }
-    else{
+    } else {
         RightMotors->Set(0 + R);
     }
 }
 
-void DriveTrain::LowerAmps(){
+void DriveTrain::LowerAmps() {
     TopLeftMotor->SetSmartCurrentLimit(60);
     TopRightMotor->SetSmartCurrentLimit(60);
 
@@ -119,47 +121,41 @@ void DriveTrain::LowerAmps(){
     BottomRightMotor->SetSmartCurrentLimit(60);
 }
 
-void DriveTrain::Aim(){
-    if (Driver->X() ==  true)
-    {
+void DriveTrain::Aim() {
+    if (Driver->X() ==  true) {
         disX = LimeLight->disX;
-        nt::NetworkTableInstance::GetDefault().GetTable("limelight")->PutNumber("camMode", 0);
-        nt::NetworkTableInstance::GetDefault().GetTable("limelight")->PutNumber("ledMode", 3);
-    }
-    else if (Driver->Y() == false){
-        nt::NetworkTableInstance::GetDefault().GetTable("limelight")->PutNumber("camMode", 1);
-        nt::NetworkTableInstance::GetDefault().GetTable("limelight")->PutNumber("ledMode", 1);
+        nt::NetworkTableInstance::GetDefault().GetTable("limelight")
+                    ->PutNumber("camMode", 0);
+        nt::NetworkTableInstance::GetDefault().GetTable("limelight")
+                    ->PutNumber("ledMode", 3);
+    } else if (Driver->Y() == false) {
+        nt::NetworkTableInstance::GetDefault().GetTable("limelight")
+                    ->PutNumber("camMode", 1);
+        nt::NetworkTableInstance::GetDefault().GetTable("limelight")
+                    ->PutNumber("ledMode", 1);
         disX = 0;
         L = 0; R = 0;
     }
 
-    if (fabs(disX) > 1 && Driver->X() == true)
-        {
-            if (disX > 10)
-            {
-                R = -.15;
-                L = -.15;
-            }
-            if (disX < 10)
-            {
-                R = -disX/43;
-                L = -disX/43;
-            }
-            if (disX < -10)
-            {
-                R = .15;
-                L = .15;
-            }
-            if (disX > -10)
-            {
-                R = disX/43;
-                L = disX/43;
-            }
+    if (fabs(disX) > 1 && Driver->X() == true) {
+        if (disX > 10) {
+            R = -.15;
+            L = -.15;
         }
-    else{
+        if (disX < 10) {
+            R = -disX/43;
+            L = -disX/43;
+        }
+        if (disX < -10) {
+            R = .15;
+            L = .15;
+        }
+        if (disX > -10) {
+            R = disX/43;
+            L = disX/43;
+        }
+    } else {
         L = 0;
         R = 0;
         }
-
-
 }
