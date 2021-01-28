@@ -14,8 +14,7 @@ class Shooter{
         rev::CANSparkMax &LeftMotor,
         rev::CANSparkMax &RightMotor,
         frc::DoubleSolenoid &Hood,
-        FRC5572Controller &Operator
-    );
+        FRC5572Controller &Operator);
 
     void Shot();
     void Calucate();
@@ -37,7 +36,7 @@ class Shooter{
 
     // // PID coefficients
     // double kP = 0.000000000000001, kI = .2, kD = 1, kIz = .2, kFF = 0, kMaxOutput = 1, kMinOutput = -1, SetP = 700;
-    double kP = 6e-5, kI = 1e-6, kD = 0, kIz = 0, kFF = 0.000015, kMaxOutput = 1.0, kMinOutput = -1.0 ,SetP = 700;
+    double kP = 6e-5, kI = 1e-6, kD = 0, kIz = 0, kFF = 0.000015, kMaxOutput = 1.0, kMinOutput = -1.0, SetP = 700;
 
     /* Notes of power percentage and RPMs to make shot at certain distances*/
     // Bumber shot = %- RPM -

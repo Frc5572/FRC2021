@@ -1,7 +1,6 @@
 #include "Vision/ColorManager.h"
 
-void ColorManager::GetClosestColor()
-{
+void ColorManager::GetClosestColor() {
     // Get color
     double dConfidence = 0.0;
     m_cDetectedColor = m_ColorSensor.GetColor();
@@ -22,8 +21,7 @@ void ColorManager::GetClosestColor()
         sColor = "Unknown Color";
 }
 
-void ColorManager::OutputColor()
-{
+void ColorManager::OutputColor() {
     frc::SmartDashboard::PutString("Color",      m_sColor);
     frc::SmartDashboard::PutNumber("Confidence", m_dConfidence);
     frc::SmartDashboard::PutNumber("Red",   m_cDetectedColor.red);

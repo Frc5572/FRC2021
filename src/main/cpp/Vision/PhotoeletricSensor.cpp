@@ -3,12 +3,12 @@
 
 Photoelctric::Photoelctric(
     frc::DigitalInput& Input,
-    frc::DigitalOutput& Output){
+    frc::DigitalOutput& Output) {
         this->input = &Input;
         this->output = &Output;
 }
 
-void Photoelctric::teachSensor(){
+void Photoelctric::teachSensor() {
     std::cout << "Place sensor 12 mm from target" << std::endl;
 
     // std::this_thread::sleep_for (std::chrono::seconds(2));
