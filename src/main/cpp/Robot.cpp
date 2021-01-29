@@ -25,20 +25,26 @@ void Robot::AutonomousInit()     {
     shooter.InitPID();
     m_timer.Reset();
     m_timer.Start();
-
+    BottomRightMotorEncoder->SetPosition(0);
+    m_leftTopMotor.SetInverted(true);
+    m_leftMiddleMotor.SetInverted(true);
+    m_leftBottomMotor.SetInverted(true);
     //  automovement = new AutoMovement{*driveTrain.LeftMotors,
     //  *driveTrain.RightMotors,
     //  ahrs, *BottomLeftMotorEncoder,
     //  *BottomRightMotorEncoder};
 }
 void Robot::AutonomousPeriodic() {
-    //  while (m_timer.Get() < 15)
-    //  {
-    //  automovement->TestDrive();
-    //  continue;
-    //  }
+    while (BottomRightMotorEncoder->GetPosition() <= 3) {
+        m_rightBottomMotor.Set(.3);
+        m_rightMiddleMotor.Set(.3);
+        m_rightTopMotor.Set(.3);
+        m_leftBottomMotor.Set(-.3);
+        m_leftMiddleMotor.Set(-.3);
+        m_leftTopMotor.Set(-.3);
+    }
 
-
+/*
     while (m_timer.Get() < 3) {
         //  shooter.AutoPID();
         m_leftShooter.Set(.6);
@@ -61,6 +67,7 @@ void Robot::AutonomousPeriodic() {
         m_hopper.Set(0.0);
         continue;
     }
+
     while (m_timer.Get() > 11 && m_timer.Get() < 12) {
         m_rightBottomMotor.Set(.3);
         m_rightMiddleMotor.Set(.3);
@@ -69,6 +76,7 @@ void Robot::AutonomousPeriodic() {
         m_leftMiddleMotor.Set(-.3);
         continue;
     }
+*/
     m_rightBottomMotor.Set(0);
     m_rightMiddleMotor.Set(0);
 
