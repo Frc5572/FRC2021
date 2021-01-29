@@ -32,13 +32,18 @@ void Robot::AutonomousInit()     {
     //  *BottomRightMotorEncoder};
 }
 void Robot::AutonomousPeriodic() {
-    //  while (m_timer.Get() < 15)
-    //  {
-    //  automovement->TestDrive();
-    //  continue;
-    //  }
+    while (m_timer.Get() < 3) {
+        // m_rightTopMotor.Set(-.1);
+        // m_rightMiddleMotor.Set(-.1);
+        // m_rightBottomMotor.Set(-.1);
+        // m_leftTopMotor.Set(.1);
+        // m_leftMiddleMotor.Set(.1);
+        // m_leftBottomMotor.Set(.1);
+        driveTrain.RightMotors->Set(-.1);
+        driveTrain.LeftMotors->Set(.1);
+    }
 
-
+/*
     while (m_timer.Get() < 3) {
         //  shooter.AutoPID();
         m_leftShooter.Set(.6);
@@ -61,6 +66,7 @@ void Robot::AutonomousPeriodic() {
         m_hopper.Set(0.0);
         continue;
     }
+
     while (m_timer.Get() > 11 && m_timer.Get() < 12) {
         m_rightBottomMotor.Set(.3);
         m_rightMiddleMotor.Set(.3);
@@ -69,6 +75,7 @@ void Robot::AutonomousPeriodic() {
         m_leftMiddleMotor.Set(-.3);
         continue;
     }
+*/
     m_rightBottomMotor.Set(0);
     m_rightMiddleMotor.Set(0);
 
@@ -120,17 +127,17 @@ void Robot::TeleopInit() {
 }
 
 void Robot::TeleopPeriodic() {
-     LimeLight.Update();
+    //  LimeLight.Update();
 
-    shooter.RunPID();
+    // shooter.RunPID();
 
     driveTrain.Drive();
 
-    shooter.Shots();
+    // shooter.Shots();
 
-    climber.ClimbPeriodic();
+    // climber.ClimbPeriodic();
 
-    hopper.HopperPeriodic();
+    // hopper.HopperPeriodic();
 }
 
 void Robot::TestInit() {
