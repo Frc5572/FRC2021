@@ -1,0 +1,15 @@
+{
+  "rules": {
+    "gradle": ["*.gradle", "gradle*"],
+    "ci": [".github/*"],
+    "testing": ["src/test/*"],
+    "vision": ["src/main/cpp/Vision/*","src/main/include/Vision/*"],
+    "movement": ["src/main/cpp/Movement/*","src/main/include/Movement/*"],
+    "robot": ["src/main/cpp/Robot.cpp","src/main/include/Robot.h"],
+    "shooter": ["Shooter.*"],
+    "hopper": ["Hopper.*"],
+    "climber": ["ClimbManager.*"],
+    "drivetrain": ["DriveTrainManager.*"],
+    "controller": ["ControllerManager.*"],
+  }
+}
