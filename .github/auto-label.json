@@ -1,7 +1,7 @@
 {
   "rules": {
     "gradle": ["*.gradle", "gradle*"],
-    "ci": [".github/*"],
+    "CI": [".github/*"],
     "testing": ["src/test/*"],
     "vision": ["src/main/cpp/Vision/*","src/main/include/Vision/*"],
     "movement": ["src/main/cpp/Movement/*","src/main/include/Movement/*"],
