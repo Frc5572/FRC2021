@@ -20,8 +20,8 @@
 #include <frc/DigitalInput.h>
 #include <frc/Timer.h>
 #include <frc/livewindow/LiveWindow.h>
+#include <AHRS.h>
 
-#include "AHRS.h"
 #include "rev/CANSparkMax.h"
 #include <rev/ColorSensorV3.h>
 #include <rev/ColorMatch.h>
@@ -62,6 +62,18 @@ class Robot : public frc::TimedRobot {
         new rev::CANEncoder{m_leftBottomMotor};
 
     rev::CANEncoder* BottomRightMotorEncoder =
+        new rev::CANEncoder{m_rightBottomMotor};
+
+    rev::CANEncoder* TopLeftMotorEncoder =
+        new rev::CANEncoder{m_leftTopMotor};
+
+    rev::CANEncoder* TopRightMotorEncoder =
+        new rev::CANEncoder{m_rightTopMotor};
+
+    rev::CANEncoder* MiddleLeftMotorEncoder =
+        new rev::CANEncoder{m_leftMiddleMotor};
+
+    rev::CANEncoder* MiddleRightMotorEncoder =
         new rev::CANEncoder{m_rightMiddleMotor};
     /* Shooters Spark Max and Motors*/
     rev::CANSparkMax m_leftShooter{LeftShoot,
@@ -69,6 +81,7 @@ class Robot : public frc::TimedRobot {
 
     rev::CANSparkMax m_rightShooter{RightShoot,
         rev::CANSparkMax::MotorType::kBrushless};
+
 
 
 /* Hopper */
