@@ -9,7 +9,7 @@
 #include "Movement/Shooter.hpp"
 #include "Movement/Hopper.hpp"
 #include "Movement/ClimbManager.hpp"
-#include "vision/PhotoeletricSensor.hpp"
+#include "Vision/PhotoeletricSensor.hpp"
 // #include "Auto/AutoDrip.hpp
 
 #include <frc/TimedRobot.h>
@@ -106,6 +106,7 @@ class Robot : public frc::TimedRobot {
     VisionManager LimeLight;
 
     frc::Timer m_timer;
+
 
     //  AutoDrip autoDrip{hopper, driveTrain, shooter, LimeLight};
 
