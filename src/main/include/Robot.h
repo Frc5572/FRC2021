@@ -126,7 +126,7 @@ class Robot : public frc::TimedRobot {
     RightBot = 6,  //  GOOD
 
     LeftShoot = 7,  //  GOOD
-    RightShoot = 8,  //  GOOD
+    RightShoot = 8,  //  GOODsdf
 
     Intake = 9,  //  GOOD
 
