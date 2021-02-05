@@ -1,6 +1,11 @@
 #pragma once
 
 #include <string>
+#include <units/math.h>
+#include <bits/stdc++.h> 
+#include <stdexcept>
+
+
 
 #include "Vision/ColorManager.h"
 #include "Vision/VisionManager.hpp"
@@ -21,11 +26,13 @@
 #include <frc/Timer.h>
 #include <frc/livewindow/LiveWindow.h>
 
+
 #include "AHRS.h"
 #include "rev/CANSparkMax.h"
 #include <rev/ColorSensorV3.h>
 #include <rev/ColorMatch.h>
 #include <frc/VictorSP.h>
+
 
 class Robot : public frc::TimedRobot {
  private:
@@ -89,9 +96,6 @@ class Robot : public frc::TimedRobot {
     frc::DigitalInput limitSwitch2{2};  // in the mag
     frc::DigitalInput limitSwitch3{0};  // on the top of the mag
 
-    //  frc::DigitalInput photoIN{0};
-    //  frc::DigitalOutput photoOUT{1};
-
     /*SubSystem Objects  */
     DriveTrain driveTrain{ m_leftTopMotor, m_rightTopMotor,
         m_leftMiddleMotor, m_rightMiddleMotor, m_leftBottomMotor,
@@ -109,7 +113,6 @@ class Robot : public frc::TimedRobot {
 
     //  AutoDrip autoDrip{hopper, driveTrain, shooter, LimeLight};
 
-    //  Photoelctric photoSensor{photoIN, photoOUT};
 
     /*  IDS  */
     static const int
@@ -135,6 +138,7 @@ class Robot : public frc::TimedRobot {
     RightClimb = 14;  //  GOOD
 
     double actualRPM;
+
 
 
  public:
