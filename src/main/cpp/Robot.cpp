@@ -162,7 +162,7 @@ void Robot::AutonomousPeriodic() {
             driveTrain.RightMotors->Set(.1);
         }
         // this probably wont work
-        while (abs(ahrs.GetYaw()) <= 0 && ahrs.GetYaw()  <= 0) {
+        while (abs(ahrs.GetYaw()) >= 0) {
             // turn 8
             driveTrain.LeftMotors->Set(-.1);
             driveTrain.RightMotors->Set(.1);
