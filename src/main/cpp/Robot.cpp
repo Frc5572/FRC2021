@@ -96,7 +96,7 @@ void Robot::AutonomousPeriodic() {
             robotPosL3 = BottomLeftMotorEncoder->GetPosition();
             robotPosR3 = BottomRightMotorEncoder->GetPosition();
         }
-        while (BottomLeftMotorEncoder->GetPosition() <= robotPosL3 + 45 ) {
+        while (BottomLeftMotorEncoder->GetPosition() <= robotPosL3 + 45) {
             // forward 3
             driveTrain.LeftMotors->Set(.1);
             driveTrain.RightMotors->Set(.1);
