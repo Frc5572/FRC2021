@@ -153,14 +153,14 @@ void Robot::AutonomousPeriodic() {
             driveTrain.RightMotors->Set(.1);
         }
         while (abs(ahrs.GetYaw()) > 0 && ahrs.GetYaw() < 0) {
-            //turn 6
+            // turn 6
             driveTrain.LeftMotors->Set(-.1);
             driveTrain.RightMotors->Set(.1);
             robotPosL9 = BottomLeftMotorEncoder->GetPosition();
             robotPosR9 = BottomRightMotorEncoder->GetPosition();
         }
         while (BottomLeftMotorEncoder->GetPosition() <= robotPosL9 + (6 * gearRatio) && BottomRightMotorEncoder->GetPosition() < robotPosR9 + (6 * gearRatio)) {
-            //forward 9
+            // forward 9
             driveTrain.LeftMotors->Set(.1);
             driveTrain.RightMotors->Set(.1);
         }
