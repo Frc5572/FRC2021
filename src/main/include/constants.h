@@ -4,6 +4,8 @@
     #include <units/time.h>
     #include <units/voltage.h>
     #include <wpi/math>
+
+    using namespace units::math;
     
     // These are example values only - DO NOT USE THESE FOR YOUR OWN ROBOT!
     // These characterization values MUST be determined either experimentally or
@@ -18,5 +20,5 @@
     constexpr double kPDriveVel = 8.5;
     
     constexpr auto kTrackwidth = 0.69_m;
-    
+
 
