@@ -1,10 +1,13 @@
     #pragma once
 
-    #include <units/angle.h>
+    #include <frc/kinematics/DifferentialDriveKinematics.h>
+    #include <frc/trajectory/constraint/DifferentialDriveKinematicsConstraint.h>
+    #include <units/acceleration.h>
+    #include <units/length.h>
     #include <units/time.h>
+    #include <units/velocity.h>
     #include <units/voltage.h>
     #include <wpi/math>
-
     using namespace units::math;
     
     // These are example values only - DO NOT USE THESE FOR YOUR OWN ROBOT!
@@ -19,6 +22,6 @@
     // Example value only - as above, this must be tuned for your drive!
     constexpr double kPDriveVel = 8.5;
     
-    constexpr auto kTrackwidth = 0.69_m;
+    constexpr auto kTrackwidth = 1.442_m;
 
 
