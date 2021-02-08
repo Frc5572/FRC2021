@@ -66,6 +66,7 @@ void Robot::AutonomousPeriodic() {
         while (BottomLeftMotorEncoder->GetPosition() <= 20) {
             // forward 1
             driveTrain.LeftMotors->Set(motorSpeed);
+            driveTrain.RightMotors->Set(motorSpeed);
         }
         while (abs(ahrs.GetYaw()) < 90) {
             // turn 1
