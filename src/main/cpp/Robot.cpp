@@ -29,12 +29,6 @@ int robotPosL8;
 int robotPosR8;
 int robotPosL9;
 int robotPosR9;
-int robotPosL10;
-int robotPosR10;
-int robotPosL11;
-int robotPosR11;
-int robotPosL12;
-int robotPosR12;
 bool runIf = true;
 
 void Robot::RobotInit() {
