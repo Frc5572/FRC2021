@@ -22,6 +22,7 @@ int robotPosL5 = 0;
 int robotPosL6 = 0;
 int robotPosL7 = 0;
 int robotPosL8 = 0;
+int turn = 0;
 
 bool run_auto = true;
 
@@ -169,10 +170,10 @@ void Robot::AutonomousPeriodic() {
             robotPosL8 = MiddleLeftMotorEncoder->GetPosition();
         }
 
-        while (MiddleLeftMotorEncoder->GetPosition() <= robotPosL8 + wRotationFoot * 5 && autoCorrect(ahrs.GetYaw(), 0)) {
+        while (MiddleLeftMotorEncoder->GetPosition() <= robotPosL8 + wRotationFoot * 5) {
             // forward 9
-            driveTrain.LeftMotors->Set(motorSpeed);
-            driveTrain.RightMotors->Set(motorSpeed);
+            autoCorrect(ahrs.GetYaw(), 0, driveTrain);
+
         }
 
 
@@ -183,17 +184,20 @@ void Robot::AutonomousPeriodic() {
     }
 }
 
-int autoCorrect (int currentAngle, int correctAngle) {
+int autoCorrect (int currentAngle, int correctAngle, DriveTrain dt) {
     if (currentAngle > correctAngle) {
-        driveTrain.LeftMotors->Set(0);
-        driveTrain.RightMotors->Set(motorSpeed);
-        return true;
+        dt.LeftMotors->Set(0);
+        dt.RightMotors->Set(motorSpeed);
+        turn = 1;
+        return turn;
     } else if (currentAngle < correctAngle) {
-        driveTrain.LeftMotors->Set(motorSpeed);
-        driveTrain.RightMotors->Set(motorSpeed);
-        return true;
+        dt.LeftMotors->Set(motorSpeed);
+        dt.RightMotors->Set(0);
+        turn = 2;
+        return turn;
     } else {
-        return false;
+        turn = 3;
+        return turn;
     }
 }
 
