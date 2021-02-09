@@ -185,12 +185,12 @@ void Robot::AutonomousPeriodic() {
     }
 }
 
-int autoCorrect(int currentAngle, int correctAngle){
-    if(currentAngle > correctAngle){
+int autoCorrect (int currentAngle, int correctAngle) {
+    if (currentAngle > correctAngle) {
         driveTrain.LeftMotors->Set(0);
         driveTrain.RightMotors->Set(motorSpeed);
         return true;
-    } else if(currentAngle < correctAngle){
+    } else if (currentAngle < correctAngle) {
         driveTrain.LeftMotors->Set(motorSpeed);
         driveTrain.RightMotors->Set(motorSpeed);
         return true;
