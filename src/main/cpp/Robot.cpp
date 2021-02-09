@@ -49,8 +49,7 @@ void Robot::AutonomousInit()    {
     m_timer.Reset();
     m_timer.Start();
     ahrs.Reset();
-    BottomLeftMotorEncoder->SetPosition(0);
-    BottomRightMotorEncoder->SetPosition(0);
+    MiddleLeftMotorEncoder->SetPosition(0);
 
     //  automovement = new AutoMovement{*driveTrain.LeftMotors,
     //  *driveTrain.RightMotors,
@@ -58,14 +57,13 @@ void Robot::AutonomousInit()    {
     //  *BottomRightMotorEncoder};
 }
 void Robot::AutonomousPeriodic() {
-    BottomLeftMotorEncoder->SetPosition(0);
-    BottomRightMotorEncoder->SetPosition(0);
+    MiddleLeftMotorEncoder->SetPosition(0);
     std::cout << ("Yaw:  \n");
     std::cout << (ahrs.GetYaw());
     // std::cout << ("\n Left Encoder \n");
     // std::cout << (MiddleLeftMotorEncoder->GetPosition());
     std::cout << ("\n Right Encoder \n");
-    std::cout << (BottomRightMotorEncoder->GetPosition());
+    std::cout << (MiddleLeftMotorEncoder->GetPosition());
     if (run_auto) {
         while (MiddleLeftMotorEncoder->GetPosition() <= wRotationFoot * 5) {
             // forward 1
