@@ -13,7 +13,7 @@
 double motorSpeed = 0.1;
 double gearRatio = 10;
 double wRotationFoot = 12 * gearRatio / 18.85;
-int counter = 0;
+int diffInAngle = 0;
 int robotPosL1 = 0;
 int robotPosL2 = 0;
 int robotPosL3 = 0;
@@ -22,9 +22,30 @@ int robotPosL5 = 0;
 int robotPosL6 = 0;
 int robotPosL7 = 0;
 int robotPosL8 = 0;
-int turn = 0;
+
 
 bool run_auto = true;
+
+int autoCorrect (int currentAngle, int  correctAngle, DriveTrain dt) {
+    diffInAngle = correctAngle - currentAngle;
+    if (currentAngle > 0 && correctAngle > 0) {
+        if (diffInAngle > 0) {
+            dt.LeftMotors->Set(0);
+            dt.RightMotors->Set(motorSpeed);
+        } else if (diffInAngle < 0) {
+            dt.LeftMotors->Set(motorSpeed);
+            dt.RightMotors->Set(0);
+    } else if (currentAngle < 0 && correctAngle < 0) {
+        if (diffInAngle < 0) {
+            dt.LeftMotors->Set(motorSpeed);
+            dt.RightMotors->Set(0);
+        } else if (diffInAngle > 0) {
+            dt.LeftMotors->Set(0);
+            dt.RightMotors->Set(motorSpeed);
+        }
+    }
+}
+}
 
 void Robot::RobotInit() {
     driveTrain.RightMotors->SetInverted(true);
@@ -45,7 +66,7 @@ void Robot::RobotInit() {
 
 void Robot::RobotPeriodic() {
 }
-void Robot::AutonomousInit()    {
+void Robot::AutonomousInit() {
     shooter.InitPID();
     m_timer.Reset();
     m_timer.Start();
@@ -169,13 +190,12 @@ void Robot::AutonomousPeriodic() {
             driveTrain.RightMotors->Set(motorSpeed);
             robotPosL8 = MiddleLeftMotorEncoder->GetPosition();
         }
-
+        ////////////////
         while (MiddleLeftMotorEncoder->GetPosition() <= robotPosL8 + wRotationFoot * 5) {
             // forward 9
             autoCorrect(ahrs.GetYaw(), 0, driveTrain);
-
         }
-
+        ////////////////
 
         // stop motors
         driveTrain.LeftMotors->Set(0);
@@ -184,22 +204,7 @@ void Robot::AutonomousPeriodic() {
     }
 }
 
-int autoCorrect (int currentAngle, int correctAngle, DriveTrain dt) {
-    if (currentAngle > correctAngle) {
-        dt.LeftMotors->Set(0);
-        dt.RightMotors->Set(motorSpeed);
-        turn = 1;
-        return turn;
-    } else if (currentAngle < correctAngle) {
-        dt.LeftMotors->Set(motorSpeed);
-        dt.RightMotors->Set(0);
-        turn = 2;
-        return turn;
-    } else {
-        turn = 3;
-        return turn;
-    }
-}
+
 
 void Robot::TeleopInit() {
     shooter.InitPID();
