@@ -26,7 +26,7 @@ int robotPosL8 = 0;
 
 bool run_auto = true;
 
-int autoCorrect (int currentAngle, int  correctAngle, DriveTrain dt) {
+int autoCorrect(int currentAngle, int  correctAngle, DriveTrain dt) {
     diffInAngle = correctAngle - currentAngle;
     if (currentAngle > 0 && correctAngle > 0) {
         if (diffInAngle > 0) {
