@@ -25,8 +25,8 @@ int robotPosL8 = 0;
 
 
 bool run_auto = true;
-
-int autoCorrect(double currentAngle, double correctAngle, DriveTrain dt) {
+//               getYaw(),     0,     drivetrain
+void autoCorrect(double currentAngle, double correctAngle, DriveTrain &dt) {
     diffInAngle = correctAngle - currentAngle;
     if (currentAngle > 0 && correctAngle > 0) {
         if (diffInAngle > 0) {
@@ -35,19 +35,14 @@ int autoCorrect(double currentAngle, double correctAngle, DriveTrain dt) {
         } else if (diffInAngle < 0) {
             dt.LeftMotors->Set(motorSpeed);
             dt.RightMotors->Set(0);
-    } else if (currentAngle < 0 && correctAngle < 0) {
-        if (diffInAngle < 0) {
+        } else {
             dt.LeftMotors->Set(motorSpeed);
-            dt.RightMotors->Set(0);
-        } else if (diffInAngle > 0) {
-            dt.LeftMotors->Set(0);
             dt.RightMotors->Set(motorSpeed);
         }
     } else {
         dt.LeftMotors->Set(motorSpeed);
         dt.RightMotors->Set(motorSpeed);
     }
-}
 }
 
 void Robot::RobotInit() {
@@ -93,9 +88,11 @@ void Robot::AutonomousPeriodic() {
         while (MiddleLeftMotorEncoder->GetPosition() <= wRotationFoot * 5) {
             // forward 1
             autoCorrect(ahrs.GetYaw(), 0, driveTrain);
+        // driveTrain.LeftMotors->Set(motorSpeed);
+        // driveTrain.RightMotors->Set(motorSpeed);
         }
 
-        while (abs(ahrs.GetYaw()) > -90) {
+        while (ahrs.GetYaw() > -90) {
             // turn 1
             driveTrain.LeftMotors->Set(motorSpeed);
             driveTrain.RightMotors->Set(-motorSpeed);
@@ -107,7 +104,7 @@ void Robot::AutonomousPeriodic() {
             autoCorrect(ahrs.GetYaw(), -90, driveTrain);
         }
 
-        while (abs(ahrs.GetYaw()) > -135) {
+        while (ahrs.GetYaw() > -135) {
             // turn 2
             driveTrain.LeftMotors->Set(motorSpeed);
             driveTrain.RightMotors->Set(-motorSpeed);
@@ -119,7 +116,7 @@ void Robot::AutonomousPeriodic() {
             autoCorrect(ahrs.GetYaw(), -135, driveTrain);
         }
 
-        while (abs(ahrs.GetYaw()) < -90) {
+        while (ahrs.GetYaw() < -90) {
             // turn 3
             driveTrain.LeftMotors->Set(-motorSpeed);
             driveTrain.RightMotors->Set(motorSpeed);
@@ -131,7 +128,7 @@ void Robot::AutonomousPeriodic() {
             autoCorrect(ahrs.GetYaw(), -90, driveTrain);
         }
 
-        while (abs(ahrs.GetYaw()) < -22.5) {
+        while (ahrs.GetYaw() < -22.5) {
             // turn 4
             driveTrain.LeftMotors->Set(-motorSpeed);
             driveTrain.RightMotors->Set(motorSpeed);
@@ -143,7 +140,7 @@ void Robot::AutonomousPeriodic() {
             autoCorrect(ahrs.GetYaw(), -22.5, driveTrain);
         }
 
-        while (abs(ahrs.GetYaw()) > -90) {
+        while (ahrs.GetYaw() > -90) {
             // turn 5
             driveTrain.LeftMotors->Set(motorSpeed);
             driveTrain.RightMotors->Set(-motorSpeed);
@@ -155,7 +152,7 @@ void Robot::AutonomousPeriodic() {
             autoCorrect(ahrs.GetYaw(), -90, driveTrain);
         }
 
-        while (abs(ahrs.GetYaw()) > -135) {
+        while (ahrs.GetYaw() > -135) {
             // turn 6
             driveTrain.LeftMotors->Set(motorSpeed);
             driveTrain.RightMotors->Set(-motorSpeed);
@@ -167,7 +164,7 @@ void Robot::AutonomousPeriodic() {
             autoCorrect(ahrs.GetYaw(), -135, driveTrain);
         }
 
-        while (abs(ahrs.GetYaw()) < -90) {
+        while (ahrs.GetYaw() < -90) {
             // turn 7
             driveTrain.LeftMotors->Set(-motorSpeed);
             driveTrain.RightMotors->Set(motorSpeed);
@@ -179,7 +176,7 @@ void Robot::AutonomousPeriodic() {
             autoCorrect(ahrs.GetYaw(), -90, driveTrain);
         }
 
-        while (abs(ahrs.GetYaw()) > 0 && ahrs.GetYaw() < 0) {
+        while (ahrs.GetYaw() > 0 && ahrs.GetYaw() < 0) {
             // turn 8
             driveTrain.LeftMotors->Set(-motorSpeed);
             driveTrain.RightMotors->Set(motorSpeed);
