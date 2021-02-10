@@ -43,6 +43,9 @@ int autoCorrect(double currentAngle, double correctAngle, DriveTrain dt) {
             dt.LeftMotors->Set(0);
             dt.RightMotors->Set(motorSpeed);
         }
+    } else {
+        dt.LeftMotors->Set(motorSpeed);
+        dt.RightMotors->Set(motorSpeed);
     }
 }
 }
