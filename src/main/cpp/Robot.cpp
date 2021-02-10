@@ -11,7 +11,7 @@
 #include "Movement/DriveTrainManager.hpp"
 
 int gearRatio = 10;
-int rotPFT = 12* gearRatio / 18.85;
+double rotPFT = 12* gearRatio / 18.85;
 int robotPosL;
 int robotPosR;
 int robotPosL2;
@@ -31,21 +31,6 @@ int robotPosR8;
 int robotPosL9;
 int robotPosR9;
 bool runIf = true;
-
-int autoCorrecto;
-
-int autoCorrect(double currentAngle, double correctAngle, DriveTrain dt) {
-    if (currentAngle > correctAngle) {
-        autoCorrecto = 1;
-        return autoCorrecto;
-    } else if (currentAngle < correctAngle) {
-        autoCorrecto = 2;
-        return autoCorrecto;
-    } else if (currentAngle == correctAngle) {
-        autoCorrecto = 0;
-        return autoCorrecto;
-    }
-}
 
 void Robot::RobotInit() {
     driveTrain.RightMotors->SetInverted(true);
@@ -85,16 +70,8 @@ void Robot::AutonomousPeriodic() {
     if (runIf) {
         // D1 -> B1
         while (MiddleLeftMotorEncoder->GetPosition() <= 5 * rotPFT && MiddleRightMotorEncoder->GetPosition() < 5 * rotPFT) {
-            if (autoCorrect(ahrs.GetYaw(), 0, driveTrain) == 0) {
-                driveTrain.LeftMotors->Set(.1);
-                driveTrain.RightMotors->Set(.1);
-            } else if (autoCorrect(ahrs.GetYaw(), 0, driveTrain) == 1) {
-                driveTrain.LeftMotors->Set(.1);
-                driveTrain.RightMotors->Set(-.1);
-            } else if (autoCorrect(ahrs.GetYaw(), 0, driveTrain) == 2) {
-                driveTrain.LeftMotors->Set(-.1);
-                driveTrain.RightMotors->Set(.1);
-            }
+            driveTrain.LeftMotors->Set(.1);
+            driveTrain.RightMotors->Set(.1);
         }
         // B1 turn
         while (abs(ahrs.GetYaw()) < 116.565) {
@@ -105,35 +82,13 @@ void Robot::AutonomousPeriodic() {
         }
         // B1 -> C3
         while (MiddleLeftMotorEncoder->GetPosition() <= robotPosL +(5.59 * rotPFT) && MiddleRightMotorEncoder->GetPosition() < robotPosR + (5.59 * rotPFT)) {
-            // driveTrain.LeftMotors->Set(.1);
-            // driveTrain.RightMotors->Set(.1);
-            if (autoCorrect(ahrs.GetYaw(), 116.565, driveTrain) == 0) {
                 driveTrain.LeftMotors->Set(.1);
                 driveTrain.RightMotors->Set(.1);
-            } else if (autoCorrect(ahrs.GetYaw(), 116.565, driveTrain) == 1) {
-                driveTrain.LeftMotors->Set(.1);
-                driveTrain.RightMotors->Set(-.1);
-            } else if (autoCorrect(ahrs.GetYaw(), 116.565, driveTrain) == 2) {
-                driveTrain.LeftMotors->Set(-.1);
-                driveTrain.RightMotors->Set(.1);
-            }
-            robotPosL2 = MiddleLeftMotorEncoder->GetPosition();
-            robotPosR2 = MiddleRightMotorEncoder->GetPosition();
         }
         // C3 -> D5
         while (MiddleLeftMotorEncoder->GetPosition() <= robotPosL2 +(5.59 * rotPFT) && MiddleRightMotorEncoder->GetPosition() < robotPosR2 + (5.59 * rotPFT)) {
-           if (autoCorrect(ahrs.GetYaw(), 116.565, driveTrain) == 0) {
-                driveTrain.LeftMotors->Set(.1);
-                driveTrain.RightMotors->Set(.1);
-            } else if (autoCorrect(ahrs.GetYaw(), 116.565, driveTrain) == 1) {
-                driveTrain.LeftMotors->Set(.1);
-                driveTrain.RightMotors->Set(-.1);
-            } else if (autoCorrect(ahrs.GetYaw(), 116.565, driveTrain) == 2) {
-                driveTrain.LeftMotors->Set(-.1);
-                driveTrain.RightMotors->Set(.1);
-            }
-            // driveTrain.LeftMotors->Set(.1);
-            // driveTrain.RightMotors->Set(.1);
+            driveTrain.LeftMotors->Set(.1);
+            driveTrain.RightMotors->Set(.1);
         }
         // D5 turn
         while (abs(ahrs.GetYaw()) < 135) {
@@ -144,20 +99,8 @@ void Robot::AutonomousPeriodic() {
         }
         // D5 -> E6
         while (MiddleLeftMotorEncoder->GetPosition() <= robotPosL3 +(3.54 * rotPFT) && MiddleRightMotorEncoder->GetPosition() < robotPosR3 + (3.54 * rotPFT)) {
-            // driveTrain.LeftMotors->Set(.1);
-            // driveTrain.RightMotors->Set(.1);
-            if (autoCorrect(ahrs.GetYaw(), 135, driveTrain) == 0) {
-                driveTrain.LeftMotors->Set(.1);
-                driveTrain.RightMotors->Set(.1);
-            } else if (autoCorrect(ahrs.GetYaw(), 135, driveTrain) == 1) {
-                driveTrain.LeftMotors->Set(.1);
-                driveTrain.RightMotors->Set(-.1);
-            } else if (autoCorrect(ahrs.GetYaw(), 135, driveTrain) == 2) {
-                driveTrain.LeftMotors->Set(-.1);
-                driveTrain.RightMotors->Set(.1);
-            }
-            robotPosL4 = MiddleLeftMotorEncoder->GetPosition();
-            robotPosR4 = MiddleRightMotorEncoder->GetPosition();
+            driveTrain.LeftMotors->Set(.1);
+            driveTrain.RightMotors->Set(.1);
         }
         // E6 turn
         while (abs(ahrs.GetYaw()) > 0 && ahrs.GetYaw() < 0) {
@@ -168,18 +111,8 @@ void Robot::AutonomousPeriodic() {
         }
         // E6 -> A6
         while (MiddleLeftMotorEncoder->GetPosition() <= robotPosL5 +(8 * rotPFT) && MiddleRightMotorEncoder->GetPosition() < robotPosR5 + (8 * rotPFT)) {
-            // driveTrain.LeftMotors->Set(.1);
-            // driveTrain.RightMotors->Set(.1);
-            if (autoCorrect(ahrs.GetYaw(), 0, driveTrain) == 0) {
-                driveTrain.LeftMotors->Set(.1);
-                driveTrain.RightMotors->Set(.1);
-            } else if (autoCorrect(ahrs.GetYaw(), 0, driveTrain) == 1) {
-                driveTrain.LeftMotors->Set(.1);
-                driveTrain.RightMotors->Set(-.1);
-            } else if (autoCorrect(ahrs.GetYaw(), 0, driveTrain) == 2) {
-                driveTrain.LeftMotors->Set(-.1);
-                driveTrain.RightMotors->Set(.1);
-            }
+            driveTrain.LeftMotors->Set(.1);
+            driveTrain.RightMotors->Set(.1);
         }
         // A6 turn
         while (abs(ahrs.GetYaw()) < 135) {
@@ -190,18 +123,8 @@ void Robot::AutonomousPeriodic() {
         }
         // A6 -> B7
         while (MiddleLeftMotorEncoder->GetPosition() <= robotPosL6 +(3.54 * rotPFT) && MiddleRightMotorEncoder->GetPosition() < robotPosR6 + (3.54 * rotPFT)) {
-            // driveTrain.LeftMotors->Set(.1);
-            // driveTrain.RightMotors->Set(.1);
-            if (autoCorrect(ahrs.GetYaw(), 135, driveTrain) == 0) {
-                driveTrain.LeftMotors->Set(.1);
-                driveTrain.RightMotors->Set(.1);
-            } else if (autoCorrect(ahrs.GetYaw(), 135, driveTrain) == 1) {
-                driveTrain.LeftMotors->Set(.1);
-                driveTrain.RightMotors->Set(-.1);
-            } else if (autoCorrect(ahrs.GetYaw(), 135, driveTrain) == 2) {
-                driveTrain.LeftMotors->Set(-.1);
-                driveTrain.RightMotors->Set(.1);
-            }
+            driveTrain.LeftMotors->Set(.1);
+            driveTrain.RightMotors->Set(.1);
         }
 
         // B7 turn
@@ -213,35 +136,13 @@ void Robot::AutonomousPeriodic() {
         }
         // B7 -> C9
         while (MiddleLeftMotorEncoder->GetPosition() <= robotPosL7 +(5.59 * rotPFT) && MiddleRightMotorEncoder->GetPosition() < robotPosR7 + (5.59 * rotPFT)) {
-            // driveTrain.LeftMotors->Set(.1);
-            // driveTrain.RightMotors->Set(.1);
-            if (autoCorrect(ahrs.GetYaw(), 116.565, driveTrain) == 0) {
-                driveTrain.LeftMotors->Set(.1);
-                driveTrain.RightMotors->Set(.1);
-            } else if (autoCorrect(ahrs.GetYaw(), 116.565, driveTrain) == 1) {
-                driveTrain.LeftMotors->Set(.1);
-                driveTrain.RightMotors->Set(-.1);
-            } else if (autoCorrect(ahrs.GetYaw(), 116.565, driveTrain) == 2) {
-                driveTrain.LeftMotors->Set(-.1);
-                driveTrain.RightMotors->Set(.1);
-            }
-            robotPosL8 = MiddleLeftMotorEncoder->GetPosition();
-            robotPosR8 = MiddleRightMotorEncoder->GetPosition();
+            driveTrain.LeftMotors->Set(.1);
+            driveTrain.RightMotors->Set(.1);
         }
         // C9 -> D11
         while (MiddleLeftMotorEncoder->GetPosition() <= robotPosL8 +(5.59 * rotPFT) && MiddleRightMotorEncoder->GetPosition() < robotPosR8 + (5.59 * rotPFT)) {
-            // driveTrain.LeftMotors->Set(.1);
-            // driveTrain.RightMotors->Set(.1);
-            if (autoCorrect(ahrs.GetYaw(), 116.565, driveTrain) == 0) {
-                driveTrain.LeftMotors->Set(.1);
-                driveTrain.RightMotors->Set(.1);
-            } else if (autoCorrect(ahrs.GetYaw(), 116.565, driveTrain) == 1) {
-                driveTrain.LeftMotors->Set(.1);
-                driveTrain.RightMotors->Set(-.1);
-            } else if (autoCorrect(ahrs.GetYaw(), 116.565, driveTrain) == 2) {
-                driveTrain.LeftMotors->Set(-.1);
-                driveTrain.RightMotors->Set(.1);
-            }
+            driveTrain.LeftMotors->Set(.1);
+            driveTrain.RightMotors->Set(.1);
         }
         // D11 turn
         while (abs(ahrs.GetYaw()) > 0 && ahrs.GetYaw() < 0) {
@@ -252,18 +153,8 @@ void Robot::AutonomousPeriodic() {
         }
         // D11 -> B11
         while (MiddleLeftMotorEncoder->GetPosition() <= robotPosL9 + (5 * rotPFT) && MiddleRightMotorEncoder->GetPosition() < robotPosR9 + (5 * rotPFT)) {
-            // driveTrain.LeftMotors->Set(.1);
-            // driveTrain.RightMotors->Set(.1);
-            if (autoCorrect(ahrs.GetYaw(), 0, driveTrain) == 0) {
-                driveTrain.LeftMotors->Set(.1);
-                driveTrain.RightMotors->Set(.1);
-            } else if (autoCorrect(ahrs.GetYaw(), 0, driveTrain) == 1) {
-                driveTrain.LeftMotors->Set(.1);
-                driveTrain.RightMotors->Set(-.1);
-            } else if (autoCorrect(ahrs.GetYaw(), 0, driveTrain) == 2) {
-                driveTrain.LeftMotors->Set(-.1);
-                driveTrain.RightMotors->Set(.1);
-            }
+            driveTrain.LeftMotors->Set(.1);
+            driveTrain.RightMotors->Set(.1);
         }
 
         // STOP
