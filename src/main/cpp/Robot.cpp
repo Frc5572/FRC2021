@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <math.h>
 
 #include <frc/Timer.h>
 #include <frc/smartdashboard/SmartDashboard.h>
@@ -13,6 +14,10 @@
 double motorSpeed = 0.1;
 double gearRatio = 10;
 double wRotationFoot = 12 * gearRatio / 18.85;
+double calculatedExtraDistance = 0;
+double newCvalue = 0;
+double angleDiff = 0;
+int previousAngle = 0;
 int diffInAngle = 0;
 int robotPosL1 = 0;
 int robotPosL2 = 0;
@@ -43,6 +48,11 @@ void autoCorrect(double currentAngle, double correctAngle, DriveTrain &dt) {
         dt.LeftMotors->Set(motorSpeed);
         dt.RightMotors->Set(motorSpeed);
     }
+}
+
+double calculatedC(double a, double b, double angle){
+    double c = sqrt(pow(a, 2) + pow(b, 2) - 2*a*b*cos(c));
+    newCvalue = c;
 }
 
 void Robot::RobotInit() {
@@ -102,6 +112,8 @@ void Robot::AutonomousPeriodic() {
         while (MiddleLeftMotorEncoder->GetPosition() <= robotPosL1 + wRotationFoot * 5) {
             // forward 2
             autoCorrect(ahrs.GetYaw(), -90, driveTrain);
+            angleDiff = previousAngle - ahrs.GetYaw();
+            calculatedC(MiddleLeftMotorEncoder->GetPosition(), previousAngle, angleDiff);
         }
 
         while (ahrs.GetYaw() > -135) {
@@ -111,7 +123,7 @@ void Robot::AutonomousPeriodic() {
             robotPosL2 = MiddleLeftMotorEncoder->GetPosition();
         }
 
-        while (MiddleLeftMotorEncoder->GetPosition() <= robotPosL2 + wRotationFoot *  sqrt(50)) {
+        while (MiddleLeftMotorEncoder->GetPosition() <= robotPosL2 + wRotationFoot *  sqrt(50) + newCvalue) {
             // forward 3
             autoCorrect(ahrs.GetYaw(), -135, driveTrain);
         }
