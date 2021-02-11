@@ -16,6 +16,8 @@ double gearRatio = 10;
 double wRotationFoot = 12 * gearRatio / 18.85;
 double calculatedExtraDistance = 0;
 double newBvalue = 0;
+double prevEncodersCombined = 0;
+double lastEncoderCollective = 0;
 int diffInAngle = 0;
 int robotPosL1 = 0;
 int robotPosL2 = 0;
@@ -95,28 +97,33 @@ void Robot::AutonomousPeriodic() {
     if (run_auto) {
         while (MiddleLeftMotorEncoder->GetPosition() <= wRotationFoot * 5) {
             // forward 1
-            autoCorrect(ahrs.GetYaw(), 0, driveTrain);
+            driveTrain.LeftMotors->Set(motorSpeed);
+            driveTrain.RightMotors->Set(motorSpeed);
+            //
             calculatedB(5, MiddleLeftMotorEncoder->GetPosition());
+            lastEncoderCollective = MiddleLeftMotorEncoder->GetPosition();
             std::cout<<calculatedB;
-        // driveTrain.LeftMotors->Set(motorSpeed);
-        // driveTrain.RightMotors->Set(motorSpeed);
         }
 
-        while (ahrs.GetYaw() > -90) {
+        while (abs(ahrs.GetYaw() < 90)) {
             // turn 1
             driveTrain.LeftMotors->Set(motorSpeed);
             driveTrain.RightMotors->Set(-motorSpeed);
             robotPosL1 = MiddleLeftMotorEncoder->GetPosition();
+            lastEncoderCollective = MiddleLeftMotorEncoder->GetPosition();
         }
 
         while (MiddleLeftMotorEncoder->GetPosition() <= robotPosL1 + wRotationFoot * 5 + newBvalue) {
             // forward 2
-            autoCorrect(ahrs.GetYaw(), -90, driveTrain);
+            driveTrain.LeftMotors->Set(motorSpeed);
+            driveTrain.RightMotors->Set(motorSpeed);
             //                                                   - previous motor encoder value
-            calculatedB(5, MiddleLeftMotorEncoder->GetPosition());
+            calculatedB(5, MiddleLeftMotorEncoder->GetPosition() - lastEncoderCollective);
+            lastEncoderCollective = MiddleLeftMotorEncoder->GetPosition();
+            std::cout<<calculatedB;
         }
 
-        while (ahrs.GetYaw() > -135) {
+        while (abs(ahrs.GetYaw() < 135)) {
             // turn 2
             driveTrain.LeftMotors->Set(motorSpeed);
             driveTrain.RightMotors->Set(-motorSpeed);
@@ -125,79 +132,114 @@ void Robot::AutonomousPeriodic() {
 
         while (MiddleLeftMotorEncoder->GetPosition() <= robotPosL2 + wRotationFoot *  sqrt(50) + newBvalue) {
             // forward 3
-            autoCorrect(ahrs.GetYaw(), -135, driveTrain);
+            driveTrain.LeftMotors->Set(motorSpeed);
+            driveTrain.RightMotors->Set(motorSpeed);
+            //
+            calculatedB(sqrt(50), MiddleLeftMotorEncoder->GetPosition() - lastEncoderCollective);
+            lastEncoderCollective = MiddleLeftMotorEncoder->GetPosition();
+            std::cout<<calculatedB;
         }
 
-        while (ahrs.GetYaw() < -90) {
+        while (abs(ahrs.GetYaw() > 90)) {
             // turn 3
             driveTrain.LeftMotors->Set(-motorSpeed);
             driveTrain.RightMotors->Set(motorSpeed);
             robotPosL3 = MiddleLeftMotorEncoder->GetPosition();
         }
 
-        while (MiddleLeftMotorEncoder->GetPosition() <= robotPosL3 + wRotationFoot * 2.5) {
+        while (MiddleLeftMotorEncoder->GetPosition() <= robotPosL3 + wRotationFoot * 2.5 + newBvalue) {
             // forward 4
-            autoCorrect(ahrs.GetYaw(), -90, driveTrain);
+            driveTrain.LeftMotors->Set(motorSpeed);
+            driveTrain.RightMotors->Set(motorSpeed);
+            //
+            calculatedB(2.5, MiddleLeftMotorEncoder->GetPosition() - lastEncoderCollective);
+            lastEncoderCollective = MiddleLeftMotorEncoder->GetPosition();
+            std::cout<<calculatedB;
         }
 
-        while (ahrs.GetYaw() < -22.5) {
+        while (abs(ahrs.GetYaw() > 22.5)) {
             // turn 4
             driveTrain.LeftMotors->Set(-motorSpeed);
             driveTrain.RightMotors->Set(motorSpeed);
             robotPosL4 = MiddleLeftMotorEncoder->GetPosition();
         }
 
-        while (MiddleLeftMotorEncoder->GetPosition() <= robotPosL4 + wRotationFoot * sqrt(31.25)) {
+        while (MiddleLeftMotorEncoder->GetPosition() <= robotPosL4 + wRotationFoot * sqrt(31.25) + newBvalue) {
             // forward 5
-            autoCorrect(ahrs.GetYaw(), -22.5, driveTrain);
+            driveTrain.LeftMotors->Set(motorSpeed);
+            driveTrain.RightMotors->Set(motorSpeed);
+            //
+            calculatedB(sqrt(31.25), MiddleLeftMotorEncoder->GetPosition() - lastEncoderCollective);
+            lastEncoderCollective = MiddleLeftMotorEncoder->GetPosition();
+            std::cout<<calculatedB;
         }
 
-        while (ahrs.GetYaw() > -90) {
+        while (abs(ahrs.GetYaw() < 90)) {
             // turn 5
             driveTrain.LeftMotors->Set(motorSpeed);
             driveTrain.RightMotors->Set(-motorSpeed);
             robotPosL5 = MiddleLeftMotorEncoder->GetPosition();
         }
 
-        while (MiddleLeftMotorEncoder->GetPosition() <= robotPosL5 + wRotationFoot * 2.5) {
+        while (MiddleLeftMotorEncoder->GetPosition() <= robotPosL5 + wRotationFoot * 2.5 + newBvalue) {
             // forward 6
-            autoCorrect(ahrs.GetYaw(), -90, driveTrain);
+            driveTrain.LeftMotors->Set(motorSpeed);
+            driveTrain.RightMotors->Set(motorSpeed);
+            //
+            calculatedB(2.5, MiddleLeftMotorEncoder->GetPosition() - lastEncoderCollective);
+            lastEncoderCollective = MiddleLeftMotorEncoder->GetPosition();
+            std::cout<<calculatedB;
         }
 
-        while (ahrs.GetYaw() > -135) {
+        while (abs(ahrs.GetYaw() < 135)) {
             // turn 6
             driveTrain.LeftMotors->Set(motorSpeed);
             driveTrain.RightMotors->Set(-motorSpeed);
             robotPosL6 = MiddleLeftMotorEncoder->GetPosition();
         }
 
-        while (MiddleLeftMotorEncoder->GetPosition() <= robotPosL6 + wRotationFoot * sqrt(50)) {
+        while (MiddleLeftMotorEncoder->GetPosition() <= robotPosL6 + wRotationFoot * sqrt(50) + newBvalue) {
             // forward 7
-            autoCorrect(ahrs.GetYaw(), -135, driveTrain);
+            driveTrain.LeftMotors->Set(motorSpeed);
+            driveTrain.RightMotors->Set(motorSpeed);
+            //
+            calculatedB(sqrt(50), MiddleLeftMotorEncoder->GetPosition() - lastEncoderCollective);
+            lastEncoderCollective = MiddleLeftMotorEncoder->GetPosition();
+            std::cout<<calculatedB;
         }
 
-        while (ahrs.GetYaw() < -90) {
+        while (abs(ahrs.GetYaw() > 90)) {
             // turn 7
             driveTrain.LeftMotors->Set(-motorSpeed);
             driveTrain.RightMotors->Set(motorSpeed);
             robotPosL7 = MiddleLeftMotorEncoder->GetPosition();
         }
 
-        while (MiddleLeftMotorEncoder->GetPosition() <= robotPosL7 + wRotationFoot * 2.5) {
+        while (MiddleLeftMotorEncoder->GetPosition() <= robotPosL7 + wRotationFoot * 2.5 + newBvalue) {
             // forward 8
-            autoCorrect(ahrs.GetYaw(), -90, driveTrain);
+            driveTrain.LeftMotors->Set(motorSpeed);
+            driveTrain.RightMotors->Set(motorSpeed);
+            //
+            calculatedB(2.5, MiddleLeftMotorEncoder->GetPosition() - lastEncoderCollective);
+            lastEncoderCollective = MiddleLeftMotorEncoder->GetPosition();
+            std::cout<<calculatedB;
         }
 
-        while (ahrs.GetYaw() > 0 && ahrs.GetYaw() < 0) {
+        while (abs(ahrs.GetYaw() > 0) && ahrs.GetYaw() < 0) {
             // turn 8
             driveTrain.LeftMotors->Set(-motorSpeed);
             driveTrain.RightMotors->Set(motorSpeed);
             robotPosL8 = MiddleLeftMotorEncoder->GetPosition();
         }
         ////////////////
-        while (MiddleLeftMotorEncoder->GetPosition() <= robotPosL8 + wRotationFoot * 5) {
+        while (MiddleLeftMotorEncoder->GetPosition() <= robotPosL8 + wRotationFoot * 5 + newBvalue) {
             // forward 9
-            autoCorrect(ahrs.GetYaw(), 0, driveTrain);
+            driveTrain.LeftMotors->Set(motorSpeed);
+            driveTrain.RightMotors->Set(motorSpeed);
+            //
+            calculatedB(5, MiddleLeftMotorEncoder->GetPosition() - lastEncoderCollective);
+            lastEncoderCollective = MiddleLeftMotorEncoder->GetPosition();
+            std::cout<<calculatedB;
         }
         ////////////////
 
