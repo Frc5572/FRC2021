@@ -18,6 +18,7 @@ double calculatedExtraDistance = 0;
 double newBvalue = 0;
 double prevEncodersCombined = 0;
 double lastEncoderCollective = 0;
+bool run_auto = true;
 int diffInAngle = 0;
 int robotPosL1 = 0;
 int robotPosL2 = 0;
@@ -28,9 +29,14 @@ int robotPosL6 = 0;
 int robotPosL7 = 0;
 int robotPosL8 = 0;
 
+/*
+ * IMPORTANT REMINDER
+ * not all robot turns are right angles
+ * cannot use pythagorean theorem on all angles
+ * ---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ * need to use law of cosines
+*/
 
-bool run_auto = true;
-//               getYaw(),     0,     drivetrain
 void autoCorrect(double currentAngle, double correctAngle, DriveTrain &dt) {
     diffInAngle = correctAngle - currentAngle;
     if (currentAngle > 0 && correctAngle > 0) {
@@ -231,7 +237,7 @@ void Robot::AutonomousPeriodic() {
             driveTrain.RightMotors->Set(motorSpeed);
             robotPosL8 = MiddleLeftMotorEncoder->GetPosition();
         }
-        ////////////////
+        //
         while (MiddleLeftMotorEncoder->GetPosition() <= robotPosL8 + wRotationFoot * 5 + newBvalue) {
             // forward 9
             driveTrain.LeftMotors->Set(motorSpeed);
@@ -241,7 +247,7 @@ void Robot::AutonomousPeriodic() {
             lastEncoderCollective = MiddleLeftMotorEncoder->GetPosition();
             std::cout<<calculatedB;
         }
-        ////////////////
+        //
 
         // stop motors
         driveTrain.LeftMotors->Set(0);
