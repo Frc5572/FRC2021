@@ -117,7 +117,7 @@ void Robot::AutonomousPeriodic() {
             driveTrain.RightMotors->Set(motorSpeed);
         }
         while (abs(ahrs.GetYaw()) < 90) {
-            // turn 5 to left 
+            // turn 5 to left
             driveTrain.LeftMotors->Set(-motorSpeed);
             driveTrain.RightMotors->Set(motorSpeed);
             robotPosL5 = BottomLeftMotorEncoder->GetPosition();
