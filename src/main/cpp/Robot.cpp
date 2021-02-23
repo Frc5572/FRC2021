@@ -10,7 +10,8 @@
 
 #include "Robot.h"
 #include "Movement/DriveTrainManager.hpp"
-
+bool runAuto = true;
+bool gridReturnValue = true;
 std::tuple <double, double> E1;
 std::tuple <double, double> D2;
 std::tuple <double, double> B2;
@@ -33,8 +34,16 @@ std::tuple B9 = std::make_tuple(7.5, 20);
 std::tuple D11 = std::make_tuple(2.5, 25);
 std::tuple B11 = std::make_tuple(7.5, 25);
 
-double gridReturn(){
+double gridReturn(/*std::tuple startPoint, std::tuple endpoint*/) {
+    int calculatedAngle;
+    double calculatedDistanceFeet;
+    // doing the math here
+    /*
 
+    */
+    return calculatedAngle;
+    return calculatedDistanceFeet;
+    gridReturnValue = false;
 }
 
 
@@ -44,7 +53,8 @@ void Robot::RobotInit() {
 
 void Robot::RobotPeriodic() {
 }
-void Robot::AutonomousInit()     {
+
+void Robot::AutonomousInit() {
     shooter.InitPID();
     m_timer.Reset();
     m_timer.Start();
@@ -55,7 +65,12 @@ void Robot::AutonomousInit()     {
     //  *BottomRightMotorEncoder};
 }
 void Robot::AutonomousPeriodic() {
+    if (runAuto){
+        while(MiddleLeftMotorEncoder()->GetPosition) {
 
+        }
+    }
+    runAuto == false;
 }
 
 void Robot::TeleopInit() {
