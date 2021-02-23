@@ -34,16 +34,22 @@ std::tuple B9 = std::make_tuple(7.5, 20);
 std::tuple D11 = std::make_tuple(2.5, 25);
 std::tuple B11 = std::make_tuple(7.5, 25);
 
-double gridReturn(/*std::tuple startPoint, std::tuple endpoint*/) {
+double gridReturnAngle(double startPointX, double startPointY, double endPointX, double endPointY) {
     int calculatedAngle;
-    double calculatedDistanceFeet;
     // doing the math here
     /*
 
     */
     return calculatedAngle;
-    return calculatedDistanceFeet;
-    gridReturnValue = false;
+}
+
+int gridReturnDistance(/*std::tuple startPoint, std::tuple endpoint*/) {
+    int calculatedDistance;
+    // doing the math here
+    /*
+
+    */
+    return calculatedDistance;
 }
 
 
@@ -66,9 +72,10 @@ void Robot::AutonomousInit() {
 }
 void Robot::AutonomousPeriodic() {
     if (runAuto){
-        while(MiddleLeftMotorEncoder()->GetPosition) {
-
+        while(MiddleLeftMotorEncoder->GetPosition() < gridReturnDistance(get<0>(D2), get<1>(D2), get<0>(B2), get<1>(B2))) {
+            //move motors forward
         }
+        gridReturnDistance(B2, );
     }
     runAuto == false;
 }
