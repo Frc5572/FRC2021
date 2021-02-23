@@ -170,9 +170,7 @@ void Robot::AutonomousPeriodic() {
             driveTrain.RightMotors->Set(0);
             run_auto = false;
         } else if (pathName == "Path 2") {
-
         } else if (pathName == "Path 3") {
-
         }
     }
 }
