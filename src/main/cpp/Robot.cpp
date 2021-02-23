@@ -100,7 +100,7 @@ void Robot::AutonomousPeriodic() {
     // std::cout << ("\n Right Encoder \n");
     // std::cout << (BottomRightMotorEncoder->GetPosition());
     if (runIf) {
-        for (int i = 0; i < 2; i++) {
+        for ( int i = 0; i < 2; i++ ) {
             // B1.5 turn
             while (abs(ahrs.GetYaw()) < 71.565) {
                 driveTrain.LeftMotors->Set(-.1);
