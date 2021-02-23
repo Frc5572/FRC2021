@@ -226,7 +226,7 @@ void Robot::AutonomousPeriodic() {
                 driveTrain.LeftMotors->Set(.1);
                 driveTrain.RightMotors->Set(.1);
             }
-            if( i == 0){
+            if( i == 0 ) {
                 // C3 turn
                 while (abs(ahrs.GetYaw()) > 135) {
                     driveTrain.LeftMotors->Set(.1);
@@ -239,8 +239,6 @@ void Robot::AutonomousPeriodic() {
                     driveTrain.LeftMotors->Set(.1);
                     driveTrain.RightMotors->Set(.1);
                 }
-            } else {
-                continue;
             }
         }
 
@@ -268,7 +266,6 @@ void Robot::AutonomousPeriodic() {
             driveTrain.LeftMotors->Set(.1);
             driveTrain.RightMotors->Set(.1);
         }
-
 
         // STOP
         driveTrain.LeftMotors->Set(0);
