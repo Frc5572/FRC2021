@@ -321,7 +321,7 @@ void Robot::AutonomousPeriodic() {
                 run_auto = false;
             }
         } else if (pathName == "Path B") {
-            while (BottomLeftMotorEncoder->GetPosition() <= wRotationFoot * 5) {
+            while (MiddleLeftMotorEncoder->GetPosition() <= wRotationFoot * 5) {
                 // forward 1
                 driveTrain.LeftMotors->Set(motorSpeed);
                 driveTrain.RightMotors->Set(motorSpeed);
@@ -330,10 +330,10 @@ void Robot::AutonomousPeriodic() {
                 // turn 1
                 driveTrain.LeftMotors->Set(motorSpeed);
                 driveTrain.RightMotors->Set(-motorSpeed);
-                robotPosL1 = BottomLeftMotorEncoder->GetPosition();
+                robotPosL = MiddleLeftMotorEncoder->GetPosition();
             }
             // calculate
-            while (BottomLeftMotorEncoder->GetPosition() <= robotPosL1 + wRotationFoot * 5) {
+            while (MiddleLeftMotorEncoder->GetPosition() <= robotPosL + wRotationFoot * 5) {
                 // forward 2
                 driveTrain.LeftMotors->Set(motorSpeed);
                 driveTrain.RightMotors->Set(motorSpeed);
@@ -342,9 +342,9 @@ void Robot::AutonomousPeriodic() {
                 // turn 2
                 driveTrain.LeftMotors->Set(motorSpeed);
                 driveTrain.RightMotors->Set(-motorSpeed);
-                robotPosL2 = BottomLeftMotorEncoder->GetPosition();
+                robotPosL2 = MiddleLeftMotorEncoder->GetPosition();
             }
-            while (BottomLeftMotorEncoder->GetPosition() <= robotPosL2 + wRotationFoot *  sqrt(50)) {
+            while (MiddleLeftMotorEncoder->GetPosition() <= robotPosL2 + wRotationFoot *  sqrt(50)) {
                 // forward 3
                 driveTrain.LeftMotors->Set(motorSpeed);
                 driveTrain.RightMotors->Set(motorSpeed);
@@ -353,9 +353,9 @@ void Robot::AutonomousPeriodic() {
                 // turn 3
                 driveTrain.LeftMotors->Set(-motorSpeed);
                 driveTrain.RightMotors->Set(motorSpeed);
-                robotPosL3 = BottomLeftMotorEncoder->GetPosition();
+                robotPosL3 = MiddleLeftMotorEncoder->GetPosition();
             }
-            while (BottomLeftMotorEncoder->GetPosition() <= robotPosL3 + wRotationFoot * 2.5) {
+            while (MiddleLeftMotorEncoder->GetPosition() <= robotPosL3 + wRotationFoot * 2.5) {
                 // forward 4
                 driveTrain.LeftMotors->Set(motorSpeed);
                 driveTrain.RightMotors->Set(motorSpeed);
@@ -364,9 +364,9 @@ void Robot::AutonomousPeriodic() {
                 // turn 4
                 driveTrain.LeftMotors->Set(-motorSpeed);
                 driveTrain.RightMotors->Set(motorSpeed);
-                robotPosL4 = BottomLeftMotorEncoder->GetPosition();
+                robotPosL4 = MiddleLeftMotorEncoder->GetPosition();
             }
-            while (BottomLeftMotorEncoder->GetPosition() <= robotPosL4 + wRotationFoot * sqrt(31.25)) {
+            while (MiddleLeftMotorEncoder->GetPosition() <= robotPosL4 + wRotationFoot * sqrt(31.25)) {
                 // forward 5
                 driveTrain.LeftMotors->Set(motorSpeed);
                 driveTrain.RightMotors->Set(motorSpeed);
@@ -375,9 +375,9 @@ void Robot::AutonomousPeriodic() {
                 // turn 5
                 driveTrain.LeftMotors->Set(motorSpeed);
                 driveTrain.RightMotors->Set(-motorSpeed);
-                robotPosL5 = BottomLeftMotorEncoder->GetPosition();
+                robotPosL5 = MiddleLeftMotorEncoder->GetPosition();
             }
-            while (BottomLeftMotorEncoder->GetPosition() <= robotPosL5 + wRotationFoot * 2.5) {
+            while (MiddleLeftMotorEncoder->GetPosition() <= robotPosL5 + wRotationFoot * 2.5) {
                 // forward 6
                 driveTrain.LeftMotors->Set(motorSpeed);
                 driveTrain.RightMotors->Set(motorSpeed);
@@ -386,9 +386,9 @@ void Robot::AutonomousPeriodic() {
                 // turn 6
                 driveTrain.LeftMotors->Set(motorSpeed);
                 driveTrain.RightMotors->Set(-motorSpeed);
-                robotPosL6 = BottomLeftMotorEncoder->GetPosition();
+                robotPosL6 = MiddleLeftMotorEncoder->GetPosition();
             }
-            while (BottomLeftMotorEncoder->GetPosition() <= robotPosL6 + wRotationFoot * sqrt(50)) {
+            while (MiddleLeftMotorEncoder->GetPosition() <= robotPosL6 + wRotationFoot * sqrt(50)) {
                 // forward 7
                 driveTrain.LeftMotors->Set(motorSpeed);
                 driveTrain.RightMotors->Set(motorSpeed);
@@ -397,9 +397,9 @@ void Robot::AutonomousPeriodic() {
                 // turn 7
                 driveTrain.LeftMotors->Set(-motorSpeed);
                 driveTrain.RightMotors->Set(motorSpeed);
-                robotPosL7 = BottomLeftMotorEncoder->GetPosition();
+                robotPosL7 = MiddleLeftMotorEncoder->GetPosition();
             }
-            while (BottomLeftMotorEncoder->GetPosition() <= robotPosL7 + wRotationFoot * 2.5) {
+            while (MiddleLeftMotorEncoder->GetPosition() <= robotPosL7 + wRotationFoot * 2.5) {
                 // forward 8
                 driveTrain.LeftMotors->Set(motorSpeed);
                 driveTrain.RightMotors->Set(motorSpeed);
@@ -409,9 +409,9 @@ void Robot::AutonomousPeriodic() {
                 // turn 8
                 driveTrain.LeftMotors->Set(-motorSpeed);
                 driveTrain.RightMotors->Set(motorSpeed);
-                robotPosL8 = BottomLeftMotorEncoder->GetPosition();
+                robotPosL8 = MiddleLeftMotorEncoder->GetPosition();
             }
-            while (BottomLeftMotorEncoder->GetPosition() <= robotPosL8 + wRotationFoot * 5) {
+            while (MiddleLeftMotorEncoder->GetPosition() <= robotPosL8 + wRotationFoot * 5) {
                 // forward 9
                 driveTrain.LeftMotors->Set(motorSpeed);
                 driveTrain.RightMotors->Set(motorSpeed);
