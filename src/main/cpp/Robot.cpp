@@ -320,6 +320,157 @@ void Robot::AutonomousPeriodic() {
                 driveTrain.RightMotors->Set(0);
                 run_auto = false;
             }
+        } else if (pathName == "Path C") {
+            // work in progress
+        } else if (pathName == "Path D") {
+            // work in progress
+        } else if (pathName == "Path E") {
+            //Bounce Path
+            if (run_auto) {
+                // D1 -> B1
+                while (MiddleLeftMotorEncoder->GetPosition() <= 2.5 * rotPFT && MiddleRightMotorEncoder->GetPosition() < 2.5 * rotPFT) {
+                    driveTrain.LeftMotors->Set(.1);
+                    driveTrain.RightMotors->Set(.1);
+                }
+                // B1 turn
+                while (abs(ahrs.GetYaw()) < 63.435) {
+                    driveTrain.LeftMotors->Set(-.1);
+                    driveTrain.RightMotors->Set(.1);
+                    robotPosL = MiddleLeftMotorEncoder->GetPosition();
+                    robotPosR = MiddleRightMotorEncoder->GetPosition();
+                }
+                // B1 -> C3
+                while (MiddleLeftMotorEncoder->GetPosition() <= robotPosL +(5.59 * rotPFT) && MiddleRightMotorEncoder->GetPosition() < robotPosR + (5.59 * rotPFT)) {
+                        driveTrain.LeftMotors->Set(.1);
+                        driveTrain.RightMotors->Set(.1);
+                }
+                // D5 turn 1
+                while (abs(ahrs.GetYaw()) > 0 && ahrs.GetYaw() < 0) {
+                    driveTrain.LeftMotors->Set(.1);
+                    driveTrain.RightMotors->Set(-.1);
+                }
+                // D5 turn 2
+                while (abs(ahrs.GetYaw()) < 74.055) {
+                    driveTrain.LeftMotors->Set(.1);
+                    driveTrain.RightMotors->Set(-.1);
+                    robotPosL2 = MiddleLeftMotorEncoder->GetPosition();
+                    robotPosR2 = MiddleRightMotorEncoder->GetPosition();
+                }
+                // D5 -> E6
+                while (MiddleLeftMotorEncoder->GetPosition() <= robotPosL2 +(7.9058 * rotPFT) && MiddleRightMotorEncoder->GetPosition() < robotPosR2 + (7.9058 * rotPFT)) {
+                    driveTrain.LeftMotors->Set(.1);
+                    driveTrain.RightMotors->Set(.1);
+                }
+                // B1 turn
+                while (abs(ahrs.GetYaw()) > 47.49) {
+                    driveTrain.LeftMotors->Set(-.1);
+                    driveTrain.RightMotors->Set(.1);
+                    robotPosL3 = MiddleLeftMotorEncoder->GetPosition();
+                    robotPosR3 = MiddleRightMotorEncoder->GetPosition();
+                }
+                // E6 -> A6
+                while (MiddleLeftMotorEncoder->GetPosition() <= robotPosL3 +(3.5355 * rotPFT) && MiddleRightMotorEncoder->GetPosition() < robotPosR3 + (3.5355 * rotPFT)) {
+                    driveTrain.LeftMotors->Set(.1);
+                    driveTrain.RightMotors->Set(.1);
+                }
+                // D5 turn 1
+                while (abs(ahrs.GetYaw()) > 0 && ahrs.GetYaw() < 0) {
+                    driveTrain.LeftMotors->Set(-.1);
+                    driveTrain.RightMotors->Set(.1);
+
+                }
+                // D5 turn 2
+                while (abs(ahrs.GetYaw()) < 71.565) {
+                    driveTrain.LeftMotors->Set(-.1);
+                    driveTrain.RightMotors->Set(.1);
+                    robotPosL4 = MiddleLeftMotorEncoder->GetPosition();
+                    robotPosR4 = MiddleRightMotorEncoder->GetPosition();
+                }
+                // A6 -> B7
+                while (MiddleLeftMotorEncoder->GetPosition() <= robotPosL4 +(10.3078 * rotPFT) && MiddleRightMotorEncoder->GetPosition() < robotPosR4 + (10.3078 * rotPFT)) {
+                    driveTrain.LeftMotors->Set(.1);
+                    driveTrain.RightMotors->Set(.1);
+                }
+                // D5 turn 1
+                while (abs(ahrs.GetYaw()) > 0 && ahrs.GetYaw() < 0) {
+                    driveTrain.LeftMotors->Set(.1);
+                    driveTrain.RightMotors->Set(-.1);
+
+                }
+                // D5 turn 2
+                while (abs(ahrs.GetYaw()) < 71.565) {
+                    driveTrain.LeftMotors->Set(.1);
+                    driveTrain.RightMotors->Set(-.1);
+                    robotPosL5 = MiddleLeftMotorEncoder->GetPosition();
+                    robotPosR5 = MiddleRightMotorEncoder->GetPosition();
+                }
+                // B7 -> C9
+                while (MiddleLeftMotorEncoder->GetPosition() <= robotPosL5 +(10.3078 * rotPFT) && MiddleRightMotorEncoder->GetPosition() < robotPosR5 + (10.3078 * rotPFT)) {
+                    driveTrain.LeftMotors->Set(.1);
+                    driveTrain.RightMotors->Set(.1);
+                }
+                // D11 turn
+                while (abs(ahrs.GetYaw()) > 0 && ahrs.GetYaw() < 0) {
+                    driveTrain.LeftMotors->Set(-.1);
+                    driveTrain.RightMotors->Set(.1);
+                    robotPosL6 = MiddleLeftMotorEncoder->GetPosition();
+                    robotPosR6 = MiddleRightMotorEncoder->GetPosition();
+                }
+                // D7 -> D8
+                while (MiddleLeftMotorEncoder->GetPosition() <= robotPosL6 + (2.5 * rotPFT) && MiddleRightMotorEncoder->GetPosition() < robotPosR6 + (2.5 * rotPFT)) {
+                    driveTrain.LeftMotors->Set(.1);
+                    driveTrain.RightMotors->Set(.1);
+                }
+                // D5 turn 2
+                while (abs(ahrs.GetYaw()) < 71.565) {
+                    driveTrain.LeftMotors->Set(-.1);
+                    driveTrain.RightMotors->Set(.1);
+                    robotPosL7 = MiddleLeftMotorEncoder->GetPosition();
+                    robotPosR7 = MiddleRightMotorEncoder->GetPosition();
+                }
+                // B7 -> C9
+                while (MiddleLeftMotorEncoder->GetPosition() <= robotPosL7 +(10.3078 * rotPFT) && MiddleRightMotorEncoder->GetPosition() < robotPosR7 + (10.3078 * rotPFT)) {
+                    driveTrain.LeftMotors->Set(.1);
+                    driveTrain.RightMotors->Set(.1);
+                }
+                // D11 turn
+                while (abs(ahrs.GetYaw()) > 0 && ahrs.GetYaw() < 0) {
+                    driveTrain.LeftMotors->Set(.1);
+                    driveTrain.RightMotors->Set(-.1);
+                }
+                // B7 turn
+                while (abs(ahrs.GetYaw()) < 56.31) {
+                    driveTrain.LeftMotors->Set(.1);
+                    driveTrain.RightMotors->Set(-.1);
+                    robotPosL8 = MiddleLeftMotorEncoder->GetPosition();
+                    robotPosR8 = MiddleRightMotorEncoder->GetPosition();
+                }
+                // B7 -> C9
+                while (MiddleLeftMotorEncoder->GetPosition() <= robotPosL8 +(5.9 * rotPFT) && MiddleRightMotorEncoder->GetPosition() < robotPosR8 + (5.9 * rotPFT)) {
+                    driveTrain.LeftMotors->Set(.1);
+                    driveTrain.RightMotors->Set(.1);
+                }
+                // D11 turn
+                while (abs(ahrs.GetYaw()) > 0 && ahrs.GetYaw() < 0) {
+                    driveTrain.LeftMotors->Set(-.1);
+                    driveTrain.RightMotors->Set(.1);
+                    robotPosL10 = MiddleLeftMotorEncoder->GetPosition();
+                    robotPosR10 = MiddleRightMotorEncoder->GetPosition();
+                }
+                // D7 -> D8
+                while (MiddleLeftMotorEncoder->GetPosition() <= robotPosL10 + (2.5 * rotPFT) && MiddleRightMotorEncoder->GetPosition() < robotPosR10 + (2.5 * rotPFT)) {
+                    driveTrain.LeftMotors->Set(.1);
+                    driveTrain.RightMotors->Set(.1);
+                }
+
+                // STOP
+                driveTrain.LeftMotors->Set(0);
+                driveTrain.RightMotors->Set(0);
+
+                run_auto = false;
+            }
+        } else if (pathName == "Path F") {
+            // work in progress
         }
     }
 }
