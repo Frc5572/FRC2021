@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include <tuple>
+#include <math.h>
 
 #include <frc/Timer.h>
 #include <frc/smartdashboard/SmartDashboard.h>
@@ -46,22 +47,18 @@ std::tuple B9 = std::make_tuple(7.5, 20);
 std::tuple D11 = std::make_tuple(2.5, 25);
 std::tuple B11 = std::make_tuple(7.5, 25);
 
-double gridReturnAngle(double startPointX, double startPointY, double endPointX, double endPointY) {
-    int calculatedAngle;
+double gridReturnAngle(double startPointX, double startPointY, double endPointX, double endPointY, double gyroPos() {
+    double x, y, result = 0;
     // doing the math here
-    /*
-
-    */
-    return calculatedAngle;
+    double rise = endPointY - startPointY;
+    double run = endPointX - startPointX;
+    result = atan(rise/run);
 }
 
 int gridReturnDistance(double startPointX, double startPointY, double endPointX, double endPointY) {
-    int calculatedDistance;
+    int calculatedDistance = 0.0;
     // doing the math here
-    /*
-
-    */
-    return calculatedDistance;
+    return sqrt(pow(endPointX - startPointX, 2) + pow(endPointY - startPointY, 2) * 1.0);
 }
 
 
@@ -96,8 +93,8 @@ void Robot::AutonomousPeriodic() {
                 driveTrain.LeftMotors->Set(motorSpeed);
                 driveTrain.RightMotors->Set(motorSpeed);
             }
-            gridReturnDistance(get<0>(D2), get<1>(D2), get<0>(B2), get<1>(B2));
-            gridReturnAngle(get<0>(D2), get<1>(D2), get<0>(B2), get<1>(B2));
+            gridReturnDistance(std::get<0>(D2), std::get<1>(D2), std::get<0>(B2), std::get<1>(B2));
+            gridReturnAngle(std::get<0>(D2), std::get<1>(D2), std::get<0>(B2), std::get<1>(B2), AHRS.GetYaw();
             while (abs(ahrs.GetYaw()) < 90) {
                 // turn 1
                 driveTrain.LeftMotors->Set(motorSpeed);
