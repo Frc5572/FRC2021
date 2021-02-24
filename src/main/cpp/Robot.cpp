@@ -84,15 +84,13 @@ void Robot::AutonomousInit() {
     //  *BottomRightMotorEncoder};
 }
 void Robot::AutonomousPeriodic() {
-    if (runAuto){
+    if (runAuto) {
         auto pathName = frc::SmartDashboard::GetString("Path", "Path B");
         if (pathName == "Path A") {
-
         } else if (pathName == "Path B") {
             // while(MiddleLeftMotorEncoder->GetPosition() < gridReturnDistance(get<0>(D2), get<1>(D2), get<0>(B2), get<1>(B2))) {
             //     //move motors forward
             // }
-
             while (BottomLeftMotorEncoder->GetPosition() <= wRotationFoot * 5) {
                 // forward 1
                 driveTrain.LeftMotors->Set(motorSpeed);
@@ -196,7 +194,6 @@ void Robot::AutonomousPeriodic() {
             driveTrain.RightMotors->Set(0);
             runAuto = false;
         } else if (pathName == "Path C") {
-
         }
     runAuto == false;
     }
