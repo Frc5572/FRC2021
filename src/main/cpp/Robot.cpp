@@ -12,6 +12,18 @@
 #include "Movement/DriveTrainManager.hpp"
 bool runAuto = true;
 bool gridReturnValue = true;
+double motorSpeed = 0.1;
+double gearRatio = 10;
+double wRotationFoot = 12 * gearRatio / 18.85;
+int robotPosL1 = 0;
+int robotPosL2 = 0;
+int robotPosL3 = 0;
+int robotPosL4 = 0;
+int robotPosL5 = 0;
+int robotPosL6 = 0;
+int robotPosL7 = 0;
+int robotPosL8 = 0;
+
 std::tuple <double, double> E1;
 std::tuple <double, double> D2;
 std::tuple <double, double> B2;
@@ -73,8 +85,10 @@ void Robot::AutonomousInit() {
 }
 void Robot::AutonomousPeriodic() {
     if (runAuto){
-        auto pathName = frc::SmartDashboard::GetString("Path", "Path 1");
-        if (pathName == "Path 1") {
+        auto pathName = frc::SmartDashboard::GetString("Path", "Path B");
+        if (pathName == "Path A") {
+
+        } else if (pathName == "Path B") {
             // while(MiddleLeftMotorEncoder->GetPosition() < gridReturnDistance(get<0>(D2), get<1>(D2), get<0>(B2), get<1>(B2))) {
             //     //move motors forward
             // }
@@ -179,27 +193,11 @@ void Robot::AutonomousPeriodic() {
             driveTrain.LeftMotors->Set(0);
             driveTrain.RightMotors->Set(0);
             runAuto = false;
-        } else if (pathName == "Path 2") {
-
-        } else if (pathName == "Path 3") {
+        } else if (pathName == "Path C") {
 
         }
     runAuto == false;
     }
-    auto pathName = frc::SmartDashboard::GetString("Path", "Path 1");
-    if (pathName == "Path 1")
-    {
-
-    }
-    else if (pathName == "Path 2")
-    {
-
-    }
-    else if (pathName == "Path 3")
-    {
-
-    }
-    runAuto == false;
 }
 
 void Robot::TeleopInit() {
