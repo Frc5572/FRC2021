@@ -55,7 +55,7 @@ double gridReturnAngle(double startPointX, double startPointY, double endPointX,
     return calculatedAngle;
 }
 
-int gridReturnDistance(/*std::tuple startPoint, std::tuple endpoint*/) {
+int gridReturnDistance(double startPointX, double startPointY, double endPointX, double endPointY) {
     int calculatedDistance;
     // doing the math here
     /*
@@ -98,6 +98,8 @@ void Robot::AutonomousPeriodic() {
                 driveTrain.LeftMotors->Set(motorSpeed);
                 driveTrain.RightMotors->Set(motorSpeed);
             }
+            gridReturnDistance(get<0>(D2), get<1>(D2), get<0>(B2), get<1>(B2));
+            gridReturnAngle(get<0>(D2), get<1>(D2), get<0>(B2), get<1>(B2));
             while (abs(ahrs.GetYaw()) < 90) {
                 // turn 1
                 driveTrain.LeftMotors->Set(motorSpeed);
