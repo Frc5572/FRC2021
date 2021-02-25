@@ -47,7 +47,7 @@ std::tuple B9 = std::make_tuple(7.5, 20);
 std::tuple D11 = std::make_tuple(2.5, 25);
 std::tuple B11 = std::make_tuple(7.5, 25);
 
-double gridReturnAngle(double startPointX, double startPointY, double endPointX, double endPointY, double gyroPos() {
+double gridReturnAngle(double startPointX, double startPointY, double endPointX, double endPointY, double gyroPos() ){
     double x, y, result = 0;
     // doing the math here
     double rise = endPointY - startPointY;
@@ -93,8 +93,8 @@ void Robot::AutonomousPeriodic() {
                 driveTrain.LeftMotors->Set(motorSpeed);
                 driveTrain.RightMotors->Set(motorSpeed);
             }
-            gridReturnDistance(std::get<0>(D2), std::get<1>(D2), std::get<0>(B2), std::get<1>(B2));
-            gridReturnAngle(std::get<0>(D2), std::get<1>(D2), std::get<0>(B2), std::get<1>(B2), AHRS.GetYaw();
+            // gridReturnDistance(std::get<0>(D2), std::get<1>(D2), std::get<0>(B2), std::get<1>(B2));
+            // gridReturnAngle(std::get<0>(D2), std::get<1>(D2), std::get<0>(B2), std::get<1>(B2), AHRS.GetYaw();
             while (abs(ahrs.GetYaw()) < 90) {
                 // turn 1
                 driveTrain.LeftMotors->Set(motorSpeed);
