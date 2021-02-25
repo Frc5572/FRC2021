@@ -420,12 +420,12 @@ void Robot::AutonomousPeriodic() {
             driveTrain.LeftMotors->Set(0);
             driveTrain.RightMotors->Set(0);
             run_auto = false;
-        }else if (pathName == "Path C") {
+        } else if (pathName == "Path C") {
             // work in progress
         } else if (pathName == "Path D") {
             // work in progress
         } else if (pathName == "Path E") {
-            //Bounce Path
+            // Bounce Path
             if (run_auto) {
                 // D1 -> B1
                 while (MiddleLeftMotorEncoder->GetPosition() <= 2.5 * rotPFT && MiddleRightMotorEncoder->GetPosition() < 2.5 * rotPFT) {
@@ -477,7 +477,6 @@ void Robot::AutonomousPeriodic() {
                 while (abs(ahrs.GetYaw()) > 0 && ahrs.GetYaw() < 0) {
                     driveTrain.LeftMotors->Set(-.1);
                     driveTrain.RightMotors->Set(.1);
-
                 }
                 // D5 turn 2
                 while (abs(ahrs.GetYaw()) < 71.565) {
@@ -495,7 +494,6 @@ void Robot::AutonomousPeriodic() {
                 while (abs(ahrs.GetYaw()) > 0 && ahrs.GetYaw() < 0) {
                     driveTrain.LeftMotors->Set(.1);
                     driveTrain.RightMotors->Set(-.1);
-
                 }
                 // D5 turn 2
                 while (abs(ahrs.GetYaw()) < 71.565) {
