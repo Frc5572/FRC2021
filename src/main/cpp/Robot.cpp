@@ -15,7 +15,6 @@ double motorSpeed = 0.1;
 double gearRatio = 10;
 double wRotationFoot = 12 * gearRatio / 18.85;
 bool run_auto = true;
-int gearRatio = 10;
 double rotPFT = 12* gearRatio / 18.85;
 int robotPosL;
 int robotPosR;
@@ -39,7 +38,7 @@ int robotPosL10;
 int robotPosR10;
 int robotPosL11;
 int robotPosR11;
-int robotPosL12;
+int robotPosL12;g
 int robotPosR12;
 int robotPosL13;
 int robotPosR13;
