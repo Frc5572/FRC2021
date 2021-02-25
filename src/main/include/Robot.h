@@ -27,6 +27,7 @@
 #include <rev/ColorMatch.h>
 #include <frc/VictorSP.h>
 
+
 class Robot : public frc::TimedRobot {
  private:
     //  AutoMovement *automovement;
@@ -62,7 +63,6 @@ class Robot : public frc::TimedRobot {
 
     rev::CANEncoder* MiddleRightMotorEncoder =
         new rev::CANEncoder{m_rightMiddleMotor};
-
     /* Shooters Spark Max and Motors*/
     rev::CANSparkMax m_leftShooter{LeftShoot,
         rev::CANSparkMax::MotorType::kBrushless};

@@ -38,7 +38,7 @@ int robotPosL10;
 int robotPosR10;
 int robotPosL11;
 int robotPosR11;
-int robotPosL12;g
+int robotPosL12;
 int robotPosR12;
 int robotPosL13;
 int robotPosR13;
@@ -577,6 +577,7 @@ void Robot::AutonomousPeriodic() {
 
 
 
+
 void Robot::TeleopInit() {
     shooter.InitPID();
 }
@@ -601,6 +602,4 @@ void Robot::TestInit() {
 void Robot::TestPeriodic() {
 }
 
-#ifndef RUNNING_FRC_TESTS
-int main() {return frc::StartRobot<Robot>();}
-#endif
+    // hopper.HopperPeriodic();
