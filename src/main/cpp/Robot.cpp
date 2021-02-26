@@ -47,7 +47,21 @@ std::tuple B9 = std::make_tuple(7.5, 20);
 std::tuple D11 = std::make_tuple(2.5, 25);
 std::tuple B11 = std::make_tuple(7.5, 25);
 
-double gridReturnAngle(double startPointX, double startPointY, double endPointX, double endPointY, double gyroPos() ){
+// double gridReturnAngle(double startPointX, double startPointY, double endPointX, double endPointY, float gyroPos ){
+//     // doing the math here
+//     double angle = atan2(endPointY - startPointY, endPointX - startPointX) * 180 / PI;
+//     double deltaY = (endPointY - startPointY);
+//     double deltaX = (endPointX - startPointX);
+//     double result = mathToDegrees(atan2(deltaY, deltaX));
+// }
+
+// double mathToDegrees(double y, double x){
+//     double radians = atan(y/x);
+//     double degrees = radians * (180.0/3.141592653589793238463);
+//     return degrees;
+// }
+
+double gridReturnAngle(double startPointX, double startPointY, double endPointX, double endPointY, double gyroPos){
     double x, y, result = 0;
     // doing the math here
     double rise = endPointY - startPointY;
@@ -58,7 +72,7 @@ double gridReturnAngle(double startPointX, double startPointY, double endPointX,
 int gridReturnDistance(double startPointX, double startPointY, double endPointX, double endPointY) {
     int calculatedDistance = 0.0;
     // doing the math here
-    return sqrt(pow(endPointX - startPointX, 2) + pow(endPointY - startPointY, 2) * 1.0);
+    return wRotationFoot * sqrt(pow(endPointX - startPointX, 2) + pow(endPointY - startPointY, 2));
 }
 
 
@@ -88,14 +102,12 @@ void Robot::AutonomousPeriodic() {
             // while(MiddleLeftMotorEncoder->GetPosition() < gridReturnDistance(get<0>(D2), get<1>(D2), get<0>(B2), get<1>(B2))) {
             //     //move motors forward
             // }
-            while (BottomLeftMotorEncoder->GetPosition() <= wRotationFoot * 5) {
+            while (BottomLeftMotorEncoder->GetPosition() <=  gridReturnDistance(std::get<0>(D2), std::get<1>(D2), std::get<0>(B2), std::get<1>(B2))) {
                 // forward 1
                 driveTrain.LeftMotors->Set(motorSpeed);
                 driveTrain.RightMotors->Set(motorSpeed);
             }
-            // gridReturnDistance(std::get<0>(D2), std::get<1>(D2), std::get<0>(B2), std::get<1>(B2));
-            // gridReturnAngle(std::get<0>(D2), std::get<1>(D2), std::get<0>(B2), std::get<1>(B2), AHRS.GetYaw();
-            while (abs(ahrs.GetYaw()) < 90) {
+            while (ahrs.GetYaw() < gridReturnAngle(std::get<0>(D2), std::get<1>(D2), std::get<0>(B2), std::get<1>(B2))) {
                 // turn 1
                 driveTrain.LeftMotors->Set(motorSpeed);
                 driveTrain.RightMotors->Set(-motorSpeed);
