@@ -58,6 +58,18 @@ class Robot : public frc::TimedRobot {
     rev::CANSparkMax m_rightBottomMotor{RightBot,
         rev::CANSparkMax::MotorType::kBrushless};
 
+    rev::CANEncoder* BottomLeftMotorEncoder =
+        new rev::CANEncoder{m_leftBottomMotor};
+
+    rev::CANEncoder* BottomRightMotorEncoder =
+        new rev::CANEncoder{m_rightBottomMotor};
+
+    rev::CANEncoder* TopLeftMotorEncoder =
+        new rev::CANEncoder{m_leftTopMotor};
+
+    rev::CANEncoder* TopRightMotorEncoder =
+        new rev::CANEncoder{m_rightTopMotor};
+
     rev::CANEncoder* MiddleLeftMotorEncoder =
         new rev::CANEncoder{m_leftMiddleMotor};
 
