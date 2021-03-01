@@ -109,14 +109,6 @@ void Robot::AutonomousInit()    {
     //  *BottomRightMotorEncoder};
 }
 void Robot::AutonomousPeriodic() {
-    MiddleLeftMotorEncoder->SetPosition(0);
-    MiddleRightMotorEncoder->SetPosition(0);
-    std::cout << ("Yaw:  \n");
-    std::cout << (ahrs.GetYaw());
-    // std::cout << ("\n Left Encoder \n");
-    // std::cout << (BottomLeftMotorEncoder->GetPosition());
-    std::cout << ("\n Right Encoder \n");
-    std::cout << (MiddleRightMotorEncoder->GetPosition());
     if (run_auto) {
         auto pathName = frc::SmartDashboard::GetString("Path", "Path A");
         if (pathName == "Path A") {
