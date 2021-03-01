@@ -66,14 +66,6 @@ int robotPosR24;
 int robotPosL25;
 int robotPosR25;
 
-/*
- * IMPORTANT REMINDER
- * not all robot turns are right angles
- * cannot use pythagorean theorem on all angles
- * ---------------------------------------------------------------------------------------------------------------------------------------------------------------------
- * need to use law of cosines
-*/
-
 void Robot::RobotInit() {
     driveTrain.RightMotors->SetInverted(true);
     m_timer.Start();
@@ -83,29 +75,27 @@ void Robot::RobotInit() {
     m_rightBottomMotor.RestoreFactoryDefaults();
     m_rightMiddleMotor.RestoreFactoryDefaults();
     m_rightTopMotor.RestoreFactoryDefaults();
+
     m_leftBottomMotor.SetIdleMode(rev::CANSparkMax::IdleMode::kCoast);
     m_leftMiddleMotor.SetIdleMode(rev::CANSparkMax::IdleMode::kCoast);
     m_leftTopMotor.SetIdleMode(rev::CANSparkMax::IdleMode::kCoast);
     m_rightBottomMotor.SetIdleMode(rev::CANSparkMax::IdleMode::kCoast);
     m_rightMiddleMotor.SetIdleMode(rev::CANSparkMax::IdleMode::kCoast);
     m_rightTopMotor.SetIdleMode(rev::CANSparkMax::IdleMode::kCoast);
+
     frc::SmartDashboard::PutString("Path", "Path A");
 }
 
 void Robot::RobotPeriodic() {
 }
-void Robot::AutonomousInit()    {
+
+void Robot::AutonomousInit() {
     shooter.InitPID();
     m_timer.Reset();
     m_timer.Start();
     ahrs.Reset();
     MiddleLeftMotorEncoder->SetPosition(0);
     MiddleRightMotorEncoder->SetPosition(0);
-
-    //  automovement = new AutoMovement{*driveTrain.LeftMotors,
-    //  *driveTrain.RightMotors,
-    //  ahrs, *BottomLeftMotorEncoder,
-    //  *BottomRightMotorEncoder};
 }
 void Robot::AutonomousPeriodic() {
     if (run_auto) {
@@ -567,23 +557,12 @@ void Robot::AutonomousPeriodic() {
     }
 }
 
-
 void Robot::TeleopInit() {
     shooter.InitPID();
 }
 
 void Robot::TeleopPeriodic() {
-    //  LimeLight.Update();
-
-    // shooter.RunPID();
-
     driveTrain.Drive();
-
-    // shooter.Shots();
-
-    // climber.ClimbPeriodic();
-
-    // hopper.HopperPeriodic();
 }
 
 void Robot::TestInit() {
