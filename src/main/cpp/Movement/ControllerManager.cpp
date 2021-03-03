@@ -54,11 +54,11 @@ bool FRC5572Controller::B() {
 }
 
 std::pair<double, double> FRC5572Controller::L() {
-    return std::make_pair(pad->GetRawAxis(LEFT_x), pad->GetRawAxis(LEFT_y));
+    return std::make_pair(pad->GetRawAxis(LEFT_x * 0.3), pad->GetRawAxis(LEFT_y * 0.3));
 }
 
 std::pair<double, double> FRC5572Controller::R() {
-    return std::make_pair(pad->GetRawAxis(RIGHT_x), pad->GetRawAxis(RIGHT_y));
+    return std::make_pair(pad->GetRawAxis(RIGHT_x * 0.3), pad->GetRawAxis(RIGHT_y * 0.3));
 }
 
 int FRC5572Controller::POV() {
