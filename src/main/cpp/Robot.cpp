@@ -199,7 +199,7 @@ void Robot::AutonomousPeriodic() {
             driveTrain.LeftMotors->Set(.1);
             driveTrain.RightMotors->Set(.1);
         }
-        // 10 turn/ stopped here
+        // 10 turn
         while (abs(ahrs.GetYaw()) < 180 && ahrs.GetYaw() > 0) {
             driveTrain.LeftMotors->Set(-.1);
             driveTrain.RightMotors->Set(.1);
