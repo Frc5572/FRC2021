@@ -25,44 +25,6 @@ int robotPosL6 = 0;
 int robotPosL7 = 0;
 int robotPosL8 = 0;
 
-std::tuple <double, double> E1;
-std::tuple <double, double> D2;
-std::tuple <double, double> B2;
-std::tuple <double, double> B4;
-std::tuple <double, double> D6;
-std::tuple <double, double> D7;
-std::tuple <double, double> B8;
-std::tuple <double, double> B9;
-std::tuple <double, double> D11;
-std::tuple <double, double> B11;
-//                              x, y
-std::tuple E1 = std::make_tuple(0, 0);
-std::tuple D2 = std::make_tuple(2.5, 2.5);
-std::tuple B2 = std::make_tuple(7.5, 2.5);
-std::tuple B4 = std::make_tuple(7.5, 7.5);
-std::tuple D6 = std::make_tuple(2.5, 12.5);
-std::tuple D7 = std::make_tuple(2.5, 15);
-std::tuple B8 = std::make_tuple(7.5, 17.5);
-std::tuple B9 = std::make_tuple(7.5, 20);
-std::tuple D11 = std::make_tuple(2.5, 25);
-std::tuple B11 = std::make_tuple(7.5, 25);
-
-
-double gridReturnAngle(double startPointX, double startPointY, double endPointX, double endPointY, double gyroPos){
-    double x, y, result = 0;
-    // doing the math here
-    double rise = endPointY - startPointY;
-    double run = endPointX - startPointX;
-    result = atan(rise/run);
-}
-
-int gridReturnDistance(double startPointX, double startPointY, double endPointX, double endPointY) {
-    int calculatedDistance = 0.0;
-    // doing the math here
-    return wRotationFoot * sqrt(pow(endPointX - startPointX, 2) + pow(endPointY - startPointY, 2));
-}
-
-
 void Robot::RobotInit() {
     m_timer.Start();
     frc::SmartDashboard::PutString("Path", "Path B");
@@ -84,8 +46,8 @@ void Robot::AutonomousInit() {
 void Robot::AutonomousPeriodic() {
     if (runAuto) {
         auto pathName = frc::SmartDashboard::GetString("Path", "Path B");
-        if (pathName == "Path A") {
-        } else if (pathName == "Path B") {
+        if (pathName == "Path Blue") {
+        } else if (pathName == "Path Red") {
             // while(MiddleLeftMotorEncoder->GetPosition() < gridReturnDistance(get<0>(D2), get<1>(D2), get<0>(B2), get<1>(B2))) {
             //     //move motors forward
             // }
