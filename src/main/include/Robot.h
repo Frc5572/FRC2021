@@ -64,12 +64,6 @@ class Robot : public frc::TimedRobot {
     rev::CANEncoder* BottomRightMotorEncoder =
         new rev::CANEncoder{m_rightBottomMotor};
 
-    rev::CANEncoder* MiddleLeftMotorEncoder =
-        new rev::CANEncoder{m_leftMiddleMotor};
-
-    rev::CANEncoder* MiddleRightMotorEncoder =
-        new rev::CANEncoder{m_rightMiddleMotor};
-
     rev::CANEncoder* TopLeftMotorEncoder =
         new rev::CANEncoder{m_leftTopMotor};
 
