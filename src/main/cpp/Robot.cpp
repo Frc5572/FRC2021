@@ -28,6 +28,7 @@ int robotPosL8 = 0;
 void Robot::RobotInit() {
     m_timer.Start();
     frc::SmartDashboard::PutString("Path", "Path B");
+    frc::SmartDashboard::PutString("Path Color", "Path Blue");
 }
 
 void Robot::RobotPeriodic() {
@@ -37,26 +38,18 @@ void Robot::AutonomousInit() {
     shooter.InitPID();
     m_timer.Reset();
     m_timer.Start();
-
-    //  automovement = new AutoMovement{*driveTrain.LeftMotors,
-    //  *driveTrain.RightMotors,
-    //  ahrs, *BottomLeftMotorEncoder,
-    //  *BottomRightMotorEncoder};
 }
 void Robot::AutonomousPeriodic() {
     if (runAuto) {
         auto pathName = frc::SmartDashboard::GetString("Path", "Path B");
+        auto pathColor = frc::SmartDashboard::GetString("Path", "Path Blue");
         if (pathName == "Path Blue") {
-        } else if (pathName == "Path Red") {
-            // while(MiddleLeftMotorEncoder->GetPosition() < gridReturnDistance(get<0>(D2), get<1>(D2), get<0>(B2), get<1>(B2))) {
-            //     //move motors forward
-            // }
-            while (BottomLeftMotorEncoder->GetPosition() <=  gridReturnDistance(std::get<0>(D2), std::get<1>(D2), std::get<0>(B2), std::get<1>(B2))) {
+            while (BottomLeftMotorEncoder->GetPosition() <= wRotationFoot * 5) {
                 // forward 1
                 driveTrain.LeftMotors->Set(motorSpeed);
                 driveTrain.RightMotors->Set(motorSpeed);
             }
-            while (ahrs.GetYaw() < gridReturnAngle(std::get<0>(D2), std::get<1>(D2), std::get<0>(B2), std::get<1>(B2), ahrs.GetYaw())) {
+            while (abs(ahrs.GetYaw()) < 90) {
                 // turn 1
                 driveTrain.LeftMotors->Set(motorSpeed);
                 driveTrain.RightMotors->Set(-motorSpeed);
@@ -151,12 +144,18 @@ void Robot::AutonomousPeriodic() {
             driveTrain.LeftMotors->Set(0);
             driveTrain.RightMotors->Set(0);
             runAuto = false;
-        } else if (pathName == "Path C") {
+        } else if (pathName == "Path Red") {
+            while (BottomLeftMotorEncoder->GetPosition() <= wRotationFoot * 5) {
+                // forward 9
+                driveTrain.LeftMotors->Set(motorSpeed);
+                driveTrain.RightMotors->Set(motorSpeed);
+            }
+            driveTrain.LeftMotors->Set(0);
+            driveTrain.RightMotors->Set(0);
+            runAuto == false;
         }
-    runAuto == false;
     }
 }
-
 void Robot::TeleopInit() {
 }
 
