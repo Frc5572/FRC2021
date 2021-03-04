@@ -37,7 +37,7 @@ void Robot::RobotInit() {
 void Robot::RobotPeriodic() {
 }
 
-void Robot::AutonomousInit()    {
+void Robot::AutonomousInit() {
     shooter.InitPID();
     m_timer.Reset();
     m_timer.Start();
@@ -60,7 +60,7 @@ void Robot::AutonomousPeriodic() {
             driveTrain.RightMotors->Set(.1);
         }
         // C3 turn
-        while (abs(ahrs.GetYaw()) < 63.435) {
+        while (abs(ahrs.GetYaw()) < 26.565) {
             driveTrain.LeftMotors->Set(.1);
             driveTrain.RightMotors->Set(-.1);
             robotPosL = MiddleLeftMotorEncoder->GetPosition();
@@ -77,7 +77,7 @@ void Robot::AutonomousPeriodic() {
             driveTrain.RightMotors->Set(.1);
         }
         // D5 turn 2
-        while (abs(ahrs.GetYaw()) < 71.565) {
+        while (abs(ahrs.GetYaw()) < 75) {
             driveTrain.LeftMotors->Set(-.1);
             driveTrain.RightMotors->Set(.1);
             robotPosL2 = MiddleLeftMotorEncoder->GetPosition();
@@ -94,9 +94,9 @@ void Robot::AutonomousPeriodic() {
             driveTrain.RightMotors->Set(-.1);
         }
         // A6 turn 2
-        while (abs(ahrs.GetYaw()) < 21.8) {
-            driveTrain.LeftMotors->Set(-.1);
-            driveTrain.RightMotors->Set(.1);
+        while (abs(ahrs.GetYaw()) < 23) {
+            driveTrain.LeftMotors->Set(.3);
+            driveTrain.RightMotors->Set(-.3);
             robotPosL3 = MiddleLeftMotorEncoder->GetPosition();
             robotPosR3 = MiddleRightMotorEncoder->GetPosition();
         }
