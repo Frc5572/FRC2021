@@ -20,16 +20,7 @@ int robotPosL3;
 int robotPosR3;
 int robotPosL4;
 int robotPosR4;
-int robotPosL5;
-int robotPosR5;
-int robotPosL6;
-int robotPosR6;
-int robotPosL7;
-int robotPosR7;
-int robotPosL8;
-int robotPosR8;
-int robotPosL9;
-int robotPosR9;
+
 int runIf = 1;
 
 void Robot::RobotInit() {
@@ -105,11 +96,11 @@ void Robot::AutonomousPeriodic() {
         while (abs(ahrs.GetYaw()) < 21.8) {
             driveTrain.LeftMotors->Set(-.1);
             driveTrain.RightMotors->Set(.1);
-            robotPosL6 = MiddleLeftMotorEncoder->GetPosition();
-            robotPosR6 = MiddleRightMotorEncoder->GetPosition();
+            robotPosL3 = MiddleLeftMotorEncoder->GetPosition();
+            robotPosR3 = MiddleRightMotorEncoder->GetPosition();
         }
         // A6 -> C11
-        while (MiddleLeftMotorEncoder->GetPosition() <= robotPosL6 +(13.46 * rotPFT) && MiddleRightMotorEncoder->GetPosition() < robotPosR6 + (13.46 * rotPFT)) {
+        while (MiddleLeftMotorEncoder->GetPosition() <= robotPosL3 +(13.46 * rotPFT) && MiddleRightMotorEncoder->GetPosition() < robotPosR3 + (13.46 * rotPFT)) {
             driveTrain.LeftMotors->Set(.1);
             driveTrain.RightMotors->Set(.1);
         }
