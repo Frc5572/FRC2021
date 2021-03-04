@@ -52,7 +52,8 @@ void Robot::AutonomousInit()    {
 }
 
 void Robot::AutonomousPeriodic() {
-    if (runIf == 1) { //red
+    // red
+    if (runIf == 1) {
         // C1 -> C3
         while (MiddleLeftMotorEncoder->GetPosition() <= 5 * rotPFT && MiddleRightMotorEncoder->GetPosition() < 5 * rotPFT) {
             driveTrain.LeftMotors->Set(.1);
@@ -110,7 +111,7 @@ void Robot::AutonomousPeriodic() {
         driveTrain.RightMotors->Set(0);
 
         runIf = 0;
-    } else if (runIf == 2){
+    } else if (runIf == 2) {
         // C1 turn
         while (abs(ahrs.GetYaw()) < 68.2) {
             driveTrain.LeftMotors->Set(.1);
