@@ -7,7 +7,8 @@
 #include <frc/SpeedControllerGroup.h>
 #include "rev/CANSparkMax.h"
 #include "AHRS.h"
-
+#include "ctre/Phoenix.h"
+#include "frc/WPILib.h"
 
 
 /* CAN ID layout for drive train from a top view
@@ -29,12 +30,12 @@
 class DriveTrain {
  public:
 DriveTrain(
-  rev::CANSparkMax &TopLeftMotor     ,
-  rev::CANSparkMax &TopRightMotor    ,
-  rev::CANSparkMax &MiddleLeft       ,
-  rev::CANSparkMax &MiddleRight      ,
-  rev::CANSparkMax &BottomLeftMotor  ,
-  rev::CANSparkMax &BottomRightMotor ,
+  WPI_TalonSRX &TopLeftMotor     ,
+  WPI_TalonSRX &TopRightMotor    ,
+  WPI_TalonSRX &MiddleLeft       ,
+  WPI_TalonSRX &MiddleRight      ,
+  WPI_TalonSRX &BottomLeftMotor  ,
+  WPI_TalonSRX &BottomRightMotor ,
   FRC5572Controller &Driver          ,
   VisionManager &VisionManager      ,
   AHRS &ahrs);
@@ -55,21 +56,15 @@ void Aim();
 
   FRC5572Controller* Driver;
 
-  rev::CANSparkMax* TopLeftMotor;
-  rev::CANSparkMax* TopRightMotor;
+  WPI_TalonSRX* TopLeftMotor;
+  WPI_TalonSRX* TopRightMotor;
 
-  rev::CANSparkMax* MiddleLeft;
-  rev::CANSparkMax* MiddleRight;
+  WPI_TalonSRX* MiddleLeft;
+  WPI_TalonSRX* MiddleRight;
 
-  rev::CANSparkMax* BottomLeftMotor;
-  rev::CANSparkMax* BottomRightMotor;
+  WPI_TalonSRX* BottomLeftMotor;
+  WPI_TalonSRX* BottomRightMotor;
 
-  rev::CANEncoder* TopLeftMotorEncoder;
-  rev::CANEncoder* TopRightMotorEncoder;
-  rev::CANEncoder* MiddleLeftMotorEncoder;
-  rev::CANEncoder* MiddleRightMotorEncoder;
-  rev::CANEncoder* BottomLeftMotorEncoder;
-  rev::CANEncoder* BottomRightMotorEncoder;
 
   AHRS* ahrs;
 };

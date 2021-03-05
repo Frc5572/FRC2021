@@ -39,48 +39,26 @@ class Robot : public frc::TimedRobot {
     //  Nav-XMP board
     AHRS ahrs{frc::SPI::Port::kMXP};
 
-    /* DriveTrain Spark Max and Motors*/
-    rev::CANSparkMax m_leftTopMotor{TopLeft,
-        rev::CANSparkMax::MotorType::kBrushless};
+    WPI_TalonSRX m_leftTopMotor{TopLeft};
+    WPI_TalonSRX m_leftMiddleMotor{MiddleLeft};
+    WPI_TalonSRX m_leftBottomMotor{LeftBot};
+    WPI_TalonSRX m_rightTopMotor{TopRight};
+    WPI_TalonSRX m_rightMiddleMotor{MiddleRight};
+    WPI_TalonSRX m_rightBottomMotor{RightBot};
+    // WPI_TalonSRX*  m_leftTopMotor = new WPI_TalonSRX(TopLeft);
+    // WPI_TalonSRX*  m_leftMiddleMotor = new WPI_TalonSRX(MiddleLeft);
+    // WPI_TalonSRX*  m_leftBottomMotor = new WPI_TalonSRX(LeftBot);
+    // WPI_TalonSRX*  m_rightTopMotor = new WPI_TalonSRX(TopRight);
+    // WPI_TalonSRX*  m_rightMiddleMotor = new WPI_TalonSRX(MiddleRight);
+    // WPI_TalonSRX*  m_rightBottomMotor = new WPI_TalonSRX(RightBot);
 
-    rev::CANSparkMax m_rightTopMotor{TopRight,
-        rev::CANSparkMax::MotorType::kBrushless};
 
-    rev::CANSparkMax m_leftMiddleMotor{MiddleLeft,
-        rev::CANSparkMax::MotorType::kBrushless};
+    // rev::CANSparkMax m_rightBottomMotor{RightBot,
+        // rev::CANSparkMax::MotorType::kBrushless};
 
-    rev::CANSparkMax m_rightMiddleMotor{MiddleRight,
-        rev::CANSparkMax::MotorType::kBrushless};
+    // rev::CANEncoder* BottomLeftMotorEncoder =
+        // new rev::CANEncoder{m_leftBottomMotor};
 
-    rev::CANSparkMax m_leftBottomMotor{LeftBot,
-        rev::CANSparkMax::MotorType::kBrushless};
-
-    rev::CANSparkMax m_rightBottomMotor{RightBot,
-        rev::CANSparkMax::MotorType::kBrushless};
-
-    rev::CANEncoder* BottomLeftMotorEncoder =
-        new rev::CANEncoder{m_leftBottomMotor};
-
-    rev::CANEncoder* BottomRightMotorEncoder =
-        new rev::CANEncoder{m_rightBottomMotor};
-
-    rev::CANEncoder* TopLeftMotorEncoder =
-        new rev::CANEncoder{m_leftTopMotor};
-
-    rev::CANEncoder* TopRightMotorEncoder =
-        new rev::CANEncoder{m_rightTopMotor};
-
-    rev::CANEncoder* MiddleLeftMotorEncoder =
-        new rev::CANEncoder{m_leftMiddleMotor};
-
-    rev::CANEncoder* MiddleRightMotorEncoder =
-        new rev::CANEncoder{m_rightMiddleMotor};
-    /* Shooters Spark Max and Motors*/
-    rev::CANSparkMax m_leftShooter{LeftShoot,
-        rev::CANSparkMax::MotorType::kBrushless};
-
-    rev::CANSparkMax m_rightShooter{RightShoot,
-        rev::CANSparkMax::MotorType::kBrushless};
 
 
 
@@ -109,9 +87,9 @@ class Robot : public frc::TimedRobot {
     /*SubSystem Objects  */
     DriveTrain driveTrain{ m_leftTopMotor, m_rightTopMotor,
         m_leftMiddleMotor, m_rightMiddleMotor, m_leftBottomMotor,
-        m_rightBottomMotor, Driver, LimeLight, ahrs};
+        m_rightBottomMotor, Driver, LimeLight, ahrs };
 
-    Shooter shooter{m_leftShooter, m_rightShooter, shooterHood, Operator};
+    // Shooter shooter{m_leftShooter, m_rightShooter, shooterHood, Operator};
 
     ClimbManager climber{test1, test2, Driver, climb};
 
