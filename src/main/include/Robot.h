@@ -41,10 +41,10 @@ class Robot : public frc::TimedRobot {
 
     WPI_TalonSRX m_leftTopMotor{TopLeft};
     WPI_TalonSRX m_leftMiddleMotor{MiddleLeft};
-    WPI_TalonSRX m_leftBottomMotor{LeftBot};
+    WPI_TalonSRX m_leftBottomMotor{BottomLeft};
     WPI_TalonSRX m_rightTopMotor{TopRight};
     WPI_TalonSRX m_rightMiddleMotor{MiddleRight};
-    WPI_TalonSRX m_rightBottomMotor{RightBot};
+    WPI_TalonSRX m_rightBottomMotor{BottomRight};
     // WPI_TalonSRX*  m_leftTopMotor = new WPI_TalonSRX(TopLeft);
     // WPI_TalonSRX*  m_leftMiddleMotor = new WPI_TalonSRX(MiddleLeft);
     // WPI_TalonSRX*  m_leftBottomMotor = new WPI_TalonSRX(LeftBot);
@@ -111,8 +111,8 @@ class Robot : public frc::TimedRobot {
     MiddleLeft = 3,  //  GOOD
     MiddleRight = 4,  //  GOOD
 
-    LeftBot = 5,  //  GOOD
-    RightBot = 6,  //  GOOD
+    BottomLeft = 5,  //  GOOD
+    BottomRight = 6,  //  GOOD
 
     LeftShoot = 7,  //  GOOD
     RightShoot = 8,  //  GOOD

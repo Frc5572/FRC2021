@@ -25,8 +25,8 @@ void Robot::AutonomousInit() {
 }
 
 void Robot::AutonomousPeriodic() {
-    m_leftBottomMotor.Set(.3);
-    m_rightBottomMotor.Set(.3);
+    driveTrain.LeftMotors->Set(.3);
+    m_rightBottomMotor.Set(ControlMode::PercentOutput, 30);
 }
 
 

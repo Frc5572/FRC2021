@@ -17,14 +17,14 @@
 */
 
 DriveTrain::DriveTrain(
-    rev::CANSparkMax &TopLeftMotor,
-    rev::CANSparkMax &TopRightMotor,
+    WPI_TalonSRX &TopLeftMotor,
+    WPI_TalonSRX &TopRightMotor,
 
-    rev::CANSparkMax &MiddleLeft,
-    rev::CANSparkMax &MiddleRight,
+    WPI_TalonSRX &MiddleLeft,
+    WPI_TalonSRX &MiddleRight,
 
-    rev::CANSparkMax &BottomLeftMotor,
-    rev::CANSparkMax &BottomRightMotor,
+    WPI_TalonSRX &BottomLeftMotor,
+    WPI_TalonSRX &BottomRightMotor,
 
     FRC5572Controller &Driver,
     VisionManager &VisionManager,
@@ -54,14 +54,14 @@ DriveTrain::DriveTrain(
         this->BottomLeftMotor = &BottomLeftMotor;
         this->BottomRightMotor = &BottomRightMotor;
 
-        this->TopLeftMotorEncoder = new rev::CANEncoder{TopLeftMotor};
-        this->TopRightMotorEncoder = new rev::CANEncoder{TopRightMotor};
+        // this->TopLeftMotorEncoder = new rev::CANEncoder{TopLeftMotor};
+        // this->TopRightMotorEncoder = new rev::CANEncoder{TopRightMotor};
 
-        this->MiddleLeftMotorEncoder = new rev::CANEncoder{MiddleLeft};
-        this->MiddleRightMotorEncoder = new rev::CANEncoder{MiddleRight};
+        // this->MiddleLeftMotorEncoder = new rev::CANEncoder{MiddleLeft};
+        // this->MiddleRightMotorEncoder = new rev::CANEncoder{MiddleRight};
 
-        this->BottomLeftMotorEncoder = new rev::CANEncoder{BottomLeftMotor};
-        this->BottomRightMotorEncoder = new rev::CANEncoder{BottomRightMotor};
+        // this->BottomLeftMotorEncoder = new rev::CANEncoder{BottomLeftMotor};
+        // this->BottomRightMotorEncoder = new rev::CANEncoder{BottomRightMotor};
 
         this->LimeLight = &VisionManager;
 
@@ -110,16 +110,16 @@ void DriveTrain::Drive() {
     }
 }
 
-void DriveTrain::LowerAmps() {
-    TopLeftMotor->SetSmartCurrentLimit(60);
-    TopRightMotor->SetSmartCurrentLimit(60);
+// void DriveTrain::LowerAmps() {
+//     TopLeftMotor->SetSmartCurrentLimit(60);
+//     TopRightMotor->SetSmartCurrentLimit(60);
 
-    MiddleLeft->SetSmartCurrentLimit(60);
-    MiddleRight->SetSmartCurrentLimit(60);
+//     MiddleLeft->SetSmartCurrentLimit(60);
+//     MiddleRight->SetSmartCurrentLimit(60);
 
-    BottomLeftMotor->SetSmartCurrentLimit(60);
-    BottomRightMotor->SetSmartCurrentLimit(60);
-}
+//     BottomLeftMotor->SetSmartCurrentLimit(60);
+//     BottomRightMotor->SetSmartCurrentLimit(60);
+// }
 
 void DriveTrain::Aim() {
     if (Driver->X() ==  true) {
