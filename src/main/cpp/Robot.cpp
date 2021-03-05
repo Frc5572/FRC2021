@@ -42,8 +42,10 @@ void Robot::RobotInit() {
     m_rightMiddleMotor.SetIdleMode(rev::CANSparkMax::IdleMode::kCoast);
     m_rightTopMotor.SetIdleMode(rev::CANSparkMax::IdleMode::kCoast);
 }
+
 void Robot::RobotPeriodic() {
 }
+
 void Robot::AutonomousInit()    {
     shooter.InitPID();
     m_timer.Reset();
@@ -52,6 +54,7 @@ void Robot::AutonomousInit()    {
     MiddleLeftMotorEncoder->SetPosition(0);
     MiddleRightMotorEncoder->SetPosition(0);
 }
+
 void Robot::AutonomousPeriodic() {
     MiddleLeftMotorEncoder->SetPosition(0);
     MiddleRightMotorEncoder->SetPosition(0);
