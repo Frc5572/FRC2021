@@ -54,15 +54,6 @@ DriveTrain::DriveTrain(
         this->BottomLeftMotor = &BottomLeftMotor;
         this->BottomRightMotor = &BottomRightMotor;
 
-        this->TopLeftMotorEncoder = new rev::CANEncoder{TopLeftMotor};
-        this->TopRightMotorEncoder = new rev::CANEncoder{TopRightMotor};
-
-        this->MiddleLeftMotorEncoder = new rev::CANEncoder{MiddleLeft};
-        this->MiddleRightMotorEncoder = new rev::CANEncoder{MiddleRight};
-
-        this->BottomLeftMotorEncoder = new rev::CANEncoder{BottomLeftMotor};
-        this->BottomRightMotorEncoder = new rev::CANEncoder{BottomRightMotor};
-
         this->LimeLight = &VisionManager;
 
         DriveTrain::LowerAmps();

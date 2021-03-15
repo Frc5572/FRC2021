@@ -58,23 +58,23 @@ class Robot : public frc::TimedRobot {
     rev::CANSparkMax m_rightBottomMotor{RightBot,
         rev::CANSparkMax::MotorType::kBrushless};
 
-    rev::CANEncoder* BottomLeftMotorEncoder =
-        new rev::CANEncoder{m_leftBottomMotor};
+    // rev::CANEncoder* BottomLeftMotorEncoder =
+    //     new rev::CANEncoder{m_leftBottomMotor};
 
-    rev::CANEncoder* BottomRightMotorEncoder =
-        new rev::CANEncoder{m_rightBottomMotor};
+    // rev::CANEncoder* BottomRightMotorEncoder =
+    //     new rev::CANEncoder{m_rightBottomMotor};
 
-    rev::CANEncoder* TopLeftMotorEncoder =
-        new rev::CANEncoder{m_leftTopMotor};
+    // rev::CANEncoder* TopLeftMotorEncoder =
+    //     new rev::CANEncoder{m_leftTopMotor};
 
-    rev::CANEncoder* TopRightMotorEncoder =
-        new rev::CANEncoder{m_rightTopMotor};
+    // rev::CANEncoder* TopRightMotorEncoder =
+    //     new rev::CANEncoder{m_rightTopMotor};
 
-    rev::CANEncoder* MiddleLeftMotorEncoder =
-        new rev::CANEncoder{m_leftMiddleMotor};
+    // rev::CANEncoder* MiddleLeftMotorEncoder =
+    //     new rev::CANEncoder{m_leftMiddleMotor};
 
-    rev::CANEncoder* MiddleRightMotorEncoder =
-        new rev::CANEncoder{m_rightMiddleMotor};
+    // rev::CANEncoder* MiddleRightMotorEncoder =
+    //     new rev::CANEncoder{m_rightMiddleMotor};
     /* Shooters Spark Max and Motors*/
     rev::CANSparkMax m_leftShooter{LeftShoot,
         rev::CANSparkMax::MotorType::kBrushless};
@@ -95,9 +95,6 @@ class Robot : public frc::TimedRobot {
     /*instantiation of the compressor with its CAN ID and pneumatics*/
     frc::Compressor compressor{PCM1};
 
-    frc::DoubleSolenoid climb{PCM1, 1, 6};  // 3 4
-
-    frc::DoubleSolenoid shooterHood{PCM1, 2, 5};
 
     // Sensor
     frc::DigitalInput limitSwitch2{2};  // in the mag
@@ -111,9 +108,9 @@ class Robot : public frc::TimedRobot {
         m_leftMiddleMotor, m_rightMiddleMotor, m_leftBottomMotor,
         m_rightBottomMotor, Driver, LimeLight, ahrs};
 
-    Shooter shooter{m_leftShooter, m_rightShooter, shooterHood, Operator};
+    // Shooter shooter{m_leftShooter, m_rightShooter, shooterHood, Operator};
 
-    ClimbManager climber{test1, test2, Driver, climb};
+    // ClimbManager climber{test1, test2, Driver, climb};
 
     Hopper hopper{m_hopper, Operator, limitSwitch2, limitSwitch3};
 

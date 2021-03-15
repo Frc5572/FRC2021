@@ -64,12 +64,12 @@ void Aim();
   rev::CANSparkMax* BottomLeftMotor;
   rev::CANSparkMax* BottomRightMotor;
 
-  rev::CANEncoder* TopLeftMotorEncoder;
-  rev::CANEncoder* TopRightMotorEncoder;
-  rev::CANEncoder* MiddleLeftMotorEncoder;
-  rev::CANEncoder* MiddleRightMotorEncoder;
-  rev::CANEncoder* BottomLeftMotorEncoder;
-  rev::CANEncoder* BottomRightMotorEncoder;
+//   rev::CANEncoder* TopLeftMotorEncoder;
+//   rev::CANEncoder* TopRightMotorEncoder;
+//   rev::CANEncoder* MiddleLeftMotorEncoder;
+//   rev::CANEncoder* MiddleRightMotorEncoder;
+//   rev::CANEncoder* BottomLeftMotorEncoder;
+//   rev::CANEncoder* BottomRightMotorEncoder;
 
   AHRS* ahrs;
 };
