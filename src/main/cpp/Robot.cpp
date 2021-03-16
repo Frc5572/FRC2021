@@ -43,14 +43,14 @@ int robotPosR14;
 bool runIf = true;
 
 void Robot::RobotInit() {
-    driveTrain.RightMotors->SetInverted(true);
+    // right.SetInverted(true);
     m_timer.Start();
-    m_leftBottomMotor.RestoreFactoryDefaults();
-    m_leftMiddleMotor.RestoreFactoryDefaults();
-    m_leftTopMotor.RestoreFactoryDefaults();
-    m_rightBottomMotor.RestoreFactoryDefaults();
-    m_rightMiddleMotor.RestoreFactoryDefaults();
-    m_rightTopMotor.RestoreFactoryDefaults();
+    // m_leftBottomMotor.RestoreFactoryDefaults();
+    // m_leftMiddleMotor.RestoreFactoryDefaults();
+    // m_leftTopMotor.RestoreFactoryDefaults();
+    // m_rightBottomMotor.RestoreFactoryDefaults();
+    // m_rightMiddleMotor.RestoreFactoryDefaults();
+    // m_rightTopMotor.RestoreFactoryDefaults();
 }
 
 void Robot::RobotPeriodic() {
@@ -75,12 +75,17 @@ void Robot::AutonomousPeriodic() {
     // std::cout << (BottomLeftMotorEncoder->GetPosition());
     // std::cout << ("\n Right Encoder \n");
     // std::cout << (BottomRightMotorEncoder->GetPosition());
-    if (runIf) {
+    // if (runIf) {
 
-        // STOP
-        driveTrain.LeftMotors->Set(1);
-        driveTrain.RightMotors->Set(1);
+    //     // STOP
+    //     driveTrain.LeftMotors->Set(1);
+    //     driveTrain.RightMotors->Set(1);
 
+    // }
+    while (m_timer.Get() > 5)
+    {
+        left.Set(.2);
+        right.Set(.2);
     }
 }
 
@@ -94,7 +99,7 @@ void Robot::TeleopPeriodic() {
 
     // shooter.RunPID();
 
-    driveTrain.Drive();
+    // driveTrain.Drive();
 
     // shooter.Shots();
 

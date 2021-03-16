@@ -40,23 +40,26 @@ class Robot : public frc::TimedRobot {
     AHRS ahrs{frc::SPI::Port::kMXP};
 
     /* DriveTrain Spark Max and Motors*/
-    rev::CANSparkMax m_leftTopMotor{TopLeft,
-        rev::CANSparkMax::MotorType::kBrushless};
+    // rev::CANSparkMax m_leftTopMotor{TopLeft,
+    //     rev::CANSparkMax::MotorType::kBrushless};
 
-    rev::CANSparkMax m_rightTopMotor{TopRight,
-        rev::CANSparkMax::MotorType::kBrushless};
+    // rev::CANSparkMax m_rightTopMotor{TopRight,
+    //     rev::CANSparkMax::MotorType::kBrushless};
 
-    rev::CANSparkMax m_leftMiddleMotor{MiddleLeft,
-        rev::CANSparkMax::MotorType::kBrushless};
+    // rev::CANSparkMax m_leftMiddleMotor{MiddleLeft,
+    //     rev::CANSparkMax::MotorType::kBrushless};
 
-    rev::CANSparkMax m_rightMiddleMotor{MiddleRight,
-        rev::CANSparkMax::MotorType::kBrushless};
+    // rev::CANSparkMax m_rightMiddleMotor{MiddleRight,
+    //     rev::CANSparkMax::MotorType::kBrushless};
 
-    rev::CANSparkMax m_leftBottomMotor{LeftBot,
-        rev::CANSparkMax::MotorType::kBrushless};
+    // rev::CANSparkMax m_leftBottomMotor{LeftBot,
+    //     rev::CANSparkMax::MotorType::kBrushless};
 
-    rev::CANSparkMax m_rightBottomMotor{RightBot,
-        rev::CANSparkMax::MotorType::kBrushless};
+    // rev::CANSparkMax m_rightBottomMotor{RightBot,
+    //     rev::CANSparkMax::MotorType::kBrushless};
+
+    rev::CANSparkMax left{0, rev::CANSparkMax::MotorType::kBrushless};
+    rev::CANSparkMax right{1, rev::CANSparkMax::MotorType::kBrushless};
 
     // rev::CANEncoder* BottomLeftMotorEncoder =
     //     new rev::CANEncoder{m_leftBottomMotor};
@@ -104,9 +107,9 @@ class Robot : public frc::TimedRobot {
     //  frc::DigitalOutput photoOUT{1};
 
     /*SubSystem Objects  */
-    DriveTrain driveTrain{ m_leftTopMotor, m_rightTopMotor,
-        m_leftMiddleMotor, m_rightMiddleMotor, m_leftBottomMotor,
-        m_rightBottomMotor, Driver, LimeLight, ahrs};
+    // DriveTrain driveTrain{ m_leftTopMotor, m_rightTopMotor,
+    //     m_leftMiddleMotor, m_rightMiddleMotor, m_leftBottomMotor,
+    //     m_rightBottomMotor, Driver, LimeLight, ahrs};
 
     // Shooter shooter{m_leftShooter, m_rightShooter, shooterHood, Operator};
 
