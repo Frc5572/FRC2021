@@ -10,23 +10,23 @@
 #include "Movement/DriveTrainManager.hpp"
 
 void Robot::RobotInit() {
-    driveTrain.RightMotors->SetInverted(true);
-    m_timer.Start();
+    // m_rightTopMotor.SetInverted(true);
+    // m_rightMiddleMotor.SetInverted(true);
+    // m_rightBottomMotor.SetInverted(true);
+    m_timer.Reset();
 }
 
 void Robot::RobotPeriodic() {
 }
 
 void Robot::AutonomousInit() {
-    m_timer.Reset();
     m_timer.Start();
     ahrs.Reset();
-
 }
 
 void Robot::AutonomousPeriodic() {
-    driveTrain.LeftMotors->Set(.3);
-    m_rightBottomMotor.Set(ControlMode::PercentOutput, 30);
+    driveTrain.LeftMotors->Set(.2);
+    m_leftBottomMotor.GetSelectedSensorPosition();
 }
 
 
@@ -35,6 +35,7 @@ void Robot::TeleopInit() {
 
 void Robot::TeleopPeriodic() {
     driveTrain.Drive();
+
 }
 
 void Robot::TestInit() {

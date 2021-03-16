@@ -36,10 +36,10 @@ DriveTrain::DriveTrain(
         this->RightMotors = new frc::SpeedControllerGroup( TopRightMotor,
                                                             MiddleRight,
                                                             BottomRightMotor);
-        this->TempRightMotors = new frc::SpeedControllerGroup( MiddleRight,
-                                                            BottomRightMotor);
-        this->TempLeftMotors = new frc::SpeedControllerGroup( MiddleLeft,
-                                                            BottomLeftMotor);
+        // this->TempRightMotors = new frc::SpeedControllerGroup( MiddleRight,
+        //                                                     BottomRightMotor);
+        // this->TempLeftMotors = new frc::SpeedControllerGroup( MiddleLeft,
+        //                                                     BottomLeftMotor);
 
 
         this->Driver = &Driver;
@@ -65,7 +65,7 @@ DriveTrain::DriveTrain(
 
         this->LimeLight = &VisionManager;
 
-        DriveTrain::LowerAmps();
+        // DriveTrain::LowerAmps();
 }
 
 DriveTrain::~DriveTrain() {
@@ -96,17 +96,16 @@ DriveTrain::~DriveTrain() {
 // }
 
 void DriveTrain::Drive() {
-    DriveTrain::Aim();
     if (this->Driver->L().second > .2 || this->Driver->L().second < -.2) {
-        LeftMotors->Set(-1 * Driver->L().second * .7);
+        LeftMotors->Set(-1 * Driver->L().second * .5);
     } else {
-        LeftMotors->Set(0 + L);
+        LeftMotors->Set(0);
     }
 
     if (this->Driver->R().second > .2 ||  this->Driver->R().second < -.2) {
-        RightMotors->Set(Driver->R().second  * .7);
+        RightMotors->Set(Driver->R().second  * .5);
     } else {
-        RightMotors->Set(0 + R);
+        RightMotors->Set(0);
     }
 }
 
