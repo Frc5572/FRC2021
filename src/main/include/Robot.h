@@ -54,13 +54,12 @@ class Robot : public frc::TimedRobot {
     // WPI_TalonSRX*  m_rightBottomMotor = new WPI_TalonSRX(RightBot);
 
 
+    //(FeedbackDevice.IntegratedSensor, PID_TYPE, DEFAULT_TIMEOUT);
     // rev::CANSparkMax m_rightBottomMotor{RightBot,
         // rev::CANSparkMax::MotorType::kBrushless};
 
     // rev::CANEncoder* BottomLeftMotorEncoder =
         // new rev::CANEncoder{m_leftBottomMotor};
-
-
 
 
 /* Hopper */
@@ -109,7 +108,7 @@ class Robot : public frc::TimedRobot {
     TopLeft = 4,  //  GOOD
     TopRight = 2,  //  GOOD
 
-    MiddleLeft = 5,  //  GOOD
+    MiddleLeft = 6,  //  GOOD
     MiddleRight = 3,  //  GOOD
 
     BottomLeft = 8,  //  GOOD
