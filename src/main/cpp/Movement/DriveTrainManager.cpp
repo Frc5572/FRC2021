@@ -17,14 +17,14 @@
 */
 
 DriveTrain::DriveTrain(
-    rev::CANSparkMax &TopLeftMotor,
-    rev::CANSparkMax &TopRightMotor,
+    WPI_TalonSRX &TopLeftMotor,
+    WPI_TalonSRX &TopRightMotor,
 
-    rev::CANSparkMax &MiddleLeft,
-    rev::CANSparkMax &MiddleRight,
+    WPI_TalonSRX &MiddleLeft,
+    WPI_TalonSRX &MiddleRight,
 
-    rev::CANSparkMax &BottomLeftMotor,
-    rev::CANSparkMax &BottomRightMotor,
+    WPI_TalonSRX &BottomLeftMotor,
+    WPI_TalonSRX &BottomRightMotor,
 
     FRC5572Controller &Driver,
     VisionManager &VisionManager,
@@ -36,10 +36,10 @@ DriveTrain::DriveTrain(
         this->RightMotors = new frc::SpeedControllerGroup( TopRightMotor,
                                                             MiddleRight,
                                                             BottomRightMotor);
-        this->TempRightMotors = new frc::SpeedControllerGroup( MiddleRight,
-                                                            BottomRightMotor);
-        this->TempLeftMotors = new frc::SpeedControllerGroup( MiddleLeft,
-                                                            BottomLeftMotor);
+        // this->TempRightMotors = new frc::SpeedControllerGroup( MiddleRight,
+        //                                                     BottomRightMotor);
+        // this->TempLeftMotors = new frc::SpeedControllerGroup( MiddleLeft,
+        //                                                     BottomLeftMotor);
 
 
         this->Driver = &Driver;
@@ -54,18 +54,18 @@ DriveTrain::DriveTrain(
         this->BottomLeftMotor = &BottomLeftMotor;
         this->BottomRightMotor = &BottomRightMotor;
 
-        this->TopLeftMotorEncoder = new rev::CANEncoder{TopLeftMotor};
-        this->TopRightMotorEncoder = new rev::CANEncoder{TopRightMotor};
+        // this->TopLeftMotorEncoder = new rev::CANEncoder{TopLeftMotor};
+        // this->TopRightMotorEncoder = new rev::CANEncoder{TopRightMotor};
 
-        this->MiddleLeftMotorEncoder = new rev::CANEncoder{MiddleLeft};
-        this->MiddleRightMotorEncoder = new rev::CANEncoder{MiddleRight};
+        // this->MiddleLeftMotorEncoder = new rev::CANEncoder{MiddleLeft};
+        // this->MiddleRightMotorEncoder = new rev::CANEncoder{MiddleRight};
 
-        this->BottomLeftMotorEncoder = new rev::CANEncoder{BottomLeftMotor};
-        this->BottomRightMotorEncoder = new rev::CANEncoder{BottomRightMotor};
+        // this->BottomLeftMotorEncoder = new rev::CANEncoder{BottomLeftMotor};
+        // this->BottomRightMotorEncoder = new rev::CANEncoder{BottomRightMotor};
 
         this->LimeLight = &VisionManager;
 
-        DriveTrain::LowerAmps();
+        // DriveTrain::LowerAmps();
 }
 
 DriveTrain::~DriveTrain() {
@@ -96,30 +96,29 @@ DriveTrain::~DriveTrain() {
 // }
 
 void DriveTrain::Drive() {
-    DriveTrain::Aim();
     if (this->Driver->L().second > .2 || this->Driver->L().second < -.2) {
-        LeftMotors->Set(-1 * Driver->L().second * .7);
+        LeftMotors->Set(-1 * Driver->L().second * .5);
     } else {
-        LeftMotors->Set(0 + L);
+        LeftMotors->Set(0);
     }
 
     if (this->Driver->R().second > .2 ||  this->Driver->R().second < -.2) {
-        RightMotors->Set(Driver->R().second  * .7);
+        RightMotors->Set(Driver->R().second  * .5);
     } else {
-        RightMotors->Set(0 + R);
+        RightMotors->Set(0);
     }
 }
 
-void DriveTrain::LowerAmps() {
-    TopLeftMotor->SetSmartCurrentLimit(60);
-    TopRightMotor->SetSmartCurrentLimit(60);
+// void DriveTrain::LowerAmps() {
+//     TopLeftMotor->SetSmartCurrentLimit(60);
+//     TopRightMotor->SetSmartCurrentLimit(60);
 
-    MiddleLeft->SetSmartCurrentLimit(60);
-    MiddleRight->SetSmartCurrentLimit(60);
+//     MiddleLeft->SetSmartCurrentLimit(60);
+//     MiddleRight->SetSmartCurrentLimit(60);
 
-    BottomLeftMotor->SetSmartCurrentLimit(60);
-    BottomRightMotor->SetSmartCurrentLimit(60);
-}
+//     BottomLeftMotor->SetSmartCurrentLimit(60);
+//     BottomRightMotor->SetSmartCurrentLimit(60);
+// }
 
 void DriveTrain::Aim() {
     if (Driver->X() ==  true) {
