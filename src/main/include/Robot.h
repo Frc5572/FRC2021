@@ -109,7 +109,7 @@ class Robot : public frc::TimedRobot {
     TopLeft = 4,  //  GOOD
     TopRight = 2,  //  GOOD
 
-    MiddleLeft = 5,  //  GOOD
+    MiddleLeft = 6,  //  GOOD
     MiddleRight = 3,  //  GOOD
 
     BottomLeft = 8,  //  GOOD
