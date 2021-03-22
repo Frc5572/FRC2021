@@ -20,13 +20,22 @@ void Robot::RobotPeriodic() {
 }
 
 void Robot::AutonomousInit() {
+    leftMiddleMotor.SetSelectedSensorPosition(0);
     m_timer.Start();
     ahrs.Reset();
 }
 
 void Robot::AutonomousPeriodic() {
-    driveTrain.LeftMotors->Set(.2);
-    m_leftBottomMotor.GetSelectedSensorPosition();
+    if (leftMiddleMotor.GetSelectedSensorPosition() < TANK_ONE_ROTATION)
+    {
+        left.Set(.1);
+        right.Set(.1);
+    }
+    else 
+    {
+        left.Set(0);
+        right.Set(0);
+    }
 }
 
 
@@ -34,7 +43,7 @@ void Robot::TeleopInit() {
 }
 
 void Robot::TeleopPeriodic() {
-    driveTrain.Drive();
+    // driveTrain.Drive();
 
 }
 

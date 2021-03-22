@@ -26,13 +26,17 @@
 #include <rev/ColorSensorV3.h>
 #include <rev/ColorMatch.h>
 #include <frc/VictorSP.h>
+#include <frc/SpeedControllerGroup.h>
 
 
 
 class Robot : public frc::TimedRobot {
  private:
     //  AutoMovement *automovement;
-
+    static constexpr double TANK_WHEEL_CIRCUMFERENCE = 0.1524;
+    static constexpr double TANK_GEAR_RATIO = 9.0;
+    static constexpr double TANK_ONE_ROTATION = TANK_GEAR_RATIO * 2048;
+    static constexpr double TANK_ONE_METER = (1.0 / TANK_WHEEL_CIRCUMFERENCE) * TANK_ONE_ROTATION;
     // Controllers
     FRC5572Controller Driver{0};
     FRC5572Controller Operator{1};
@@ -40,12 +44,17 @@ class Robot : public frc::TimedRobot {
     //  Nav-XMP boardP
     AHRS ahrs{frc::SPI::Port::kMXP};
 
-    WPI_TalonSRX m_leftTopMotor{TopLeft};
-    WPI_TalonSRX m_leftMiddleMotor{MiddleLeft};
-    WPI_TalonSRX m_leftBottomMotor{BottomLeft};
-    WPI_TalonSRX m_rightTopMotor{TopRight};
-    WPI_TalonSRX m_rightMiddleMotor{MiddleRight};
-    WPI_TalonSRX m_rightBottomMotor{BottomRight};
+
+    WPI_TalonSRX leftTopMotor{TopLeft};
+    WPI_TalonSRX leftMiddleMotor{MiddleLeft};
+    WPI_TalonSRX leftBottomMotor{BottomLeft};
+    WPI_TalonSRX rightTopMotor{TopRight};
+    WPI_TalonSRX rightMiddleMotor{MiddleRight};
+    WPI_TalonSRX rightBottomMotor{BottomRight};
+    frc::SpeedControllerGroup left{leftTopMotor, leftMiddleMotor, leftBottomMotor};
+    frc::SpeedControllerGroup right{leftTopMotor, leftMiddleMotor, leftBottomMotor};
+
+
     // WPI_TalonSRX*  m_leftTopMotor = new WPI_TalonSRX(TopLeft);
     // WPI_TalonSRX*  m_leftMiddleMotor = new WPI_TalonSRX(MiddleLeft);
     // WPI_TalonSRX*  m_leftBottomMotor = new WPI_TalonSRX(LeftBot);
@@ -86,9 +95,9 @@ class Robot : public frc::TimedRobot {
     //  frc::DigitalOutput photoOUT{1};
 
     /*SubSystem Objects  */
-    DriveTrain driveTrain{ m_leftTopMotor, m_rightTopMotor,
-        m_leftMiddleMotor, m_rightMiddleMotor, m_leftBottomMotor,
-        m_rightBottomMotor, Driver, LimeLight, ahrs };
+    // DriveTrain driveTrain{ m_leftTopMotor, m_rightTopMotor,
+    //     m_leftMiddleMotor, m_rightMiddleMotor, m_leftBottomMotor,
+    //     m_rightBottomMotor, Driver, LimeLight, ahrs };
 
     // Shooter shooter{m_leftShooter, m_rightShooter, shooterHood, Operator};
 
