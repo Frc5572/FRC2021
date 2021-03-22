@@ -64,8 +64,8 @@ class Robot : public frc::TimedRobot {
 
 
 /* Hopper */
-    //rev::CANSparkMax m_hopper{HopperID,
-    //    rev::CANSparkMax::MotorType::kBrushless};
+    rev::CANSparkMax m_hopper{HopperID,
+       rev::CANSparkMax::MotorType::kBrushless};
 
     frc::VictorSP test1 {0};  // left climb motor
 
@@ -94,7 +94,7 @@ class Robot : public frc::TimedRobot {
 
     // ClimbManager climber{test1, test2, Driver, climb};
 
-    // Hopper hopper{m_hopper, Operator, limitSwitch2, limitSwitch3};
+    Hopper hopper{m_hopper, Operator};
 
     VisionManager LimeLight;
 
@@ -113,7 +113,8 @@ class Robot : public frc::TimedRobot {
     MiddleRight = 3,  //  GOOD
 
     BottomLeft = 8,  //  GOOD
-    BottomRight = 7;  //  GOOD
+    BottomRight = 7, //  GOOD
+    HopperLift = 9,
 
     // LeftShoot = 7,  //  GOOD
     // RightShoot = 8,  //  GOOD
@@ -122,7 +123,7 @@ class Robot : public frc::TimedRobot {
 
     // PCM1 = 10,  //  GOOD
 
-    // HopperID = 11,  //  GOOD
+    HopperID = 13;  //  GOOD
 
     // LeftClimb = 13,  //  GOOD
     // RightClimb = 14;  //  GOOD

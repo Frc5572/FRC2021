@@ -5,14 +5,10 @@
 
 Hopper::Hopper(
     rev::CANSparkMax &Belt,
-    FRC5572Controller &Operator,
-    frc::DigitalInput &Input2,
-    frc::DigitalInput &Input3
+    FRC5572Controller &Operator
 ) {
     this->belt = &Belt;
     this->Operator = &Operator;
-    this->limitSwitch2 = &Input2;
-    this->limitSwitch3 = &Input3;
 }
 
 void Hopper::HopperPeriodic() {

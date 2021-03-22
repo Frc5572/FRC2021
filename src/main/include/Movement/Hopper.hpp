@@ -12,9 +12,7 @@ class Hopper{
  public:
     Hopper(
         rev::CANSparkMax &Belt,
-        FRC5572Controller &Operator,
-        frc::DigitalInput &Input2,
-        frc::DigitalInput &Input3);
+        FRC5572Controller &Operator);
 
     void HopperPeriodic();
     void Advance();
