@@ -46,6 +46,7 @@ class Robot : public frc::TimedRobot {
     WPI_TalonSRX m_rightTopMotor{TopRight};
     WPI_TalonSRX m_rightMiddleMotor{MiddleRight};
     WPI_TalonSRX m_rightBottomMotor{BottomRight};
+    WPI_TalonSRX m_hopper{HopperID};
     // WPI_TalonSRX m_hopperLift{hopperLift};
     // WPI_TalonSRX*  m_leftTopMotor = new WPI_TalonSRX(TopLeft);
     // WPI_TalonSRX*  m_leftMiddleMotor = new WPI_TalonSRX(MiddleLeft);
@@ -65,8 +66,8 @@ class Robot : public frc::TimedRobot {
 
 
 /* Hopper */
-    rev::CANSparkMax m_hopper{HopperID,
-       rev::CANSparkMax::MotorType::kBrushless};
+    // rev::CANSparkMax m_hopper{HopperID,
+    //    rev::CANSparkMax::MotorType::kBrushless};
 
     frc::VictorSP test1 {0};  // left climb motor
 
@@ -124,7 +125,7 @@ class Robot : public frc::TimedRobot {
 
     // PCM1 = 10,  //  GOOD
 
-    HopperID = 13;  //  GOOD
+    HopperID = 9;  //  GOOD
 
     // LeftClimb = 13,  //  GOOD
     // RightClimb = 14;  //  GOOD

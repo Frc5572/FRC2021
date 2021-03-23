@@ -5,6 +5,7 @@
 #include "Movement/ControllerManager.hpp"
 #include <frc/DoubleSolenoid.h>
 #include <frc/DigitalInput.h>
+#include "ctre/Phoenix.h"
 
 // AKA magazine and the intake
 
@@ -12,7 +13,7 @@ class Hopper{
     public:
 
     Hopper(
-        rev::CANSparkMax &Belt,
+        WPI_TalonSRX &Belt,
         FRC5572Controller &Operator
         // frc::DigitalInput &Input2,
         // frc::DigitalInput &Input3
@@ -26,7 +27,7 @@ class Hopper{
 
     bool readyToLoad = false ;
     FRC5572Controller* Operator;
-    rev::CANSparkMax* belt;
+    WPI_TalonSRX* belt;
     // frc::DigitalInput* limitSwitch2;
     // frc::DigitalInput* limitSwitch3;
 

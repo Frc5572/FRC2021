@@ -4,7 +4,7 @@
 //d pad toggle preset shots
 
 Hopper::Hopper(
-   rev::CANSparkMax &Belt,
+   WPI_TalonSRX &Belt,
    FRC5572Controller &Operator
 //    frc::DigitalInput &Input2,
 //    frc::DigitalInput &Input3
