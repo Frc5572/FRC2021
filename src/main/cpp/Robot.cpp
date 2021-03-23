@@ -10,8 +10,9 @@
 #include "Robot.h"
 #include "Movement/DriveTrainManager.hpp"
 
-int gearRatio = 10;
-double rotPFT = 12* gearRatio / 18.85;
+int motorRotation = 2048;
+double wheelRotation = motorRotation * 8.5;
+double rotPFT = wheelRotation * 0.75;
 int robotPosL;
 int robotPosR;
 int robotPosL2;
