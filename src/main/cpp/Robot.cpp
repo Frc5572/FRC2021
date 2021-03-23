@@ -49,10 +49,10 @@ void Robot::TeleopInit() {
 }
 
 void Robot::TeleopPeriodic() {
-    driveTrain.Drive();
-    if (Driver.A() == true)
-    {
-        m_hopper.Set(0.2);
+    // driveTrain.Drive();
+    if (Driver.A() == true) {
+        m_hopper.Set(0.3);
+        std::cout << "a";
     }
 }
 

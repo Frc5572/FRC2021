@@ -46,6 +46,7 @@ class Robot : public frc::TimedRobot {
     WPI_TalonSRX m_rightTopMotor{TopRight};
     WPI_TalonSRX m_rightMiddleMotor{MiddleRight};
     WPI_TalonSRX m_rightBottomMotor{BottomRight};
+    // WPI_TalonSRX m_hopperLift{hopperLift};
     // WPI_TalonSRX*  m_leftTopMotor = new WPI_TalonSRX(TopLeft);
     // WPI_TalonSRX*  m_leftMiddleMotor = new WPI_TalonSRX(MiddleLeft);
     // WPI_TalonSRX*  m_leftBottomMotor = new WPI_TalonSRX(LeftBot);
@@ -79,8 +80,8 @@ class Robot : public frc::TimedRobot {
     // frc::DoubleSolenoid shooterHood{PCM1, 2, 5};
 
     // Sensor
-    frc::DigitalInput limitSwitch2{2};  // in the mag
-    frc::DigitalInput limitSwitch3{0};  // on the top of the mag
+    // frc::DigitalInput limitSwitch2{2};  // in the mag
+    // frc::DigitalInput limitSwitch3{0};  // on the top of the mag
 
     //  frc::DigitalInput photoIN{0};
     //  frc::DigitalOutput photoOUT{1};
@@ -114,7 +115,7 @@ class Robot : public frc::TimedRobot {
 
     BottomLeft = 8,  //  GOOD
     BottomRight = 7, //  GOOD
-    HopperLift = 9,
+    // HopperLift = 9,
 
     // LeftShoot = 7,  //  GOOD
     // RightShoot = 8,  //  GOOD

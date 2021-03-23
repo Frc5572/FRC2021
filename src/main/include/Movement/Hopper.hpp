@@ -9,21 +9,27 @@
 // AKA magazine and the intake
 
 class Hopper{
- public:
+    public:
+
     Hopper(
         rev::CANSparkMax &Belt,
-        FRC5572Controller &Operator);
+        FRC5572Controller &Operator
+        // frc::DigitalInput &Input2,
+        // frc::DigitalInput &Input3
+    );
 
-    void HopperPeriodic();
-    void Advance();
-    void ManualControlBelt();
-    void RunIntakePistions();
-    void ManualIntakeMotors();
+    // void HopperPeriodic();
+    // void Advance();
+    // void ManualControlBelt();
+    // void RunIntakePistions();
+    // void ManualIntakeMotors();
 
-    bool readyToLoad = false;
+    bool readyToLoad = false ;
     FRC5572Controller* Operator;
     rev::CANSparkMax* belt;
-    frc::DigitalInput* limitSwitch2;
-    frc::DigitalInput* limitSwitch3;
+    // frc::DigitalInput* limitSwitch2;
+    // frc::DigitalInput* limitSwitch3;
+
 };
+
 #endif
