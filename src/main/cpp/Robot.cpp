@@ -14,8 +14,9 @@
 bool runAuto = true;
 bool gridReturnValue = true;
 double motorSpeed = 0.1;
-double gearRatio = 10;
-double wRotationFoot = 12 * gearRatio / 18.85;
+int motorRotation = 2048;
+double wheelRotation = motorRotation * 8.5;
+double rotPFT = wheelRotation * 0.75;
 bool blueRed = true;
 int robotPosL1 = 0;
 int robotPosL2 = 0;
