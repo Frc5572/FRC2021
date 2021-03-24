@@ -51,17 +51,19 @@ void Robot::TeleopInit() {
 void Robot::TeleopPeriodic() {
     // driveTrain.Drive();
     if (Driver.A() == true) {
-        m_hopper.Set(-0.5);
+        m_hopper.Set(-.6);
         std::cout << "a";
     } else {
         m_hopper.Set(0);
     }
+    driveTrain.Drive();
 }
 
 void Robot::TestInit() {
 }
 
 void Robot::TestPeriodic() {
+
 }
 
 #ifndef RUNNING_FRC_TESTS
