@@ -105,7 +105,7 @@ class Robot : public frc::TimedRobot {
 
     // Intake = 9,  //  GOOD
 
-    PCM1 = 1;  //  GOOD
+    PCM1 = 0;  //  GOOD
 
     // HopperID = 11,  //  GOOD
 
@@ -113,7 +113,6 @@ class Robot : public frc::TimedRobot {
     // RightClimb = 14;  //  GOOD
 
     double actualRPM;
-
 
  public:
         void RobotInit() override;
