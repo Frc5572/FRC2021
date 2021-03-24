@@ -54,9 +54,7 @@ void Robot::AutonomousPeriodic() {
     }
     driveTrain.LeftMotors->Set(0);
     driveTrain.RightMotors->Set(0);
-    std::cout << m_leftBottomMotor.GetSelectedSensorPosition() << "\n";
 }
-
 
 void Robot::TeleopInit() {
 }

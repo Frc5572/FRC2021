@@ -46,40 +46,26 @@ class Robot : public frc::TimedRobot {
     WPI_TalonSRX m_rightTopMotor{TopRight};
     WPI_TalonSRX m_rightMiddleMotor{MiddleRight};
     WPI_TalonSRX m_rightBottomMotor{BottomRight};
-    // WPI_TalonSRX*  m_leftTopMotor = new WPI_TalonSRX(TopLeft);
-    // WPI_TalonSRX*  m_leftMiddleMotor = new WPI_TalonSRX(MiddleLeft);
-    // WPI_TalonSRX*  m_leftBottomMotor = new WPI_TalonSRX(LeftBot);
-    // WPI_TalonSRX*  m_rightTopMotor = new WPI_TalonSRX(TopRight);
-    // WPI_TalonSRX*  m_rightMiddleMotor = new WPI_TalonSRX(MiddleRight);
-    // WPI_TalonSRX*  m_rightBottomMotor = new WPI_TalonSRX(RightBot);
-
-
-    //(FeedbackDevice.IntegratedSensor, PID_TYPE, DEFAULT_TIMEOUT);
-    // rev::CANSparkMax m_rightBottomMotor{RightBot,
-        // rev::CANSparkMax::MotorType::kBrushless};
-
-    // rev::CANEncoder* BottomLeftMotorEncoder =
-        // new rev::CANEncoder{m_leftBottomMotor};
 
 
 /* Hopper */
     //rev::CANSparkMax m_hopper{HopperID,
     //    rev::CANSparkMax::MotorType::kBrushless};
 
-    frc::VictorSP test1 {0};  // left climb motor
+    // frc::VictorSP test1 {0};  // left climb motor
 
-    frc::VictorSP test2 {1};  // right climb motor
+    // frc::VictorSP test2 {1};  // right climb motor
 
     /*instantiation of the compressor with its CAN ID and pneumatics*/
-    // frc::Compressor compressor{PCM1};
+    frc::Compressor compressor{PCM1};
 
     // frc::DoubleSolenoid climb{PCM1, 1, 6};  // 3 4
 
     // frc::DoubleSolenoid shooterHood{PCM1, 2, 5};
 
     // Sensor
-    frc::DigitalInput limitSwitch2{2};  // in the mag
-    frc::DigitalInput limitSwitch3{0};  // on the top of the mag
+    // frc::DigitalInput limitSwitch2{2};  // in the mag
+    // frc::DigitalInput limitSwitch3{0};  // on the top of the mag
 
     //  frc::DigitalInput photoIN{0};
     //  frc::DigitalOutput photoOUT{1};
@@ -112,14 +98,14 @@ class Robot : public frc::TimedRobot {
     MiddleRight = 3,  //  GOOD
 
     BottomLeft = 8,  //  GOOD
-    BottomRight = 7;  //  GOOD
+    BottomRight = 7,  //  GOOD
 
     // LeftShoot = 7,  //  GOOD
     // RightShoot = 8,  //  GOOD
 
     // Intake = 9,  //  GOOD
 
-    // PCM1 = 10,  //  GOOD
+    PCM1 = 1;  //  GOOD
 
     // HopperID = 11,  //  GOOD
 
@@ -153,5 +139,5 @@ class Robot : public frc::TimedRobot {
 //  ¶¶_____¶¶________¶¶_____¶
 //  ¶¶¶______¶¶¶¶¶¶¶¶¶_____¶
 //  ¶¶¶¶¶________________¶¶
-//  ¶¶¶¶¶¶¶¶___________¶¶
+//  ¶¶¶¶¶¶¶¶____¶¶_____¶¶
 //  ¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶
