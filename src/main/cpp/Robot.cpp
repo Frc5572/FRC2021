@@ -33,13 +33,13 @@ void Robot::RobotPeriodic() {
 }
 
 void Robot::AutonomousInit() {
-    leftMiddleMotor.SetSelectedSensorPosition(0);
+    m_leftMiddleMotor.SetSelectedSensorPosition(0);
     m_timer.Start();
     ahrs.Reset();
 }
 
 void Robot::AutonomousPeriodic() {
-    if (leftMiddleMotor.GetSelectedSensorPosition() < TANK_ONE_ROTATION)
+    if (m_leftMiddleMotor.GetSelectedSensorPosition() < TANK_ONE_ROTATION)
     {
         left.Set(.1);
         right.Set(.1);

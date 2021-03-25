@@ -45,14 +45,14 @@ class Robot : public frc::TimedRobot {
     AHRS ahrs{frc::SPI::Port::kMXP};
 
 
-    WPI_TalonSRX leftTopMotor{TopLeft};
-    WPI_TalonSRX leftMiddleMotor{MiddleLeft};
-    WPI_TalonSRX leftBottomMotor{BottomLeft};
-    WPI_TalonSRX rightTopMotor{TopRight};
-    WPI_TalonSRX rightMiddleMotor{MiddleRight};
-    WPI_TalonSRX rightBottomMotor{BottomRight};
-    frc::SpeedControllerGroup left{leftTopMotor, leftMiddleMotor, leftBottomMotor};
-    frc::SpeedControllerGroup right{leftTopMotor, leftMiddleMotor, leftBottomMotor};
+    // WPI_TalonSRX leftTopMotor{TopLeft};
+    // WPI_TalonSRX leftMiddleMotor{MiddleLeft};
+    // WPI_TalonSRX leftBottomMotor{BottomLeft};
+    // WPI_TalonSRX rightTopMotor{TopRight};
+    // WPI_TalonSRX rightMiddleMotor{MiddleRight};
+    // WPI_TalonSRX rightBottomMotor{BottomRight};
+    frc::SpeedControllerGroup left{m_leftTopMotor, m_leftMiddleMotor, m_leftBottomMotor};
+    frc::SpeedControllerGroup right{m_leftTopMotor, m_leftMiddleMotor, m_leftBottomMotor};
 
 
     WPI_TalonSRX m_leftTopMotor{TopLeft};
