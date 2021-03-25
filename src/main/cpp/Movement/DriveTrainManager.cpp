@@ -26,6 +26,8 @@ DriveTrain::DriveTrain(
     WPI_TalonSRX &BottomLeftMotor,
     WPI_TalonSRX &BottomRightMotor,
 
+    // WPI_TalonSRX &HopperLift,
+
     FRC5572Controller &Driver,
     VisionManager &VisionManager,
     AHRS &ahrs
@@ -53,6 +55,8 @@ DriveTrain::DriveTrain(
 
         this->BottomLeftMotor = &BottomLeftMotor;
         this->BottomRightMotor = &BottomRightMotor;
+
+        // this->HopperLift = &HopperLift;
 
         // this->TopLeftMotorEncoder = new rev::CANEncoder{TopLeftMotor};
         // this->TopRightMotorEncoder = new rev::CANEncoder{TopRightMotor};
@@ -103,7 +107,7 @@ void DriveTrain::Drive() {
     }
 
     if (this->Driver->R().second > .2 ||  this->Driver->R().second < -.2) {
-        RightMotors->Set(Driver->R().second  * .5);
+        RightMotors->Set(-1 * Driver->R().second  * .5);
     } else {
         RightMotors->Set(0);
     }

@@ -74,7 +74,7 @@ class Robot : public frc::TimedRobot {
     frc::VictorSP test2 {1};  // right climb motor
 
     /*instantiation of the compressor with its CAN ID and pneumatics*/
-    // frc::Compressor compressor{PCM1};
+    frc::Compressor compressor{PCM1};
 
     // frc::DoubleSolenoid climb{PCM1, 1, 6};  // 3 4
 
@@ -123,7 +123,7 @@ class Robot : public frc::TimedRobot {
 
     // Intake = 9,  //  GOOD
 
-    // PCM1 = 10,  //  GOOD
+    PCM1 = 0,  //  GOOD
 
     HopperID = 9,  //  GOOD
     turretID = 13;

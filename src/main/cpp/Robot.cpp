@@ -26,6 +26,7 @@ void Robot::RobotInit() {
     m_rightTopMotor.SetSelectedSensorPosition(0);
     m_rightMiddleMotor.SetSelectedSensorPosition(0);
     m_rightBottomMotor.SetSelectedSensorPosition(0);
+    compressor.Start();
 }
 
 void Robot::RobotPeriodic() {
@@ -38,9 +39,6 @@ void Robot::AutonomousInit() {
 }
 
 void Robot::AutonomousPeriodic() {
-    // driveTrain.RightMotors->Set(.2);
-    // driveTrain.RightMotors->Set(.2);
-    // m_rightBottomMotor.GetSelectedSensorPosition();
 }
 
 
