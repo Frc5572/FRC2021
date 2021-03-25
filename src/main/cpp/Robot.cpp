@@ -44,6 +44,7 @@ void Robot::AutonomousInit() {
     m_rightBottomMotor.SetSelectedSensorPosition(0);
     m_rightMiddleMotor.SetSelectedSensorPosition(0);
     m_rightTopMotor.SetSelectedSensorPosition(0);
+    compressor.Start();
 }
 
 //Use abs(encoder) for encoder values
@@ -52,11 +53,14 @@ void Robot::AutonomousPeriodic() {
         driveTrain.LeftMotors->Set(.1);
         driveTrain.RightMotors->Set(.1);
     }
-    driveTrain.LeftMotors->Set(0);
-    driveTrain.RightMotors->Set(0);
+    driveTrain.LeftMotors->StopMotor();
+    driveTrain.RightMotors->StopMotor();
 }
 
 void Robot::TeleopInit() {
+    compressor.Start();
+    std::cout << compressor.Enabled() << "\n";
+    std::cout << compressor.GetModule() << "\n";
 }
 
 void Robot::TeleopPeriodic() {

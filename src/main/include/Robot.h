@@ -15,7 +15,7 @@
 #include <frc/TimedRobot.h>
 #include <frc/smartdashboard/SendableChooser.h>
 #include <frc/Compressor.h>
-// #include <frc/DoubleSolenoid.h>
+#include <frc/DoubleSolenoid.h>
 #include <frc/util/color.h>
 #include <frc/DigitalInput.h>
 #include <frc/Timer.h>
@@ -30,7 +30,7 @@
 
 
 class Robot : public frc::TimedRobot {
- private:
+ public:
     //  AutoMovement *automovement;
 
     // Controllers
@@ -64,11 +64,11 @@ class Robot : public frc::TimedRobot {
     // frc::DoubleSolenoid shooterHood{PCM1, 2, 5};
 
     // Sensor
-    // frc::DigitalInput limitSwitch2{2};  // in the mag
-    // frc::DigitalInput limitSwitch3{0};  // on the top of the mag
+    frc::DigitalInput limitSwitch2{2};  // in the mag
+    frc::DigitalInput limitSwitch3{0};  // on the top of the mag
 
-    //  frc::DigitalInput photoIN{0};
-    //  frc::DigitalOutput photoOUT{1};
+     frc::DigitalInput photoIN{0};
+     frc::DigitalOutput photoOUT{1};
 
     /*SubSystem Objects  */
     DriveTrain driveTrain{ m_leftTopMotor, m_rightTopMotor,
@@ -87,7 +87,7 @@ class Robot : public frc::TimedRobot {
 
     //  AutoDrip autoDrip{hopper, driveTrain, shooter, LimeLight};
 
-    //  Photoelctric photoSensor{photoIN, photoOUT};
+    Photoelctric photoSensor{photoIN, photoOUT};
 
     /*  IDS  */
     static const int
