@@ -58,6 +58,7 @@ void Robot::AutonomousPeriodic() {
     driveTrain.RightMotors->StopMotor();
 }
 
+
 void Robot::TeleopInit() {
     compressor.Start();
     std::cout << compressor.Enabled() << "\n";
@@ -74,6 +75,4 @@ void Robot::TestInit() {
 void Robot::TestPeriodic() {
 }
 
-#ifndef RUNNING_FRC_TESTS
-int main() {return frc::StartRobot<Robot>();}
-#endif
+    // hopper.HopperPeriodic();
