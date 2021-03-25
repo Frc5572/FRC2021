@@ -27,8 +27,6 @@
 #include <rev/ColorMatch.h>
 #include <frc/VictorSP.h>
 
-
-
 class Robot : public frc::TimedRobot {
  public:
     //  AutoMovement *automovement;
@@ -58,8 +56,6 @@ class Robot : public frc::TimedRobot {
 
     /*instantiation of the compressor with its CAN ID and pneumatics*/
     frc::Compressor compressor{PCM1};
-
-    // frc::DoubleSolenoid climb{PCM1, 1, 6};  // 3 4
 
     // frc::DoubleSolenoid shooterHood{PCM1, 2, 5};
 
