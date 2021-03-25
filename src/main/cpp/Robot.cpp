@@ -43,9 +43,29 @@ void Robot::AutonomousPeriodic() {
 
 
 void Robot::TeleopInit() {
+
 }
 
 void Robot::TeleopPeriodic() {
+    // driveTrain.Drive();
+    if (Driver.LT() == true) {
+        m_hopper.Set(-.6);
+        std::cout << "a";
+    } else {
+        m_hopper.Set(0);
+    }
+
+    if (Driver.A() == true) {;
+        m_turret.Set(.1);
+        std::cout << "a";
+    }
+    else if (Driver.B() == true) {
+        m_turret.Set(-.1);
+        std::cout << "a";
+    } else {
+        m_turret.Set(0);
+    }
+
     driveTrain.Drive();
 }
 
@@ -59,3 +79,4 @@ void Robot::TestPeriodic() {
 #ifndef RUNNING_FRC_TESTS
 int main() {return frc::StartRobot<Robot>();}
 #endif
+
