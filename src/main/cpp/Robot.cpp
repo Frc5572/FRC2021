@@ -30,6 +30,7 @@ void Robot::RobotInit() {
     m_rightBottomMotor.SetNeutralMode(Coast);
     m_rightMiddleMotor.SetNeutralMode(Coast);
     m_rightTopMotor.SetNeutralMode(Coast);
+    compressor.Start();
 }
 
 void Robot::RobotPeriodic() {

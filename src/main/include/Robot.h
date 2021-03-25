@@ -57,7 +57,7 @@ class Robot : public frc::TimedRobot {
     /*instantiation of the compressor with its CAN ID and pneumatics*/
     frc::Compressor compressor{PCM1};
 
-    // frc::DoubleSolenoid shooterHood{PCM1, 2, 5};
+    // frc::DoubleSolenoid shooterHood{0, 1};
 
     // Sensor
     frc::DigitalInput limitSwitch2{2};  // in the mag
