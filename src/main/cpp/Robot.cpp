@@ -13,6 +13,7 @@ void Robot::RobotInit() {
     m_rightTopMotor.SetInverted(true);
     m_rightMiddleMotor.SetInverted(true);
     m_rightBottomMotor.SetInverted(true);
+    m_hopperRight.SetInverted(true);
     m_timer.Reset();
     m_leftBottomMotor.SetNeutralMode(Coast);
     m_leftMiddleMotor.SetNeutralMode(Coast);
@@ -47,21 +48,21 @@ void Robot::TeleopInit() {
 }
 
 void Robot::TeleopPeriodic() {
-    // driveTrain.Drive();
-    if (Driver.LT() == true) {
-        m_hopper.Set(-.6);
-        std::cout << "a";
+    // Hopper
+    if (Driver.A() == true) {
+        hopper.HopperMotors->Set(.4);
+    } else if (Driver.B() == true) {
+        hopper.HopperMotors->Set(-.4);
     } else {
-        m_hopper.Set(0);
+        hopper.HopperMotors->Set(0);
     }
 
-    if (Driver.A() == true) {;
+    //Shooter Turret
+    if (Driver.LB() == true) {;
         m_turret.Set(.1);
-        std::cout << "a";
     }
-    else if (Driver.B() == true) {
+    else if (Driver.RB() == true) {
         m_turret.Set(-.1);
-        std::cout << "a";
     } else {
         m_turret.Set(0);
     }
