@@ -81,9 +81,11 @@ class Robot : public frc::TimedRobot {
     /*instantiation of the compressor with its CAN ID and pneumatics*/
     frc::Compressor compressor{PCM1};
 
-    frc::DoubleSolenoid climb{PCM1, 1, 6};  // 3 4
-
-    frc::DoubleSolenoid shooterHood{PCM1, 2, 5};
+    frc::DoubleSolenoid intake1{PCM1, 0, 7};
+    frc::DoubleSolenoid intake2{PCM1, 1, 6};
+    frc::DoubleSolenoid Solenoid{PCM1, 2, 5};
+    frc::DoubleSolenoid Solenoid2{PCM1, 3, 4};
+    frc::DoubleSolenoid Solenoid3{PCM2, 0, 7};
 
     // Sensor
     frc::DigitalInput limitSwitch2{2};  // in the mag
@@ -97,9 +99,9 @@ class Robot : public frc::TimedRobot {
         m_leftMiddleMotor, m_rightMiddleMotor, m_leftBottomMotor,
         m_rightBottomMotor, Driver, LimeLight, ahrs};
 
-    Shooter shooter{m_leftShooter, m_rightShooter, shooterHood, Operator};
+    //Shooter shooter{m_leftShooter, m_rightShooter, shooterHood, Operator};
 
-    ClimbManager climber{test1, test2, Driver, climb};
+    // ClimbManager climber{test1, test2, Driver, intake};
 
     Hopper hopper{m_hopper, Operator, limitSwitch2, limitSwitch3};
 
@@ -127,7 +129,9 @@ class Robot : public frc::TimedRobot {
 
     Intake = 9,  //  GOOD
 
-    PCM1 = 10,  //  GOOD
+    PCM1 = 0,
+    
+    PCM2 = 1,  //  GOOD
 
     HopperID = 11,  //  GOOD
 
