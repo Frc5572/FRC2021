@@ -128,14 +128,12 @@ class Robot : public frc::TimedRobot {
     PCM1 = 0,  //  GOOD
 
     turretID = 13,
-    intakeMotor = 11;
+    intakeMotor = 11,
     HopperOneID = 9,
-    HopperTwoID = 10,  //  GOOD
+    HopperTwoID = 10;  //  GOOD
 
     // LeftClimb = 13,  //  GOOD
     // RightClimb = 14;  //  GOOD
-
-    double actualRPM;
 
 
  public:

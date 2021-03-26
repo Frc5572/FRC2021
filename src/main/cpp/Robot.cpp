@@ -55,7 +55,7 @@ void Robot::TeleopPeriodic() {
         m_intake.Set(-.5);
     } else if (Driver.Y() == true) {
         m_intake.Set(.5);
-
+    }
     // Hopper
     if (Driver.A() == true) {
         hopper.HopperMotors->Set(.4);
@@ -66,7 +66,7 @@ void Robot::TeleopPeriodic() {
     }
 
     //Shooter Turret
-    if (Driver.LB() == true) {;
+    if (Driver.LB() == true) {
         m_turret.Set(.1);
     }
     else if (Driver.RB() == true) {
