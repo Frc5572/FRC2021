@@ -99,7 +99,7 @@ class Robot : public frc::TimedRobot {
         m_leftMiddleMotor, m_rightMiddleMotor, m_leftBottomMotor,
         m_rightBottomMotor, Driver, LimeLight, ahrs};
 
-    //Shooter shooter{m_leftShooter, m_rightShooter, shooterHood, Operator};
+    // Shooter shooter{m_leftShooter, m_rightShooter, shooterHood, Operator};
 
     // ClimbManager climber{test1, test2, Driver, intake};
 
@@ -129,8 +129,7 @@ class Robot : public frc::TimedRobot {
 
     Intake = 9,  //  GOOD
 
-    PCM1 = 0,
-    
+    PCM1 = 0, 
     PCM2 = 1,  //  GOOD
 
     HopperID = 11,  //  GOOD
