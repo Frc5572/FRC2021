@@ -39,6 +39,7 @@ void Robot::AutonomousInit() {
 }
 
 void Robot::AutonomousPeriodic() {
+
 }
 
 
@@ -47,26 +48,14 @@ void Robot::TeleopInit() {
 }
 
 void Robot::TeleopPeriodic() {
-    // driveTrain.Drive();
-    if (Driver.LT() == true) {
-        m_hopper.Set(-.6);
-        std::cout << "a";
-    } else {
-        m_hopper.Set(0);
-    }
-
-    if (Driver.A() == true) {;
-        m_turret.Set(.1);
-        std::cout << "a";
-    }
-    else if (Driver.B() == true) {
-        m_turret.Set(-.1);
-        std::cout << "a";
-    } else {
-        m_turret.Set(0);
-    }
-
     driveTrain.Drive();
+    if (Driver.A() == true) {
+        m_intake.Set(-.5);
+    } else if (Driver.B() == true) {
+        m_intake.Set(.5);
+    } else {
+        m_intake.Set(0);
+    }
 }
 
 void Robot::TestInit() {

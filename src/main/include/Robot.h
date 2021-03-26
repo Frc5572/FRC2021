@@ -47,23 +47,7 @@ class Robot : public frc::TimedRobot {
     WPI_TalonSRX m_rightMiddleMotor{MiddleRight};
     WPI_TalonSRX m_rightBottomMotor{BottomRight};
     WPI_TalonSRX m_hopper{HopperID};
-    // WPI_TalonSRX m_hopperLift{hopperLift};
-    // WPI_TalonSRX*  m_leftTopMotor = new WPI_TalonSRX(TopLeft);
-    // WPI_TalonSRX*  m_leftMiddleMotor = new WPI_TalonSRX(MiddleLeft);
-    // WPI_TalonSRX*  m_leftBottomMotor = new WPI_TalonSRX(LeftBot);
-    // WPI_TalonSRX*  m_rightTopMotor = new WPI_TalonSRX(TopRight);
-    // WPI_TalonSRX*  m_rightMiddleMotor = new WPI_TalonSRX(MiddleRight);
-    // WPI_TalonSRX*  m_rightBottomMotor = new WPI_TalonSRX(RightBot);
-
-
-    // rev::CANSparkMax m_rightBottomMotor{RightBot,
-        // rev::CANSparkMax::MotorType::kBrushless};
-
-    // rev::CANEncoder* BottomLeftMotorEncoder =
-        // new rev::CANEncoder{m_leftBottomMotor};
-
-
-
+    WPI_TalonSRX m_intake{intakeMotor};
 
 /* Hopper */
     rev::CANSparkMax m_turret{turretID,
@@ -126,7 +110,8 @@ class Robot : public frc::TimedRobot {
     PCM1 = 0,  //  GOOD
 
     HopperID = 9,  //  GOOD
-    turretID = 13;
+    turretID = 13,
+    intakeMotor = 11;
 
     // LeftClimb = 13,  //  GOOD
     // RightClimb = 14;  //  GOOD
