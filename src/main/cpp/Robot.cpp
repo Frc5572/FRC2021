@@ -13,6 +13,7 @@ void Robot::RobotInit() {
     m_rightTopMotor.SetInverted(true);
     m_rightMiddleMotor.SetInverted(true);
     m_rightBottomMotor.SetInverted(true);
+    m_hopperRight.SetInverted(true);
     m_timer.Reset();
     m_leftBottomMotor.SetNeutralMode(Coast);
     m_leftMiddleMotor.SetNeutralMode(Coast);
@@ -49,10 +50,27 @@ void Robot::TeleopInit() {
 
 void Robot::TeleopPeriodic() {
     driveTrain.Drive();
-    if (Driver.A() == true) {
+    // intake motor
+    if (Driver.X() == true) {
         m_intake.Set(-.5);
-    } else if (Driver.B() == true) {
+    } else if (Driver.Y() == true) {
         m_intake.Set(.5);
+
+    // Hopper
+    if (Driver.A() == true) {
+        hopper.HopperMotors->Set(.4);
+    } else if (Driver.B() == true) {
+        hopper.HopperMotors->Set(-.4);
+    } else {
+        hopper.HopperMotors->Set(0);
+    }
+
+    //Shooter Turret
+    if (Driver.LB() == true) {;
+        m_turret.Set(.1);
+    }
+    else if (Driver.RB() == true) {
+        m_turret.Set(-.1);
     } else {
         m_intake.Set(0);
     }
