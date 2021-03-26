@@ -17,12 +17,13 @@
 
 void Robot::RobotInit() {
     m_timer.Start();
+    compressor.Start();
 }
 
 void Robot::RobotPeriodic() {
 }
 void Robot::AutonomousInit()     {
-    shooter.InitPID();
+    //shooter.InitPID();
     m_timer.Reset();
     m_timer.Start();
 
@@ -43,7 +44,7 @@ void Robot::AutonomousPeriodic() {
         //  shooter.AutoPID();
         m_leftShooter.Set(.6);
         m_rightShooter.Set(.6);
-        shooterHood.Set(frc::DoubleSolenoid::Value::kForward);
+        //shooterHood.Set(frc::DoubleSolenoid::Value::kForward);
         //  m_hopper.Set(.3);
         continue;
     }
@@ -52,10 +53,10 @@ void Robot::AutonomousPeriodic() {
         m_hopper.Set(.3);
         m_leftShooter.Set(.6);
         m_rightShooter.Set(.6);
-        shooterHood.Set(frc::DoubleSolenoid::Value::kForward);
+        //shooterHood.Set(frc::DoubleSolenoid::Value::kForward);
     }
     while (m_timer.Get() > 10 && m_timer.Get() < 11) {
-        shooterHood.Set(frc::DoubleSolenoid::Value::kReverse);
+        //shooterHood.Set(frc::DoubleSolenoid::Value::kReverse);
         m_leftShooter.Set(0);
         m_rightShooter.Set(0);
         m_hopper.Set(0.0);
@@ -116,21 +117,39 @@ void Robot::AutonomousPeriodic() {
 }
 
 void Robot::TeleopInit() {
-    shooter.InitPID();
+    /// shooter.InitPID();
+    frc::DoubleSolenoid exampleDouble{1, 2};
+    frc::DoubleSolenoid anotherDoubleSolenoid{ 9, 1, 2};
+    exampleDouble.Set(frc::DoubleSolenoid::Value::kOff);
+    exampleDouble.Set(frc::DoubleSolenoid::Value::kForward);
+    exampleDouble.Set(frc::DoubleSolenoid::Value::kReverse);
+
 }
 
 void Robot::TeleopPeriodic() {
      LimeLight.Update();
 
-    shooter.RunPID();
+    //shooter.RunPID();
 
     driveTrain.Drive();
 
-    shooter.Shots();
+    //shooter.Shots();
 
-    climber.ClimbPeriodic();
+    //climber.ClimbPeriodic();
 
     hopper.HopperPeriodic();
+
+    if(Driver.A() == true){
+        intake1.Set(frc::DoubleSolenoid::Value::kForward);
+        intake2.Set(frc::DoubleSolenoid::Value::kForward);
+
+    } else if(Driver.B() == true){
+        intake1.Set(frc::DoubleSolenoid::Value::kReverse);
+        intake2.Set(frc::DoubleSolenoid::Value::kReverse);
+    } else {
+        intake1.Set(frc::DoubleSolenoid::Value::kOff);
+        intake2.Set(frc::DoubleSolenoid::Value::kOff);
+    }
 }
 
 void Robot::TestInit() {
