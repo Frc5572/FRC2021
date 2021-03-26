@@ -97,7 +97,7 @@ class Robot : public frc::TimedRobot {
 
     // ClimbManager climber{test1, test2, Driver, climb};
 
-    // Hopper hopper{m_hopper, Operator};
+    Hopper hopper{m_hopperLeft, m_hopperRight,  Operator};
 
     VisionManager LimeLight;
 
@@ -127,9 +127,9 @@ class Robot : public frc::TimedRobot {
     PCM1 = 0,  //  GOOD
 
     HopperOneID = 9,
-    HopperTwoID = 15,  //  GOOD
+    HopperTwoID = 10,  //  GOOD
 
-    IntakeID = 16,
+    IntakeID = 11,
 
     turretID = 13;
 
