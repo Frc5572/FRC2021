@@ -81,11 +81,17 @@ class Robot : public frc::TimedRobot {
     /*instantiation of the compressor with its CAN ID and pneumatics*/
     frc::Compressor compressor{PCM1};
 
-    frc::DoubleSolenoid intake1{PCM1, 0, 7};
-    frc::DoubleSolenoid intake2{PCM1, 1, 6};
-    frc::DoubleSolenoid Solenoid{PCM1, 2, 5};
-    frc::DoubleSolenoid Solenoid2{PCM1, 3, 4};
-    frc::DoubleSolenoid Solenoid3{PCM2, 0, 7};
+    // frc::DoubleSolenoid intake1{PCM1, 0, 7};
+    // frc::DoubleSolenoid intake2{PCM1, 3, 6};
+    frc::DoubleSolenoid *intake1;
+    frc::DoubleSolenoid *intake2;
+    //checked 0,1,3,7
+    //not checked 2,4,5,6
+    // frc::DoubleSolenoid *intake1;
+    // frc::DoubleSolenoid *intake2;
+    // frc::DoubleSolenoid Solenoid{PCM1, 2, 5};
+    // frc::DoubleSolenoid Solenoid2{PCM1, 3, 4};
+    // frc::DoubleSolenoid Solenoid3{PCM2, 0, 7};
 
     // Sensor
     frc::DigitalInput limitSwitch2{2};  // in the mag
