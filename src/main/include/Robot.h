@@ -21,7 +21,7 @@
 #include <frc/Timer.h>
 #include <frc/livewindow/LiveWindow.h>
 #include <AHRS.h>
-
+#include <frc/Servo.h>
 // #include "rev/CANSparkMax.h"
 #include <rev/ColorSensorV3.h>
 #include <rev/ColorMatch.h>
@@ -49,6 +49,9 @@ class Robot : public frc::TimedRobot {
     WPI_TalonSRX m_intake{intakeMotor};
     WPI_TalonSRX m_hopperLeft{HopperOneID};
     WPI_TalonSRX m_hopperRight{HopperTwoID};
+    WPI_TalonSRX m_shooter1{shooter1};
+    WPI_TalonSRX m_shooter2{shooter2};
+    frc::Servo servo{1};
     // WPI_TalonSRX m_hopperLift{hopperLift};
     // WPI_TalonSRX*  m_leftTopMotor = new WPI_TalonSRX(TopLeft);
     // WPI_TalonSRX*  m_leftMiddleMotor = new WPI_TalonSRX(MiddleLeft);
@@ -77,6 +80,12 @@ class Robot : public frc::TimedRobot {
 
     /*instantiation of the compressor with its CAN ID and pneumatics*/
     frc::Compressor compressor{PCM1};
+
+    frc::DoubleSolenoid *intake1;
+    frc::DoubleSolenoid *intake2;
+    frc::DoubleSolenoid *sol1;
+    frc::DoubleSolenoid *sol2;
+    frc::DoubleSolenoid *sol3;
 
     // frc::DoubleSolenoid climb{PCM1, 1, 6};  // 3 4
 
@@ -126,11 +135,13 @@ class Robot : public frc::TimedRobot {
     // Intake = 9,  //  GOOD
 
     PCM1 = 0,  //  GOOD
-
+    PCM2 = 1,
     turretID = 13,
     intakeMotor = 11,
     HopperOneID = 9,
-    HopperTwoID = 10;  //  GOOD
+    HopperTwoID = 10,
+    shooter1 = 12,
+    shooter2 = 14;  //  GOOD
 
     // LeftClimb = 13,  //  GOOD
     // RightClimb = 14;  //  GOOD
