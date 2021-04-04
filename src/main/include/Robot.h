@@ -10,6 +10,7 @@
 #include "Movement/Hopper.hpp"
 #include "Movement/ClimbManager.hpp"
 #include "vision/PhotoeletricSensor.hpp"
+#include <frc/SpeedControllerGroup.h>
 // #include "Auto/AutoDrip.hpp
 
 #include <frc/TimedRobot.h>
@@ -46,6 +47,25 @@ class Robot : public frc::TimedRobot {
     WPI_TalonSRX m_rightTopMotor{TopRight};
     WPI_TalonSRX m_rightMiddleMotor{MiddleRight};
     WPI_TalonSRX m_rightBottomMotor{BottomRight};
+
+    WPI_TalonSRX hopper1{9};
+    WPI_TalonSRX hopper2{10};
+
+    WPI_TalonSRX intake{11};
+
+    
+    
+    WPI_TalonSRX m_shooter1{12};
+    WPI_TalonSRX m_shooter2{14};
+
+    
+
+    frc::SpeedControllerGroup shooters{m_shooter1, m_shooter2};
+
+    frc::Servo s1{1};
+    frc::Servo s2{2};
+
+    rev::CANSparkMax base{13, rev::CANSparkMax::MotorType::kBrushless};
     // WPI_TalonSRX*  m_leftTopMotor = new WPI_TalonSRX(TopLeft);
     // WPI_TalonSRX*  m_leftMiddleMotor = new WPI_TalonSRX(MiddleLeft);
     // WPI_TalonSRX*  m_leftBottomMotor = new WPI_TalonSRX(LeftBot);
