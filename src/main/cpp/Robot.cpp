@@ -15,9 +15,10 @@
 
 #include <frc/Servo.h>
 void Robot::RobotInit() {
-    // m_rightTopMotor.SetInverted(true);
-    // m_rightMiddleMotor.SetInverted(true);
-    // m_rightBottomMotor.SetInverted(true);
+    m_rightTopMotor.SetInverted(true);
+    m_rightMiddleMotor.SetInverted(true);
+    m_rightBottomMotor.SetInverted(true);
+   inperRight.SetInverted(true);
     m_timer.Reset();
 
     //limelight network table, sets led to off
@@ -27,10 +28,24 @@ void Robot::RobotInit() {
     //servo bounds found on online so that it properly goes from closed to open
     s1.SetBounds(2.0, 1.8, 1.5, 1.2, 1.0);
     s2.SetBounds(2.0, 1.8, 1.5, 1.2, 1.0);
+  
+    m_leftBottomMotor.SetNeutralMode(Coast);
+    m_leftMiddleMotor.SetNeutralMode(Coast);
+    m_leftTopMotor.SetNeutralMode(Coast);
+    m_rightBottomMotor.SetNeutralMode(Coast);
+    m_rightMiddleMotor.SetNeutralMode(Coast);
+    m_rightTopMotor.SetNeutralMode(Coast);
+    m_leftTopMotor.SetSelectedSensorPosition(0);
+    m_leftMiddleMotor.SetSelectedSensorPosition(0);
+    m_leftBottomMotor.SetSelectedSensorPosition(0);
+    m_rightTopMotor.SetSelectedSensorPosition(0);
+    m_rightMiddleMotor.SetSelectedSensorPosition(0);
+    m_rightBottomMotor.SetSelectedSensorPosition(0);
+    compressor.Start();
 }
 
 void Robot::RobotPeriodic() {
-
+    // SetClosedLoopControl(true);
 }
 
 void Robot::AutonomousInit() {
@@ -39,12 +54,11 @@ void Robot::AutonomousInit() {
 }
 
 void Robot::AutonomousPeriodic() {
-    driveTrain.LeftMotors->Set(.2);
-    m_leftBottomMotor.GetSelectedSensorPosition();
 }
 
 
 void Robot::TeleopInit() {
+
 }
 
 void Robot::TeleopPeriodic() {
@@ -117,8 +131,10 @@ void Robot::TestInit() {
 }
 
 void Robot::TestPeriodic() {
+
 }
 
 #ifndef RUNNING_FRC_TESTS
 int main() {return frc::StartRobot<Robot>();}
 #endif
+
