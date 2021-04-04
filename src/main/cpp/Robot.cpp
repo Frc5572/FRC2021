@@ -18,7 +18,6 @@ void Robot::RobotInit() {
     m_rightTopMotor.SetInverted(true);
     m_rightMiddleMotor.SetInverted(true);
     m_rightBottomMotor.SetInverted(true);
-   inperRight.SetInverted(true);
     m_timer.Reset();
 
     //limelight network table, sets led to off
