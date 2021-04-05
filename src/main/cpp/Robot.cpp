@@ -18,6 +18,7 @@ void Robot::RobotInit() {
     m_rightTopMotor.SetInverted(true);
     m_rightMiddleMotor.SetInverted(true);
     m_rightBottomMotor.SetInverted(true);
+    m_shooter1.SetInverted(true);
     m_timer.Reset();
 
     //limelight network table, sets led to off
@@ -27,7 +28,7 @@ void Robot::RobotInit() {
     //servo bounds found on online so that it properly goes from closed to open
     s1.SetBounds(2.0, 1.8, 1.5, 1.2, 1.0);
     s2.SetBounds(2.0, 1.8, 1.5, 1.2, 1.0);
-  
+
     m_leftBottomMotor.SetNeutralMode(Coast);
     m_leftMiddleMotor.SetNeutralMode(Coast);
     m_leftTopMotor.SetNeutralMode(Coast);
@@ -61,7 +62,7 @@ void Robot::TeleopInit() {
 }
 
 void Robot::TeleopPeriodic() {
-    // std::cout << Driver.RT() << " " << Driver.LT() << "\n"; 
+    // std::cout << Driver.RT() << " " << Driver.LT() << "\n";
     //turret movement
     if (Driver.RT() > 0.1)
     {
@@ -112,7 +113,7 @@ void Robot::TeleopPeriodic() {
         hopper1.Set(0);
         hopper2.Set(0);
     }
-    
+
     //intake
     if (Driver.X())
     {
