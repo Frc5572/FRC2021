@@ -93,8 +93,8 @@ void Robot::TeleopPeriodic() {
     //shooter motors
     if (Driver.B())
     {
-        m_shooter1.Set(.3);
-        m_shooter2.Set(.3);
+        m_shooter1.Set(.9);
+        m_shooter2.Set(.9);
     }
     else
     {
