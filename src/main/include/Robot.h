@@ -51,7 +51,6 @@ class Robot : public frc::TimedRobot {
     WPI_TalonSRX m_hopperRight{HopperTwoID};
     WPI_TalonSRX m_shooter1{shooter1};
     WPI_TalonSRX m_shooter2{shooter2};
-    frc::Servo servo{1};
     // WPI_TalonSRX m_hopperLift{hopperLift};
     // WPI_TalonSRX*  m_leftTopMotor = new WPI_TalonSRX(TopLeft);
     // WPI_TalonSRX*  m_leftMiddleMotor = new WPI_TalonSRX(MiddleLeft);
@@ -80,6 +79,8 @@ class Robot : public frc::TimedRobot {
 
     /*instantiation of the compressor with its CAN ID and pneumatics*/
     frc::Compressor compressor{PCM1};
+
+    frc::Servo *servo;
 
     frc::DoubleSolenoid *intake1;
     frc::DoubleSolenoid *intake2;

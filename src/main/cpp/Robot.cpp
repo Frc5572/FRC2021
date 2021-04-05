@@ -30,7 +30,6 @@ void Robot::RobotInit() {
     m_rightBottomMotor.SetSelectedSensorPosition(0);
     compressor.Start();
     compressor.SetClosedLoopControl(true);
-    servo.SetBounds(15, 8, 1, -8, -15);
     delete intake1;
     delete intake2;
     intake1 = new frc::DoubleSolenoid(PCM1, 0, 7);
@@ -43,6 +42,8 @@ void Robot::RobotInit() {
     sol1->Set(frc::DoubleSolenoid::Value::kReverse);
     sol2->Set(frc::DoubleSolenoid::Value::kReverse);
     sol3->Set(frc::DoubleSolenoid::Value::kReverse);
+    delete servo;
+    servo = new frc::Servo{0};
 }
 
 void Robot::RobotPeriodic() {
@@ -66,16 +67,16 @@ void Robot::TeleopInit() {
 void Robot::TeleopPeriodic() {
     driveTrain.Drive();
     // Hopper
-    if (Driver.A() == true) {
-        hopper.HopperMotors->Set(-.6);
-        m_intake.Set(-.6);
-    } else if (Driver.B() == true) {
-        hopper.HopperMotors->Set(.4);
-        m_intake.Set(.5);
-    } else {
-        hopper.HopperMotors->Set(0);
-        m_intake.Set(0);
-    }
+    // if (Driver.A() == true) {
+    //     hopper.HopperMotors->Set(-.6);
+    //     m_intake.Set(-.6);
+    // } else if (Driver.B() == true) {
+    //     hopper.HopperMotors->Set(.4);
+    //     m_intake.Set(.5);
+    // } else {
+    //     hopper.HopperMotors->Set(0);
+    //     m_intake.Set(0);
+    // }
 
     // Turret
     if (Driver.LB() == true) {
@@ -100,13 +101,13 @@ void Robot::TeleopPeriodic() {
     }
 
     // servo
-    // if(Driver.A()) {
-    //     servo.Set(1);
-    // } else if (Driver.B()) {
-    //     servo.Set(-1);
-    // } else {
-    //     servo.Set(0);
-    // }
+    if(Driver.A()) {
+        servo->Set(1);
+    } else if (Driver.B()) {
+        servo->Set(-1);
+    } else {
+        servo->Set(0);
+    }
 
     // if(Driver.A() == true) {
     //     intake1->Set(frc::DoubleSolenoid::Value::kForward);
