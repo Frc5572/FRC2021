@@ -53,12 +53,12 @@ class Robot : public frc::TimedRobot {
 
     WPI_TalonSRX intake{11};
 
-    
-    
+
+
     WPI_TalonSRX m_shooter1{12};
     WPI_TalonSRX m_shooter2{14};
 
-    
+
 
     frc::SpeedControllerGroup shooters{m_shooter1, m_shooter2};
 
@@ -84,12 +84,8 @@ class Robot : public frc::TimedRobot {
 
 
 /* Hopper */
-    rev::CANSparkMax m_turret{turretID,
-       rev::CANSparkMax::MotorType::kBrushless};
-
-    frc::VictorSP test1 {0};  // left climb motor
-
-    frc::VictorSP test2 {1};  // right climb motor
+    // rev::CANSparkMax m_turret{turretID,
+    //    rev::CANSparkMax::MotorType::kBrushless};
 
     /*instantiation of the compressor with its CAN ID and pneumatics*/
     frc::Compressor compressor{PCM1};
