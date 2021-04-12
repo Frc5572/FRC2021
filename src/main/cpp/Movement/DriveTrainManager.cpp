@@ -160,5 +160,5 @@ void DriveTrain::Aim() {
     } else {
         L = 0;
         R = 0;
-        }
+    }
 }

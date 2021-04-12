@@ -14,6 +14,8 @@
 #include "networktables/NetworkTableInstance.h"
 
 #include <frc/Servo.h>
+#include <frc/PIDController.h>
+
 void Robot::RobotInit() {
     m_rightTopMotor.SetInverted(true);
     m_rightMiddleMotor.SetInverted(true);
