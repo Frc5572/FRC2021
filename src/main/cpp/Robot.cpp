@@ -32,11 +32,11 @@ void Robot::RobotInit() {
     compressor.SetClosedLoopControl(true);
     delete intake1;
     delete intake2;
-    intake1 = new frc::DoubleSolenoid(PCM1, 0, 7);
-    intake2 = new frc::DoubleSolenoid(PCM1, 1, 6);
-    sol1 = new frc::DoubleSolenoid(PCM1, 2, 5);
-    sol2 = new frc::DoubleSolenoid(PCM2, 3, 4);
-    sol3 = new frc::DoubleSolenoid(PCM2, 2, 5);
+    intake1 = new frc::DoubleSolenoid(PCM1, 7, 0);
+    intake2 = new frc::DoubleSolenoid(PCM1, 6, 1);
+    sol1 = new frc::DoubleSolenoid(PCM1, 5, 2);
+    sol2 = new frc::DoubleSolenoid(PCM2, 4, 3);
+    sol3 = new frc::DoubleSolenoid(PCM2, 5, 2);
     intake1->Set(frc::DoubleSolenoid::Value::kReverse);
     intake2->Set(frc::DoubleSolenoid::Value::kReverse);
     sol1->Set(frc::DoubleSolenoid::Value::kReverse);
