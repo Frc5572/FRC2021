@@ -31,17 +31,20 @@ void Robot::RobotInit() {
     compressor.Start();
     compressor.SetClosedLoopControl(true);
     delete intake1;
-    delete intake2;
-    intake1 = new frc::DoubleSolenoid(PCM1, 7, 0);
-    intake2 = new frc::DoubleSolenoid(PCM1, 6, 1);
-    sol1 = new frc::DoubleSolenoid(PCM1, 5, 2);
-    sol2 = new frc::DoubleSolenoid(PCM2, 4, 3);
-    sol3 = new frc::DoubleSolenoid(PCM2, 5, 2);
+    delete sol2;
+    delete sol1;
+    intake1 = new frc::DoubleSolenoid(PCM1, 7, 0);//green
+    // intake2 = new frc::DoubleSolenoid(PCM1, 6, 1);//yellow
+    // sol1 = new frc::DoubleSolenoid(PCM1, 5, 2);//white
+    sol2 = new frc::DoubleSolenoid(PCM2, 4, 3);//blue
+    sol1 = new frc::DoubleSolenoid(PCM1, 6, 1);//yellow
+    // sol3 = new frc::DoubleSolenoid(PCM2, 5, 2);//red
     intake1->Set(frc::DoubleSolenoid::Value::kReverse);
-    intake2->Set(frc::DoubleSolenoid::Value::kReverse);
     sol1->Set(frc::DoubleSolenoid::Value::kReverse);
+    // intake2->Set(frc::DoubleSolenoid::Value::kReverse);
+    // sol1->Set(frc::DoubleSolenoid::Value::kReverse);
     sol2->Set(frc::DoubleSolenoid::Value::kReverse);
-    sol3->Set(frc::DoubleSolenoid::Value::kReverse);
+    // sol3->Set(frc::DoubleSolenoid::Value::kReverse);
     delete servo;
     servo = new frc::Servo{0};
 }
@@ -78,35 +81,51 @@ void Robot::TeleopPeriodic() {
     //     m_intake.Set(0);
     // }
 
-    // Turret
-    if (Driver.LB() == true) {
-        m_turret.Set(.1);
-    }
-    else if (Driver.RB() == true) {
-        m_turret.Set(-.1);
-    } else {
-        m_turret.Set(0);
-    }
+    // // Turret
+    // if (Driver.LB() == true) {
+    //     m_turret.Set(.1);
+    // }
+    // else if (Driver.RB() == true) {
+    //     m_turret.Set(-.1);
+    // } else {
+    //     m_turret.Set(0);
+    // }
 
     // Shooter
-    if (Driver.X() == true) {
-        m_shooter1.Set(1);
-        m_shooter2.Set(1);
-    } else if (Driver.Y() == true) {
-        m_shooter1.Set(-.3);
-        m_shooter2.Set(-.3);
-    } else {
-        m_shooter1.Set(0);
-        m_shooter2.Set(0);
-    }
+    // if (Driver.X() == true) {
+    //     m_shooter1.Set(1);
+    //     m_shooter2.Set(1);
+    // } else if (Driver.Y() == true) {
+    //     m_shooter1.Set(-.3);
+    //     m_shooter2.Set(-.3);
+    // } else {
+    //     m_shooter1.Set(0);
+    //     m_shooter2.Set(0);
+    // }
 
-    // servo
+    // // servo
+    // if(Driver.A()) {
+    //     servo->Set(1);
+    // } else if (Driver.B()) {
+    //     servo->Set(-1);
+    // } else {
+    //     servo->Set(0);
+    // }
+
     if(Driver.A()) {
-        servo->Set(1);
-    } else if (Driver.B()) {
-        servo->Set(-1);
+        intake1->Set(frc::DoubleSolenoid::Value::kReverse);
     } else {
-        servo->Set(0);
+        intake1->Set(frc::DoubleSolenoid::Value::kForward);
+    }
+    if(Driver.B()){
+        sol2->Set(frc::DoubleSolenoid::Value::kReverse);
+    } else {
+        sol2->Set(frc::DoubleSolenoid::Value::kForward);
+    }
+    if(Driver.X()){
+        sol1->Set(frc::DoubleSolenoid::Value::kReverse);
+    } else {
+        sol1->Set(frc::DoubleSolenoid::Value::kForward);
     }
 
     // if(Driver.A() == true) {
@@ -116,7 +135,7 @@ void Robot::TeleopPeriodic() {
     //     sol2->Set(frc::DoubleSolenoid::Value::kForward);
     //     sol3->Set(frc::DoubleSolenoid::Value::kForward);
     // } else if(Driver.B() == true) {
-    //     intake1->Set(frc::DoubleSolenoid::Value::kReverse);
+    //     intake1->Set(frc:: DoubleSolenoid::Value::kReverse);
     //     intake2->Set(frc::DoubleSolenoid::Value::kReverse);
     //     sol1->Set(frc::DoubleSolenoid::Value::kReverse);
     //     sol2->Set(frc::DoubleSolenoid::Value::kReverse);
