@@ -83,7 +83,7 @@ class Robot : public frc::TimedRobot {
     frc::Servo *servo;
 
     frc::DoubleSolenoid *intake1;
-    frc::DoubleSolenoid *intake2;
+    frc::DoubleSolenoid *sol4;
     frc::DoubleSolenoid *sol1;
     frc::DoubleSolenoid *sol2;
     frc::DoubleSolenoid *sol3;

@@ -33,18 +33,20 @@ void Robot::RobotInit() {
     delete intake1;
     delete sol2;
     delete sol1;
+    delete sol3;
+    delete sol4;
     intake1 = new frc::DoubleSolenoid(PCM1, 7, 0);//green
     // intake2 = new frc::DoubleSolenoid(PCM1, 6, 1);//yellow
-    // sol1 = new frc::DoubleSolenoid(PCM1, 5, 2);//white
+    sol3 = new frc::DoubleSolenoid(PCM1, 5, 2);//white
     sol2 = new frc::DoubleSolenoid(PCM2, 4, 3);//blue
     sol1 = new frc::DoubleSolenoid(PCM1, 6, 1);//yellow
-    // sol3 = new frc::DoubleSolenoid(PCM2, 5, 2);//red
+    sol4 = new frc::DoubleSolenoid(PCM2, 5, 2);//red
     intake1->Set(frc::DoubleSolenoid::Value::kReverse);
     sol1->Set(frc::DoubleSolenoid::Value::kReverse);
     // intake2->Set(frc::DoubleSolenoid::Value::kReverse);
-    // sol1->Set(frc::DoubleSolenoid::Value::kReverse);
+    sol3->Set(frc::DoubleSolenoid::Value::kReverse);
     sol2->Set(frc::DoubleSolenoid::Value::kReverse);
-    // sol3->Set(frc::DoubleSolenoid::Value::kReverse);
+    sol4->Set(frc::DoubleSolenoid::Value::kReverse);
     delete servo;
     servo = new frc::Servo{0};
 }
@@ -126,6 +128,16 @@ void Robot::TeleopPeriodic() {
         sol1->Set(frc::DoubleSolenoid::Value::kReverse);
     } else {
         sol1->Set(frc::DoubleSolenoid::Value::kForward);
+    }
+    if(Driver.Y()){
+        sol4->Set(frc::DoubleSolenoid::Value::kReverse);
+    } else {
+        sol4->Set(frc::DoubleSolenoid::Value::kForward);
+    }
+    if(Driver.LB()){
+        sol3->Set(frc::DoubleSolenoid::Value::kReverse);
+    } else {
+        sol3->Set(frc::DoubleSolenoid::Value::kForward);
     }
 
     // if(Driver.A() == true) {
