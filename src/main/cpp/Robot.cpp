@@ -8,6 +8,7 @@
 
 #include "Robot.h"
 #include "Movement/DriveTrainManager.hpp"
+#include "Movement/Turret.hpp"
 
 void Robot::RobotInit() {
     m_rightTopMotor.SetInverted(true);
@@ -30,20 +31,18 @@ void Robot::RobotInit() {
     m_rightBottomMotor.SetSelectedSensorPosition(0);
     compressor.Start();
     compressor.SetClosedLoopControl(true);
-    delete intake1;
+    delete intake;
     delete sol2;
     delete sol1;
     delete sol3;
     delete sol4;
-    intake1 = new frc::DoubleSolenoid(PCM1, 7, 0);//green
-    // intake2 = new frc::DoubleSolenoid(PCM1, 6, 1);//yellow
+    intake = new frc::DoubleSolenoid(PCM1, 7, 0);//green
     sol3 = new frc::DoubleSolenoid(PCM1, 5, 2);//white
     sol2 = new frc::DoubleSolenoid(PCM2, 4, 3);//blue
     sol1 = new frc::DoubleSolenoid(PCM1, 6, 1);//yellow
     sol4 = new frc::DoubleSolenoid(PCM2, 5, 2);//red
-    intake1->Set(frc::DoubleSolenoid::Value::kReverse);
+    intake->Set(frc::DoubleSolenoid::Value::kReverse);
     sol1->Set(frc::DoubleSolenoid::Value::kReverse);
-    // intake2->Set(frc::DoubleSolenoid::Value::kReverse);
     sol3->Set(frc::DoubleSolenoid::Value::kReverse);
     sol2->Set(frc::DoubleSolenoid::Value::kReverse);
     sol4->Set(frc::DoubleSolenoid::Value::kReverse);
@@ -71,6 +70,7 @@ void Robot::TeleopInit() {
 
 void Robot::TeleopPeriodic() {
     driveTrain.Drive();
+    turret.Aim();
     // Hopper
     // if (Driver.A() == true) {
     //     hopper.HopperMotors->Set(-.6);
@@ -115,25 +115,29 @@ void Robot::TeleopPeriodic() {
     // }
 
     if(Driver.A()) {
-        intake1->Set(frc::DoubleSolenoid::Value::kReverse);
+        intake->Set(frc::DoubleSolenoid::Value::kReverse);
     } else {
-        intake1->Set(frc::DoubleSolenoid::Value::kForward);
+        intake->Set(frc::DoubleSolenoid::Value::kForward);
     }
+
     if(Driver.B()){
         sol2->Set(frc::DoubleSolenoid::Value::kReverse);
     } else {
         sol2->Set(frc::DoubleSolenoid::Value::kForward);
     }
+
     if(Driver.X()){
         sol1->Set(frc::DoubleSolenoid::Value::kReverse);
     } else {
         sol1->Set(frc::DoubleSolenoid::Value::kForward);
     }
+
     if(Driver.Y()){
         sol4->Set(frc::DoubleSolenoid::Value::kReverse);
     } else {
         sol4->Set(frc::DoubleSolenoid::Value::kForward);
     }
+
     if(Driver.LB()){
         sol3->Set(frc::DoubleSolenoid::Value::kReverse);
     } else {

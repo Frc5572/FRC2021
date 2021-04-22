@@ -47,7 +47,7 @@ void Aim();
 
   VisionManager* LimeLight;
 
-  double disX, L, R;
+  double disX, T;
 
   frc::SpeedControllerGroup* LeftMotors;
   frc::SpeedControllerGroup* RightMotors;

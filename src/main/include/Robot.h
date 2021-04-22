@@ -8,6 +8,7 @@
 #include "Movement/DriveTrainManager.hpp"
 #include "Movement/Shooter.hpp"
 #include "Movement/Hopper.hpp"
+#include "Movement/Turret.hpp"
 #include "Movement/ClimbManager.hpp"
 #include "vision/PhotoeletricSensor.hpp"
 // #include "Auto/AutoDrip.hpp
@@ -82,7 +83,7 @@ class Robot : public frc::TimedRobot {
 
     frc::Servo *servo;
 
-    frc::DoubleSolenoid *intake1;
+    frc::DoubleSolenoid *intake;
     frc::DoubleSolenoid *sol4;
     frc::DoubleSolenoid *sol1;
     frc::DoubleSolenoid *sol2;
@@ -103,6 +104,8 @@ class Robot : public frc::TimedRobot {
     DriveTrain driveTrain{ m_leftTopMotor, m_rightTopMotor,
         m_leftMiddleMotor, m_rightMiddleMotor, m_leftBottomMotor,
         m_rightBottomMotor, Driver, LimeLight, ahrs };
+
+    Turret turret{ m_turret, Operator, LimeLight };
 
     // Shooter shooter{m_leftShooter, m_rightShooter, shooterHood, Operator};
 

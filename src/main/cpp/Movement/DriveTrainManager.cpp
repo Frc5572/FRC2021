@@ -1,3 +1,4 @@
+#include "Robot.h"
 #include "Movement/DriveTrainManager.hpp"
 
 /* CAN ID layout for drive train from a top view
@@ -137,28 +138,23 @@ void DriveTrain::Aim() {
         nt::NetworkTableInstance::GetDefault().GetTable("limelight")
                     ->PutNumber("ledMode", 1);
         disX = 0;
-        L = 0; R = 0;
+        T = 0;
     }
 
     if (fabs(disX) > 1 && Driver->X() == true) {
         if (disX > 10) {
-            R = -.15;
-            L = -.15;
+            T = -.15;
         }
         if (disX < 10) {
-            R = -disX/43;
-            L = -disX/43;
+            T = -disX/43;
         }
         if (disX < -10) {
-            R = .15;
-            L = .15;
+            T = .15;
         }
         if (disX > -10) {
-            R = disX/43;
-            L = disX/43;
+            T = disX/43;
         }
     } else {
-        L = 0;
-        R = 0;
+        T = 0;
         }
 }
