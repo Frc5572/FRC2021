@@ -8,7 +8,6 @@
 
 #include "Robot.h"
 #include "Movement/DriveTrainManager.hpp"
-#include "Movement/Turret.hpp"
 
 void Robot::RobotInit() {
     m_rightTopMotor.SetInverted(true);
@@ -48,6 +47,13 @@ void Robot::RobotInit() {
     sol4->Set(frc::DoubleSolenoid::Value::kReverse);
     delete servo;
     servo = new frc::Servo{0};
+
+        // }
+            nt::NetworkTableInstance::GetDefault().GetTable("limelight")
+                    ->PutNumber("ledMode", 3);
+
+                            nt::NetworkTableInstance::GetDefault().GetTable("limelight")
+                    ->PutNumber("camMode", 0);
 }
 
 void Robot::RobotPeriodic() {
@@ -69,6 +75,7 @@ void Robot::TeleopInit() {
 }
 
 void Robot::TeleopPeriodic() {
+    LimeLight.Update();
     driveTrain.Drive();
     turret.Aim();
     // Hopper
