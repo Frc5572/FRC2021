@@ -48,12 +48,11 @@ void Robot::RobotInit() {
     delete servo;
     servo = new frc::Servo{0};
 
-        // }
-            nt::NetworkTableInstance::GetDefault().GetTable("limelight")
-                    ->PutNumber("ledMode", 3);
+    nt::NetworkTableInstance::GetDefault().GetTable("limelight")
+        ->PutNumber("ledMode", 3);
 
-                            nt::NetworkTableInstance::GetDefault().GetTable("limelight")
-                    ->PutNumber("camMode", 0);
+    nt::NetworkTableInstance::GetDefault().GetTable("limelight")
+        ->PutNumber("camMode", 0);
 }
 
 void Robot::RobotPeriodic() {
