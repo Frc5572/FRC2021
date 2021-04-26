@@ -71,7 +71,7 @@ class Robot : public frc::TimedRobot {
         // new rev::CANEncoder{m_leftBottomMotor};
 
 
-    rev::CANSparkMax m_turret{turretID, ev::CANSparkMax::MotorType::kBrushless};
+    rev::CANSparkMax m_turret{turretID, rev::CANSparkMax::MotorType::kBrushless};
         frc::Servo s1{1};
     frc::Servo s2{2};
 
