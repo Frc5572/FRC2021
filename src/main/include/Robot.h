@@ -11,6 +11,7 @@
 #include "Movement/Turret.hpp"
 #include "Movement/ClimbManager.hpp"
 #include "vision/PhotoeletricSensor.hpp"
+#include <frc/SpeedControllerGroup.h>
 // #include "Auto/AutoDrip.hpp
 
 #include <frc/TimedRobot.h>
@@ -47,12 +48,14 @@ class Robot : public frc::TimedRobot {
     WPI_TalonSRX m_rightTopMotor{TopRight};
     WPI_TalonSRX m_rightMiddleMotor{MiddleRight};
     WPI_TalonSRX m_rightBottomMotor{BottomRight};
+
     WPI_TalonSRX m_intake{intakeMotor};
     WPI_TalonSRX m_hopperLeft{HopperOneID};
     WPI_TalonSRX m_hopperRight{HopperTwoID};
     WPI_TalonSRX m_shooter1{shooter1};
     WPI_TalonSRX m_shooter2{shooter2};
     // WPI_TalonSRX m_hopperLift{hopperLift};
+
     // WPI_TalonSRX*  m_leftTopMotor = new WPI_TalonSRX(TopLeft);
     // WPI_TalonSRX*  m_leftMiddleMotor = new WPI_TalonSRX(MiddleLeft);
     // WPI_TalonSRX*  m_leftBottomMotor = new WPI_TalonSRX(LeftBot);
@@ -71,12 +74,8 @@ class Robot : public frc::TimedRobot {
 
 
 /* Hopper */
-    rev::CANSparkMax m_turret{turretID,
-       rev::CANSparkMax::MotorType::kBrushless};
-
-    frc::VictorSP test1 {0};  // left climb motor
-
-    frc::VictorSP test2 {1};  // right climb motor
+    // rev::CANSparkMax m_turret{turretID,
+    //    rev::CANSparkMax::MotorType::kBrushless};
 
     /*instantiation of the compressor with its CAN ID and pneumatics*/
     frc::Compressor compressor{PCM1};
@@ -111,7 +110,7 @@ class Robot : public frc::TimedRobot {
 
     // ClimbManager climber{test1, test2, Driver, climb};
 
-    Hopper hopper{m_hopperLeft, m_hopperRight,  Operator};
+    //Hopper hopper{m_hopperLeft, m_hopperRight,  Operator};
 
     VisionManager LimeLight;
 
