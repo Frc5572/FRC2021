@@ -8,6 +8,7 @@
 #include "Movement/DriveTrainManager.hpp"
 #include "Movement/Shooter.hpp"
 #include "Movement/Hopper.hpp"
+#include "Movement/Turret.hpp"
 #include "Movement/ClimbManager.hpp"
 #include "vision/PhotoeletricSensor.hpp"
 #include <frc/SpeedControllerGroup.h>
@@ -22,7 +23,7 @@
 #include <frc/Timer.h>
 #include <frc/livewindow/LiveWindow.h>
 #include <AHRS.h>
-
+#include <frc/Servo.h>
 // #include "rev/CANSparkMax.h"
 #include <rev/ColorSensorV3.h>
 #include <rev/ColorMatch.h>
@@ -48,24 +49,13 @@ class Robot : public frc::TimedRobot {
     WPI_TalonSRX m_rightMiddleMotor{MiddleRight};
     WPI_TalonSRX m_rightBottomMotor{BottomRight};
 
-    WPI_TalonSRX hopper1{9};
-    WPI_TalonSRX hopper2{10};
+    WPI_TalonSRX m_intake{intakeMotor};
+    WPI_TalonSRX m_hopperLeft{HopperOneID};
+    WPI_TalonSRX m_hopperRight{HopperTwoID};
+    WPI_TalonSRX m_shooter1{shooter1};
+    WPI_TalonSRX m_shooter2{shooter2};
+    // WPI_TalonSRX m_hopperLift{hopperLift};
 
-    WPI_TalonSRX intake{11};
-
-
-
-    WPI_TalonSRX m_shooter1{12};
-    WPI_TalonSRX m_shooter2{14};
-
-
-
-    frc::SpeedControllerGroup shooters{m_shooter1, m_shooter2};
-
-    frc::Servo s1{1};
-    frc::Servo s2{2};
-
-    rev::CANSparkMax base{13, rev::CANSparkMax::MotorType::kBrushless};
     // WPI_TalonSRX*  m_leftTopMotor = new WPI_TalonSRX(TopLeft);
     // WPI_TalonSRX*  m_leftMiddleMotor = new WPI_TalonSRX(MiddleLeft);
     // WPI_TalonSRX*  m_leftBottomMotor = new WPI_TalonSRX(LeftBot);
@@ -81,6 +71,9 @@ class Robot : public frc::TimedRobot {
         // new rev::CANEncoder{m_leftBottomMotor};
 
 
+    rev::CANSparkMax m_turret{turretID, rev::CANSparkMax::MotorType::kBrushless};
+        frc::Servo s1{1};
+    frc::Servo s2{2};
 
 
 /* Hopper */
@@ -89,6 +82,14 @@ class Robot : public frc::TimedRobot {
 
     /*instantiation of the compressor with its CAN ID and pneumatics*/
     frc::Compressor compressor{PCM1};
+
+    frc::Servo *servo;
+
+    frc::DoubleSolenoid *intake;
+    frc::DoubleSolenoid *sol4;
+    frc::DoubleSolenoid *sol1;
+    frc::DoubleSolenoid *sol2;
+    frc::DoubleSolenoid *sol3;
 
     // frc::DoubleSolenoid climb{PCM1, 1, 6};  // 3 4
 
@@ -105,6 +106,8 @@ class Robot : public frc::TimedRobot {
     DriveTrain driveTrain{ m_leftTopMotor, m_rightTopMotor,
         m_leftMiddleMotor, m_rightMiddleMotor, m_leftBottomMotor,
         m_rightBottomMotor, Driver, LimeLight, ahrs };
+
+    Turret turret{ m_turret, Operator, LimeLight };
 
     // Shooter shooter{m_leftShooter, m_rightShooter, shooterHood, Operator};
 
@@ -138,18 +141,16 @@ class Robot : public frc::TimedRobot {
     // Intake = 9,  //  GOOD
 
     PCM1 = 0,  //  GOOD
-
+    PCM2 = 1,
+    turretID = 13,
+    intakeMotor = 11,
     HopperOneID = 9,
-    HopperTwoID = 10,  //  GOOD
-
-    IntakeID = 11,
-
-    turretID = 13;
+    HopperTwoID = 10,
+    shooter1 = 12,
+    shooter2 = 14;  //  GOOD
 
     // LeftClimb = 13,  //  GOOD
     // RightClimb = 14;  //  GOOD
-
-    double actualRPM;
 
 
  public:

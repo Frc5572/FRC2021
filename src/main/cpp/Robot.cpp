@@ -18,6 +18,8 @@ void Robot::RobotInit() {
     m_rightTopMotor.SetInverted(true);
     m_rightMiddleMotor.SetInverted(true);
     m_rightBottomMotor.SetInverted(true);
+
+    m_hopperRight.SetInverted(true);
     m_shooter1.SetInverted(true);
     m_timer.Reset();
 
@@ -42,6 +44,30 @@ void Robot::RobotInit() {
     m_rightMiddleMotor.SetSelectedSensorPosition(0);
     m_rightBottomMotor.SetSelectedSensorPosition(0);
     compressor.Start();
+    compressor.SetClosedLoopControl(true);
+    delete intake;
+    delete sol2;
+    delete sol1;
+    delete sol3;
+    delete sol4;
+    intake = new frc::DoubleSolenoid(PCM1, 7, 0);//green
+    sol3 = new frc::DoubleSolenoid(PCM1, 5, 2);//white
+    sol2 = new frc::DoubleSolenoid(PCM2, 4, 3);//blue
+    sol1 = new frc::DoubleSolenoid(PCM1, 6, 1);//yellow
+    sol4 = new frc::DoubleSolenoid(PCM2, 5, 2);//red
+    intake->Set(frc::DoubleSolenoid::Value::kReverse);
+    sol1->Set(frc::DoubleSolenoid::Value::kReverse);
+    sol3->Set(frc::DoubleSolenoid::Value::kReverse);
+    sol2->Set(frc::DoubleSolenoid::Value::kReverse);
+    sol4->Set(frc::DoubleSolenoid::Value::kReverse);
+    delete servo;
+    servo = new frc::Servo{0};
+
+    nt::NetworkTableInstance::GetDefault().GetTable("limelight")
+        ->PutNumber("ledMode", 3);
+
+    nt::NetworkTableInstance::GetDefault().GetTable("limelight")
+        ->PutNumber("camMode", 0);
 }
 
 void Robot::RobotPeriodic() {
@@ -54,6 +80,7 @@ void Robot::AutonomousInit() {
 }
 
 void Robot::AutonomousPeriodic() {
+
 }
 
 
@@ -62,69 +89,9 @@ void Robot::TeleopInit() {
 }
 
 void Robot::TeleopPeriodic() {
-    // std::cout << Driver.RT() << " " << Driver.LT() << "\n";
-    //turret movement
-    if (Driver.RT() > 0.1)
-    {
-        base.Set(.1);
-    }
-    else if (Driver.LT() > 0.1)
-    {
-        base.Set(-.1);
-    }
-    else
-    {
-        base.Set(0);
-    }
-
-    //servo/linear actuators for turret
-    //speed is a percentage of how closed/open it is.
-    if (Driver.A())
-    {
-        s1.SetSpeed(1);
-        s2.SetSpeed(1);
-    }
-    else
-    {
-        s1.SetSpeed(-1);
-        s2.SetSpeed(-1);
-    }
-
-    //shooter motors
-    if (Driver.B())
-    {
-        m_shooter1.Set(.9);
-        m_shooter2.Set(.9);
-    }
-    else
-    {
-        m_shooter1.Set(0);
-        m_shooter2.Set(0);
-    }
-
-    //hopper
-    if (Driver.Y())
-    {
-        hopper1.Set(.4);
-        hopper2.Set(-.4);
-    }
-    else
-    {
-        hopper1.Set(0);
-        hopper2.Set(0);
-    }
-
-    //intake
-    if (Driver.X())
-    {
-        intake.Set(.1);
-    }
-    else
-    {
-        intake.Set(0);
-    }
-
+    LimeLight.Update();
     driveTrain.Drive();
+    turret.Aim();
 }
 
 void Robot::TestInit() {
