@@ -9,6 +9,7 @@
 #include "Movement/Shooter.hpp"
 #include "Movement/Hopper.hpp"
 #include "Movement/Turret.hpp"
+#include "Movement/Intake.hpp"
 #include "Movement/ClimbManager.hpp"
 #include "vision/PhotoeletricSensor.hpp"
 #include <frc/SpeedControllerGroup.h>
@@ -108,6 +109,8 @@ class Robot : public frc::TimedRobot {
         m_rightBottomMotor, Driver, LimeLight, ahrs };
 
     Turret turret{ m_turret, Operator, LimeLight };
+
+    Intake intake{m_intake, Operator};
 
     // Shooter shooter{m_leftShooter, m_rightShooter, shooterHood, Operator};
 

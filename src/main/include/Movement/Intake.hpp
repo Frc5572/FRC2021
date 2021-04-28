@@ -11,11 +11,10 @@
 class Intake{
  public:
     Intake(
-        rev::CANSparkMax &LeftMotor,
-        rev::CANSparkMax &RightMotor,
-        frc::DoubleSolenoid &Hood,
+        WPI_TalonSRX &intakeMotor,
         FRC5572Controller &Operator);
 
+    ~Intake();
     void Shot();
     void Calucate();
     void TestRPM();
@@ -32,7 +31,7 @@ class Intake{
     // void TrenchShot();
     int AutoSelection = 0;
     bool Tracked = true, hood = false;
-    double Power = 0, Distance = 0, rpm = 0, leftRPM = 0, rightRPM = 0, SP = 0;
+    double Power = 0, Distance = 0, rpm = 0, intakeRPM = 0, SP = 0;
 
     // // PID coefficients
     // double kP = 0.000000000000001, kI = .2, kD = 1, kIz = .2, kFF = 0, kMaxOutput = 1, kMinOutput = -1, SetP = 700;
@@ -47,16 +46,11 @@ class Intake{
     rev::CANPIDController *m_pidController;
     rev::CANPIDController *m_pidController2;
 
-    frc::SpeedControllerGroup* shooterMotors;
 
     FRC5572Controller* Operator;
 
-    rev::CANSparkMax* leftMotor;
-    rev::CANSparkMax* rightMotor;
+    rev::CANSparkMax* intakeMotor;
 
-    frc::DoubleSolenoid* Hood;
-
-    rev::CANEncoder* leftMotorEncoder;
-    rev::CANEncoder* rightMotorEncoder;
+    rev::CANEncoder* intakeMotorEncoder;
 };
 #endif

@@ -45,17 +45,17 @@ void Robot::RobotInit() {
     m_rightBottomMotor.SetSelectedSensorPosition(0);
     compressor.Start();
     compressor.SetClosedLoopControl(true);
-    delete intake;
+    // delete intake;
     delete sol2;
     delete sol1;
     delete sol3;
     delete sol4;
-    intake = new frc::DoubleSolenoid(PCM1, 7, 0);//green
+    // intake = new frc::DoubleSolenoid(PCM1, 7, 0);//green
     sol3 = new frc::DoubleSolenoid(PCM1, 5, 2);//white
     sol2 = new frc::DoubleSolenoid(PCM2, 4, 3);//blue
     sol1 = new frc::DoubleSolenoid(PCM1, 6, 1);//yellow
     sol4 = new frc::DoubleSolenoid(PCM2, 5, 2);//red
-    intake->Set(frc::DoubleSolenoid::Value::kReverse);
+    // intake->Set(frc::DoubleSolenoid::Value::kReverse);
     sol1->Set(frc::DoubleSolenoid::Value::kReverse);
     sol3->Set(frc::DoubleSolenoid::Value::kReverse);
     sol2->Set(frc::DoubleSolenoid::Value::kReverse);
@@ -92,6 +92,7 @@ void Robot::TeleopPeriodic() {
     LimeLight.Update();
     driveTrain.Drive();
     turret.Aim();
+    Intake.RunPID();
 }
 
 void Robot::TestInit() {

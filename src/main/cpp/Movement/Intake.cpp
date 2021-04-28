@@ -6,10 +6,9 @@ void Intake::InitPID() {
      *  in the SPARK MAX to their factory default state. If no argument is passed, these
      *  parameters will not persist between power cycles
      */
-    leftMotor->RestoreFactoryDefaults();
-    rightMotor->RestoreFactoryDefaults();
+    intakeMotor->RestoreFactoryDefaults();
 
-    rightMotor->SetInverted(true);
+    // intakeMotor->SetInverted(true);
 
     //  set PID coefficients
     m_pidController->SetP(kP);
@@ -81,21 +80,18 @@ void Intake::AutoPID() {
         //  3375
         SetPoint = 2700;
         SP = SetPoint;
-        Hood->Set(frc::DoubleSolenoid::Value::kForward);
         m_pidController->SetReference(SetPoint,
         rev::ControlType::kVelocity);
-        leftRPM = leftMotorEncoder->GetVelocity();
-        rightRPM = rightMotorEncoder->GetVelocity();
-        rpm = ((leftRPM + rightRPM) / 2);
+        intakeRPM = intakeMotorEncoder->GetVelocity();
+        rpm = (intakeRPM);
     } else {
         SetPoint = 0;
     }
     frc::SmartDashboard::PutNumber("SetPoint", SetPoint);
     frc::SmartDashboard::PutNumber("ProcessVariable",
-    leftMotorEncoder->GetVelocity());
+    intakeMotorEncoder->GetVelocity());
     frc::SmartDashboard::PutNumber("RPM", rpm);
-    frc::SmartDashboard::PutNumber("Left RPM", leftRPM);
-    frc::SmartDashboard::PutNumber("Right RPM", rightRPM);
+    frc::SmartDashboard::PutNumber("Left RPM", intakeRPM);
 }
 
 void Intake::RunPID() {
@@ -142,19 +138,14 @@ void Intake::RunPID() {
         }
     if (this->Operator->POV() == 0) {  //  bumber
         SetPoint = 2600;
-        Hood->Set(frc::DoubleSolenoid::Value::kReverse);
     } else if (this->Operator->POV() == 90) {  //  init
         SetPoint = 3375;
-        Hood->Set(frc::DoubleSolenoid::Value::kForward);
     } else if (this->Operator->POV() == 270) {  //  trench
         SetPoint = 3800;
-        Hood->Set(frc::DoubleSolenoid::Value::kForward);
     } else if (Operator->POV() == 180) {  //  colorwheel
         SetPoint = 4500;
-        Hood->Set(frc::DoubleSolenoid::Value::kForward);
     } else {
         SetPoint = 0;
-        Hood->Set(frc::DoubleSolenoid::Value::kReverse);
     }
 
      m_pidController->SetReference(SetPoint, rev::ControlType::kVelocity);
@@ -162,16 +153,14 @@ void Intake::RunPID() {
 
     frc::SmartDashboard::PutNumber("SetPoint", SetPoint);
     frc::SmartDashboard::PutNumber("ProcessVariable",
-    leftMotorEncoder->GetVelocity());
+    intakeMotorEncoder->GetVelocity());
 
 
-    leftRPM = leftMotorEncoder->GetVelocity();
-    rightRPM = rightMotorEncoder->GetVelocity();
-    rpm = ((leftRPM + rightRPM) / 2);
+    intakeRPM = intakeMotorEncoder->GetVelocity();
+    rpm = (intakeRPM);
 
     frc::SmartDashboard::PutNumber("RPM", rpm);
-    frc::SmartDashboard::PutNumber("Left RPM", leftRPM);
-    frc::SmartDashboard::PutNumber("Right RPM", rightRPM);
+    frc::SmartDashboard::PutNumber("Left RPM", intakeRPM);
     }
 
 
@@ -185,82 +174,54 @@ Intake::Intake(
     m_pidController2 = new rev::CANPIDController{RightMotor};
 
 
-    this->leftMotor = &LeftMotor;
-    this->rightMotor = &RightMotor;
-    this->Hood = &Hood;
+    this->intakeMotor = &RightMotor;
     this->Operator = &Operator;
-    shooterMotors = new frc::SpeedControllerGroup{ LeftMotor,
-    RightMotor};
-    leftMotorEncoder = new rev::CANEncoder{LeftMotor};
-    rightMotorEncoder = new rev::CANEncoder{RightMotor};
+    // intakeMotor = new frc::SpeedControllerGroup{ LeftMotor,
+    // RightMotor};
+    intakeMotorEncoder = new rev::CANEncoder{LeftMotor};
 }
 
 void Intake::Shot() {
-    if (Operator->B()) {
-        //  do toggle
-        Hood->Set(frc::DoubleSolenoid::Value::kForward);
-    } else {
-      Hood->Set(frc::DoubleSolenoid::Value::kReverse);
-    }
-
     if (Tracked) {
-        shooterMotors->Set(Operator->RT());
+        intakeMotor->Set(Operator->RT());
     } else {
-        shooterMotors->Set(0);
+        intakeMotor->Set(0);
     }
 }
 
 void Intake::Test() {
     if (Operator->LB()) {
         //  Hood->Set(frc::DoubleSolenoid::Value::kForward);
-        shooterMotors->Set(.65);
+        intakeMotor->Set(.65);
     } else {
-        shooterMotors->Set(0);
+        intakeMotor->Set(0);
         //  Hood->Set(frc::DoubleSolenoid::Value::kReverse);
     }
 }
 
 void Intake::TestRPM() {
     if (this->Operator->POV() == 0) {
-        shooterMotors->Set(.65);
-        Hood->Set(frc::DoubleSolenoid::Value::kReverse);
+        intakeMotor->Set(.65);
     } else if (this->Operator->POV() == 90) {
-        shooterMotors->Set(.78);
-        Hood->Set(frc::DoubleSolenoid::Value::kForward);
+        intakeMotor->Set(.78);
     } else if (this->Operator->POV() == 270) {
         //  small adjustment from .92 to .94
-        shooterMotors->Set(.90);
-        Hood->Set(frc::DoubleSolenoid::Value::kForward);
+        intakeMotor->Set(.90);
     } else {
-        shooterMotors->Set(0.0);
-        Hood->Set(frc::DoubleSolenoid::Value::kReverse);
+        intakeMotor->Set(0.0);
     }
 }
 
 void Intake::Shots() {
-    if (this->Operator->POV() == 0) {
-        shooterMotors->Set(.47);
-        Hood->Set(frc::DoubleSolenoid::Value::kReverse);
-    } else if (this->Operator->POV() == 90) {
-        shooterMotors->Set(.6);
-        Hood->Set(frc::DoubleSolenoid::Value::kForward);
-    } else if (this->Operator->POV() == 270) {
-        //  small adjustment from .92 to .94
-        shooterMotors->Set(.7);
-        Hood->Set(frc::DoubleSolenoid::Value::kForward);
-    } else if (Operator->POV() == 180) {
-        shooterMotors->Set(.85);
-        Hood->Set(frc::DoubleSolenoid::Value::kForward);
+    if (this->Operator->Y() == true) {
+        intakeMotor->Set(.47);
     } else {
-        shooterMotors->Set(0.0);
-        Hood->Set(frc::DoubleSolenoid::Value::kReverse);
+        intakeMotor->Set(0.0);
     }
 
-    leftRPM = leftMotorEncoder->GetVelocity();
-    rightRPM = rightMotorEncoder->GetVelocity();
-    rpm = ((leftRPM + rightRPM) / 2);
+    intakeRPM = intakeMotorEncoder->GetVelocity();
+    rpm = (intakeRPM);
 
     frc::SmartDashboard::PutNumber("RPM", rpm);
-    frc::SmartDashboard::PutNumber("Left RPM", leftRPM);
-    frc::SmartDashboard::PutNumber("Right RPM", rightRPM);
+    frc::SmartDashboard::PutNumber("Left RPM", intakeRPM);
 }
