@@ -14,7 +14,6 @@ void Robot::RobotInit() {
     m_rightMiddleMotor.SetInverted(true);
     m_rightBottomMotor.SetInverted(true);
     m_hopperRight.SetInverted(true);
-    m_shooter1.SetInverted(true);
     m_timer.Reset();
     m_leftBottomMotor.SetNeutralMode(Coast);
     m_leftMiddleMotor.SetNeutralMode(Coast);
@@ -56,7 +55,6 @@ void Robot::RobotInit() {
 }
 
 void Robot::RobotPeriodic() {
-    // SetClosedLoopControl(true);
 }
 
 void Robot::AutonomousInit() {
@@ -149,26 +147,6 @@ void Robot::TeleopPeriodic() {
     } else {
         sol3->Set(frc::DoubleSolenoid::Value::kForward);
     }
-
-    // if(Driver.A() == true) {
-    //     intake1->Set(frc::DoubleSolenoid::Value::kForward);
-    //     intake2->Set(frc::DoubleSolenoid::Value::kForward);
-    //     sol1->Set(frc::DoubleSolenoid::Value::kForward);
-    //     sol2->Set(frc::DoubleSolenoid::Value::kForward);
-    //     sol3->Set(frc::DoubleSolenoid::Value::kForward);
-    // } else if(Driver.B() == true) {
-    //     intake1->Set(frc:: DoubleSolenoid::Value::kReverse);
-    //     intake2->Set(frc::DoubleSolenoid::Value::kReverse);
-    //     sol1->Set(frc::DoubleSolenoid::Value::kReverse);
-    //     sol2->Set(frc::DoubleSolenoid::Value::kReverse);
-    //     sol3->Set(frc::DoubleSolenoid::Value::kReverse);
-    // } else {
-    //     intake1->Set(frc::DoubleSolenoid::Value::kOff);
-    //     intake2->Set(frc::DoubleSolenoid::Value::kOff);
-    //     sol1->Set(frc::DoubleSolenoid::Value::kOff);
-    //     sol2->Set(frc::DoubleSolenoid::Value::kOff);
-    //     sol3->Set(frc::DoubleSolenoid::Value::kOff);
-    // }
 }
 
 void Robot::TestInit() {

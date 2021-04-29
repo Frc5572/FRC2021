@@ -31,35 +31,9 @@ void Turret::TurretMove() {
 }
 
 void Turret::Aim() {
-    // if (Operator->X() ==  true) {
-    //     nt::NetworkTableInstance::GetDefault().GetTable("limelight")
-    //                 ->PutNumber("camMode", 0);
-    //     nt::NetworkTableInstance::GetDefault().GetTable("limelight")
-    //                 ->PutNumber("ledMode", 3);
-    // } else if (Operator->Y() == false) {
-    //     nt::NetworkTableInstance::GetDefault().GetTable("limelight")
-    //                 ->PutNumber("camMode", 1);
-    //     nt::NetworkTableInstance::GetDefault().GetTable("limelight")
-    //                 ->PutNumber("ledMode", 1);
-    //     disX = 0;
-    //     T = 0;
-
-
     disX = LimeLight->disX;
 
     if (fabs(disX) > 3) {
-        // if (disX > 10) {
-        //     T = -.10;
-        // }
-        // if (disX < 10) {
-        //     T = -disX/60;
-        // }
-        // if (disX < -10) {
-        //     T = .10;
-        // }
-        // if (disX > -10) {
-        //     T = disX/60;
-        // }
         auto aDisX = fabs(disX);
         if (aDisX < 10)
         {

@@ -7,13 +7,15 @@
 #include "Movement/ControllerManager.hpp"
 #include <frc/SpeedControllerGroup.h>
 #include <frc/SmartDashboard/SmartDashboard.h>
+#include "ctre/Phoenix.h"
+#include <frc/PIDController.h>
+#include <frc/PWMTalonSRX.h>
 
 class Shooter{
  public:
     Shooter(
-        rev::CANSparkMax &LeftMotor,
-        rev::CANSparkMax &RightMotor,
-        frc::DoubleSolenoid &Hood,
+        WPI_TalonSRX &m_shooter1,
+        WPI_TalonSRX &m_shooter2,
         FRC5572Controller &Operator);
 
     void Shot();
@@ -51,12 +53,7 @@ class Shooter{
 
     FRC5572Controller* Operator;
 
-    rev::CANSparkMax* leftMotor;
-    rev::CANSparkMax* rightMotor;
-
-    frc::DoubleSolenoid* Hood;
-
-    rev::CANEncoder* leftMotorEncoder;
-    rev::CANEncoder* rightMotorEncoder;
+    WPI_TalonSRX* m_shooter1;
+    WPI_TalonSRX* m_shooter2;
 };
 #endif

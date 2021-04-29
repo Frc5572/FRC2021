@@ -6,10 +6,8 @@ void Shooter::InitPID() {
      *  in the SPARK MAX to their factory default state. If no argument is passed, these
      *  parameters will not persist between power cycles
      */
-    leftMotor->RestoreFactoryDefaults();
-    rightMotor->RestoreFactoryDefaults();
 
-    rightMotor->SetInverted(true);
+    m_shooter1->SetInverted(true);
 
     //  set PID coefficients
     m_pidController->SetP(kP);
@@ -80,18 +78,17 @@ void Shooter::AutoPID() {
         //  3375
         SetPoint = 2700;
         SP = SetPoint;
-        Hood->Set(frc::DoubleSolenoid::Value::kForward);
         m_pidController->SetReference(SetPoint,
         rev::ControlType::kVelocity);
-        leftRPM = leftMotorEncoder->GetVelocity();
-        rightRPM = rightMotorEncoder->GetVelocity();
+        leftRPM = m_shooter2->GetSelectedSensorVelocity();
+        rightRPM = m_shooter1->GetSelectedSensorVelocity();
         rpm = ((leftRPM + rightRPM) / 2);
     } else {
         SetPoint = 0;
     }
     frc::SmartDashboard::PutNumber("SetPoint", SetPoint);
     frc::SmartDashboard::PutNumber("ProcessVariable",
-    leftMotorEncoder->GetVelocity());
+    m_shooter2->GetSelectedSensorVelocity());
     frc::SmartDashboard::PutNumber("RPM", rpm);
     frc::SmartDashboard::PutNumber("Left RPM", leftRPM);
     frc::SmartDashboard::PutNumber("Right RPM", rightRPM);
@@ -140,19 +137,19 @@ void Shooter::RunPID() {
         }
     if (this->Operator->POV() == 0) {  //  bumber
         SetPoint = 2600;
-        Hood->Set(frc::DoubleSolenoid::Value::kReverse);
+        // Hood->Set(frc::DoubleSolenoid::Value::kReverse);
     } else if (this->Operator->POV() == 90) {  //  init
         SetPoint = 3375;
-        Hood->Set(frc::DoubleSolenoid::Value::kForward);
+        // Hood->Set(frc::DoubleSolenoid::Value::kForward);
     } else if (this->Operator->POV() == 270) {  //  trench
         SetPoint = 3800;
-        Hood->Set(frc::DoubleSolenoid::Value::kForward);
+        // Hood->Set(frc::DoubleSolenoid::Value::kForward);
     } else if (Operator->POV() == 180) {  //  colorwheel
         SetPoint = 4500;
-        Hood->Set(frc::DoubleSolenoid::Value::kForward);
+        // Hood->Set(frc::DoubleSolenoid::Value::kForward);
     } else {
         SetPoint = 0;
-        Hood->Set(frc::DoubleSolenoid::Value::kReverse);
+        // Hood->Set(frc::DoubleSolenoid::Value::kReverse);
     }
 
      m_pidController->SetReference(SetPoint, rev::ControlType::kVelocity);
@@ -160,11 +157,11 @@ void Shooter::RunPID() {
 
     frc::SmartDashboard::PutNumber("SetPoint", SetPoint);
     frc::SmartDashboard::PutNumber("ProcessVariable",
-    leftMotorEncoder->GetVelocity());
+    m_shooter2->GetSelectedSensorVelocity());
 
 
-    leftRPM = leftMotorEncoder->GetVelocity();
-    rightRPM = rightMotorEncoder->GetVelocity();
+    leftRPM = m_shooter2->GetSelectedSensorVelocity();
+    rightRPM = m_shooter1->GetSelectedSensorVelocity();
     rpm = ((leftRPM + rightRPM) / 2);
 
     frc::SmartDashboard::PutNumber("RPM", rpm);
@@ -174,31 +171,29 @@ void Shooter::RunPID() {
 
 
 Shooter::Shooter(
-    rev::CANSparkMax &LeftMotor,
-    rev::CANSparkMax &RightMotor,
-    frc::DoubleSolenoid &Hood,
+    WPI_TalonSRX &m_shooter1,
+    WPI_TalonSRX &m_shooter2,
+    // frc::DoubleSolenoid &Hood,
     FRC5572Controller &Operator
     ) {
-    m_pidController = new rev::CANPIDController{LeftMotor};
-    m_pidController2 = new rev::CANPIDController{RightMotor};
+    // m_pidController = new rev::CANPIDController{m_shooter2};
+    // m_pidController2 = new rev::CANPIDController{m_shooter1};
+    m_pidController = new frc::PIDOutput(kP, kI, kD, m_shooter1);
 
 
-    this->leftMotor = &LeftMotor;
-    this->rightMotor = &RightMotor;
-    this->Hood = &Hood;
+    this->m_shooter2 = &LeftMotor;
+    this->m_shooter1 = &RightMotor;
     this->Operator = &Operator;
     shooterMotors = new frc::SpeedControllerGroup{ LeftMotor,
     RightMotor};
-    leftMotorEncoder = new rev::CANEncoder{LeftMotor};
-    rightMotorEncoder = new rev::CANEncoder{RightMotor};
 }
 
 void Shooter::Shot() {
     if (Operator->B()) {
-        //  do toggle
-        Hood->Set(frc::DoubleSolenoid::Value::kForward);
+        //  do toggle3
+        // Hood->Set(frc::DoubleSolenoid::Value::kForward);
     } else {
-      Hood->Set(frc::DoubleSolenoid::Value::kReverse);
+        // Hood->Set(frc::DoubleSolenoid::Value::kReverse);
     }
 
     if (Tracked) {
@@ -221,41 +216,41 @@ void Shooter::Test() {
 void Shooter::TestRPM() {
     if (this->Operator->POV() == 0) {
         shooterMotors->Set(.65);
-        Hood->Set(frc::DoubleSolenoid::Value::kReverse);
+        // Hood->Set(frc::DoubleSolenoid::Value::kReverse);
     } else if (this->Operator->POV() == 90) {
         shooterMotors->Set(.78);
-        Hood->Set(frc::DoubleSolenoid::Value::kForward);
+        // Hood->Set(frc::DoubleSolenoid::Value::kForward);
     } else if (this->Operator->POV() == 270) {
         //  small adjustment from .92 to .94
         shooterMotors->Set(.90);
-        Hood->Set(frc::DoubleSolenoid::Value::kForward);
+        // Hood->Set(frc::DoubleSolenoid::Value::kForward);
     } else {
         shooterMotors->Set(0.0);
-        Hood->Set(frc::DoubleSolenoid::Value::kReverse);
+        // Hood->Set(frc::DoubleSolenoid::Value::kReverse);
     }
 }
 
 void Shooter::Shots() {
     if (this->Operator->POV() == 0) {
         shooterMotors->Set(.47);
-        Hood->Set(frc::DoubleSolenoid::Value::kReverse);
+        // Hood->Set(frc::DoubleSolenoid::Value::kReverse);
     } else if (this->Operator->POV() == 90) {
         shooterMotors->Set(.6);
-        Hood->Set(frc::DoubleSolenoid::Value::kForward);
+        // Hood->Set(frc::DoubleSolenoid::Value::kForward);
     } else if (this->Operator->POV() == 270) {
         //  small adjustment from .92 to .94
         shooterMotors->Set(.7);
-        Hood->Set(frc::DoubleSolenoid::Value::kForward);
+        // Hood->Set(frc::DoubleSolenoid::Value::kForward);
     } else if (Operator->POV() == 180) {
         shooterMotors->Set(.85);
-        Hood->Set(frc::DoubleSolenoid::Value::kForward);
+        // Hood->Set(frc::DoubleSolenoid::Value::kForward);
     } else {
         shooterMotors->Set(0.0);
-        Hood->Set(frc::DoubleSolenoid::Value::kReverse);
+        // Hood->Set(frc::DoubleSolenoid::Value::kReverse);
     }
 
-    leftRPM = leftMotorEncoder->GetVelocity();
-    rightRPM = rightMotorEncoder->GetVelocity();
+    leftRPM = m_shooter2->GetSelectedSensorVelocity();
+    rightRPM = m_shooter1->GetSelectedSensorVelocity();
     rpm = ((leftRPM + rightRPM) / 2);
 
     frc::SmartDashboard::PutNumber("RPM", rpm);
