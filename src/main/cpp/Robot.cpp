@@ -89,9 +89,18 @@ void Robot::TeleopInit() {
 }
 
 void Robot::TeleopPeriodic() {
-    LimeLight.Update();
-    driveTrain.Drive();
-    turret.Aim();
+    // LimeLight.Update();
+    // driveTrain.Drive();
+    // turret.Aim();
+    if (Driver.A())
+    {
+        shooter.run();
+    }
+    else
+    {
+        m_shooter1.Set(0);
+        m_shooter2.Set(0);
+    }
 }
 
 void Robot::TestInit() {

@@ -29,6 +29,8 @@
 #include <rev/ColorMatch.h>
 #include <frc/VictorSP.h>
 
+#include "Movement/ShooterPID.hpp"
+
 
 
 class Robot : public frc::TimedRobot {
@@ -91,6 +93,8 @@ class Robot : public frc::TimedRobot {
     frc::DoubleSolenoid *sol2;
     frc::DoubleSolenoid *sol3;
 
+    PIDShooter shooter{m_shooter1, m_shooter2};
+
     // frc::DoubleSolenoid climb{PCM1, 1, 6};  // 3 4
 
     // frc::DoubleSolenoid shooterHood{PCM1, 2, 5};
@@ -107,7 +111,8 @@ class Robot : public frc::TimedRobot {
         m_leftMiddleMotor, m_rightMiddleMotor, m_leftBottomMotor,
         m_rightBottomMotor, Driver, LimeLight, ahrs };
 
-    Turret turret{ m_turret, Operator, LimeLight };
+    Turret turret{ m_turret, Driver, LimeLight };
+
 
     // Shooter shooter{m_leftShooter, m_rightShooter, shooterHood, Operator};
 

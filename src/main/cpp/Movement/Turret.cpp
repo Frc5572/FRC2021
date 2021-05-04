@@ -47,7 +47,20 @@ void Turret::Aim() {
 
     disX = LimeLight->disX;
 
-    if (fabs(disX) > 3) {
+    auto l =Operator->L().second, r = Operator->R().second;
+
+    if (l < .1)
+    {
+        l = 0;
+    }
+    if (r < .1)
+    {
+        r = 0;
+    }
+    double dir = (r - l) * .2;
+    std::cout << "l is: " << l << " r is: " << r << "dir is: " << dir << "\n";
+
+    if (fabs(disX) > 3 || fabs(dir) > .1) {
         // if (disX > 10) {
         //     T = -.10;
         // }
@@ -61,13 +74,16 @@ void Turret::Aim() {
         //     T = disX/60;
         // }
         auto aDisX = fabs(disX);
+
+
+
         if (aDisX < 10)
         {
-            T = .05 * copysign(1, disX);
+            T = .05 * copysign(1, disX) + dir;
         }
         else
         {
-            T = disX/85;
+            T = disX/85 + dir;
         }
     } else {
         T = 0;
