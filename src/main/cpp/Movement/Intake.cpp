@@ -165,20 +165,17 @@ void Intake::RunPID() {
 
 
 Intake::Intake(
-    rev::CANSparkMax &LeftMotor,
-    rev::CANSparkMax &RightMotor,
-    frc::DoubleSolenoid &Hood,
+    WPI_TalonSRX &intakeMotor,
     FRC5572Controller &Operator
     ) {
-    m_pidController = new rev::CANPIDController{LeftMotor};
-    m_pidController2 = new rev::CANPIDController{RightMotor};
+    m_pidController = new rev::CANPIDController{intakeMotor};
 
 
-    this->intakeMotor = &RightMotor;
+    this->intakeMotor = &intakeMotor;
     this->Operator = &Operator;
     // intakeMotor = new frc::SpeedControllerGroup{ LeftMotor,
     // RightMotor};
-    intakeMotorEncoder = new rev::CANEncoder{LeftMotor};
+    intakeMotorEncoder = new rev::CANEncoder{intakeMotor};
 }
 
 void Intake::Shot() {

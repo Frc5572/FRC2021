@@ -1,6 +1,4 @@
-#ifndef INTAKE_HPP
-#define INTAKE_HPP
-
+#pragma once
 #include <frc/DoubleSolenoid.h>
 #include "rev/CANSparkMax.h"
 #include "AHRS.h"
@@ -53,4 +51,4 @@ class Intake{
 
     rev::CANEncoder* intakeMotorEncoder;
 };
-#endif
+
