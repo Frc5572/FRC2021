@@ -98,9 +98,10 @@ void Robot::TeleopPeriodic() {
     }
     else
     {
-        m_shooter1.Set(0);
-        m_shooter2.Set(0);
+        m_shooter1.Set(.2);
+        m_shooter2.Set(.2);
     }
+
 }
 
 void Robot::TestInit() {

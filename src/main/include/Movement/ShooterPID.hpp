@@ -49,11 +49,17 @@ class PIDShooter
         rpm = frc::SmartDashboard::GetNumber("SetPoint", 0);
         pid->SetPID(p, i, d);
         // auto speed = (master->GetEncoder().GetVelocity() + follower->GetEncoder().GetVelocity()) / 2;
-        // auto s1 = master->GetEncoder().GetVelocity();
+        auto s1 = master->GetSelectedSensorVelocity();
         auto s2 = follower->GetSelectedSensorVelocity();
-        frc::SmartDashboard::PutNumber("RPM", s2);
+        auto speed = (s1 + s2) / 2;
+        std::cout << "Current RPM is: " << speed << "\n";
+        std::cout << "Current speed1 is: " << s1 << "\n";
+        std::cout << "Current speed2 is: " << s2 << "\n";
+        frc::SmartDashboard::PutNumber("RPM", speed);
         // motors->Set(pid->Calczpulate(speed, rpm));
         // master->Set(pid->Calculate(s1, rpm));
-        follower->Set(pid->Calculate(s2, rpm));
+        auto result = pid->Calculate(speed, rpm);
+        follower->Set(result);
+        master->Set(result);
     }
 };

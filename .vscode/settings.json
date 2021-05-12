@@ -18,5 +18,8 @@
   "files.associations": {
     "*.inc": "cpp",
     "new": "cpp"
+  },
+  "files.watcherExclude": {
+    "**/target": true
   }
 }
