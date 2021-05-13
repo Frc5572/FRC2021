@@ -92,15 +92,41 @@ void Robot::TeleopPeriodic() {
     // LimeLight.Update();
     // driveTrain.Drive();
     // turret.Aim();
-    if (Driver.A())
-    {
-        shooter.run();
+    // if (Driver.A())
+    // {
+    //     // shooter.run();
+    //     m_shooter1.Set(.7);
+    //     m_shooter2.Set(.7);
+    // }
+    // else
+    // {
+    //     m_shooter1.Set(0);
+    //     m_shooter2.Set(0);
+    // }
+    if(Driver.Y()){
+        m_hopperLeft.Set(.7);
+        m_hopperRight.Set(.7);
     }
+    // else if (Driver.X())
+    // {
+        // m_hopperLeft.Set(-.4);
+        // m_hopperRight.Set(-.4);
+    // }
     else
     {
-        m_shooter1.Set(0);
-        m_shooter2.Set(0);
+        m_hopperLeft.Set(0);
+        m_hopperRight.Set(0);
     }
+
+    // if(Driver.B()){
+    //     m_intake.Set(.3);
+    // }
+    // else
+    // {
+    //     m_intake.Set(0);
+    // }
+
+
 }
 
 void Robot::TestInit() {
