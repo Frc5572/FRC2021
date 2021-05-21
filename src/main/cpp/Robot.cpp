@@ -37,6 +37,8 @@ void Robot::RobotInit() {
     m_rightBottomMotor.SetNeutralMode(Coast);
     m_rightMiddleMotor.SetNeutralMode(Coast);
     m_rightTopMotor.SetNeutralMode(Coast);
+    m_shooter1.SetNeutralMode(Coast);
+    m_shooter2.SetNeutralMode(Coast);
     m_leftTopMotor.SetSelectedSensorPosition(0);
     m_leftMiddleMotor.SetSelectedSensorPosition(0);
     m_leftBottomMotor.SetSelectedSensorPosition(0);
@@ -100,7 +102,9 @@ void Robot::TeleopPeriodic() {
     }
     if (Driver.A())
     {
-        shooter.run();
+        //shooter.run();
+        m_shooter1.Set(.5);
+        m_shooter2.Set(.5);
     }
     else
     {
