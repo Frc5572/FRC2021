@@ -72,6 +72,7 @@ void Robot::RobotInit() {
 
 void Robot::RobotPeriodic() {
     // SetClosedLoopControl(true);
+    // m_shooter2.Set(.3);
 }
 
 void Robot::AutonomousInit() {
@@ -85,23 +86,32 @@ void Robot::AutonomousPeriodic() {
 
 
 void Robot::TeleopInit() {
-
+    shooter.refresh();
 }
 
 void Robot::TeleopPeriodic() {
-    // LimeLight.Update();
-    // driveTrain.Drive();
-    // turret.Aim();
+    LimeLight.Update();
+    driveTrain.Drive();
+    turret.Aim();
+    if (Driver.LT()) {
+        m_turret.Set(-.1);
+    } else if (Driver.RT()) {
+        m_turret.Set(.1);
+    }
     if (Driver.A())
     {
         shooter.run();
     }
     else
     {
-        m_shooter1.Set(.2);
-        m_shooter2.Set(.2);
+        m_shooter1.Set(.4);
+        m_shooter2.Set(.4);
     }
 
+    auto s1 = m_shooter1.GetSelectedSensorVelocity();
+    auto s2 = m_shooter2.GetSelectedSensorVelocity();
+    auto speed = (s1 + s2) / 2;
+    frc::SmartDashboard::PutNumber("RPM", speed);
 }
 
 void Robot::TestInit() {

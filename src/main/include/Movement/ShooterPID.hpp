@@ -16,6 +16,8 @@ class PIDShooter
     WPI_TalonSRX *follower;
     int rpm;
 
+    static constexpr int UPR = 2048;
+
     public:
     PIDShooter(WPI_TalonSRX &m1, WPI_TalonSRX &m2, int RPM = 2000)
     {
@@ -38,27 +40,35 @@ class PIDShooter
         // frc::SmartDashboard::PutBoolean("Shooter Motor 1 or 2", true);
     }
 
-    void run()
+    void refresh()
     {
-        //0.000060 for p
-        //0.000001 for i
-        // motors->Get()
         double p = frc::SmartDashboard::GetNumber("P Gain", 0);
         double i = frc::SmartDashboard::GetNumber("I Gain", 0);
         double d = frc::SmartDashboard::GetNumber("D Gain", 0);
         rpm = frc::SmartDashboard::GetNumber("SetPoint", 0);
+        std::cout << "Rpm is: " << rpm << "\n";
         pid->SetPID(p, i, d);
-        // auto speed = (master->GetEncoder().GetVelocity() + follower->GetEncoder().GetVelocity()) / 2;
+    }
+
+    void run()
+    {
+        //0.000060 for p
+        //0.000001 for i
+
+        // double k = (double)rpm / 12000;
+        double k = (double)rpm / 9000;
+
+
         auto s1 = master->GetSelectedSensorVelocity();
         auto s2 = follower->GetSelectedSensorVelocity();
+
+        auto c = master->Get();
+        double mc = .4-(c*.4);
         auto speed = (s1 + s2) / 2;
-        std::cout << "Current RPM is: " << speed << "\n";
-        std::cout << "Current speed1 is: " << s1 << "\n";
-        std::cout << "Current speed2 is: " << s2 << "\n";
-        frc::SmartDashboard::PutNumber("RPM", speed);
-        // motors->Set(pid->Calczpulate(speed, rpm));
-        // master->Set(pid->Calculate(s1, rpm));
+        // frc::SmartDashboard::PutNumber("RPM", speed);
+;
         auto result = pid->Calculate(speed, rpm);
+
         follower->Set(result);
         master->Set(result);
     }
