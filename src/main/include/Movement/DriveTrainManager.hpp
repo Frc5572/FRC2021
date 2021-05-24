@@ -41,6 +41,7 @@ DriveTrain(
   AHRS &ahrs);
 
 ~DriveTrain();
+void driveInit();
 void Drive();
 void LowerAmps();
 void Aim();

@@ -100,6 +100,30 @@ DriveTrain::~DriveTrain() {
 //     }
 // }
 
+void DriveTrain::driveInit() {
+    BottomRightMotor->SetInverted(true);
+    MiddleRight->SetInverted(true);
+    TopRightMotor->SetInverted(true);
+    BottomLeftMotor->SetNeutralMode(Coast);
+    MiddleLeft->SetNeutralMode(Coast);
+    TopLeftMotor->SetNeutralMode(Coast);
+    BottomRightMotor->SetNeutralMode(Coast);
+    MiddleRight->SetNeutralMode(Coast);
+    TopRightMotor->SetNeutralMode(Coast);
+    BottomLeftMotor->SetSelectedSensorPosition(0);
+    MiddleLeft->SetSelectedSensorPosition(0);
+    TopLeftMotor->SetSelectedSensorPosition(0);
+    BottomRightMotor->SetSelectedSensorPosition(0);
+    MiddleRight->SetSelectedSensorPosition(0);
+    TopRightMotor->SetSelectedSensorPosition(0);
+    BottomLeftMotor->ConfigFactoryDefault();
+    MiddleLeft->ConfigFactoryDefault();
+    TopLeftMotor->ConfigFactoryDefault();
+    BottomRightMotor->ConfigFactoryDefault();
+    MiddleRight->ConfigFactoryDefault();
+    TopRightMotor->ConfigFactoryDefault();
+}
+
 void DriveTrain::Drive() {
     if (this->Driver->L().second > .2 || this->Driver->L().second < -.2) {
         LeftMotors->Set(-1 * Driver->L().second * .5);

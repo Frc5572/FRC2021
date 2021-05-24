@@ -13,11 +13,14 @@
 #include "networktables/NetworkTable.h"
 #include "networktables/NetworkTableInstance.h"
 
-#include <frc/Servo.h>
+float limelightAngle;
+float subHeight;
+float distance;
+float angle;
+
 void Robot::RobotInit() {
-    m_rightTopMotor.SetInverted(true);
-    m_rightMiddleMotor.SetInverted(true);
-    m_rightBottomMotor.SetInverted(true);
+
+    driveTrain.driveInit();
 
     m_hopperRight.SetInverted(true);
     m_shooter1.SetInverted(true);
@@ -29,39 +32,29 @@ void Robot::RobotInit() {
 
     //servo bounds found on online so that it properly goes from closed to open
     s1.SetBounds(2.0, 1.8, 1.5, 1.2, 1.0);
-    s2.SetBounds(2.0, 1.8, 1.5, 1.2, 1.0);
-
-    m_leftBottomMotor.SetNeutralMode(Coast);
-    m_leftMiddleMotor.SetNeutralMode(Coast);
-    m_leftTopMotor.SetNeutralMode(Coast);
-    m_rightBottomMotor.SetNeutralMode(Coast);
-    m_rightMiddleMotor.SetNeutralMode(Coast);
-    m_rightTopMotor.SetNeutralMode(Coast);
-    m_leftTopMotor.SetSelectedSensorPosition(0);
-    m_leftMiddleMotor.SetSelectedSensorPosition(0);
-    m_leftBottomMotor.SetSelectedSensorPosition(0);
-    m_rightTopMotor.SetSelectedSensorPosition(0);
-    m_rightMiddleMotor.SetSelectedSensorPosition(0);
-    m_rightBottomMotor.SetSelectedSensorPosition(0);
+    // s2.SetBounds(2.0, 1.8, 1.5, 1.2, 1.0);
     compressor.Start();
     compressor.SetClosedLoopControl(true);
-    delete intake;
+    delete sol5;
     delete sol2;
-    delete sol1;
+    delete intakeSol;
     delete sol3;
     delete sol4;
-    intake = new frc::DoubleSolenoid(PCM1, 7, 0);//green
+    sol5 = new frc::DoubleSolenoid(PCM1, 7, 0);//green
     sol3 = new frc::DoubleSolenoid(PCM1, 5, 2);//white
     sol2 = new frc::DoubleSolenoid(PCM2, 4, 3);//blue
-    sol1 = new frc::DoubleSolenoid(PCM1, 6, 1);//yellow
+    intakeSol = new frc::DoubleSolenoid(PCM1, 6, 1);//yellow
     sol4 = new frc::DoubleSolenoid(PCM2, 5, 2);//red
-    intake->Set(frc::DoubleSolenoid::Value::kReverse);
-    sol1->Set(frc::DoubleSolenoid::Value::kReverse);
+    sol5->Set(frc::DoubleSolenoid::Value::kReverse);
+    intakeSol->Set(frc::DoubleSolenoid::Value::kForward);
     sol3->Set(frc::DoubleSolenoid::Value::kReverse);
     sol2->Set(frc::DoubleSolenoid::Value::kReverse);
     sol4->Set(frc::DoubleSolenoid::Value::kReverse);
-    delete servo;
-    servo = new frc::Servo{0};
+    // s1.Set(0);
+    // s2.Set(0);
+    // delete servo;
+    // servo = new frc::Servo{0};
+
 
     nt::NetworkTableInstance::GetDefault().GetTable("limelight")
         ->PutNumber("ledMode", 3);
@@ -80,7 +73,17 @@ void Robot::AutonomousInit() {
 }
 
 void Robot::AutonomousPeriodic() {
-
+    /*
+    Servo Values
+    0 = 30 degrees
+    .5 = 45 degrees
+    1 = 60 degrees
+    */
+   //Getting distance from shooter thingy using limelight measurements
+    limelightAngle = tan(LimeLight.ta + 40);
+    subHeight = 47;
+    distance = subHeight / limelightAngle;
+    angle = sqrt((distance * distance) + (subHeight * subHeight));
 }
 
 
@@ -89,8 +92,75 @@ void Robot::TeleopInit() {
 }
 
 void Robot::TeleopPeriodic() {
-    // LimeLight.Update();
-    // driveTrain.Drive();
+
+    driveTrain.Drive();
+    hopper.Run();
+    LimeLight.Update();
+
+    if(Operator.POV() == 180){
+        // s1.Set(1);
+        // s2.Set(1);
+        s1.SetPosition(0);
+        // s2.SetPosition(0);
+        // s2.SetSpeed(1);
+    } else if(Operator.POV() == 90) {
+        s1.SetPosition(.5);
+        // s2.SetPosition(.5);
+    } else if(Operator.POV() == 0){
+        s1.SetPosition(1);
+        // s2.SetPosition(1);
+        // s2.SetSpeed(-1);
+    }
+
+    if(Operator.B()){
+        m_shooter1.Set(.4);
+        m_shooter2.Set(.4);
+    } else {
+        m_shooter1.Set(0);
+        m_shooter2.Set(0);
+    }
+
+    // if(Driver.A()){
+    //     turret.Aim();
+    // }
+    // turret.Aim();
+    if(Operator.LB()){
+        m_turret.Set(.3);
+    } else if(Operator.RB()){
+        m_turret.Set(-.3);
+    } else {
+        m_turret.Set(0);
+    }
+    intake.Run();
+    // shooter.run();
+    // if(Driver.A()){
+    //     sol5->Set(frc::DoubleSolenoid::Value::kForward);
+    //     sol2->Set(frc::DoubleSolenoid::Value::kForward);
+    // } else {
+    //     sol5->Set(frc::DoubleSolenoid::Value::kReverse);
+    //     sol2->Set(frc::DoubleSolenoid::Value::kReverse);
+    // }
+    // if(Driver.B()){
+    //     sol4->Set(frc::DoubleSolenoid::Value::kForward);
+    // } else {
+    //     sol4->Set(frc::DoubleSolenoid::Value::kReverse);
+    // }
+    // if(Driver.X()){
+    //     sol3->Set(frc::DoubleSolenoid::Value::kForward);
+    // } else {
+    //     sol3->Set(frc::DoubleSolenoid::Value::kReverse);
+    // }
+    // // if(Driver.Y()){
+    // //     sol2->Set(frc::DoubleSolenoid::Value::kForward);
+    // // } else {
+    // //     sol2->Set(frc::DoubleSolenoid::Value::kReverse);
+    // // }
+    // if(Driver.LB()){
+    //     intakeSol->Set(frc::DoubleSolenoid::Value::kReverse);
+    // } else {
+    //     intakeSol->Set(frc::DoubleSolenoid::Value::kForward);
+    // }
+    // Shooter shooter.Test();
     // turret.Aim();
     // if (Driver.A())
     // {
@@ -103,20 +173,7 @@ void Robot::TeleopPeriodic() {
     //     m_shooter1.Set(0);
     //     m_shooter2.Set(0);
     // }
-    if(Driver.Y()){
-        m_hopperLeft.Set(.7);
-        m_hopperRight.Set(.7);
-    }
-    // else if (Driver.X())
-    // {
-        // m_hopperLeft.Set(-.4);
-        // m_hopperRight.Set(-.4);
-    // }
-    else
-    {
-        m_hopperLeft.Set(0);
-        m_hopperRight.Set(0);
-    }
+
 
     // if(Driver.B()){
     //     m_intake.Set(.3);

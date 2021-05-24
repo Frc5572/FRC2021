@@ -25,3 +25,15 @@ Hopper::Hopper(
 Hopper::~Hopper() {
     delete HopperMotors;
 }
+
+void Hopper::Run() {
+    if(Operator->Y()){
+        belt1->Set(.7);
+        belt2->Set(.7);
+    }
+    else
+    {
+        belt1->Set(0);
+        belt2->Set(0);
+    }
+}

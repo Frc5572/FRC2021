@@ -1,6 +1,3 @@
-#ifndef SHOOTER_HPP
-#define SHOOTER_HPP
-
 #include <frc/DoubleSolenoid.h>
 #include "rev/CANSparkMax.h"
 #include "AHRS.h"
@@ -59,4 +56,3 @@ class Shooter{
     rev::CANEncoder* leftMotorEncoder;
     rev::CANEncoder* rightMotorEncoder;
 };
-#endif

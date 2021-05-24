@@ -1,6 +1,3 @@
-#ifndef HOPPER_HPP
-#define HOPPER_HPP
-
 #include "rev/CANSparkMax.h"
 #include "Movement/ControllerManager.hpp"
 #include <frc/SpeedControllerGroup.h>
@@ -10,12 +7,11 @@
 
 // AKA magazine and the intake
 
-class Hopper{
+class Intake{
     public:
 
-    Hopper(
-        WPI_TalonSRX &Belt1,
-        WPI_TalonSRX &Belt2,
+    Intake(
+        WPI_TalonSRX &m_intake,
         FRC5572Controller &Operator
         // frc::DigitalInput &Input2,
         // frc::DigitalInput &Input3
@@ -23,7 +19,7 @@ class Hopper{
 
     );
 
-    ~Hopper();
+    ~Intake();
 
     void Run();
 
@@ -33,15 +29,11 @@ class Hopper{
     // void RunIntakePistions();
     // void ManualIntakeMotors();
 
-    frc::SpeedControllerGroup* HopperMotors;
 
     FRC5572Controller* Operator;
 
-    WPI_TalonSRX* belt1;
-    WPI_TalonSRX* belt2;
+    WPI_TalonSRX* m_intake;
     // frc::DigitalInput* limitSwitch2;
     // frc::DigitalInput* limitSwitch3;
 
 };
-
-#endif
