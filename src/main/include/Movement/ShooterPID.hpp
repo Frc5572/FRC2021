@@ -65,7 +65,6 @@ class PIDShooter
 
         std::cout << "Voltage 1: " << v1 << "\n";
         std::cout << "Voltage 2: " << v2 << "\n";
-        
         master->Set(v1);
         follower->Set(v2);
         // follower->Follow(*master);
