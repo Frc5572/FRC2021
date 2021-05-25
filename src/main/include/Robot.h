@@ -93,11 +93,11 @@ class Robot : public frc::TimedRobot {
     // frc::Servo *servo;
     // servo = new frc::Servo{0};
 
-    frc::DoubleSolenoid *sol5;
+    frc::DoubleSolenoid *climber2;
     frc::DoubleSolenoid *sol4;
     frc::DoubleSolenoid *intakeSol;
-    frc::DoubleSolenoid *sol2;
-    frc::DoubleSolenoid *sol3;
+    frc::DoubleSolenoid *climber1;
+    frc::DoubleSolenoid *hopperSol;
 
     PIDShooter shooter{m_shooter1, m_shooter2};
 

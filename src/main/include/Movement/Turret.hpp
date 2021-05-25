@@ -22,6 +22,7 @@ Turret(
 
 void TurretMove();
 void Aim();
+void Off();
 
   VisionManager* LimeLight;
 

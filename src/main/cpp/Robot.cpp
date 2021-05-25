@@ -35,20 +35,20 @@ void Robot::RobotInit() {
     // s2.SetBounds(2.0, 1.8, 1.5, 1.2, 1.0);
     compressor.Start();
     compressor.SetClosedLoopControl(true);
-    delete sol5;
-    delete sol2;
+    delete climber2;
+    delete climber1;
     delete intakeSol;
-    delete sol3;
+    delete hopperSol;
     delete sol4;
-    sol5 = new frc::DoubleSolenoid(PCM1, 7, 0);//green
-    sol3 = new frc::DoubleSolenoid(PCM1, 5, 2);//white
-    sol2 = new frc::DoubleSolenoid(PCM2, 4, 3);//blue
+    climber2 = new frc::DoubleSolenoid(PCM1, 7, 0);//green
+    hopperSol = new frc::DoubleSolenoid(PCM1, 5, 2);//white
+    climber1 = new frc::DoubleSolenoid(PCM2, 4, 3);//blue
     intakeSol = new frc::DoubleSolenoid(PCM1, 6, 1);//yellow
     sol4 = new frc::DoubleSolenoid(PCM2, 5, 2);//red
-    sol5->Set(frc::DoubleSolenoid::Value::kReverse);
+    hopperSol->Set(frc::DoubleSolenoid::Value::kReverse);
     intakeSol->Set(frc::DoubleSolenoid::Value::kForward);
-    sol3->Set(frc::DoubleSolenoid::Value::kReverse);
-    sol2->Set(frc::DoubleSolenoid::Value::kReverse);
+    hopperSol->Set(frc::DoubleSolenoid::Value::kForward);
+    climber1->Set(frc::DoubleSolenoid::Value::kReverse);
     sol4->Set(frc::DoubleSolenoid::Value::kReverse);
     // s1.Set(0);
     // s2.Set(0);
@@ -65,6 +65,7 @@ void Robot::RobotInit() {
 
 void Robot::RobotPeriodic() {
     // SetClosedLoopControl(true);
+    LimeLight.Update();
 }
 
 void Robot::AutonomousInit() {
@@ -84,58 +85,75 @@ void Robot::AutonomousPeriodic() {
     // subHeight = 47;
     // distance = subHeight / limelightAngle;
     // angle = sqrt((distance * distance) + (subHeight * subHeight));
-
-    while(m_timer.Get() < 3 ){
-        //shooter.AutoPID();
-        // shooter.shooterMotors.Set(.6);
-        m_shooter1.Set(.6);
-        m_shooter2.Set(.6);
-        // shooterHood.Set(frc::DoubleSolenoid::Value::kForward);
-        //m_hopper.Set(.3);
-        continue;
-    }
-
-    while(m_timer.Get() > 3 && m_timer.Get() < 10 ){
-        hopper.HopperMotors->Set(.3);
-        // shooter shooterMotors.Set(.6);
-        m_shooter1.Set(.6);
-        m_shooter2.Set(.6);
-        // shooterHood.Set(frc::DoubleSolenoid::Value::kForward);
-    }
-
-    while(m_timer.Get() > 10 && m_timer.Get() < 11){
-        // shooterHood.Set(frc::DoubleSolenoid::Value::kReverse);
-        m_shooter1.Set(.6);
-        m_shooter2.Set(.6);
-        hopper.HopperMotors->Set(0);
-        continue;
-    }
-
-    while(m_timer.Get() > 11 && m_timer.Get() < 13)
-    {
-        driveTrain.RightMotors->Set(-.3);
-        driveTrain.LeftMotors->Set(-.3);
-        continue;
-    }
-
-    while(m_timer.Get() > 13 && m_timer.Get() < 13.5)
-    {
-        driveTrain.RightMotors->Set(0);
-        driveTrain.LeftMotors->Set(0);
-        continue;
-    }
-
-    while(m_timer.Get() > 13.5 && m_timer.Get() < 14.5)
-    {
-        driveTrain.RightMotors->Set(.3);
-        driveTrain.LeftMotors->Set(.3);
-        continue;
-    }
-
-    driveTrain.RightMotors->Set(0);
-    driveTrain.LeftMotors->Set(0);
+    // if(m_timer.Get() < 5){
+    //     turret.Aim();
+    // }
+    for(auto i = 0; i<10; i++){
+    turret.Aim();
 }
 
+    // if(m_timer.Get() > 3 && m_timer.Get() < 10 ){
+    //     // turret.Off();
+    //     hopper.HopperMotors->Set(.3);
+    //     // m_shooter1.Set(.6);
+//     // m_shooter2.Set(.6);
+    // }
+    // if(m_timer.Get() > 10 && m_timer.Get() < 11){
+    //     // m_shooter1.Set(.6);
+    //     // m_shooter2.Set(.6);
+    //     hopper.HopperMotors->Set(0.0);
+
+    // }
+    // while(m_timer.Get() > 11 && m_timer.Get() < 14)
+    // {
+    //     m_shooter1.Set(0);
+    //     m_shooter2.Set(0);
+    //     driveTrain.LeftMotors->Set(-.3);
+    //     driveTrain.RightMotors->Set(-.3);
+
+    // }
+    // while(m_timer.Get() > 14 && m_timer.Get() < 17)
+    // {
+    //     driveTrain.LeftMotors->Set(0);
+    //     driveTrain.RightMotors->Set(0);
+
+    // }
+    // while(m_timer.Get() > 17 && m_timer.Get() < 18.5)
+    // {
+    //     driveTrain.LeftMotors->Set(.3);
+    //     driveTrain.RightMotors->Set(.3);
+
+    // }
+    // while(m_timer.Get() > 18.5 && m_timer.Get() < 20.5)
+    // {
+    //     driveTrain.LeftMotors->Set(0);
+    //     driveTrain.RightMotors->Set(0);
+
+    // }
+    // if(m_timer.Get() > 20.5 && m_timer.Get() < 23.5 ){
+    //     //shooter.AutoPID();
+    //     turret.Aim();
+    //     // m_shooter1.Set(.6);
+    //     // m_shooter2.Set(.6);
+    //     //m_hopper.Set(.3);
+
+    // }
+    // if(m_timer.Get() > 23.5 && m_timer.Get() < 30.5 ){
+    //     // turret.Off();
+    //     hopper.HopperMotors->Set(.3);
+    //     // m_shooter1.Set(.6);
+    //     // m_shooter2.Set(.6);
+    // }
+    // if(m_timer.Get() > 30.5 && m_timer.Get() < 31.5){
+    //     m_shooter1.Set(0);
+    //     m_shooter2.Set(0);
+    //     hopper.HopperMotors->Set(0.0);
+
+    // }
+
+    driveTrain.LeftMotors->Set(0);
+    driveTrain.RightMotors->Set(0);
+}
 
 void Robot::TeleopInit() {
 }
@@ -144,7 +162,6 @@ void Robot::TeleopPeriodic() {
 
     driveTrain.Drive();
     // hopper.Run();
-    LimeLight.Update();
 
     if(Operator.POV() == 180){
         s1.SetPosition(0);
@@ -177,11 +194,11 @@ void Robot::TeleopPeriodic() {
     // shooter.run();
 
     // if(Driver.A()){
-    //     sol5->Set(frc::DoubleSolenoid::Value::kForward);
-    //     sol2->Set(frc::DoubleSolenoid::Value::kForward);
+    //     climber2->Set(frc::DoubleSolenoid::Value::kForward);
+    //     climber1->Set(frc::DoubleSolenoid::Value::kForward);
     // } else {
-    //     sol5->Set(frc::DoubleSolenoid::Value::kReverse);
-    //     sol2->Set(frc::DoubleSolenoid::Value::kReverse);
+    //     climber2->Set(frc::DoubleSolenoid::Value::kReverse);
+    //     climber2->Set(frc::DoubleSolenoid::Value::kReverse);
     // }
     // if(Driver.B()){
     //     sol4->Set(frc::DoubleSolenoid::Value::kForward);
@@ -189,22 +206,17 @@ void Robot::TeleopPeriodic() {
     //     sol4->Set(frc::DoubleSolenoid::Value::kReverse);
     // }
     // if(Driver.X()){
-    //     sol3->Set(frc::DoubleSolenoid::Value::kForward);
+    //     hopperSol->Set(frc::DoubleSolenoid::Value::kForward);
     // } else {
-    //     sol3->Set(frc::DoubleSolenoid::Value::kReverse);
+    //     hopperSol->Set(frc::DoubleSolenoid::Value::kReverse);
     // }
-    // // if(Driver.Y()){
-    // //     sol2->Set(frc::DoubleSolenoid::Value::kForward);
-    // // } else {
-    // //     sol2->Set(frc::DoubleSolenoid::Value::kReverse);
-    // // }
     // if(Driver.LB()){
     //     intakeSol->Set(frc::DoubleSolenoid::Value::kReverse);
     // } else {
     //     intakeSol->Set(frc::DoubleSolenoid::Value::kForward);
     // }
     // Shooter shooter.Test();
-    // turret.Aim();
+    turret.Aim();
     // if (Driver.A())
     // {
     //     // shooter.run();

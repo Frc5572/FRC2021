@@ -32,10 +32,12 @@ void Turret::TurretMove() {
 
 void Turret::Aim() {
     // if (Operator->X() ==  true) {
-    //     nt::NetworkTableInstance::GetDefault().GetTable("limelight")
-    //                 ->PutNumber("camMode", 0);
-    //     nt::NetworkTableInstance::GetDefault().GetTable("limelight")
-    //                 ->PutNumber("ledMode", 3);
+        disX = 0;
+        T = 0;
+        nt::NetworkTableInstance::GetDefault().GetTable("limelight")
+                    ->PutNumber("camMode", 0);
+        nt::NetworkTableInstance::GetDefault().GetTable("limelight")
+                    ->PutNumber("ledMode", 3);
     // } else if (Operator->Y() == false) {
     //     nt::NetworkTableInstance::GetDefault().GetTable("limelight")
     //                 ->PutNumber("camMode", 1);
@@ -43,7 +45,7 @@ void Turret::Aim() {
     //                 ->PutNumber("ledMode", 1);
     //     disX = 0;
     //     T = 0;
-
+    // }
 
     disX = LimeLight->disX;
 
@@ -77,11 +79,11 @@ void Turret::Aim() {
 
 
 
-        if (aDisX < 10)
+    if (aDisX < 10)
         {
             T = .05 * copysign(1, disX) + dir;
         }
-        else
+    else
         {
             T = disX/85 + dir;
         }
@@ -92,4 +94,13 @@ void Turret::Aim() {
     std::cout << "Motor set at: " << T << "\ndisX is: " << disX << "\n" ;
 
     TurretMotor->Set(T);
+}
+
+void Turret::Off() {
+    nt::NetworkTableInstance::GetDefault().GetTable("limelight")
+                    ->PutNumber("camMode", 1);
+    nt::NetworkTableInstance::GetDefault().GetTable("limelight")
+                    ->PutNumber("ledMode", 1);
+    disX = 0;
+    T = 0;
 }
