@@ -79,37 +79,79 @@ void Robot::AutonomousPeriodic() {
     .5 = 45 degrees
     1 = 60 degrees
     */
-   //Getting distance from shooter thingy using limelight measurements
-    limelightAngle = tan(LimeLight.ta + 40);
-    subHeight = 47;
-    distance = subHeight / limelightAngle;
-    angle = sqrt((distance * distance) + (subHeight * subHeight));
+    //Getting distance from shooter thingy using limelight measurements
+    // limelightAngle = tan(LimeLight.ta + 40);
+    // subHeight = 47;
+    // distance = subHeight / limelightAngle;
+    // angle = sqrt((distance * distance) + (subHeight * subHeight));
+
+    while(m_timer.Get() < 3 ){
+        //shooter.AutoPID();
+        // shooter.shooterMotors.Set(.6);
+        m_shooter1.Set(.6);
+        m_shooter2.Set(.6);
+        // shooterHood.Set(frc::DoubleSolenoid::Value::kForward);
+        //m_hopper.Set(.3);
+        continue;
+    }
+
+    while(m_timer.Get() > 3 && m_timer.Get() < 10 ){
+        hopper.HopperMotors->Set(.3);
+        // shooter shooterMotors.Set(.6);
+        m_shooter1.Set(.6);
+        m_shooter2.Set(.6);
+        // shooterHood.Set(frc::DoubleSolenoid::Value::kForward);
+    }
+
+    while(m_timer.Get() > 10 && m_timer.Get() < 11){
+        // shooterHood.Set(frc::DoubleSolenoid::Value::kReverse);
+        m_shooter1.Set(.6);
+        m_shooter2.Set(.6);
+        hopper.HopperMotors->Set(0);
+        continue;
+    }
+
+    while(m_timer.Get() > 11 && m_timer.Get() < 13)
+    {
+        driveTrain.RightMotors->Set(-.3);
+        driveTrain.LeftMotors->Set(-.3);
+        continue;
+    }
+
+    while(m_timer.Get() > 13 && m_timer.Get() < 13.5)
+    {
+        driveTrain.RightMotors->Set(0);
+        driveTrain.LeftMotors->Set(0);
+        continue;
+    }
+
+    while(m_timer.Get() > 13.5 && m_timer.Get() < 14.5)
+    {
+        driveTrain.RightMotors->Set(.3);
+        driveTrain.LeftMotors->Set(.3);
+        continue;
+    }
+
+    driveTrain.RightMotors->Set(0);
+    driveTrain.LeftMotors->Set(0);
 }
 
 
 void Robot::TeleopInit() {
-
 }
 
 void Robot::TeleopPeriodic() {
 
     driveTrain.Drive();
-    hopper.Run();
+    // hopper.Run();
     LimeLight.Update();
 
     if(Operator.POV() == 180){
-        // s1.Set(1);
-        // s2.Set(1);
         s1.SetPosition(0);
-        // s2.SetPosition(0);
-        // s2.SetSpeed(1);
     } else if(Operator.POV() == 90) {
         s1.SetPosition(.5);
-        // s2.SetPosition(.5);
     } else if(Operator.POV() == 0){
         s1.SetPosition(1);
-        // s2.SetPosition(1);
-        // s2.SetSpeed(-1);
     }
 
     if(Operator.B()){
@@ -124,15 +166,16 @@ void Robot::TeleopPeriodic() {
     //     turret.Aim();
     // }
     // turret.Aim();
-    if(Operator.LB()){
-        m_turret.Set(.3);
-    } else if(Operator.RB()){
-        m_turret.Set(-.3);
-    } else {
-        m_turret.Set(0);
-    }
-    intake.Run();
+    // if(Operator.LB()){
+    //     m_turret.Set(.3);
+    // } else if(Operator.RB()){
+    //     m_turret.Set(-.3);
+    // } else {
+    //     m_turret.Set(0);
+    // }
+    // intake.Run();
     // shooter.run();
+
     // if(Driver.A()){
     //     sol5->Set(frc::DoubleSolenoid::Value::kForward);
     //     sol2->Set(frc::DoubleSolenoid::Value::kForward);
@@ -173,17 +216,6 @@ void Robot::TeleopPeriodic() {
     //     m_shooter1.Set(0);
     //     m_shooter2.Set(0);
     // }
-
-
-    // if(Driver.B()){
-    //     m_intake.Set(.3);
-    // }
-    // else
-    // {
-    //     m_intake.Set(0);
-    // }
-
-
 }
 
 void Robot::TestInit() {
@@ -196,4 +228,3 @@ void Robot::TestPeriodic() {
 #ifndef RUNNING_FRC_TESTS
 int main() {return frc::StartRobot<Robot>();}
 #endif
-
