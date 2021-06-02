@@ -4,7 +4,7 @@
 #include "rev/CANSparkMax.h"
 #include "AHRS.h"
 #include "frc/WPILib.h"
-#include "DriveTrainManager.hpp"
+// #include "DriveTrainManager.hpp"
 
 
 
@@ -20,8 +20,10 @@ Turret(
 
 ~Turret();
 
+void turretInit();
 void TurretMove();
 void Aim();
+void autoAim();
 void Off();
 
   VisionManager* LimeLight;

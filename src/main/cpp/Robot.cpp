@@ -17,8 +17,16 @@ float limelightAngle;
 float subHeight;
 float distance;
 float angle;
+// double tpft = 10500;
+double eticks = 2048 * 6.66666;
+double circum = 13.7;
+double wantToMove = 14 * 12; //feet to inches
+double ticks = wantToMove * ((double)eticks / circum);
+
+
 
 void Robot::RobotInit() {
+    m_leftBottomMotor.SetSelectedSensorPosition(0);
 
     driveTrain.driveInit();
 
@@ -61,6 +69,8 @@ void Robot::RobotInit() {
 
     nt::NetworkTableInstance::GetDefault().GetTable("limelight")
         ->PutNumber("camMode", 0);
+
+    firstPart = false, secondPart = false, thirdPart = false, fourthPart = false, fifthPart = false, sixthPart = false;
 }
 
 void Robot::RobotPeriodic() {
@@ -69,16 +79,29 @@ void Robot::RobotPeriodic() {
 }
 
 void Robot::AutonomousInit() {
+    m_timer.Reset();
     m_timer.Start();
     ahrs.Reset();
+    s1.SetPosition(0);
+    m_leftMiddleMotor.SetSelectedSensorPosition(0);
+    LimeLight.Update();
+
 }
 
 void Robot::AutonomousPeriodic() {
     /*
     Servo Values
-    0 = 30 degrees
-    .5 = 45 degrees
-    1 = 60 degrees
+    0 = 25*
+    .1 = 29*
+    .2 = 33*
+    .3 = 37*
+    .4 = 41*
+    .5 = 45*
+    .6 = 49*
+    .7 = 53*
+    .8 = 57*
+    .9 = 61*
+    1 = 65*
     */
     //Getting distance from shooter thingy using limelight measurements
     // limelightAngle = tan(LimeLight.ta + 40);
@@ -88,96 +111,129 @@ void Robot::AutonomousPeriodic() {
     // if(m_timer.Get() < 5){
     //     turret.Aim();
     // }
-    for(auto i = 0; i<10; i++){
-    turret.Aim();
-}
+    // turret.Aim();
 
-    // if(m_timer.Get() > 3 && m_timer.Get() < 10 ){
-    //     // turret.Off();
-    //     hopper.HopperMotors->Set(.3);
-    //     // m_shooter1.Set(.6);
-//     // m_shooter2.Set(.6);
-    // }
-    // if(m_timer.Get() > 10 && m_timer.Get() < 11){
-    //     // m_shooter1.Set(.6);
-    //     // m_shooter2.Set(.6);
-    //     hopper.HopperMotors->Set(0.0);
+    turret.autoAim();
+            std::cout << m_leftMiddleMotor.GetSelectedSensorPosition() << "\n";
+    if (!firstPart) {
+        if (m_timer.Get() < 5) {
+            m_shooter1.Set(.4);
+            m_shooter2.Set(.4);
+            s1.SetPosition(.2);
+        }
+        else if (m_timer.Get() > 5 && m_timer.Get() < 13 ){
+            // turret.Off();
+            hopper.HopperMotors->Set(.3);
+            m_shooter1.Set(.4);
+            m_shooter2.Set(.4);
+        }
+        else if (m_timer.Get() > 13 && m_timer.Get() < 14) {
+            hopper.HopperMotors->Set(0.0);
+            m_shooter1.Set(0);
+            m_shooter2.Set(0);
+            s1.SetPosition(0);
+        } else {
+            m_leftMiddleMotor.SetSelectedSensorPosition(0);
+            firstPart = true;
+        }
+    } else if (!secondPart) {
+        m_timer.Stop();
+        if (abs(m_leftMiddleMotor.GetSelectedSensorPosition()) < ticks)
+        {
+            driveTrain.LeftMotors->Set(-.1);
+            driveTrain.RightMotors->Set(-.1);
+        } else {
+            driveTrain.LeftMotors->Set(0);
+            driveTrain.RightMotors->Set(0);
+            secondPart = true;
+        }
+    } else if (!thirdPart) {
+        m_timer.Start();
+        if (m_timer.Get() >14 && m_timer.Get() < 16) {
+            driveTrain.LeftMotors->Set(0);
+            driveTrain.RightMotors->Set(0);
+        } else {
+            m_timer.Stop();
+            thirdPart = true;
+        }
+    } else if (!fourthPart) {
+        if (abs(m_leftMiddleMotor.GetSelectedSensorPosition()) > (12 * 6 * (eticks / circum))) {
+            driveTrain.LeftMotors->Set(.1);
+            driveTrain.RightMotors->Set(.1);
+        } else {
+            driveTrain.LeftMotors->Set(0);
+            driveTrain.RightMotors->Set(0);
+            m_timer.Start();
+            fourthPart = true;
+        }
+    } else if (!fifthPart) {
+        if (m_timer.Get() >16 && m_timer.Get() < 18) {
+            driveTrain.LeftMotors->Set(0);
+            driveTrain.RightMotors->Set(0);
+        } else if (m_timer.Get() > 18 && m_timer.Get() < 23) {
+            m_shooter1.Set(.4);
+            m_shooter2.Set(.4);
+        } else if (m_timer.Get() > 23 && m_timer.Get() < 31 ) {
+            hopper.HopperMotors->Set(.3);
+            m_shooter1.Set(.4);
+            m_shooter2.Set(.4);
+        } else if (m_timer.Get() > 31 && m_timer.Get() < 32) {
+            m_shooter1.Set(0);
+            m_shooter2.Set(0);
+            hopper.HopperMotors->Set(0.0);
+        } else {
+            fifthPart = true;
+        }
 
-    // }
-    // while(m_timer.Get() > 11 && m_timer.Get() < 14)
-    // {
-    //     m_shooter1.Set(0);
-    //     m_shooter2.Set(0);
-    //     driveTrain.LeftMotors->Set(-.3);
-    //     driveTrain.RightMotors->Set(-.3);
+    }
 
-    // }
-    // while(m_timer.Get() > 14 && m_timer.Get() < 17)
-    // {
-    //     driveTrain.LeftMotors->Set(0);
-    //     driveTrain.RightMotors->Set(0);
 
-    // }
-    // while(m_timer.Get() > 17 && m_timer.Get() < 18.5)
-    // {
-    //     driveTrain.LeftMotors->Set(.3);
-    //     driveTrain.RightMotors->Set(.3);
+            std::cout << m_leftMiddleMotor.GetSelectedSensorPosition() << "\n";
+    // turret.autoAim();
+    // m_leftMiddleMotor.SetSelectedSensorPosition(0);
+    // m_leftMiddleMotor.GetSensorCollection();
 
-    // }
-    // while(m_timer.Get() > 18.5 && m_timer.Get() < 20.5)
-    // {
-    //     driveTrain.LeftMotors->Set(0);
-    //     driveTrain.RightMotors->Set(0);
+    // // m_timer.Reset();
 
-    // }
-    // if(m_timer.Get() > 20.5 && m_timer.Get() < 23.5 ){
-    //     //shooter.AutoPID();
-    //     turret.Aim();
-    //     // m_shooter1.Set(.6);
-    //     // m_shooter2.Set(.6);
-    //     //m_hopper.Set(.3);
-
-    // }
-    // if(m_timer.Get() > 23.5 && m_timer.Get() < 30.5 ){
-    //     // turret.Off();
-    //     hopper.HopperMotors->Set(.3);
-    //     // m_shooter1.Set(.6);
-    //     // m_shooter2.Set(.6);
-    // }
-    // if(m_timer.Get() > 30.5 && m_timer.Get() < 31.5){
-    //     m_shooter1.Set(0);
-    //     m_shooter2.Set(0);
-    //     hopper.HopperMotors->Set(0.0);
-
-    // }
-
-    driveTrain.LeftMotors->Set(0);
-    driveTrain.RightMotors->Set(0);
 }
 
 void Robot::TeleopInit() {
+    // LimeLight.Update();
+    s1.SetPosition(0);
 }
 
 void Robot::TeleopPeriodic() {
+    turret.Aim();
+    // LimeLight.Update();
 
     driveTrain.Drive();
-    // hopper.Run();
+    hopper.Run();
+    // turret.Aim();
 
     if(Operator.POV() == 180){
         s1.SetPosition(0);
     } else if(Operator.POV() == 90) {
-        s1.SetPosition(.5);
+        s1.SetPosition(.2);
     } else if(Operator.POV() == 0){
         s1.SetPosition(1);
     }
 
     if(Operator.B()){
-        m_shooter1.Set(.4);
-        m_shooter2.Set(.4);
+        m_shooter1.Set(.6);
+        m_shooter2.Set(.6);
     } else {
         m_shooter1.Set(0);
         m_shooter2.Set(0);
     }
+
+
+    // if(Operator.LB()){
+    //     m_turret.Set(-.2);
+    // } else if(Operator.RB()){
+    //     m_turret.Set(.2);
+    // } else {
+    //     m_turret.Set(0);
+    // }
 
     // if(Driver.A()){
     //     turret.Aim();
@@ -216,7 +272,7 @@ void Robot::TeleopPeriodic() {
     //     intakeSol->Set(frc::DoubleSolenoid::Value::kForward);
     // }
     // Shooter shooter.Test();
-    turret.Aim();
+    // turret.Aim();
     // if (Driver.A())
     // {
     //     // shooter.run();
@@ -231,10 +287,11 @@ void Robot::TeleopPeriodic() {
 }
 
 void Robot::TestInit() {
+    // LimeLight.Update();
 }
 
 void Robot::TestPeriodic() {
-
+    turret.Aim();
 }
 
 #ifndef RUNNING_FRC_TESTS

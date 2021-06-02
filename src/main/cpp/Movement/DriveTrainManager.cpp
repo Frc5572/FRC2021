@@ -149,36 +149,36 @@ void DriveTrain::Drive() {
 //     BottomRightMotor->SetSmartCurrentLimit(60);
 // }
 
-void DriveTrain::Aim() {
-    if (Driver->X() ==  true) {
-        disX = LimeLight->disX;
-        nt::NetworkTableInstance::GetDefault().GetTable("limelight")
-                    ->PutNumber("camMode", 0);
-        nt::NetworkTableInstance::GetDefault().GetTable("limelight")
-                    ->PutNumber("ledMode", 3);
-    } else if (Driver->Y() == false) {
-        nt::NetworkTableInstance::GetDefault().GetTable("limelight")
-                    ->PutNumber("camMode", 1);
-        nt::NetworkTableInstance::GetDefault().GetTable("limelight")
-                    ->PutNumber("ledMode", 1);
-        disX = 0;
-        T = 0;
-    }
+// void DriveTrain::Aim() {
+//     if (Driver->X() ==  true) {
+//         disX = LimeLight->disX;
+//         nt::NetworkTableInstance::GetDefault().GetTable("limelight")
+//                     ->PutNumber("camMode", 0);
+//         nt::NetworkTableInstance::GetDefault().GetTable("limelight")
+//                     ->PutNumber("ledMode", 3);
+//     } else if (Driver->Y() == false) {
+//         nt::NetworkTableInstance::GetDefault().GetTable("limelight")
+//                     ->PutNumber("camMode", 1);
+//         nt::NetworkTableInstance::GetDefault().GetTable("limelight")
+//                     ->PutNumber("ledMode", 1);
+//         disX = 0;
+//         T = 0;
+//     }
 
-    if (fabs(disX) > 1 && Driver->X() == true) {
-        if (disX > 10) {
-            T = -.15;
-        }
-        if (disX < 10) {
-            T = -disX/43;
-        }
-        if (disX < -10) {
-            T = .15;
-        }
-        if (disX > -10) {
-            T = disX/43;
-        }
-    } else {
-        T = 0;
-        }
-}
+//     if (fabs(disX) > 1 && Driver->X() == true) {
+//         if (disX > 10) {
+//             T = -.15;
+//         }
+//         if (disX < 10) {
+//             T = -disX/43;
+//         }
+//         if (disX < -10) {
+//             T = .15;
+//         }
+//         if (disX > -10) {
+//             T = disX/43;
+//         }
+//     } else {
+//         T = 0;
+//         }
+// }

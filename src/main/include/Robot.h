@@ -125,6 +125,8 @@ class Robot : public frc::TimedRobot {
 
     Turret turret{ m_turret, Operator, LimeLight };
 
+    bool firstPart, secondPart, thirdPart, fourthPart, fifthPart, sixthPart;
+
     // Shooter shooter{m_leftShooter, m_rightShooter, shooterHood, Operator};
 
     // ClimbManager climber{test1, test2, Driver, climb};
