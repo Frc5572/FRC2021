@@ -188,7 +188,7 @@ void Robot::AutonomousPeriodic() {
     }
 
 
-            std::cout << m_leftMiddleMotor.GetSelectedSensorPosition() << "\n";
+    std::cout << m_leftMiddleMotor.GetSelectedSensorPosition() << "\n";
     // turret.autoAim();
     // m_leftMiddleMotor.SetSelectedSensorPosition(0);
     // m_leftMiddleMotor.GetSensorCollection();
@@ -203,28 +203,28 @@ void Robot::TeleopInit() {
 }
 
 void Robot::TeleopPeriodic() {
-    turret.Aim();
-    // LimeLight.Update();
-
-    driveTrain.Drive();
-    hopper.Run();
     // turret.Aim();
+    // // LimeLight.Update();
 
-    if(Operator.POV() == 180){
-        s1.SetPosition(0);
-    } else if(Operator.POV() == 90) {
-        s1.SetPosition(.2);
-    } else if(Operator.POV() == 0){
-        s1.SetPosition(1);
-    }
+    // driveTrain.Drive();
+    // hopper.Run();
+    // turret.Shoot();
 
-    if(Operator.B()){
-        m_shooter1.Set(.6);
-        m_shooter2.Set(.6);
-    } else {
-        m_shooter1.Set(0);
-        m_shooter2.Set(0);
-    }
+    // if(Operator.POV() == 180){
+    //     s1.SetPosition(0);
+    // } else if(Operator.POV() == 90) {
+    //     s1.SetPosition(.2);
+    // } else if(Operator.POV() == 0){
+    //     s1.SetPosition(1);
+    // }
+
+    // if(Operator.B()){
+    //     m_shooter1.Set(.6);
+    //     m_shooter2.Set(.6);
+    // } else {
+    //     m_shooter1.Set(0);
+    //     m_shooter2.Set(0);
+    // }
 
 
     // if(Operator.LB()){

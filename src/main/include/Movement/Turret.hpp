@@ -10,6 +10,22 @@
 
 
 class Turret {
+    static constexpr double a1 = 2379;
+    static constexpr double d1 = 110;
+    static constexpr double a2 = 1153;
+    static constexpr double d2 = 175;
+    static constexpr double m = (d2 - d1) / (a2 - a1);
+    static constexpr double b = 236;
+    static constexpr double heightOfShooter = 38;
+    static constexpr double heightOfTower = 98;
+    static constexpr double heightdiff = heightOfTower - heightOfShooter;
+    static constexpr double minAngle = 25;
+    static constexpr double maxAngle = 65;
+    static constexpr double maxPosition = 0;
+    static constexpr double minPosition = 1;
+    static constexpr double m1 = (maxPosition - minPosition) / (maxAngle - minAngle);
+    static constexpr double b1 = -.625;
+
  public:
 
 Turret(
@@ -25,6 +41,9 @@ void TurretMove();
 void Aim();
 void autoAim();
 void Off();
+void Shoot();
+double CalculateDistance(double area);
+double CalculateAngle(double position);
 
   VisionManager* LimeLight;
 
@@ -33,5 +52,7 @@ void Off();
   FRC5572Controller* Operator;
 
   rev::CANSparkMax* TurretMotor;
+
+  frc::Servo *servo;
 
 };

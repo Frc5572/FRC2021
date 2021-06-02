@@ -72,3 +72,28 @@ void Turret::Off() {
     disX = 0;
     T = 0;
 }
+
+double Turret::CalculateDistance(double area) {
+    auto r = m * (area) + b;
+    return r;
+}
+
+double Turret::CalculateAngle(double distance) {
+    auto t = tan(heightdiff / distance);
+    auto d = t * (180 / M_PI);
+    std::cout << "angle " << d << "\n";
+    auto r = m1 * (d) + b1;
+    return r;
+}
+
+void Turret::Shoot() {
+    auto sShort = nt::NetworkTableInstance::GetDefault().GetTable("limelight")
+                    ->GetNumber("tshort", 1);
+    auto sLong = nt::NetworkTableInstance::GetDefault().GetTable("limelight")
+                    ->GetNumber("tlong", 1);
+    auto distance = CalculateDistance(sLong * sShort);
+    auto servoPosition = CalculateAngle(distance);
+    servo->Set(servoPosition);
+    std::cout << distance << " dis \n";
+    std::cout << servoPosition << " servo \n";
+}
