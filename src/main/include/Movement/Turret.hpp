@@ -10,12 +10,11 @@
 
 
 class Turret {
-    static constexpr double a1 = 2379;
-    static constexpr double d1 = 110;
-    static constexpr double a2 = 1153;
-    static constexpr double d2 = 175;
-    static constexpr double m = (d2 - d1) / (a2 - a1);
-    static constexpr double b = 236;
+// Distance calculation constants
+    static constexpr double x1 = -0.0000000025291;
+    static constexpr double x2 = 0.0000334240538;
+    static constexpr double x3 = -0.1545379987062;
+    static constexpr double b = 315.5170993015826;
     static constexpr double heightOfShooter = 38;
     static constexpr double heightOfTower = 98;
     static constexpr double heightdiff = heightOfTower - heightOfShooter;
@@ -31,7 +30,8 @@ class Turret {
 Turret(
   rev::CANSparkMax &TopLeftMotor,
   FRC5572Controller &Operator,
-  VisionManager &VisionManager
+  VisionManager &VisionManager,
+  frc::Servo &servo
   );
 
 ~Turret();

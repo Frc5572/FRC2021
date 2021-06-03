@@ -3,11 +3,12 @@
 Turret::Turret(
     rev::CANSparkMax &TurretMotor,
     FRC5572Controller &Operator,
-    VisionManager &VisionManager
+    VisionManager &VisionManager,
+    frc::Servo &servo
     ) {
 
         this->TurretMotor = &TurretMotor;
-
+        this->servo = &servo;
         this->LimeLight = &VisionManager;
         this->Operator = &Operator;
 }
@@ -74,15 +75,25 @@ void Turret::Off() {
 }
 
 double Turret::CalculateDistance(double area) {
-    auto r = m * (area) + b;
+    auto r = x1*pow(area, 3) + x2*pow(area, 2) +x3*area + b;
     return r;
 }
 
 double Turret::CalculateAngle(double distance) {
-    auto t = tan(heightdiff / distance);
+    auto t = atan(heightdiff / distance);
     auto d = t * (180 / M_PI);
-    std::cout << "angle " << d << "\n";
-    auto r = m1 * (d) + b1;
+    std::cout << "angle " << (90 -d) << "\n";
+    auto r = m1 * (90 - d) + b1;
+    std::cout << "servo pos: " << r << "\n";
+    if (r > 64) 
+    {
+        r = 1;
+    } 
+    else if (r < 26)
+    {
+        r = 0;
+    }
+
     return r;
 }
 
@@ -91,9 +102,12 @@ void Turret::Shoot() {
                     ->GetNumber("tshort", 1);
     auto sLong = nt::NetworkTableInstance::GetDefault().GetTable("limelight")
                     ->GetNumber("tlong", 1);
-    auto distance = CalculateDistance(sLong * sShort);
+    auto area = sLong * sShort;
+    std::cout << "area: " << area << "\n";
+    auto distance = CalculateDistance(area);
     auto servoPosition = CalculateAngle(distance);
+    std::cout << "distance: " << distance << "\n";
+    std::cout << "servo Position: " << servoPosition << "\n";
     servo->Set(servoPosition);
-    std::cout << distance << " dis \n";
-    std::cout << servoPosition << " servo \n";
 }
+
