@@ -224,6 +224,7 @@ void Robot::TeleopPeriodic() {
     // driveTrain.Drive();
     hopper.Run();
     intake.Run();
+    shooter.Run();
     // turret.Shoot();
 
     // if(Operator.POV() == 180){

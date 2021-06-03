@@ -119,9 +119,11 @@ class Robot : public frc::TimedRobot {
         m_leftMiddleMotor, m_rightMiddleMotor, m_leftBottomMotor,
         m_rightBottomMotor, Driver, LimeLight, ahrs };
 
-    Hopper hopper{ m_hopperLeft, m_hopperRight, Operator };
+    Hopper hopper{ m_hopperLeft, m_hopperRight, *hopperSol, Operator };
 
     Intake intake{ m_intake, Operator };
+
+    Shooter shooter{ m_shooter1, m_shooter2, *hopperSol, Operator };
 
     Turret turret{ m_turret, Operator, LimeLight };
 
