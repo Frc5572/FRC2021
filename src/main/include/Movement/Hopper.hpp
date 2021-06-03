@@ -16,6 +16,7 @@ class Hopper{
     Hopper(
         WPI_TalonSRX &Belt1,
         WPI_TalonSRX &Belt2,
+        frc::DoubleSolenoid &hopperSol,
         FRC5572Controller &Operator
         // frc::DigitalInput &Input2,
         // frc::DigitalInput &Input3
@@ -36,6 +37,8 @@ class Hopper{
     frc::SpeedControllerGroup* HopperMotors;
 
     FRC5572Controller* Operator;
+
+    frc::DoubleSolenoid* hopperBlock;
 
     WPI_TalonSRX* belt1;
     WPI_TalonSRX* belt2;
