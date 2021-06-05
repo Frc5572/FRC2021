@@ -90,11 +90,22 @@ void Robot::TeleopInit() {
 }
 
 void Robot::TeleopPeriodic() {
-    turret.autoAim();
-    turret.Shoot();
-
-    // driveTrain.Drive();
-    // hopper.Run();
+    driveTrain.Drive();
+    turret.TurretMove();
+    turret.PositionHood();
+    hopper.Run();
+    intake.Run();
+    nonPidShooter.Run();
+    // nonPidShooter.Run();
+    // if (Driver.A()) {
+    //     m_shooter1.Set(.6);
+    //     m_shooter2.Set(.6);
+    // }
+    // else 
+    // {
+    //     m_shooter1.Set(0);
+    //     m_shooter2.Set(0);
+    // }
     // turret.Shoot();
 
     // if(Operator.POV() == 180){

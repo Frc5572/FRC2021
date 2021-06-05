@@ -23,8 +23,6 @@ class Hopper{
 
     );
 
-    ~Hopper();
-
     void Run();
 
     // void HopperPeriodic();

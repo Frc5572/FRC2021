@@ -22,7 +22,7 @@ class Turret {
     static constexpr double maxAngle = 65;
     static constexpr double maxPosition = 0;
     static constexpr double minPosition = 1;
-    static constexpr double m1 = (maxPosition - minPosition) / (maxAngle - minAngle);
+    static constexpr double m1 = -(maxPosition - minPosition) / (maxAngle - minAngle);
     static constexpr double b1 = -.625;
 
  public:
@@ -34,14 +34,13 @@ Turret(
   frc::Servo &servo
   );
 
-~Turret();
-
 void turretInit();
 void TurretMove();
 void Aim();
 void autoAim();
 void Off();
-void Shoot();
+// void Shoot();
+void PositionHood();
 double CalculateDistance(double area);
 double CalculateAngle(double position);
 

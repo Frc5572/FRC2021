@@ -22,18 +22,12 @@ Hopper::Hopper(
         this->Operator = &Operator;
 }
 
-Hopper::~Hopper() {
-    delete HopperMotors;
-}
 
 void Hopper::Run() {
-    if(Operator->Y()){
-        belt1->Set(.7);
-        belt2->Set(.7);
+    if(Operator->Y()) {
+        HopperMotors->Set(.3);
     }
-    else
-    {
-        belt1->Set(0);
-        belt2->Set(0);
+    else {
+        HopperMotors->Set(0);
     }
 }
