@@ -100,15 +100,39 @@ DriveTrain::~DriveTrain() {
 //     }
 // }
 
+void DriveTrain::driveInit() {
+    BottomRightMotor->SetInverted(true);
+    MiddleRight->SetInverted(true);
+    TopRightMotor->SetInverted(true);
+    BottomLeftMotor->SetNeutralMode(Coast);
+    MiddleLeft->SetNeutralMode(Coast);
+    TopLeftMotor->SetNeutralMode(Coast);
+    BottomRightMotor->SetNeutralMode(Coast);
+    MiddleRight->SetNeutralMode(Coast);
+    TopRightMotor->SetNeutralMode(Coast);
+    BottomLeftMotor->SetSelectedSensorPosition(0);
+    MiddleLeft->SetSelectedSensorPosition(0);
+    TopLeftMotor->SetSelectedSensorPosition(0);
+    BottomRightMotor->SetSelectedSensorPosition(0);
+    MiddleRight->SetSelectedSensorPosition(0);
+    TopRightMotor->SetSelectedSensorPosition(0);
+    BottomLeftMotor->ConfigFactoryDefault();
+    MiddleLeft->ConfigFactoryDefault();
+    TopLeftMotor->ConfigFactoryDefault();
+    BottomRightMotor->ConfigFactoryDefault();
+    MiddleRight->ConfigFactoryDefault();
+    TopRightMotor->ConfigFactoryDefault();
+}
+
 void DriveTrain::Drive() {
     if (this->Driver->L().second > .2 || this->Driver->L().second < -.2) {
-        LeftMotors->Set(-1 * Driver->L().second * .5);
+        LeftMotors->Set(-1 * Driver->L().second * .3);
     } else {
         LeftMotors->Set(0);
     }
 
     if (this->Driver->R().second > .2 ||  this->Driver->R().second < -.2) {
-        RightMotors->Set(-1 * Driver->R().second  * .5);
+        RightMotors->Set(-1 * Driver->R().second  * .3);
     } else {
         RightMotors->Set(0);
     }
@@ -125,36 +149,36 @@ void DriveTrain::Drive() {
 //     BottomRightMotor->SetSmartCurrentLimit(60);
 // }
 
-void DriveTrain::Aim() {
-    if (Driver->X() ==  true) {
-        disX = LimeLight->disX;
-        nt::NetworkTableInstance::GetDefault().GetTable("limelight")
-                    ->PutNumber("camMode", 0);
-        nt::NetworkTableInstance::GetDefault().GetTable("limelight")
-                    ->PutNumber("ledMode", 3);
-    } else if (Driver->Y() == false) {
-        nt::NetworkTableInstance::GetDefault().GetTable("limelight")
-                    ->PutNumber("camMode", 1);
-        nt::NetworkTableInstance::GetDefault().GetTable("limelight")
-                    ->PutNumber("ledMode", 1);
-        disX = 0;
-        T = 0;
-    }
+// void DriveTrain::Aim() {
+//     if (Driver->X() ==  true) {
+//         disX = LimeLight->disX;
+//         nt::NetworkTableInstance::GetDefault().GetTable("limelight")
+//                     ->PutNumber("camMode", 0);
+//         nt::NetworkTableInstance::GetDefault().GetTable("limelight")
+//                     ->PutNumber("ledMode", 3);
+//     } else if (Driver->Y() == false) {
+//         nt::NetworkTableInstance::GetDefault().GetTable("limelight")
+//                     ->PutNumber("camMode", 1);
+//         nt::NetworkTableInstance::GetDefault().GetTable("limelight")
+//                     ->PutNumber("ledMode", 1);
+//         disX = 0;
+//         T = 0;
+//     }
 
-    if (fabs(disX) > 1 && Driver->X() == true) {
-        if (disX > 10) {
-            T = -.15;
-        }
-        if (disX < 10) {
-            T = -disX/43;
-        }
-        if (disX < -10) {
-            T = .15;
-        }
-        if (disX > -10) {
-            T = disX/43;
-        }
-    } else {
-        T = 0;
-        }
-}
+//     if (fabs(disX) > 1 && Driver->X() == true) {
+//         if (disX > 10) {
+//             T = -.15;
+//         }
+//         if (disX < 10) {
+//             T = -disX/43;
+//         }
+//         if (disX < -10) {
+//             T = .15;
+//         }
+//         if (disX > -10) {
+//             T = disX/43;
+//         }
+//     } else {
+//         T = 0;
+//         }
+// }

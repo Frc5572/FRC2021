@@ -4,24 +4,45 @@
 #include "rev/CANSparkMax.h"
 #include "AHRS.h"
 #include "frc/WPILib.h"
-#include "DriveTrainManager.hpp"
+// #include "DriveTrainManager.hpp"
 
 
 
 
 class Turret {
+// Distance calculation constants
+    static constexpr double x1 = -0.0000000025291;
+    static constexpr double x2 = 0.0000334240538;
+    static constexpr double x3 = -0.1545379987062;
+    static constexpr double b = 315.5170993015826;
+    static constexpr double heightOfShooter = 38;
+    static constexpr double heightOfTower = 98;
+    static constexpr double heightdiff = heightOfTower - heightOfShooter;
+    static constexpr double minAngle = 25;
+    static constexpr double maxAngle = 65;
+    static constexpr double maxPosition = 0;
+    static constexpr double minPosition = 1;
+    static constexpr double m1 = -(maxPosition - minPosition) / (maxAngle - minAngle);
+    static constexpr double b1 = -.625;
+
  public:
 
 Turret(
   rev::CANSparkMax &TopLeftMotor,
   FRC5572Controller &Operator,
-  VisionManager &VisionManager
+  VisionManager &VisionManager,
+  frc::Servo &servo
   );
 
-~Turret();
-
+void turretInit();
 void TurretMove();
 void Aim();
+void autoAim();
+void Off();
+// void Shoot();
+void PositionHood();
+double CalculateDistance(double area);
+double CalculateAngle(double position);
 
   VisionManager* LimeLight;
 
@@ -30,5 +51,7 @@ void Aim();
   FRC5572Controller* Operator;
 
   rev::CANSparkMax* TurretMotor;
+
+  frc::Servo *servo;
 
 };

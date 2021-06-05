@@ -9,9 +9,12 @@
 #include "Movement/Shooter.hpp"
 #include "Movement/Hopper.hpp"
 #include "Movement/Turret.hpp"
+#include "Movement/Intake.hpp"
+// #include "Movement/Solenoids.hpp"
 #include "Movement/ClimbManager.hpp"
 #include "vision/PhotoeletricSensor.hpp"
 #include <frc/SpeedControllerGroup.h>
+#include <frc/Servo.h>
 // #include "Auto/AutoDrip.hpp
 
 #include <frc/TimedRobot.h>
@@ -23,11 +26,13 @@
 #include <frc/Timer.h>
 #include <frc/livewindow/LiveWindow.h>
 #include <AHRS.h>
-#include <frc/Servo.h>
+// #include <frc/Servo.h>
 // #include "rev/CANSparkMax.h"
 #include <rev/ColorSensorV3.h>
 #include <rev/ColorMatch.h>
 #include <frc/VictorSP.h>
+
+#include "Movement/ShooterPID.hpp"
 
 
 
@@ -72,8 +77,10 @@ class Robot : public frc::TimedRobot {
 
 
     rev::CANSparkMax m_turret{turretID, rev::CANSparkMax::MotorType::kBrushless};
-        frc::Servo s1{1};
-    frc::Servo s2{2};
+    frc::Servo s1{9};
+    // frc::Servo s2{9};
+
+
 
 
 /* Hopper */
@@ -83,13 +90,18 @@ class Robot : public frc::TimedRobot {
     /*instantiation of the compressor with its CAN ID and pneumatics*/
     frc::Compressor compressor{PCM1};
 
-    frc::Servo *servo;
+    // frc::Servo *servo;
+    // servo = new frc::Servo{0};
 
-    frc::DoubleSolenoid *intake;
+    frc::DoubleSolenoid *climber2;
     frc::DoubleSolenoid *sol4;
-    frc::DoubleSolenoid *sol1;
-    frc::DoubleSolenoid *sol2;
-    frc::DoubleSolenoid *sol3;
+    frc::DoubleSolenoid *intakeSol;
+    frc::DoubleSolenoid *climber1;
+    frc::DoubleSolenoid *hopperSol;
+
+    PIDShooter shooter{m_shooter1, m_shooter2};
+
+    Shooter nonPidShooter { m_shooter1, m_shooter2, *hopperSol, Operator};
 
     // frc::DoubleSolenoid climb{PCM1, 1, 6};  // 3 4
 
@@ -107,7 +119,13 @@ class Robot : public frc::TimedRobot {
         m_leftMiddleMotor, m_rightMiddleMotor, m_leftBottomMotor,
         m_rightBottomMotor, Driver, LimeLight, ahrs };
 
-    Turret turret{ m_turret, Operator, LimeLight };
+    Hopper hopper{ m_hopperLeft, m_hopperRight, Operator };
+
+    Intake intake{ m_intake, Operator };
+
+    Turret turret{ m_turret, Operator, LimeLight, s1};
+
+    bool firstPart, secondPart, thirdPart, fourthPart, fifthPart, sixthPart;
 
     // Shooter shooter{m_leftShooter, m_rightShooter, shooterHood, Operator};
 

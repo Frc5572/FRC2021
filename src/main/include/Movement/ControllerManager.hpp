@@ -53,6 +53,14 @@ class FRC5572Controller {
   bool Rbutton();
   void rumble(double, double);
 
+  /*
+  Dpad:
+  Pov() == 0 : Up
+  Pov() == 90 : Right
+  Pov() == 180 : Down
+  Pov() == 270 : Left
+  */
+
  private:
   frc::XboxController *pad;
 };
