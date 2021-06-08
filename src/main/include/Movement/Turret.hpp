@@ -40,7 +40,6 @@ void turretInit();
 void TurretMove();
 void Aim();
 void autoAim();
-void Off();
 void Shoot();
 double CalculateDistance(double area);
 double CalculateAngle(double position);

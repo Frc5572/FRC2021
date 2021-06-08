@@ -64,15 +64,6 @@ void Turret::autoAim() {
     TurretMotor->Set(disX/100);
 }
 
-void Turret::Off() {
-    nt::NetworkTableInstance::GetDefault().GetTable("limelight")
-                    ->PutNumber("camMode", 1);
-    nt::NetworkTableInstance::GetDefault().GetTable("limelight")
-                    ->PutNumber("ledMode", 1);
-    disX = 0;
-    T = 0;
-}
-
 double Turret::CalculateDistance(double area) {
     auto r = m * (area) + b;
     return r;
