@@ -77,6 +77,8 @@ class Robot : public frc::TimedRobot {
 
 
     rev::CANSparkMax m_turret{turretID, rev::CANSparkMax::MotorType::kBrushless};
+    // rev::CANSparkMax m_climber1{climb1, rev::CANSparkMax::MotorType::kBrushless};
+    // rev::CANSparkMax m_climber2{climb2, rev::CANSparkMax::MotorType::kBrushless};
     frc::Servo s1{9};
     // frc::Servo s2{9};
 
@@ -119,11 +121,13 @@ class Robot : public frc::TimedRobot {
         m_leftMiddleMotor, m_rightMiddleMotor, m_leftBottomMotor,
         m_rightBottomMotor, Driver, LimeLight, ahrs };
 
-    Hopper hopper{ m_hopperLeft, m_hopperRight, Operator };
+    Hopper hopper{ m_hopperLeft, m_hopperRight, *hopperSol, Operator };
 
     Intake intake{ m_intake, Operator };
 
     Turret turret{ m_turret, Operator, LimeLight, s1, driveTrain};
+
+    bool firstPart, secondPart, thirdPart, fourthPart, fifthPart, sixthPart;
 
     bool firstPart, secondPart, thirdPart, fourthPart, fifthPart, sixthPart;
 
@@ -165,7 +169,9 @@ class Robot : public frc::TimedRobot {
     HopperOneID = 9,
     HopperTwoID = 10,
     shooter1 = 12,
-    shooter2 = 14;  //  GOOD
+    shooter2 = 14, //  GOOD
+    climb1,
+    climb2;
 
     // LeftClimb = 13,  //  GOOD
     // RightClimb = 14;  //  GOOD
