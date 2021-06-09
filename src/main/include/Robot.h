@@ -123,7 +123,7 @@ class Robot : public frc::TimedRobot {
 
     Intake intake{ m_intake, Operator };
 
-    Turret turret{ m_turret, Operator, LimeLight, s1};
+    Turret turret{ m_turret, Operator, LimeLight, s1, driveTrain};
 
     bool firstPart, secondPart, thirdPart, fourthPart, fifthPart, sixthPart;
 

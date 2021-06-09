@@ -93,6 +93,7 @@ void Robot::TeleopPeriodic() {
     driveTrain.Drive();
     turret.TurretMove();
     turret.PositionHood();
+    turret.LimitCheck();
     hopper.Run();
     intake.Run();
     nonPidShooter.Run();
