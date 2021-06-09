@@ -44,11 +44,6 @@ void Robot::RobotInit() {
     // s2.SetBounds(2.0, 1.8, 1.5, 1.2, 1.0);
     compressor.Start();
     compressor.SetClosedLoopControl(true);
-    delete climber2;
-    delete climber1;
-    delete intakeSol;
-    delete hopperSol;
-    delete sol4;
     climber2 = new frc::DoubleSolenoid(PCM1, 7, 0);//green
     hopperSol = new frc::DoubleSolenoid(PCM1, 5, 2);//white
     climber1 = new frc::DoubleSolenoid(PCM2, 4, 3);//blue
@@ -197,34 +192,30 @@ void Robot::AutonomousPeriodic() {
         } else {
             fifthPart = true;
         }
-
     }
-
-
-    std::cout << m_leftMiddleMotor.GetSelectedSensorPosition() << "\n";
-    // turret.autoAim();
-    // m_leftMiddleMotor.SetSelectedSensorPosition(0);
-    // m_leftMiddleMotor.GetSensorCollection();
-
-    // // m_timer.Reset();
-
 }
 
 void Robot::TeleopInit() {
-    // LimeLight.Update();
     s1.SetPosition(0);
-    intakeSol->Set(frc::DoubleSolenoid::Value::kReverse);
-    hopperSol->Set(frc::DoubleSolenoid::Value::kReverse);
 }
 
 void Robot::TeleopPeriodic() {
-    // turret.Aim();
-    // // LimeLight.Update();
-
-    // driveTrain.Drive();
+    driveTrain.Drive();
+    turret.TurretMove();
+    turret.PositionHood();
     hopper.Run();
     intake.Run();
-    shooter.Run();
+    nonPidShooter.Run();
+    // nonPidShooter.Run();
+    // if (Driver.A()) {
+    //     m_shooter1.Set(.6);
+    //     m_shooter2.Set(.6);
+    // }
+    // else
+    // {
+    //     m_shooter1.Set(0);
+    //     m_shooter2.Set(0);
+    // }
     // turret.Shoot();
 
     // if(Operator.POV() == 180){
@@ -283,11 +274,11 @@ void Robot::TeleopPeriodic() {
     // } else {
     //     hopperSol->Set(frc::DoubleSolenoid::Value::kReverse);
     // }
-    if(Operator.LB()){
-        intakeSol->Set(frc::DoubleSolenoid::Value::kReverse);
-    } else {
-        intakeSol->Set(frc::DoubleSolenoid::Value::kForward);
-    }
+    // if(Driver.LB()){
+    //     intakeSol->Set(frc::DoubleSolenoid::Value::kReverse);
+    // } else {
+    //     intakeSol->Set(frc::DoubleSolenoid::Value::kForward);
+    // }
     // Shooter shooter.Test();
     // turret.Aim();
     // if (Driver.A())
@@ -308,7 +299,7 @@ void Robot::TestInit() {
 }
 
 void Robot::TestPeriodic() {
-
+    // turret.Aim();
 }
 
 #ifndef RUNNING_FRC_TESTS

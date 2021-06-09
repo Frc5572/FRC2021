@@ -24,8 +24,14 @@ Hopper::Hopper(
         this->Operator = &Operator;
 }
 
-Hopper::~Hopper() {
-    delete HopperMotors;
+
+void Hopper::Run() {
+    if(Operator->Y()) {
+        HopperMotors->Set(.3);
+    }
+    else {
+        HopperMotors->Set(0);
+    }
 }
 
 void Hopper::Run() {

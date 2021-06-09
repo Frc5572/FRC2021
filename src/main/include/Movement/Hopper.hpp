@@ -24,7 +24,7 @@ class Hopper{
 
     );
 
-    ~Hopper();
+    void Run();
 
     void Run();
 

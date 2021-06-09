@@ -103,7 +103,7 @@ class Robot : public frc::TimedRobot {
 
     PIDShooter shooter{m_shooter1, m_shooter2};
 
-    // Shooter shootTest { m_shooter1, m_shooter2, Operator};
+    Shooter nonPidShooter { m_shooter1, m_shooter2, *hopperSol, Operator};
 
     // frc::DoubleSolenoid climb{PCM1, 1, 6};  // 3 4
 
@@ -125,9 +125,9 @@ class Robot : public frc::TimedRobot {
 
     Intake intake{ m_intake, Operator };
 
-    Shooter shooter{ m_shooter1, m_shooter2, *hopperSol, Operator };
+    Turret turret{ m_turret, Operator, LimeLight, s1};
 
-    Turret turret{ m_turret, Operator, LimeLight };
+    bool firstPart, secondPart, thirdPart, fourthPart, fifthPart, sixthPart;
 
     bool firstPart, secondPart, thirdPart, fourthPart, fifthPart, sixthPart;
 

@@ -7,18 +7,13 @@ Shooter::Shooter(
     frc::DoubleSolenoid &hopperSol,
     FRC5572Controller &Operator
     ) {
-
-
     this->shooterMotors = new frc::SpeedControllerGroup(Shooter1, Shooter2);
-        // this->hopperBlock = hopperSol;
+    this->hopperBlock = &hopperSol;
     this->s1 = &Shooter1;
     this->s2 = &Shooter2;
     this->Operator = &Operator;
 }
 
-Shooter::~Shooter() {
-    delete shooterMotors;
-}
 
 void Shooter::Run() {
     if(Operator->B()){

@@ -15,8 +15,6 @@ class Shooter{
         FRC5572Controller &Operator
     );
 
-    ~Shooter();
-
     void Run();
 
 
