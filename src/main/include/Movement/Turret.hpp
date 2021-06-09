@@ -4,7 +4,8 @@
 #include "rev/CANSparkMax.h"
 #include "AHRS.h"
 #include "frc/WPILib.h"
-// #include "DriveTrainManager.hpp"
+#include "Movement/DriveTrainManager.hpp"
+#include "rev/CANEncoder.h"
 
 
 
@@ -24,6 +25,8 @@ class Turret {
     static constexpr double minPosition = 1;
     static constexpr double m1 = -(maxPosition - minPosition) / (maxAngle - minAngle);
     static constexpr double b1 = -.625;
+    static constexpr double limitTurret = 600;
+    static constexpr double limitServo = .7;
 
  public:
 
@@ -31,7 +34,8 @@ Turret(
   rev::CANSparkMax &TopLeftMotor,
   FRC5572Controller &Operator,
   VisionManager &VisionManager,
-  frc::Servo &servo
+  frc::Servo &servo,
+  DriveTrain &driveTrain
   );
 
 void turretInit();
@@ -41,6 +45,7 @@ void autoAim();
 void Off();
 // void Shoot();
 void PositionHood();
+void LimitCheck();
 double CalculateDistance(double area);
 double CalculateAngle(double position);
 
@@ -52,6 +57,10 @@ double CalculateAngle(double position);
 
   rev::CANSparkMax* TurretMotor;
 
+  rev::CANEncoder *TurretEncoder;
+
   frc::Servo *servo;
+
+  DriveTrain *drive;
 
 };

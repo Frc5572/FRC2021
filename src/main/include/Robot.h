@@ -97,13 +97,13 @@ class Robot : public frc::TimedRobot {
 
     frc::DoubleSolenoid *climber2;
     frc::DoubleSolenoid *sol4;
-    frc::DoubleSolenoid *intakeSol;
+    frc::DoubleSolenoid intakeSol{PCM1, 6, 1};
     frc::DoubleSolenoid *climber1;
-    frc::DoubleSolenoid *hopperSol;
+    frc::DoubleSolenoid hopperSol {PCM1, 5, 2};
 
     PIDShooter shooter{m_shooter1, m_shooter2};
 
-    Shooter nonPidShooter { m_shooter1, m_shooter2, *hopperSol, Operator};
+    Shooter nonPidShooter { m_shooter1, m_shooter2, hopperSol, Operator};
 
     // frc::DoubleSolenoid climb{PCM1, 1, 6};  // 3 4
 
@@ -121,15 +121,15 @@ class Robot : public frc::TimedRobot {
         m_leftMiddleMotor, m_rightMiddleMotor, m_leftBottomMotor,
         m_rightBottomMotor, Driver, LimeLight, ahrs };
 
-    Hopper hopper{ m_hopperLeft, m_hopperRight, *hopperSol, Operator };
+    Hopper hopper{ m_hopperLeft, m_hopperRight, hopperSol, Operator };
 
-    Intake intake{ m_intake, Operator };
+    Intake intake{ m_intake, Operator, intakeSol };
 
-    Turret turret{ m_turret, Operator, LimeLight, s1};
-
-    bool firstPart, secondPart, thirdPart, fourthPart, fifthPart, sixthPart;
+    Turret turret{ m_turret, Operator, LimeLight, s1, driveTrain};
 
     bool firstPart, secondPart, thirdPart, fourthPart, fifthPart, sixthPart;
+
+    // bool firstPart, secondPart, thirdPart, fourthPart, fifthPart, sixthPart;
 
     // Shooter shooter{m_leftShooter, m_rightShooter, shooterHood, Operator};
 

@@ -53,8 +53,13 @@ bool FRC5572Controller::B() {
     return pad->GetRawButton(B_BUTTON);
 }
 
+inline double FRC5572Controller::grad(double n) {
+    // return (log2(n + 1) - 1);
+    return n;
+}
+
 std::pair<double, double> FRC5572Controller::L() {
-    return std::make_pair(pad->GetRawAxis(LEFT_x), pad->GetRawAxis(LEFT_y));
+    return std::make_pair(grad(pad->GetRawAxis(LEFT_x)), grad(pad->GetRawAxis(LEFT_y)));
 }
 
 std::pair<double, double> FRC5572Controller::R() {
