@@ -16,6 +16,9 @@ Turret::Turret(
 void Turret::turretInit() {
 }
 
+void Turret::turretInit() {
+}
+
 void Turret::TurretMove() {
     // if (this->Operator->L().second > .2 || this->Operator->L().second < -.2) {
     //     TurretMotor->Set(-1 * Operator->L().second * .5);
@@ -90,10 +93,10 @@ double Turret::CalculateAngle(double distance) {
     std::cout << "angle " << corrected_d << "\n";
     auto r = m1 * corrected_d  + b1;
     std::cout << "servo pos: " << r << "\n";
-    if (corrected_d > 64) 
+    if (corrected_d > 64)
     {
         r = 1;
-    } 
+    }
     else if (corrected_d < 26)
     {
         r = 0;
