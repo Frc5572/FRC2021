@@ -52,7 +52,7 @@ class FRC5572Controller {
   bool Lbutton();
   bool Rbutton();
   void rumble(double, double);
-
+  inline double grad(double n);
   /*
   Dpad:
   Pov() == 0 : Up

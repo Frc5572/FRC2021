@@ -18,7 +18,7 @@ Hopper::Hopper(
         // this->limitSwitch2 = &Input2;
         // this->limitSwitch3 = &Input3;
         this->HopperMotors = new frc::SpeedControllerGroup(Belt1, Belt2);
-        // this->hopperBlock = hopperSol;
+        this->hopperBlock = &hopperSol;
         this->belt1 = &Belt1;
         this->belt2 = &Belt2;
         this->Operator = &Operator;
@@ -26,23 +26,20 @@ Hopper::Hopper(
 
 
 void Hopper::Run() {
-    if(Operator->Y()) {
-        HopperMotors->Set(.3);
-    }
-    else {
-        HopperMotors->Set(0);
-    }
-}
-
-void Hopper::Run() {
-    if(Operator->Y()){
+    if(Operator->A()) {
         belt1->Set(.4);
         belt2->Set(.4);
-        hopperBlock->Set(frc::DoubleSolenoid::Value::kReverse);
+        // hopperBlock->Set(frc::DoubleSolenoid::Value::kReverse);
+    }
+    else if (Operator->B())
+    {
+        belt1->Set(-.4);
+        belt2->Set(-.4);
     }
     else
     {
         belt1->Set(0);
         belt2->Set(0);
+        
     }
 }
