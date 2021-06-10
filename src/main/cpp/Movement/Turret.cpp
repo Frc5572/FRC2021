@@ -32,10 +32,10 @@ void Turret::TurretMove() {
     // } else {
     //     TurretMotor->Set(0);
     // }
-    if (Operator->RB()) {
+    if (Operator->RB() && abs(TurretEncoder->GetPosition()) < limitTurret) {
         TurretMotor->Set(.1);
     }
-    else if (Operator->LB()) {
+    else if (Operator->LB() && abs(TurretEncoder->GetPosition()) < limitTurret) {
         TurretMotor->Set(-.1);
     } else {
         autoAim();
@@ -62,7 +62,13 @@ void Turret::Aim() {
     }
 
     disX = LimeLight->disX;
-    TurretMotor->Set(disX/125);
+    if (abs(TurretEncoder->GetPosition()) > limitTurret) 
+    {
+        TurretMotor->Set(0);
+    } else {
+        TurretMotor->Set(disX/125);
+    }
+
 }
 
 void Turret::autoAim() {
@@ -77,7 +83,12 @@ void Turret::autoAim() {
 
     auto s = (disX/125) + (l/90) - (r/90);
 
-    TurretMotor->Set(s);
+    if (abs(TurretEncoder->GetPosition()) > limitTurret) 
+    {
+        TurretMotor->Set(0);
+    } else {
+        TurretMotor->Set(s);
+    }
 }
 
 void Turret::Off() {
@@ -111,16 +122,12 @@ double Turret::CalculateAngle(double distance) {
     return r;
 }
 
-void Turret::LimitCheck() {
-
-    if (abs(TurretEncoder->GetPosition()) > limitTurret) 
-    {
-
-    }
-
-
-    std::cout << "Turret motor pos: " << TurretEncoder->GetPosition() << "\n";
-}
+// void Turret::LimitCheck() {
+//     if (abs(TurretEncoder->GetPosition()) > limitTurret) 
+//     {
+//         TurretMotor->Set(0);
+//     }
+// }
 
 // void Turret::Shoot() {
 //     auto sShort = nt::NetworkTableInstance::GetDefault().GetTable("limelight")
@@ -143,7 +150,7 @@ void Turret::PositionHood()
     auto sLong = nt::NetworkTableInstance::GetDefault().GetTable("limelight")
                     ->GetNumber("tlong", 1);
     auto area = sLong * sShort;
-    std::cout << "Total area: " << area << "\n";
+    // std::cout << "Total area: " << area << "\n";
     auto a1 = atan2(heightdiff, CalculateDistance(area)) * (180/M_PI);
     // std::cout << "a1 " << a1 << "\n";
     auto a2 = 90 - a1 - 35;

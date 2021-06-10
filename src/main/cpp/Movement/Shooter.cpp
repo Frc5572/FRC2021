@@ -18,7 +18,7 @@ Shooter::Shooter(
 void Shooter::Run() {
     if(Operator->X()){
         shooterMotors->Set(.6);
-        // hopperBlock->Set(frc::DoubleSolenoid::Value::kForward);
+        hopperBlock->Set(frc::DoubleSolenoid::Value::kForward);
     } else {
         shooterMotors->Set(0);
     }
