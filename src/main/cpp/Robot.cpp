@@ -115,12 +115,12 @@ void Robot::AutonomousPeriodic() {
     turret.autoAim();
     std::cout << m_leftMiddleMotor.GetSelectedSensorPosition() << "\n";
     if (!firstPart) {
-        if(m_timer.Get() < .1){
+        if(m_timer.Get() < .25){
             m_shooter1.Set(.4);
             m_shooter2.Set(.4);
             m_turret.Set(.1);
         }
-        else if (m_timer.Get() > .1 && m_timer.Get() < 3) {
+        else if (m_timer.Get() > .25 && m_timer.Get() < 3) {
             m_shooter1.Set(.4);
             m_shooter2.Set(.4);
             s1.SetPosition(.1);
