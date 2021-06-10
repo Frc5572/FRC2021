@@ -13,3 +13,14 @@ Shooter::Shooter(
     this->shoot2 = &Shooter2;
     this->Operator = &Operator;
 }
+
+void Shooter::Run() {
+    if(Operator->A()){
+        shooterMotors->Set(.6);
+        hopperBlock->Set(frc::DoubleSolenoid::Value::kForward);
+    }
+    else
+    {
+        shooterMotors->Set(0);
+    }
+}

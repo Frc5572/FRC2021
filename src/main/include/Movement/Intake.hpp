@@ -12,14 +12,13 @@ class Intake{
 
     Intake(
         WPI_TalonSRX &m_intake,
+        frc::DoubleSolenoid &intakeSol,
         FRC5572Controller &Operator
         // frc::DigitalInput &Input2,
         // frc::DigitalInput &Input3
 
 
     );
-
-    ~Intake();
 
     void Run();
 
@@ -31,6 +30,8 @@ class Intake{
 
 
     FRC5572Controller* Operator;
+
+    frc::DoubleSolenoid* intakePistons;
 
     WPI_TalonSRX* m_intake;
     // frc::DigitalInput* limitSwitch2;

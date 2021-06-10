@@ -123,9 +123,11 @@ class Robot : public frc::TimedRobot {
 
     Hopper hopper{ m_hopperLeft, m_hopperRight, *hopperSol, Operator };
 
-    Intake intake{ m_intake, Operator };
+    Intake intake{ m_intake, *intakeSol, Operator };
 
     Turret turret{ m_turret, Operator, LimeLight, s1};
+
+    Climber climber{ m_climber1, m_climber2, *climber1, *climber2, Driver };
 
     bool firstPart, secondPart, thirdPart, fourthPart, fifthPart;
 

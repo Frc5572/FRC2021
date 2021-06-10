@@ -5,6 +5,7 @@
 
 Intake::Intake(
     WPI_TalonSRX &m_intake,
+    frc::DoubleSolenoid &intakeSol,
     FRC5572Controller &Operator
     //    frc::DigitalInput &Input2,
     //    frc::DigitalInput &Input3
@@ -14,18 +15,18 @@ Intake::Intake(
         // this->Operator = &Operator;
         // this->limitSwitch2 = &Input2;
         // this->limitSwitch3 = &Input3;
+        this->intakePistons = &intakeSol;
         this->m_intake = &m_intake;
         this->Operator = &Operator;
 }
 
-Intake::~Intake() {
+void Intake::Run() {
+    if(Operator->B()){
+        m_intake->Set(.5);
+        intakePistons->Set(frc::DoubleSolenoid::Value::kReverse);
+    }
+    else {
+        m_intake->Set(0);
+        intakePistons->Set(frc::DoubleSolenoid::Value::kForward);
+    }
 }
-
-// void Intake::Run() {
-//     if(Operator->A()){
-//         m_intake->Set(.7);
-//     }
-//     else {
-//         m_intake->Set(0);
-//     }
-// }

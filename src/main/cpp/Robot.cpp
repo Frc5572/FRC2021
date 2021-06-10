@@ -209,45 +209,49 @@ void Robot::TeleopInit() {
 
 void Robot::TeleopPeriodic() {
     driveTrain.Drive();
+    hopper.Run();
+    nonPidShooter.Run();
+    turret.Aim();
+    intake.Run();
     // turret.TurretMove();
     // turret.PositionHood();
     // hopper.Run();
-    turret.Aim();
+    // turret.Aim();
     // intake.Run();
     // nonPidShooter.Run();
-    if(Operator.A()){
-        m_shooter1.Set(.6);
-        m_shooter2.Set(.6);
-        // hopperBlock->Set(frc::DoubleSolenoid::Value::kForward);
-    } else {
-        m_shooter1.Set(0);
-        m_shooter2.Set(0);
-    }
-    if(Operator.POV() == 0){
-        m_hopperLeft.Set(.3);
-        m_hopperRight.Set(.3);
-        hopperSol->Set(frc::DoubleSolenoid::Value::kReverse);
-    } else if(Operator.POV() == 180){
-        m_hopperLeft.Set(-.2);
-        m_hopperRight.Set(-.2);
-    } else {
-        m_hopperLeft.Set(0);
-        m_hopperRight.Set(0);
-    }
-    if(Operator.B()){
-        m_intake.Set(.5);
-        intakeSol->Set(frc::DoubleSolenoid::Value::kReverse);
-    } else {
-        m_intake.Set(0);
-        intakeSol->Set(frc::DoubleSolenoid::Value::kForward);
-    }
-    if(Driver.POV() == 180){
-        m_climber1.Set(-.3); //good direction
-        m_climber2.Set(-.3);
-    } else {
-        m_climber1.Set(0);
-        m_climber2.Set(0);
-    }
+    // if(Operator.A()){
+    //     m_shooter1.Set(.6);
+    //     m_shooter2.Set(.6);
+    //     // hopperBlock->Set(frc::DoubleSolenoid::Value::kForward);
+    // } else {
+    //     m_shooter1.Set(0);
+    //     m_shooter2.Set(0);
+    // }
+    // if(Operator.POV() == 0){
+    //     m_hopperLeft.Set(.3);
+    //     m_hopperRight.Set(.3);
+    //     hopperSol->Set(frc::DoubleSolenoid::Value::kReverse);
+    // } else if(Operator.POV() == 180){
+    //     m_hopperLeft.Set(-.2);
+    //     m_hopperRight.Set(-.2);
+    // } else {
+    //     m_hopperLeft.Set(0);
+    //     m_hopperRight.Set(0);
+    // }
+    // if(Operator.B()){
+    //     m_intake.Set(.5);
+    //     intakeSol->Set(frc::DoubleSolenoid::Value::kReverse);
+    // } else {
+    //     m_intake.Set(0);
+    //     intakeSol->Set(frc::DoubleSolenoid::Value::kForward);
+    // }
+    // if(Driver.POV() == 180){
+    //     m_climber1.Set(-.3); //good direction
+    //     m_climber2.Set(-.3);
+    // } else {
+    //     m_climber1.Set(0);
+    //     m_climber2.Set(0);
+    // }
     // nonPidShooter.Run();
     // if (Driver.A()) {
     //     m_shooter1.Set(.6);
@@ -299,10 +303,10 @@ void Robot::TeleopPeriodic() {
     // intake.Run();
     // shooter.run();
 
-    if(Driver.Y()){
-        climber2->Set(frc::DoubleSolenoid::Value::kForward);
-        climber1->Set(frc::DoubleSolenoid::Value::kForward);
-    }
+    // if(Driver.Y()){
+    //     climber2->Set(frc::DoubleSolenoid::Value::kForward);
+    //     climber1->Set(frc::DoubleSolenoid::Value::kForward);
+    // }
     // if(Driver.B()){
     //     sol4->Set(frc::DoubleSolenoid::Value::kForward);
     // } else {

@@ -18,21 +18,22 @@ Hopper::Hopper(
         // this->limitSwitch2 = &Input2;
         // this->limitSwitch3 = &Input3;
         this->HopperMotors = new frc::SpeedControllerGroup(Belt1, Belt2);
-        // this->hopperBlock = hopperSol;
+        this->hopperBlock = &hopperSol;
         this->belt1 = &Belt1;
         this->belt2 = &Belt2;
         this->Operator = &Operator;
 }
 
-// void Hopper::Run() {
-//     if(Operator->Y()){
-//         belt1->Set(.4);
-//         belt2->Set(.4);
-//         hopperBlock->Set(frc::DoubleSolenoid::Value::kReverse);
-//     }
-//     else
-//     {
-//         belt1->Set(0);
-//         belt2->Set(0);
-//     }
-// }
+void Hopper::Run() {
+    if(Operator->POV() == 0){
+        HopperMotors->Set(.4);
+        hopperBlock->Set(frc::DoubleSolenoid::Value::kReverse);
+    }
+    else if (Operator->POV() == 180){
+        HopperMotors->Set(-.4);
+    }
+    else
+    {
+        HopperMotors->Set(0);
+    }
+}
