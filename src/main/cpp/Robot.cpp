@@ -47,8 +47,8 @@ void Robot::RobotInit() {
     climber1 = new frc::DoubleSolenoid(PCM2, 4, 3);//blue
     // intakeSol = new frc::DoubleSolenoid(PCM1, 6, 1);//yellow
     sol4 = new frc::DoubleSolenoid(PCM2, 5, 2);//red
-    intakeSol->Set(frc::DoubleSolenoid::Value::kForward);
-    hopperSol->Set(frc::DoubleSolenoid::Value::kForward);
+    intakeSol.Set(frc::DoubleSolenoid::Value::kForward);
+    hopperSol.Set(frc::DoubleSolenoid::Value::kForward);
     climber1->Set(frc::DoubleSolenoid::Value::kReverse);
     climber2->Set(frc::DoubleSolenoid::Value::kReverse);
     sol4->Set(frc::DoubleSolenoid::Value::kReverse);
@@ -74,7 +74,7 @@ void Robot::AutonomousInit() {
     s1.SetPosition(0);
     m_leftMiddleMotor.SetSelectedSensorPosition(0);
     LimeLight.Update();
-    intakeSol->Set(frc::DoubleSolenoid::Value::kReverse);
+    intakeSol.Set(frc::DoubleSolenoid::Value::kReverse);
     firstPart = false, secondPart = false, thirdPart = false, fourthPart = false, fifthPart = false;
 }
 
@@ -131,7 +131,7 @@ void Robot::AutonomousPeriodic() {
             driveTrain.RightMotors->Set(.3);
             m_intake.Set(.4);
             hopper.HopperMotors->Set(.2);
-            hopperSol->Set(frc::DoubleSolenoid::Value::kReverse);
+            hopperSol.Set(frc::DoubleSolenoid::Value::kReverse);
         } else {
             driveTrain.LeftMotors->Set(0);
             driveTrain.RightMotors->Set(0);
@@ -163,15 +163,15 @@ void Robot::AutonomousPeriodic() {
         if (m_timer.Get() > 6.5 && m_timer.Get() < 8) {
             driveTrain.LeftMotors->Set(0);
             driveTrain.RightMotors->Set(0);
-            intakeSol->Set(frc::DoubleSolenoid::Value::kForward);
-            hopperSol->Set(frc::DoubleSolenoid::Value::kForward);
+            intakeSol.Set(frc::DoubleSolenoid::Value::kForward);
+            hopperSol.Set(frc::DoubleSolenoid::Value::kForward);
         } else if (m_timer.Get() > 8 && m_timer.Get() < 10) {
-            intakeSol->Set(frc::DoubleSolenoid::Value::kReverse);
+            intakeSol.Set(frc::DoubleSolenoid::Value::kReverse);
             hopper.HopperMotors->Set(.3);
             m_shooter1.Set(.7);
             m_shooter2.Set(.7);
         } else if (m_timer.Get() > 10 && m_timer.Get() < 16) {
-            intakeSol->Set(frc::DoubleSolenoid::Value::kForward);
+            intakeSol.Set(frc::DoubleSolenoid::Value::kForward);
             hopper.HopperMotors->Set(.3);
             m_shooter1.Set(.7);
             m_shooter2.Set(.7);
