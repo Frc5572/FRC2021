@@ -17,13 +17,10 @@ float limelightAngle;
 float subHeight;
 float distance;
 float angle;
-// double tpft = 10500;
 double eticks = 2048 * 9.2;
 double circum = 18.84;
 double wantToMove = 14 * 12; //feet to inches
 double ticks = wantToMove * (eticks / circum);
-
-
 
 
 void Robot::RobotInit() {
@@ -42,7 +39,6 @@ void Robot::RobotInit() {
 
     //servo bounds found on online so that it properly goes from closed to open
     s1.SetBounds(2.0, 1.8, 1.5, 1.2, 1.0);
-    // s2.SetBounds(2.0, 1.8, 1.5, 1.2, 1.0);
     compressor.Start();
     compressor.SetClosedLoopControl(true);
     climber2 = new frc::DoubleSolenoid(PCM1, 7, 0);//green
@@ -55,11 +51,6 @@ void Robot::RobotInit() {
     climber1->Set(frc::DoubleSolenoid::Value::kReverse);
     climber2->Set(frc::DoubleSolenoid::Value::kReverse);
     sol4->Set(frc::DoubleSolenoid::Value::kReverse);
-    // s1.Set(0);
-    // s2.Set(0);
-    // delete servo;
-    // servo = new frc::Servo{0};
-
 
     nt::NetworkTableInstance::GetDefault().GetTable("limelight")
         ->PutNumber("ledMode", 3);
@@ -71,7 +62,6 @@ void Robot::RobotInit() {
 }
 
 void Robot::RobotPeriodic() {
-    // SetClosedLoopControl(true);
     LimeLight.Update();
 }
 
@@ -84,7 +74,6 @@ void Robot::AutonomousInit() {
     LimeLight.Update();
     intakeSol->Set(frc::DoubleSolenoid::Value::kReverse);
     firstPart = false, secondPart = false, thirdPart = false, fourthPart = false, fifthPart = false;
-    // firstPart = false;
 }
 
 void Robot::AutonomousPeriodic() {
@@ -102,17 +91,9 @@ void Robot::AutonomousPeriodic() {
     .9 = 61*
     1 = 65*
     */
-    //Getting distance from shooter thingy using limelight measurements
-    // limelightAngle = tan(LimeLight.ta + 40);
-    // subHeight = 47;
-    // distance = subHeight / limelightAngle;
-    // angle = sqrt((distance * distance) + (subHeight * subHeight));
-    // if(m_timer.Get() < 5){
-    //     turret.Aim();
-    // }
-    // turret.Aim();
 
     turret.autoAim();
+
     std::cout << m_leftMiddleMotor.GetSelectedSensorPosition() << "\n";
     if (!firstPart) {
         if(m_timer.Get() < .25){
@@ -213,136 +194,12 @@ void Robot::TeleopPeriodic() {
     nonPidShooter.Run();
     turret.Aim();
     intake.Run();
-    // turret.TurretMove();
-    // turret.PositionHood();
-    // hopper.Run();
-    // turret.Aim();
-    // intake.Run();
-    // nonPidShooter.Run();
-    // if(Operator.A()){
-    //     m_shooter1.Set(.6);
-    //     m_shooter2.Set(.6);
-    //     // hopperBlock->Set(frc::DoubleSolenoid::Value::kForward);
-    // } else {
-    //     m_shooter1.Set(0);
-    //     m_shooter2.Set(0);
-    // }
-    // if(Operator.POV() == 0){
-    //     m_hopperLeft.Set(.3);
-    //     m_hopperRight.Set(.3);
-    //     hopperSol->Set(frc::DoubleSolenoid::Value::kReverse);
-    // } else if(Operator.POV() == 180){
-    //     m_hopperLeft.Set(-.2);
-    //     m_hopperRight.Set(-.2);
-    // } else {
-    //     m_hopperLeft.Set(0);
-    //     m_hopperRight.Set(0);
-    // }
-    // if(Operator.B()){
-    //     m_intake.Set(.5);
-    //     intakeSol->Set(frc::DoubleSolenoid::Value::kReverse);
-    // } else {
-    //     m_intake.Set(0);
-    //     intakeSol->Set(frc::DoubleSolenoid::Value::kForward);
-    // }
-    // if(Driver.POV() == 180){
-    //     m_climber1.Set(-.3); //good direction
-    //     m_climber2.Set(-.3);
-    // } else {
-    //     m_climber1.Set(0);
-    //     m_climber2.Set(0);
-    // }
-    // nonPidShooter.Run();
-    // if (Driver.A()) {
-    //     m_shooter1.Set(.6);
-    //     m_shooter2.Set(.6);
-    // }
-    // else
-    // {
-    //     m_shooter1.Set(0);
-    //     m_shooter2.Set(0);
-    // }
-    // turret.Shoot();
-
-    // if(Operator.POV() == 180){
-    //     s1.SetPosition(0);
-    // } else if(Operator.POV() == 90) {
-    //     s1.SetPosition(.2);
-    // } else if(Operator.POV() == 0){
-    //     s1.SetPosition(1);
-    // }
-
-    // if(Operator.B()){
-    //     m_shooter1.Set(.6);
-    //     m_shooter2.Set(.6);
-    // } else {
-    //     m_shooter1.Set(0);
-    //     m_shooter2.Set(0);
-    // }
-
-
-    // if(Operator.LB()){
-    //     m_turret.Set(-.2);
-    // } else if(Operator.RB()){
-    //     m_turret.Set(.2);
-    // } else {
-    //     m_turret.Set(0);
-    // }
-
-    // if(Driver.A()){
-    //     turret.Aim();
-    // }
-    // turret.Aim();
-    // if(Operator.LB()){
-    //     m_turret.Set(.3);
-    // } else if(Operator.RB()){
-    //     m_turret.Set(-.3);
-    // } else {
-    //     m_turret.Set(0);
-    // }
-    // intake.Run();
-    // shooter.run();
-
-    // if(Driver.Y()){
-    //     climber2->Set(frc::DoubleSolenoid::Value::kForward);
-    //     climber1->Set(frc::DoubleSolenoid::Value::kForward);
-    // }
-    // if(Driver.B()){
-    //     sol4->Set(frc::DoubleSolenoid::Value::kForward);
-    // } else {
-    //     sol4->Set(frc::DoubleSolenoid::Value::kReverse);
-    // }
-    // if(Driver.X()){
-    //     hopperSol->Set(frc::DoubleSolenoid::Value::kForward);
-    // } else {
-    //     hopperSol->Set(frc::DoubleSolenoid::Value::kReverse);
-    // }
-    // if(Driver.LB()){
-    //     intakeSol->Set(frc::DoubleSolenoid::Value::kReverse);
-    // } else {
-    //     intakeSol->Set(frc::DoubleSolenoid::Value::kForward);
-    // }
-    // Shooter shooter.Test();
-    // turret.Aim();
-    // if (Driver.A())
-    // {
-    //     // shooter.run();
-    //     m_shooter1.Set(.7);
-    //     m_shooter2.Set(.7);
-    // }
-    // else
-    // {
-    //     m_shooter1.Set(0);
-    //     m_shooter2.Set(0);
-    // }
 }
 
 void Robot::TestInit() {
-    // LimeLight.Update();
 }
 
 void Robot::TestPeriodic() {
-    // turret.Aim();
 }
 
 #ifndef RUNNING_FRC_TESTS
