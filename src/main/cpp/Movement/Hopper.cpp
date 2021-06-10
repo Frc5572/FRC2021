@@ -29,7 +29,7 @@ void Hopper::Run() {
     if(Operator->A()) {
         belt1->Set(.4);
         belt2->Set(.4);
-        // hopperBlock->Set(frc::DoubleSolenoid::Value::kReverse);
+        hopperBlock->Set(frc::DoubleSolenoid::Value::kReverse);
     }
     else if (Operator->B())
     {

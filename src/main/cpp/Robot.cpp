@@ -28,6 +28,7 @@ double ticks = wantToMove * (eticks / circum);
 
 void Robot::RobotInit() {
     m_leftBottomMotor.SetSelectedSensorPosition(0);
+    //turret.TurretEncoder->SetPosition(0);
 
     driveTrain.driveInit();
 
@@ -203,7 +204,7 @@ void Robot::TeleopPeriodic() {
     driveTrain.Drive();
     turret.TurretMove();
     turret.PositionHood();
-    turret.LimitCheck();
+    // turret.LimitCheck();
     hopper.Run();
     intake.Run();
     nonPidShooter.Run();

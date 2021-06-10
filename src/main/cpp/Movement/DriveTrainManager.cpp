@@ -126,13 +126,13 @@ void DriveTrain::driveInit() {
 
 void DriveTrain::Drive() {
     if (this->Driver->L().second > .2 || this->Driver->L().second < -.2) {
-        LeftMotors->Set(-1 * Driver->L().second * .3);
+        LeftMotors->Set(-1 * Driver->L().second * .4);
     } else {
         LeftMotors->Set(0);
     }
 
     if (this->Driver->R().second > .2 ||  this->Driver->R().second < -.2) {
-        RightMotors->Set(-1 * Driver->R().second  * .3);
+        RightMotors->Set(-1 * Driver->R().second  * .4);
     } else {
         RightMotors->Set(0);
     }
