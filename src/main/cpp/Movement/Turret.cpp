@@ -16,9 +16,6 @@ Turret::Turret(
 void Turret::turretInit() {
 }
 
-void Turret::turretInit() {
-}
-
 void Turret::TurretMove() {
     // if (this->Operator->L().second > .2 || this->Operator->L().second < -.2) {
     //     TurretMotor->Set(-1 * Operator->L().second * .5);

@@ -21,11 +21,11 @@ Intake::Intake(
 Intake::~Intake() {
 }
 
-void Intake::Run() {
-    if(Operator->A()){
-        m_intake->Set(.7);
-    }
-    else {
-        m_intake->Set(0);
-    }
-}
+// void Intake::Run() {
+//     if(Operator->A()){
+//         m_intake->Set(.7);
+//     }
+//     else {
+//         m_intake->Set(0);
+//     }
+// }

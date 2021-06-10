@@ -77,8 +77,8 @@ class Robot : public frc::TimedRobot {
 
 
     rev::CANSparkMax m_turret{turretID, rev::CANSparkMax::MotorType::kBrushless};
-    // rev::CANSparkMax m_climber1{climb1, rev::CANSparkMax::MotorType::kBrushless};
-    // rev::CANSparkMax m_climber2{climb2, rev::CANSparkMax::MotorType::kBrushless};
+    rev::CANSparkMax m_climber1{climb1, rev::CANSparkMax::MotorType::kBrushless};
+    rev::CANSparkMax m_climber2{climb2, rev::CANSparkMax::MotorType::kBrushless};
     frc::Servo s1{9};
     // frc::Servo s2{9};
 
@@ -127,9 +127,7 @@ class Robot : public frc::TimedRobot {
 
     Turret turret{ m_turret, Operator, LimeLight, s1};
 
-    bool firstPart, secondPart, thirdPart, fourthPart, fifthPart, sixthPart;
-
-    bool firstPart, secondPart, thirdPart, fourthPart, fifthPart, sixthPart;
+    bool firstPart, secondPart, thirdPart, fourthPart, fifthPart;
 
     // Shooter shooter{m_leftShooter, m_rightShooter, shooterHood, Operator};
 
@@ -170,12 +168,8 @@ class Robot : public frc::TimedRobot {
     HopperTwoID = 10,
     shooter1 = 12,
     shooter2 = 14, //  GOOD
-    climb1,
-    climb2;
-
-    // LeftClimb = 13,  //  GOOD
-    // RightClimb = 14;  //  GOOD
-
+    climb1 = 16,
+    climb2 = 15;
 
  public:
         void RobotInit() override;

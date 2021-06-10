@@ -24,6 +24,6 @@ class Shooter{
 
     frc::DoubleSolenoid* hopperBlock;
 
-    WPI_TalonSRX* s1;
-    WPI_TalonSRX* s2;
+    WPI_TalonSRX* shoot1;
+    WPI_TalonSRX* shoot2;
 };

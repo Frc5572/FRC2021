@@ -24,25 +24,15 @@ Hopper::Hopper(
         this->Operator = &Operator;
 }
 
-
-void Hopper::Run() {
-    if(Operator->Y()) {
-        HopperMotors->Set(.3);
-    }
-    else {
-        HopperMotors->Set(0);
-    }
-}
-
-void Hopper::Run() {
-    if(Operator->Y()){
-        belt1->Set(.4);
-        belt2->Set(.4);
-        hopperBlock->Set(frc::DoubleSolenoid::Value::kReverse);
-    }
-    else
-    {
-        belt1->Set(0);
-        belt2->Set(0);
-    }
-}
+// void Hopper::Run() {
+//     if(Operator->Y()){
+//         belt1->Set(.4);
+//         belt2->Set(.4);
+//         hopperBlock->Set(frc::DoubleSolenoid::Value::kReverse);
+//     }
+//     else
+//     {
+//         belt1->Set(0);
+//         belt2->Set(0);
+//     }
+// }
