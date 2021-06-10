@@ -28,6 +28,7 @@ double ticks = wantToMove * (eticks / circum);
 
 void Robot::RobotInit() {
     m_leftBottomMotor.SetSelectedSensorPosition(0);
+    //turret.TurretEncoder->SetPosition(0);
 
     driveTrain.driveInit();
 

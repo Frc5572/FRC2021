@@ -25,7 +25,7 @@ class Turret {
     static constexpr double minPosition = 1;
     static constexpr double m1 = -(maxPosition - minPosition) / (maxAngle - minAngle);
     static constexpr double b1 = -.625;
-    static constexpr double limitTurret = 10;
+    static constexpr double limitTurret = 20;
     static constexpr double limitServo = .7;
 
  public:
@@ -40,12 +40,12 @@ Turret(
 
 void turretInit();
 void TurretMove();
-void Aim();
+// void Aim();
 void autoAim();
 void Off();
 // void Shoot();
 void PositionHood();
-// void Limitheck();
+bool LimitCheck();
 double CalculateDistance(double area);
 double CalculateAngle(double position);
 
