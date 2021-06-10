@@ -38,8 +38,8 @@ void Turret::TurretMove() {
     else if (Operator->LB()) {
         TurretMotor->Set(-.1);
     } else {
-        // autoAim();
-        TurretMotor->Set(0);
+        autoAim();
+        // TurretMotor->Set(0);
     }
 }
 
@@ -143,6 +143,7 @@ void Turret::PositionHood()
     auto sLong = nt::NetworkTableInstance::GetDefault().GetTable("limelight")
                     ->GetNumber("tlong", 1);
     auto area = sLong * sShort;
+    std::cout << "Total area: " << area << "\n";
     auto a1 = atan2(heightdiff, CalculateDistance(area)) * (180/M_PI);
     // std::cout << "a1 " << a1 << "\n";
     auto a2 = 90 - a1 - 35;

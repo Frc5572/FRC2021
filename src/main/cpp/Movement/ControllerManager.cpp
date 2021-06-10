@@ -54,8 +54,7 @@ bool FRC5572Controller::B() {
 }
 
 inline double FRC5572Controller::grad(double n) {
-    // return (log2(n + 1) - 1);
-    return n;
+    return n > 0 ? pow(n, 2) : -pow(n, 2);
 }
 
 std::pair<double, double> FRC5572Controller::L() {
@@ -88,5 +87,6 @@ bool FRC5572Controller::Rbutton() {
 
 void FRC5572Controller::rumble(double x, double y) {
     pad->SetRumble(frc::GenericHID::kLeftRumble, x);
+    
     pad->SetRumble(frc::GenericHID::kRightRumble, y);
 }
