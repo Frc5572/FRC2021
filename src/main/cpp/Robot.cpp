@@ -25,6 +25,7 @@ double ticks = wantToMove * (eticks / circum);
 
 void Robot::RobotInit() {
     m_leftBottomMotor.SetSelectedSensorPosition(0);
+    //turret.TurretEncoder->SetPosition(0);
 
     driveTrain.driveInit();
 
@@ -42,9 +43,9 @@ void Robot::RobotInit() {
     compressor.Start();
     compressor.SetClosedLoopControl(true);
     climber2 = new frc::DoubleSolenoid(PCM1, 7, 0);//green
-    hopperSol = new frc::DoubleSolenoid(PCM1, 5, 2);//white
+    // hopperSol = new frc::DoubleSolenoid(PCM1, 5, 2);//white
     climber1 = new frc::DoubleSolenoid(PCM2, 4, 3);//blue
-    intakeSol = new frc::DoubleSolenoid(PCM1, 6, 1);//yellow
+    // intakeSol = new frc::DoubleSolenoid(PCM1, 6, 1);//yellow
     sol4 = new frc::DoubleSolenoid(PCM2, 5, 2);//red
     intakeSol->Set(frc::DoubleSolenoid::Value::kForward);
     hopperSol->Set(frc::DoubleSolenoid::Value::kForward);
@@ -62,6 +63,7 @@ void Robot::RobotInit() {
 }
 
 void Robot::RobotPeriodic() {
+    // SetClosedLoopControl(true);
     LimeLight.Update();
 }
 
@@ -190,9 +192,11 @@ void Robot::TeleopInit() {
 
 void Robot::TeleopPeriodic() {
     driveTrain.Drive();
+    turret.TurretMove();
+    turret.PositionHood();
+    // turret.LimitCheck();
     hopper.Run();
     nonPidShooter.Run();
-    turret.Aim();
     intake.Run();
 }
 

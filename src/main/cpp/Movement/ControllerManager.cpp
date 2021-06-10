@@ -53,8 +53,12 @@ bool FRC5572Controller::B() {
     return pad->GetRawButton(B_BUTTON);
 }
 
+inline double FRC5572Controller::grad(double n) {
+    return n > 0 ? pow(n, 2) : -pow(n, 2);
+}
+
 std::pair<double, double> FRC5572Controller::L() {
-    return std::make_pair(pad->GetRawAxis(LEFT_x), pad->GetRawAxis(LEFT_y));
+    return std::make_pair(grad(pad->GetRawAxis(LEFT_x)), grad(pad->GetRawAxis(LEFT_y)));
 }
 
 std::pair<double, double> FRC5572Controller::R() {
@@ -83,5 +87,6 @@ bool FRC5572Controller::Rbutton() {
 
 void FRC5572Controller::rumble(double x, double y) {
     pad->SetRumble(frc::GenericHID::kLeftRumble, x);
+    
     pad->SetRumble(frc::GenericHID::kRightRumble, y);
 }

@@ -21,10 +21,6 @@ class Intake{
     );
 
     void Run();
-
-    // void HopperPeriodic();
-    // void Advance();
-    // void ManualControlBelt();
     // void RunIntakePistions();
     // void ManualIntakeMotors();
 
@@ -34,6 +30,8 @@ class Intake{
     frc::DoubleSolenoid* intakePistons;
 
     WPI_TalonSRX* m_intake;
+
+    frc::DoubleSolenoid *sol;
     // frc::DigitalInput* limitSwitch2;
     // frc::DigitalInput* limitSwitch3;
 

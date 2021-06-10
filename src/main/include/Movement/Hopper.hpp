@@ -26,6 +26,8 @@ class Hopper{
 
     void Run();
 
+    // void Run();
+
     // void HopperPeriodic();
     // void Advance();
     // void ManualControlBelt();

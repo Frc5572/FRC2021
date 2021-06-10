@@ -30,3 +30,4 @@ void Intake::Run() {
         intakePistons->Set(frc::DoubleSolenoid::Value::kForward);
     }
 }
+
