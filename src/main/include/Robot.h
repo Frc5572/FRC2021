@@ -95,10 +95,10 @@ class Robot : public frc::TimedRobot {
     // frc::Servo *servo;
     // servo = new frc::Servo{0};
 
-    frc::DoubleSolenoid *climber2;
+    frc::DoubleSolenoid climber2{PCM1, 7 ,0};
     frc::DoubleSolenoid *sol4;
     frc::DoubleSolenoid intakeSol{PCM1, 6, 1};
-    frc::DoubleSolenoid *climber1;
+    frc::DoubleSolenoid climber1{PCM2, 4, 3};
     frc::DoubleSolenoid hopperSol {PCM1, 5, 2};
 
     PIDShooter shooter{m_shooter1, m_shooter2};
@@ -127,7 +127,7 @@ class Robot : public frc::TimedRobot {
 
     Turret turret{ m_turret, Operator, LimeLight, s1, driveTrain};
 
-    Climber climber{ m_climber1, m_climber2, *climber1, *climber2, Driver };
+    Climber climber{ m_climber1, m_climber2, climber1, climber2, Driver };
 
     bool firstPart, secondPart, thirdPart, fourthPart, fifthPart;
 
