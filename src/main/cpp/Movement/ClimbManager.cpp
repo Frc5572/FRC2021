@@ -27,7 +27,7 @@ Climber::Climber(
 }
 
 void Climber::RunMotors() {
-    if(Driver->POV() == 180){
+    if(Driver->A()){
         WenchMotors->Set(-.3);
     }
     else

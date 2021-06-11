@@ -42,15 +42,15 @@ void Robot::RobotInit() {
     s1.SetBounds(2.0, 1.8, 1.5, 1.2, 1.0);
     compressor.Start();
     compressor.SetClosedLoopControl(true);
-    climber2 = new frc::DoubleSolenoid(PCM1, 7, 0);//green
+    // climber2 = new frc::DoubleSolenoid(PCM1, 7, 0);//green
     // hopperSol = new frc::DoubleSolenoid(PCM1, 5, 2);//white
-    climber1 = new frc::DoubleSolenoid(PCM2, 4, 3);//blue
+    // climber1 = new frc::DoubleSolenoid(PCM2, 4, 3);//blue
     // intakeSol = new frc::DoubleSolenoid(PCM1, 6, 1);//yellow
     sol4 = new frc::DoubleSolenoid(PCM2, 5, 2);//red
     intakeSol.Set(frc::DoubleSolenoid::Value::kForward);
     hopperSol.Set(frc::DoubleSolenoid::Value::kForward);
-    climber1->Set(frc::DoubleSolenoid::Value::kReverse);
-    climber2->Set(frc::DoubleSolenoid::Value::kReverse);
+    climber1.Set(frc::DoubleSolenoid::Value::kReverse);
+    climber2.Set(frc::DoubleSolenoid::Value::kReverse);
     sol4->Set(frc::DoubleSolenoid::Value::kReverse);
 
     nt::NetworkTableInstance::GetDefault().GetTable("limelight")
@@ -98,15 +98,22 @@ void Robot::AutonomousPeriodic() {
 
     std::cout << m_leftMiddleMotor.GetSelectedSensorPosition() << "\n";
     if (!firstPart) {
-        if(m_timer.Get() < .25){
+        if(m_timer.Get() < .3){
             m_shooter1.Set(.4);
             m_shooter2.Set(.4);
             m_turret.Set(.1);
         }
-        else if (m_timer.Get() > .25 && m_timer.Get() < 3) {
+        else if(m_timer.Get() > .3 && m_timer.Get() < .7){
+            m_shooter1.Set(.4);
+            m_shooter2.Set(.4);
+            m_turret.Set(.1);
             m_shooter1.Set(.4);
             m_shooter2.Set(.4);
             s1.SetPosition(.1);
+        }
+        else if (m_timer.Get() > .7 && m_timer.Get() < 3) {
+            m_shooter1.Set(.4);
+            m_shooter2.Set(.4);
         }
         else if (m_timer.Get() > 3 && m_timer.Get() < 5.5 ){
             // turret.Off();
@@ -198,6 +205,8 @@ void Robot::TeleopPeriodic() {
     hopper.Run();
     nonPidShooter.Run();
     intake.Run();
+    climber.RunMotors();
+    climber.RunPistons();
 }
 
 void Robot::TestInit() {
