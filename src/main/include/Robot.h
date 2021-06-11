@@ -176,6 +176,7 @@ class Robot : public frc::TimedRobot {
     climb2 = 15;
 
  public:
+        Robot();
         void RobotInit() override;
         void RobotPeriodic() override;
         void AutonomousInit() override;

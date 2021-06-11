@@ -22,6 +22,9 @@ double circum = 18.84;
 double wantToMove = 14 * 12; //feet to inches
 double ticks = wantToMove * (eticks / circum);
 
+Robot::Robot() {
+    std::cout << "Hello, world!" << std::endl;
+}
 
 void Robot::RobotInit() {
     m_leftBottomMotor.SetSelectedSensorPosition(0);
