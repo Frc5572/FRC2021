@@ -16,6 +16,7 @@ class Shooter{
     );
 
     void Run();
+    void retractSol();
 
 
     frc::SpeedControllerGroup* shooterMotors;

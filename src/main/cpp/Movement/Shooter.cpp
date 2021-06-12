@@ -15,12 +15,20 @@ Shooter::Shooter(
 }
 
 void Shooter::Run() {
-    if(Operator->A()){
+    if(Operator->RT()){
         shooterMotors->Set(.6);
-        hopperBlock->Set(frc::DoubleSolenoid::Value::kForward);
     }
     else
     {
-        shooterMotors->Set(0);
+        shooterMotors->Set(.2);
     }
+}
+
+void Shooter::retractSol() {
+    // if(Operator->A()) {
+        hopperBlock->Set(frc::DoubleSolenoid::Value::kForward);
+    // } else {
+    //     hopperBlock->Set(frc::DoubleSolenoid::Value::kReverse);
+
+    // }
 }

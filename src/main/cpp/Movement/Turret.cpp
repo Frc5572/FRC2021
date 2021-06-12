@@ -1,6 +1,8 @@
 #include "Movement/Turret.hpp"
 #include "Movement/DriveTrainManager.hpp"
 
+bool tap = false;
+
 Turret::Turret(
     rev::CANSparkMax &TurretMotor,
     FRC5572Controller &Operator,
@@ -59,12 +61,21 @@ void Turret::autoAim() {
 }
 
 void Turret::Off() {
-    nt::NetworkTableInstance::GetDefault().GetTable("limelight")
-                    ->PutNumber("camMode", 1);
-    nt::NetworkTableInstance::GetDefault().GetTable("limelight")
-                    ->PutNumber("ledMode", 1);
-    disX = 0;
-    T = 0;
+    // if (Operator.X() && tap == false){}
+    //     nt::NetworkTableInstance::GetDefault().GetTable("limelight")
+    //                     ->PutNumber("camMode", 1);
+    //     nt::NetworkTableInstance::GetDefault().GetTable("limelight")
+    //                     ->PutNumber("ledMode", 1);
+    //     disX = 0;
+    //     T = 0;
+    //     tap = true;
+    // } else if (Operator.X() && tap == true) {
+    //     nt::NetworkTableInstance::GetDefault().GetTable("limelight")
+    //                 ->PutNumber("camMode", 0);
+    //     nt::NetworkTableInstance::GetDefault().GetTable("limelight")
+    //                 ->PutNumber("ledMode", 3);
+    //     tap = false;
+    // }
 }
 
 double Turret::CalculateDistance(double area) {

@@ -27,8 +27,8 @@ Climber::Climber(
 }
 
 void Climber::RunMotors() {
-    if(Driver->A()){
-        WinchMotors->Set(-.3);
+    if(Driver->POV() == 180){
+        WinchMotors->Set(.6);
     }
     else
     {

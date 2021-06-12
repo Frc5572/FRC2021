@@ -75,7 +75,7 @@ class Robot : public frc::TimedRobot {
     // rev::CANEncoder* BottomLeftMotorEncoder =
         // new rev::CANEncoder{m_leftBottomMotor};
 
-
+    // MAKE SURE YOU BURN FLASH ON REV SOFTWARE WHEN CONFIG SPARKMAX!!!
     rev::CANSparkMax m_turret{turretID, rev::CANSparkMax::MotorType::kBrushless};
     rev::CANSparkMax m_climber1{climb1, rev::CANSparkMax::MotorType::kBrushless};
     rev::CANSparkMax m_climber2{climb2, rev::CANSparkMax::MotorType::kBrushless};

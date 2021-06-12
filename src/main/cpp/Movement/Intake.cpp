@@ -22,7 +22,7 @@ Intake::Intake(
 
 void Intake::Run() {
     if(Operator->B()){
-        m_intake->Set(.5);
+        m_intake->Set(.3);
         intakePistons->Set(frc::DoubleSolenoid::Value::kReverse);
     }
     else {
