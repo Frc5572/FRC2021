@@ -10,8 +10,8 @@ class Climber{
     public:
 
     Climber(
-        rev::CANSparkMax &m_winch1,
-        rev::CANSparkMax &m_winch2,
+        rev::CANSparkMax &m_wench1,
+        rev::CANSparkMax &m_wench2,
         frc::DoubleSolenoid &climber1,
         frc::DoubleSolenoid &climber2,
         FRC5572Controller &Driver
@@ -30,7 +30,7 @@ class Climber{
     // void RunIntakePistions();
     // void ManualIntakeMotors();
 
-    frc::SpeedControllerGroup* WinchMotors;
+    frc::SpeedControllerGroup* WenchMotors;
 
     FRC5572Controller* Driver;
 
@@ -38,8 +38,8 @@ class Climber{
 
     frc::DoubleSolenoid* rel2;
 
-    rev::CANSparkMax* winch1;
-    rev::CANSparkMax* winch2;
+    rev::CANSparkMax* wench1;
+    rev::CANSparkMax* wench2;
     // frc::DigitalInput* limitSwitch2;
     // frc::DigitalInput* limitSwitch3;
 
