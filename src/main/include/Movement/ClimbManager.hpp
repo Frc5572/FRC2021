@@ -10,8 +10,8 @@ class Climber{
     public:
 
     Climber(
-        rev::CANSparkMax &m_wench1,
-        rev::CANSparkMax &m_wench2,
+        rev::CANSparkMax &m_brittney,
+        rev::CANSparkMax &m_stephanie,
         frc::DoubleSolenoid &climber1,
         frc::DoubleSolenoid &climber2,
         FRC5572Controller &Driver

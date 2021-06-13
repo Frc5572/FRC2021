@@ -4,8 +4,8 @@
 //d pad toggle preset shots
 
 Climber::Climber(
-    rev::CANSparkMax &m_wench1,
-    rev::CANSparkMax &m_wench2,
+    rev::CANSparkMax &m_brittney,
+    rev::CANSparkMax &m_stephanie,
     frc::DoubleSolenoid &climber1,
     frc::DoubleSolenoid &climber2,
     FRC5572Controller &Driver
@@ -18,11 +18,11 @@ Climber::Climber(
         // this->Operator = &Operator;
         // this->limitSwitch2 = &Input2;
         // this->limitSwitch3 = &Input3;
-        this->WenchMotors = new frc::SpeedControllerGroup(m_wench1, m_wench2);
+        this->WenchMotors = new frc::SpeedControllerGroup(m_brittney, m_stephanie);
         this->rel1 = &climber1;
         this->rel2 = &climber2;
-        this->wench1 = &m_wench1;
-        this->wench2 = &m_wench2;
+        this->wench1 = &m_brittney;
+        this->wench2 = &m_stephanie;
         this->Driver = &Driver;
 }
 
