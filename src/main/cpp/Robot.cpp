@@ -19,7 +19,7 @@ float distance;
 float angle;
 double eticks = 2048 * 9.2;
 double circum = 18.84;
-double wantToMove = 14 * 12; //feet to inches
+double wantToMove = 14 * 13; //feet to inches
 double ticks = wantToMove * (eticks / circum);
 
 cs::UsbCamera camera1;
@@ -110,42 +110,28 @@ void Robot::AutonomousPeriodic() {
     std::cout << m_leftMiddleMotor.GetSelectedSensorPosition() << "\n";
     if (!firstPart) {
         if(m_timer.Get() < .3){
-            // m_shooter1.Set(.4);
-            // m_shooter2.Set(.4);
-            m_turret.Set(.1);
+            m_turret.Set(.2);
         }
         else if(m_timer.Get() > .3 && m_timer.Get() < .7){
-            // m_shooter1.Set(.4);
-            // m_shooter2.Set(.4);
             m_turret.Set(.1);
             s1.SetPosition(.1);
         }
         else if (m_timer.Get() > .7 && m_timer.Get() < 3) {
-            // m_shooter1.Set(.4);
-            // m_shooter2.Set(.4);
         }
         else if (m_timer.Get() > 3 && m_timer.Get() < 3.5 ){
             // turret.Off();
             hopper.HopperMotors->Set(.4);
-            // m_shooter1.Set(.4);
-            // m_shooter2.Set(.4);
         }
         else if (m_timer.Get() > 3.5 && m_timer.Get() < 4 ){
             // turret.Off();
             hopper.HopperMotors->Set(.5);
-            // m_shooter1.Set(.4);
-            // m_shooter2.Set(.4);
         }
         else if (m_timer.Get() > 4 && m_timer.Get() < 5.5 ){
             // turret.Off();
             hopper.HopperMotors->Set(.6);
-            // m_shooter1.Set(.4);
-            // m_shooter2.Set(.4);
         }
         else if (m_timer.Get() > 5.5 && m_timer.Get() < 6) {
             hopper.HopperMotors->Set(0.0);
-            // m_shooter1.Set(0);
-            // m_shooter2.Set(0);
             s1.SetPosition(0);
         } else {
             m_leftMiddleMotor.SetSelectedSensorPosition(0);
@@ -158,7 +144,7 @@ void Robot::AutonomousPeriodic() {
             driveTrain.LeftMotors->Set(.3);
             driveTrain.RightMotors->Set(.3);
             m_intake.Set(.3);
-            hopper.HopperMotors->Set(.2);
+            hopper.HopperMotors->Set(.4);
             hopperSol.Set(frc::DoubleSolenoid::Value::kReverse);
         } else {
             driveTrain.LeftMotors->Set(0);
@@ -175,11 +161,9 @@ void Robot::AutonomousPeriodic() {
             thirdPart = true;
         }
     } else if (!fourthPart) {
-        if (abs(m_leftMiddleMotor.GetSelectedSensorPosition()) > (12 * 9 * (eticks / circum))) {
+        if (abs(m_leftMiddleMotor.GetSelectedSensorPosition()) > (12 * 11 * (eticks / circum))) {
             driveTrain.LeftMotors->Set(-.3);
             driveTrain.RightMotors->Set(-.3);
-            // m_shooter1.Set(.7);
-            // m_shooter2.Set(.7);
             s1.SetPosition(.1);
         } else {
             driveTrain.LeftMotors->Set(0);
@@ -196,14 +180,10 @@ void Robot::AutonomousPeriodic() {
         } else if (m_timer.Get() > 8 && m_timer.Get() < 10) {
             intakeSol.Set(frc::DoubleSolenoid::Value::kReverse);
             hopper.HopperMotors->Set(.5);
-            // m_shooter1.Set(.7);
-            // m_shooter2.Set(.7);
-        } else if (m_timer.Get() > 10 && m_timer.Get() < 16) {
+        } else if (m_timer.Get() > 10 && m_timer.Get() < 12) {
             intakeSol.Set(frc::DoubleSolenoid::Value::kForward);
-            // hopper.HopperMotors->Set(.3);
-            // m_shooter1.Set(.7);
-            // m_shooter2.Set(.7);
-        } else if (m_timer.Get() > 16 && m_timer.Get() < 16.5) {
+            hopper.HopperMotors->Set(.3);
+        } else if (m_timer.Get() > 12 && m_timer.Get() < 12.5) {
             m_shooter1.Set(0);
             m_shooter2.Set(0);
             hopper.HopperMotors->Set(0.0);

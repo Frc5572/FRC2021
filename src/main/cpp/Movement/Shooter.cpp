@@ -17,18 +17,17 @@ Shooter::Shooter(
 void Shooter::Run() {
     if(Operator->RT()){
         shooterMotors->Set(.6);
+        hopperBlock->Set(frc::DoubleSolenoid::Value::kForward);
     }
     else
     {
-        shooterMotors->Set(.2);
+        shooterMotors->Set(.3);
+        hopperBlock->Set(frc::DoubleSolenoid::Value::kReverse);
     }
 }
 
 void Shooter::retractSol() {
-    // if(Operator->A()) {
-        hopperBlock->Set(frc::DoubleSolenoid::Value::kForward);
-    // } else {
-    //     hopperBlock->Set(frc::DoubleSolenoid::Value::kReverse);
-
-    // }
+    if(Operator->A()) {
+        hopperBlock->Set(frc::DoubleSolenoid::Value::kReverse);
+    }
 }

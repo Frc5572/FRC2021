@@ -123,7 +123,7 @@ class Robot : public frc::TimedRobot {
 
     Hopper hopper{ m_hopperLeft, m_hopperRight, hopperSol, Operator };
 
-    Intake intake{ m_intake, intakeSol, Operator };
+    Intake intake{ m_intake, intakeSol, m_hopperLeft, m_hopperRight, hopperSol, Operator };
 
     Turret turret{ m_turret, Operator, LimeLight, s1, driveTrain};
 
