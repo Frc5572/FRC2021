@@ -104,17 +104,18 @@ void Robot::AutonomousPeriodic() {
     */
 
     turret.autoAim();
+    turret.PositionHood();
     m_shooter1.Set(.7);
     m_shooter2.Set(.7);
 
     std::cout << m_leftMiddleMotor.GetSelectedSensorPosition() << "\n";
     if (!firstPart) {
         if(m_timer.Get() < .3){
-            m_turret.Set(.2);
+            m_turret.Set(.1);
         }
         else if(m_timer.Get() > .3 && m_timer.Get() < .7){
             m_turret.Set(.1);
-            s1.SetPosition(.1);
+            // s1.SetPosition(.1);
         }
         else if (m_timer.Get() > .7 && m_timer.Get() < 3) {
         }
@@ -132,7 +133,7 @@ void Robot::AutonomousPeriodic() {
         }
         else if (m_timer.Get() > 5.5 && m_timer.Get() < 6) {
             hopper.HopperMotors->Set(0.0);
-            s1.SetPosition(0);
+            // s1.SetPosition(0);
         } else {
             m_leftMiddleMotor.SetSelectedSensorPosition(0);
             firstPart = true;
@@ -153,6 +154,9 @@ void Robot::AutonomousPeriodic() {
         }
     } else if (!thirdPart) {
         m_timer.Start();
+        if (m_timer.Get() > 6 && m_timer.Get() < 6.25) {
+            m_turret.Set(.2);
+        }
         if (m_timer.Get() > 6 && m_timer.Get() < 6.5) {
             driveTrain.LeftMotors->Set(0);
             driveTrain.RightMotors->Set(0);
@@ -164,7 +168,7 @@ void Robot::AutonomousPeriodic() {
         if (abs(m_leftMiddleMotor.GetSelectedSensorPosition()) > (12 * 11 * (eticks / circum))) {
             driveTrain.LeftMotors->Set(-.3);
             driveTrain.RightMotors->Set(-.3);
-            s1.SetPosition(.1);
+            // s1.SetPosition(.1);
         } else {
             driveTrain.LeftMotors->Set(0);
             driveTrain.RightMotors->Set(0);
