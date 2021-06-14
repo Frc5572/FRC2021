@@ -75,10 +75,10 @@ class Robot : public frc::TimedRobot {
     // rev::CANEncoder* BottomLeftMotorEncoder =
         // new rev::CANEncoder{m_leftBottomMotor};
 
-
+    // MAKE SURE YOU BURN FLASH ON REV SOFTWARE WHEN CONFIG SPARKMAX!!!
     rev::CANSparkMax m_turret{turretID, rev::CANSparkMax::MotorType::kBrushless};
-    // rev::CANSparkMax m_climber1{climb1, rev::CANSparkMax::MotorType::kBrushless};
-    // rev::CANSparkMax m_climber2{climb2, rev::CANSparkMax::MotorType::kBrushless};
+    rev::CANSparkMax m_climber1{climb1, rev::CANSparkMax::MotorType::kBrushless};
+    rev::CANSparkMax m_climber2{climb2, rev::CANSparkMax::MotorType::kBrushless};
     frc::Servo s1{9};
     // frc::Servo s2{9};
 
@@ -95,10 +95,10 @@ class Robot : public frc::TimedRobot {
     // frc::Servo *servo;
     // servo = new frc::Servo{0};
 
-    frc::DoubleSolenoid *climber2;
+    frc::DoubleSolenoid climber2{PCM1, 7 ,0};
     frc::DoubleSolenoid *sol4;
     frc::DoubleSolenoid intakeSol{PCM1, 6, 1};
-    frc::DoubleSolenoid *climber1;
+    frc::DoubleSolenoid climber1{PCM2, 4, 3};
     frc::DoubleSolenoid hopperSol {PCM1, 5, 2};
 
     PIDShooter shooter{m_shooter1, m_shooter2};
@@ -123,11 +123,13 @@ class Robot : public frc::TimedRobot {
 
     Hopper hopper{ m_hopperLeft, m_hopperRight, hopperSol, Operator };
 
-    Intake intake{ m_intake, Operator, intakeSol };
+    Intake intake{ m_intake, intakeSol, m_hopperLeft, m_hopperRight, hopperSol, Operator };
 
     Turret turret{ m_turret, Operator, LimeLight, s1, driveTrain};
 
-    bool firstPart, secondPart, thirdPart, fourthPart, fifthPart, sixthPart;
+    Climber climber{ m_climber1, m_climber2, climber1, climber2, Driver };
+
+    bool firstPart, secondPart, thirdPart, fourthPart, fifthPart;
 
     // bool firstPart, secondPart, thirdPart, fourthPart, fifthPart, sixthPart;
 
@@ -170,14 +172,11 @@ class Robot : public frc::TimedRobot {
     HopperTwoID = 10,
     shooter1 = 12,
     shooter2 = 14, //  GOOD
-    climb1,
-    climb2;
-
-    // LeftClimb = 13,  //  GOOD
-    // RightClimb = 14;  //  GOOD
-
+    climb1 = 16,
+    climb2 = 15;
 
  public:
+        Robot();
         void RobotInit() override;
         void RobotPeriodic() override;
         void AutonomousInit() override;

@@ -1,6 +1,8 @@
 #include "Movement/Turret.hpp"
 #include "Movement/DriveTrainManager.hpp"
 
+bool tap = false;
+
 Turret::Turret(
     rev::CANSparkMax &TurretMotor,
     FRC5572Controller &Operator,
@@ -59,12 +61,21 @@ void Turret::autoAim() {
 }
 
 void Turret::Off() {
-    nt::NetworkTableInstance::GetDefault().GetTable("limelight")
-                    ->PutNumber("camMode", 1);
-    nt::NetworkTableInstance::GetDefault().GetTable("limelight")
-                    ->PutNumber("ledMode", 1);
-    disX = 0;
-    T = 0;
+    // if (Operator.X() && tap == false){}
+    //     nt::NetworkTableInstance::GetDefault().GetTable("limelight")
+    //                     ->PutNumber("camMode", 1);
+    //     nt::NetworkTableInstance::GetDefault().GetTable("limelight")
+    //                     ->PutNumber("ledMode", 1);
+    //     disX = 0;
+    //     T = 0;
+    //     tap = true;
+    // } else if (Operator.X() && tap == true) {
+    //     nt::NetworkTableInstance::GetDefault().GetTable("limelight")
+    //                 ->PutNumber("camMode", 0);
+    //     nt::NetworkTableInstance::GetDefault().GetTable("limelight")
+    //                 ->PutNumber("ledMode", 3);
+    //     tap = false;
+    // }
 }
 
 double Turret::CalculateDistance(double area) {
@@ -77,10 +88,10 @@ double Turret::CalculateAngle(double distance) {
     auto d = t * (180 / M_PI);
     auto corrected_d = (90 - d - 25);
     auto r = m1 * corrected_d  + b1;
-    if (corrected_d > 64) 
+    if (corrected_d > 64)
     {
         r = limitServo;
-    } 
+    }
     else if (corrected_d < 26)
     {
         r = 0;
@@ -90,7 +101,7 @@ double Turret::CalculateAngle(double distance) {
 }
 
 bool Turret::LimitCheck() {
-    if (abs(TurretEncoder->GetPosition()) > limitTurret) 
+    if (abs(TurretEncoder->GetPosition()) > limitTurret)
     {
         return true;
     }

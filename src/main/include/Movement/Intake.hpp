@@ -12,29 +12,36 @@ class Intake{
 
     Intake(
         WPI_TalonSRX &m_intake,
-        FRC5572Controller &Operator,
-        frc::DoubleSolenoid &sol
+        frc::DoubleSolenoid &intakeSol,
+        WPI_TalonSRX &m_hopperLeft,
+        WPI_TalonSRX &m_hopperRight,
+        frc::DoubleSolenoid &hopperSol,
+        FRC5572Controller &Operator
         // frc::DigitalInput &Input2,
         // frc::DigitalInput &Input3
 
 
     );
 
-
     void Run();
-
-    // void HopperPeriodic();
-    // void Advance();
-    // void ManualControlBelt();
     // void RunIntakePistions();
     // void ManualIntakeMotors();
 
 
     FRC5572Controller* Operator;
 
-    WPI_TalonSRX* m_intake;
+    frc::DoubleSolenoid* intakePistons;
 
-    frc::DoubleSolenoid *sol;
+    frc::SpeedControllerGroup* HopperMotors;
+
+    WPI_TalonSRX* m_intake;
+    WPI_TalonSRX* h1;
+    WPI_TalonSRX* h2;
+
+
+    frc::DoubleSolenoid *hS;
+
+
     // frc::DigitalInput* limitSwitch2;
     // frc::DigitalInput* limitSwitch3;
 
