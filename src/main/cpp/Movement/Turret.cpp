@@ -133,7 +133,7 @@ void Turret::PositionHood()
     std::cout << CalculateDistance(area) << "inches\n";
     auto a1 = atan2(heightdiff, CalculateDistance(area)) * (180/M_PI);
     // std::cout << "a1 " << a1 << "\n";
-    auto a2 = 90 - a1 - 35;
+    auto a2 = 90 - a1 - 30;
     // std::cout << "a2 " << a2 << "\n";
     auto p = (1 / (maxAngle - minAngle))*(a2-maxAngle) + 1;
     // std::cout << "servo position" << p << "\n";
