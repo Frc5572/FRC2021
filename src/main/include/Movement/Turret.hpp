@@ -12,10 +12,10 @@
 
 class Turret {
 // Distance calculation constants
-    static constexpr double x1 = -0.0000000005671;
-    static constexpr double x2 = 0.0000119179047;
-    static constexpr double x3 = -0.0903309053502;
-    static constexpr double b = 317.9789050449609;
+    static constexpr double x1 = -0.0000000025291;
+    static constexpr double x2 = 0.0000334240538;
+    static constexpr double x3 = -0.1545379987062;
+    static constexpr double b = 315.5170993015826;
     static constexpr double heightOfShooter = 38;
     static constexpr double heightOfTower = 98;
     static constexpr double heightdiff = heightOfTower - heightOfShooter;
