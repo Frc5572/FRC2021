@@ -31,7 +31,7 @@ void Intake::Run() {
     if(Operator->B()){
         m_intake->Set(.3);
         intakePistons->Set(frc::DoubleSolenoid::Value::kReverse);
-        HopperMotors->Set(.4);
+        // HopperMotors->Set(.4);
     }
     else {
         m_intake->Set(0);
