@@ -59,6 +59,8 @@ class Robot : public frc::TimedRobot {
     WPI_TalonSRX m_hopperRight{HopperTwoID};
     WPI_TalonSRX m_shooter1{shooter1};
     WPI_TalonSRX m_shooter2{shooter2};
+
+    std::string autoNum; 
     // WPI_TalonSRX m_hopperLift{hopperLift};
 
     // WPI_TalonSRX*  m_leftTopMotor = new WPI_TalonSRX(TopLeft);
