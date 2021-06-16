@@ -93,7 +93,6 @@ void Robot::AutonomousInit() {
     s1.SetPosition(0);
     m_leftMiddleMotor.SetSelectedSensorPosition(0);
     LimeLight.Update();
-    intakeSol.Set(frc::DoubleSolenoid::Value::kReverse);
     hopperSol.Set(frc::DoubleSolenoid::Value::kForward);
     firstPart = false, secondPart = false, thirdPart = false, fourthPart = false, fifthPart = false;
 }
@@ -107,6 +106,7 @@ void Robot::AutonomousPeriodic() {
     {
         std::cout << "auto 1" << "\n";
         if (!firstPart) {
+            intakeSol.Set(frc::DoubleSolenoid::Value::kReverse);
             if(m_timer.Get() < .3){
                 m_turret.Set(.1);
             }
@@ -199,7 +199,6 @@ void Robot::AutonomousPeriodic() {
         if (!firstPart) {
             if(m_timer.Get() < .3){
                 // m_turret.Set(.1);
-                hopperSol.Set(frc::DoubleSolenoid::Value::kForward);
             }
             else if(m_timer.Get() > .3 && m_timer.Get() < .7){
                 // m_turret.Set(.1);
@@ -228,8 +227,8 @@ void Robot::AutonomousPeriodic() {
             m_timer.Stop();
             if (abs(m_leftMiddleMotor.GetSelectedSensorPosition()) < (ticks / 13) * 2)
             {
-                driveTrain.LeftMotors->Set(.3);
-                driveTrain.RightMotors->Set(.3);
+                driveTrain.LeftMotors->Set(-.3);
+                driveTrain.RightMotors->Set(-.3);
                 m_intake.Set(.3);
             } else {
                 driveTrain.LeftMotors->Set(0);
