@@ -27,6 +27,7 @@ class Turret {
     static constexpr double b1 = -.625;
     static constexpr double limitTurret = 20;
     static constexpr double limitServo = .7;
+    static constexpr double hoodOffset = 30;
 
  public:
 

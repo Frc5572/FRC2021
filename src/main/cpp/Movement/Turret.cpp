@@ -1,5 +1,6 @@
 #include "Movement/Turret.hpp"
 #include "Movement/DriveTrainManager.hpp"
+#include "frc/smartdashboard/SmartDashboard.h"
 
 bool tap = false;
 
@@ -17,6 +18,7 @@ Turret::Turret(
         this->Operator = &Operator;
         drive = &driveTrain;
         TurretEncoder = new rev::CANEncoder(TurretMotor, rev::CANEncoder::EncoderType::kHallSensor);
+        frc::SmartDashboard::PutNumber("Hood Angle Adjust", hoodOffset);
 }
 
 void Turret::turretInit() {
@@ -128,12 +130,13 @@ void Turret::PositionHood()
                     ->GetNumber("tshort", 1);
     auto sLong = nt::NetworkTableInstance::GetDefault().GetTable("limelight")
                     ->GetNumber("tlong", 1);
+    auto os = frc::SmartDashboard::GetNumber("Hood Angle Adjust", hoodOffset);
     auto area = sLong * sShort;
     // std::cout << "Total area: " << area << "\n";
     std::cout << CalculateDistance(area) << "inches\n";
     auto a1 = atan2(heightdiff, CalculateDistance(area)) * (180/M_PI);
     // std::cout << "a1 " << a1 << "\n";
-    auto a2 = 90 - a1 - 30;
+    auto a2 = 90 - a1 - os;
     // std::cout << "a2 " << a2 << "\n";
     auto p = (1 / (maxAngle - minAngle))*(a2-maxAngle) + 1;
     // std::cout << "servo position" << p << "\n";

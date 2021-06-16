@@ -213,11 +213,9 @@ void Robot::AutonomousPeriodic() {
             }
             else if (m_timer.Get() > 3.5 && m_timer.Get() < 4 ){
                 // turret.Off();
-                hopper.HopperMotors->Set(.5);
             }
             else if (m_timer.Get() > 4 && m_timer.Get() < 5.5 ){
                 // turret.Off();
-                hopper.HopperMotors->Set(.6);
             }
             else if (m_timer.Get() > 5.5 && m_timer.Get() < 6) {
                 hopper.HopperMotors->Set(0.0);
