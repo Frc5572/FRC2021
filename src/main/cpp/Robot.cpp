@@ -250,7 +250,7 @@ void Robot::TeleopPeriodic() {
     turret.Off();
     // turret.LimitCheck();
     hopper.Run();
-    nonPidShooter.Run();
+    // nonPidShooter.Run();
     nonPidShooter.retractSol();
     intake.Run();
     climber.RunMotors();
