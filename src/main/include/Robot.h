@@ -103,7 +103,7 @@ class Robot : public frc::TimedRobot {
     frc::DoubleSolenoid climber1{PCM2, 4, 3};
     frc::DoubleSolenoid hopperSol {PCM1, 5, 2};
 
-    PIDShooter shooter{m_shooter1, m_shooter2};
+    PIDShooter shooter{m_shooter1, m_shooter2, Operator, hopperSol};
 
     Shooter nonPidShooter { m_shooter1, m_shooter2, hopperSol, Operator};
 

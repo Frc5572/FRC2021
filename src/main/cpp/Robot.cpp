@@ -252,6 +252,7 @@ void Robot::TeleopPeriodic() {
     hopper.Run();
     // nonPidShooter.Run();
     nonPidShooter.retractSol();
+    shooter.run();
     intake.Run();
     climber.RunMotors();
     climber.RunPistons();
