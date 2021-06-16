@@ -28,6 +28,6 @@ void Shooter::Run() {
 
 void Shooter::retractSol() {
     if(Operator->A()) {
-        hopperBlock->Set(frc::DoubleSolenoid::Value::kReverse);
+        hopperBlock->Set(frc::DoubleSolenoid::Value::kForward);
     }
 }

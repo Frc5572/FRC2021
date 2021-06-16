@@ -122,11 +122,11 @@ void Robot::AutonomousPeriodic() {
             }
             else if (m_timer.Get() > 3.5 && m_timer.Get() < 4 ){
                 // turret.Off();
-                hopper.HopperMotors->Set(.5);
+                // hopper.HopperMotors->Set(.5);
             }
             else if (m_timer.Get() > 4 && m_timer.Get() < 5.5 ){
                 // turret.Off();
-                hopper.HopperMotors->Set(.6);
+                // hopper.HopperMotors->Set(.6);
             }
             else if (m_timer.Get() > 5.5 && m_timer.Get() < 6) {
                 hopper.HopperMotors->Set(0.0);
@@ -205,21 +205,33 @@ void Robot::AutonomousPeriodic() {
                 // s1.SetPosition(.1);
             }
             else if (m_timer.Get() > .7 && m_timer.Get() < 5) {
-                
+
             }
-            else if (m_timer.Get() > 5 && m_timer.Get() < 5.5 ){
+            else if (m_timer.Get() > 5 && m_timer.Get() < 9.5 ){
                 // turret.Off();
-                hopper.HopperMotors->Set(.4);
+                hopper.HopperMotors->Set(.5);
             }
-            else if (m_timer.Get() > 5.5 && m_timer.Get() < 6 ){
-                // turret.Off();
-            }
-            else if (m_timer.Get() > 6 && m_timer.Get() < 7.5 ){
-                // turret.Off();
-            }
-            else if (m_timer.Get() > 7.5 && m_timer.Get() < 8) {
-                hopper.HopperMotors->Set(0.0);
+            else if (m_timer.Get() > 9.5 && m_timer.Get() < 10) {
+                // hopper.HopperMotors->Set(0.0);
                 // s1.SetPosition(0);
+            }
+            else if (m_timer.Get() > 10 && m_timer.Get() < 10.25) {
+                hopperSol.Set(frc::DoubleSolenoid::Value::kReverse);
+            }
+            else if (m_timer.Get() > 10.25 && m_timer.Get() < 10.5) {
+                hopperSol.Set(frc::DoubleSolenoid::Value::kForward);
+            } 
+            else if (m_timer.Get() > 10.5 && m_timer.Get() < 11) {
+                hopperSol.Set(frc::DoubleSolenoid::Value::kReverse);
+            }
+            else if (m_timer.Get() > 11 && m_timer.Get() < 11.25) {
+                hopperSol.Set(frc::DoubleSolenoid::Value::kForward);
+            } 
+            else if (m_timer.Get() > 11.25 && m_timer.Get() < 12) {
+                hopperSol.Set(frc::DoubleSolenoid::Value::kReverse);
+            }
+            else if (m_timer.Get() > 12 && m_timer.Get() < 12.5) {
+                hopperSol.Set(frc::DoubleSolenoid::Value::kForward);
             } else {
                 m_leftMiddleMotor.SetSelectedSensorPosition(0);
                 firstPart = true;
@@ -230,7 +242,6 @@ void Robot::AutonomousPeriodic() {
             {
                 driveTrain.LeftMotors->Set(-.3);
                 driveTrain.RightMotors->Set(-.3);
-                m_intake.Set(.3);
             } else {
                 driveTrain.LeftMotors->Set(0);
                 driveTrain.RightMotors->Set(0);
