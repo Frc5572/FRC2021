@@ -29,6 +29,9 @@ class Turret {
     static constexpr double limitServo = .7;
     static constexpr double hoodOffset = 30;
 
+    static constexpr double a1 = 30;
+    static constexpr double h1 = heightOfShooter;
+    static constexpr double h2 = heightOfTower;
  public:
 
 Turret(

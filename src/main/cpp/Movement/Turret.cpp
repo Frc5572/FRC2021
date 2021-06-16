@@ -80,8 +80,10 @@ void Turret::Off() {
     // }
 }
 
-double Turret::CalculateDistance(double area) {
-    auto r = x1*pow(area, 3) + x2*pow(area, 2) +x3*area + b;
+double Turret::CalculateDistance(double a2) {
+    // auto r = x1*pow(area, 3) + x2*pow(area, 2) +x3*area + b;
+    // return r;
+    auto r = (h2 - h1) / tan((a1 + a2) * (M_PI / 180));
     return r;
 }
 
@@ -133,15 +135,19 @@ void Turret::PositionHood()
     auto os = frc::SmartDashboard::GetNumber("Hood Angle Adjust", hoodOffset);
     auto area = sLong * sShort;
     // std::cout << "Total area: " << area << "\n";
-    std::cout << CalculateDistance(area) << "inches\n";
-    auto a1 = atan2(heightdiff, CalculateDistance(area)) * (180/M_PI);
-    // std::cout << "a1 " << a1 << "\n";
-    auto a2 = 90 - a1 - os;
-    // std::cout << "a2 " << a2 << "\n";
-    auto p = (1 / (maxAngle - minAngle))*(a2-maxAngle) + 1;
-    // std::cout << "servo position" << p << "\n";
+    auto d = CalculateDistance(nt::NetworkTableInstance::GetDefault().GetTable("limelight")->GetNumber("ty", 0));
+    std::cout << d << "\n";
+    auto aa1 = atan2(heightdiff, d * (180/M_PI));
+    std::cout << "a1 " << aa1 << "\n";
+    auto aa2 = 90 - aa1 - os;
+    std::cout << "a2 " << aa2 << "\n";
+    auto p = (1 / (maxAngle - minAngle))*(aa2-maxAngle) + 1;
+
+    std::cout << "servo position" << p << "\n";
     if (p >= .7) {
         p = .7;
     }
     servo->Set(p);
+
+    
 }

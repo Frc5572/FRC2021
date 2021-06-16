@@ -1,4 +1,5 @@
 #include "Vision/VisionManager.hpp"
+#include <iostream>
 
 VisionManager::VisionManager() {
   Update();
@@ -19,6 +20,8 @@ void VisionManager::Update() {
     disX = tx;
     disY = ty;
   }
+
+  std::cout << "ty: " << ty << "\n";
 }
 
 void TurnOffLights() {
