@@ -204,19 +204,20 @@ void Robot::AutonomousPeriodic() {
                 // m_turret.Set(.1);
                 // s1.SetPosition(.1);
             }
-            else if (m_timer.Get() > .7 && m_timer.Get() < 3) {
+            else if (m_timer.Get() > .7 && m_timer.Get() < 5) {
+                
             }
-            else if (m_timer.Get() > 3 && m_timer.Get() < 3.5 ){
+            else if (m_timer.Get() > 5 && m_timer.Get() < 5.5 ){
                 // turret.Off();
                 hopper.HopperMotors->Set(.4);
             }
-            else if (m_timer.Get() > 3.5 && m_timer.Get() < 4 ){
+            else if (m_timer.Get() > 5.5 && m_timer.Get() < 6 ){
                 // turret.Off();
             }
-            else if (m_timer.Get() > 4 && m_timer.Get() < 5.5 ){
+            else if (m_timer.Get() > 6 && m_timer.Get() < 7.5 ){
                 // turret.Off();
             }
-            else if (m_timer.Get() > 5.5 && m_timer.Get() < 6) {
+            else if (m_timer.Get() > 7.5 && m_timer.Get() < 8) {
                 hopper.HopperMotors->Set(0.0);
                 // s1.SetPosition(0);
             } else {
