@@ -102,7 +102,7 @@ void Robot::AutonomousPeriodic() {
     turret.PositionHood();
     m_shooter1.Set(.7);
     m_shooter2.Set(.7);
-    if (autoNum == "1") 
+    if (autoNum == "1")
     {
         std::cout << "auto 1" << "\n";
         if (!firstPart) {
@@ -235,7 +235,7 @@ void Robot::AutonomousPeriodic() {
                 driveTrain.RightMotors->Set(0);
                 secondPart = true;
             }
-        } 
+        }
     }
 }
 
